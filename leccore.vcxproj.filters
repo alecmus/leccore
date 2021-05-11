@@ -5,13 +5,15 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="leccore">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="leccore\database">
+      <UniqueIdentifier>{340fced0-a811-4f3d-9200-d103923ec625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="leccore\database\sqlcipher">
+      <UniqueIdentifier>{c8d78b29-21c2-4cb1-baa4-9b0d3b7eeb19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -21,10 +23,28 @@
     <ClInclude Include="versioninfo.h">
       <Filter>leccore</Filter>
     </ClInclude>
+    <ClInclude Include="database\connection.h">
+      <Filter>leccore\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\connection_base.h">
+      <Filter>leccore\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\sqlcipher\sqlcipher_connection.h">
+      <Filter>leccore\database\sqlcipher</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="leccore.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="database\connection.cpp">
+      <Filter>leccore\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\connection_base.cpp">
+      <Filter>leccore\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\sqlcipher\sqlcipher_connection.cpp">
+      <Filter>leccore\database\sqlcipher</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
