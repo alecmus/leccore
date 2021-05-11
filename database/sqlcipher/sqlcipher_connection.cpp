@@ -119,8 +119,141 @@ bool sqlcipher_connection::disconnect(std::string& error) {
 bool sqlcipher_connection::execute(const std::string& sql,
 	const std::vector<value>& values,
 	std::string& error) {
-	error = "liblec::leccore::database::sqlcipher_connection::execute - not yet implemented";
-	return false;
+	if (!d_.db_) {
+		error = "Database not open";
+		return false;
+	}
+
+	// prepare statement
+	sqlite3_stmt* statement = nullptr;
+	if (sqlite3_prepare(d_.db_, sql.c_str(), -1, &statement, 0) == SQLITE_OK) {
+		// get number of bind parameters
+		const int bind_parameter_count = sqlite3_bind_parameter_count(statement);
+
+		if (bind_parameter_count == 0) {
+			int result = sqlite3_step(statement);
+			if (result == SQLITE_DONE)
+				result = SQLITE_OK;
+
+			sqlite3_finalize(statement);
+
+			if (result != SQLITE_OK) {
+				error = d_.sqlite_error();
+				return false;
+			}
+
+			return true;
+		}
+
+		if (bind_parameter_count != values.size()) {
+			error = "Expected " + std::to_string(bind_parameter_count) + " values but " + std::to_string(values.size()) + " supplied";
+			sqlite3_finalize(statement);
+			return false;
+		}
+
+		// do some binding
+		// supported types: int, float, double, text(const char*, std::string), blob(std::string)
+		// 
+		int index = 1;
+		for (const auto& value : values) {
+			if (value.data.has_value()) {
+				if (value.is_blob) {
+					auto& data_type = value.data.type();
+
+					// bind blob (std::string)
+					if (value.data.type() == typeid(std::string)) {
+						const std::string data = std::any_cast<std::string>(value.data);
+						const char* buffer = data.c_str();
+						const auto size = (int)data.length();
+
+						if (sqlite3_bind_blob(statement, index, buffer, size, SQLITE_STATIC) != SQLITE_OK) {
+							error = d_.sqlite_error();
+							sqlite3_finalize(statement);
+							return false;
+						}
+					}
+				}
+				else {
+					// bind text (const char*)
+					if (value.data.type() == typeid(const char*)) {
+						const char* buffer = std::any_cast<const char*>(value.data);
+						const auto length = (int)strlen(buffer);
+
+						if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
+							error = d_.sqlite_error();
+							sqlite3_finalize(statement);
+							return false;
+						}
+					}
+
+					// bind text (std::string)
+					if (value.data.type() == typeid(std::string)) {
+						const std::string data = std::any_cast<std::string>(value.data);
+						const char* buffer = data.c_str();
+						const auto length = data.length();
+
+						if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
+							error = d_.sqlite_error();
+							sqlite3_finalize(statement);
+							return false;
+						}
+					}
+
+					// bind integers (int)
+					if (value.data.type() == typeid(int)) {
+						const auto integer = std::any_cast<int>(value.data);
+
+						if (sqlite3_bind_int(statement, index, integer) != SQLITE_OK) {
+							error = d_.sqlite_error();
+							sqlite3_finalize(statement);
+							return false;
+						}
+					}
+
+					// bind floats (float)
+					if (value.data.type() == typeid(float)) {
+						const auto f = std::any_cast<float>(value.data);
+
+						if (sqlite3_bind_double(statement, index, f) != SQLITE_OK) {
+							error = d_.sqlite_error();
+							sqlite3_finalize(statement);
+							return false;
+						}
+					}
+
+					// bind doubles (double)
+					if (value.data.type() == typeid(double)) {
+						const auto d = std::any_cast<double>(value.data);
+
+						if (sqlite3_bind_double(statement, index, d) != SQLITE_OK) {
+							error = d_.sqlite_error();
+							sqlite3_finalize(statement);
+							return false;
+						}
+					}
+				}
+			}
+
+			index++;
+		}
+
+		int result = sqlite3_step(statement);
+		if (result == SQLITE_DONE)
+			result = SQLITE_OK;
+
+		sqlite3_finalize(statement);
+
+		if (result != SQLITE_OK) {
+			error = d_.sqlite_error();
+			return false;
+		}
+
+		return true;
+	}
+	else {
+		error = d_.sqlite_error();
+		return false;
+	}
 }
 
 bool sqlcipher_connection::execute_query(const std::string& sql, table& results, std::string& error) {
