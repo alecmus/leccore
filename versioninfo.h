@@ -11,7 +11,7 @@
 #pragma once
 
 #define leccorename			"leccore"
-#define leccoredescription	"leccore library"
+#define leccoredescription	"liblec core library"
 #define leccorecomments		"This file is part of the liblec library"
 #define leccorecopyright	"(c) 2019 Alec Musasa"
 #define leccorefilename		"leccore.dll"
