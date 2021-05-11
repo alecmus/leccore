@@ -24,17 +24,24 @@
 namespace liblec {
 	namespace leccore {
 		namespace database {
+			class leccore_api blob {
+			public:
+				blob(std::string& data);
+				~blob();
+				blob(const blob& obj);
+				std::string& get();
+
+			private:
+				class blob_impl;
+				blob_impl& d_;
+			};
+
 			enum class data_type {
 				integer = 0,
 				real,
 				text,
 				blob,
 				null,
-			};
-
-			struct value {
-				std::any data;
-				bool is_blob = false;
 			};
 
 			struct column {
@@ -59,7 +66,7 @@ namespace liblec {
 
 				bool connected();
 				bool connect(std::string& error);
-				bool execute(const std::string& sql, const std::vector<value>& values, std::string& error);
+				bool execute(const std::string& sql, const std::vector<std::any>& values, std::string& error);
 				bool execute_query(const std::string& sql, table& results, std::string& error);
 
 			private:

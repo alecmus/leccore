@@ -117,7 +117,7 @@ bool sqlcipher_connection::disconnect(std::string& error) {
 }
 
 bool sqlcipher_connection::execute(const std::string& sql,
-	const std::vector<value>& values,
+	const std::vector<std::any>& values,
 	std::string& error) {
 	if (!d_.db_) {
 		error = "Database not open";
@@ -152,84 +152,79 @@ bool sqlcipher_connection::execute(const std::string& sql,
 		}
 
 		// do some binding
-		// supported types: int, float, double, text(const char*, std::string), blob(std::string)
+		// supported types: int, float, double, text(const char*, std::string), blob(database::blob)
 		// 
 		int index = 1;
-		for (const auto& value : values) {
-			if (value.data.has_value()) {
-				if (value.is_blob) {
-					auto& data_type = value.data.type();
+		for (auto& value : values) {
+			if (value.has_value()) {
+				// bind integers (int)
+				if (value.type() == typeid(int)) {
+					const auto integer = std::any_cast<int>(value);
 
-					// bind blob (std::string)
-					if (value.data.type() == typeid(std::string)) {
-						const std::string data = std::any_cast<std::string>(value.data);
-						const char* buffer = data.c_str();
-						const auto size = (int)data.length();
-
-						if (sqlite3_bind_blob(statement, index, buffer, size, SQLITE_STATIC) != SQLITE_OK) {
-							error = d_.sqlite_error();
-							sqlite3_finalize(statement);
-							return false;
-						}
+					if (sqlite3_bind_int(statement, index, integer) != SQLITE_OK) {
+						error = d_.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
 					}
 				}
-				else {
-					// bind text (const char*)
-					if (value.data.type() == typeid(const char*)) {
-						const char* buffer = std::any_cast<const char*>(value.data);
-						const auto length = (int)strlen(buffer);
 
-						if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
-							error = d_.sqlite_error();
-							sqlite3_finalize(statement);
-							return false;
-						}
+				// bind floats (float)
+				if (value.type() == typeid(float)) {
+					const auto f = std::any_cast<float>(value);
+
+					if (sqlite3_bind_double(statement, index, f) != SQLITE_OK) {
+						error = d_.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
 					}
+				}
 
-					// bind text (std::string)
-					if (value.data.type() == typeid(std::string)) {
-						const std::string data = std::any_cast<std::string>(value.data);
-						const char* buffer = data.c_str();
-						const auto length = data.length();
+				// bind doubles (double)
+				if (value.type() == typeid(double)) {
+					const auto d = std::any_cast<double>(value);
 
-						if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
-							error = d_.sqlite_error();
-							sqlite3_finalize(statement);
-							return false;
-						}
+					if (sqlite3_bind_double(statement, index, d) != SQLITE_OK) {
+						error = d_.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
 					}
+				}
 
-					// bind integers (int)
-					if (value.data.type() == typeid(int)) {
-						const auto integer = std::any_cast<int>(value.data);
+				// bind text (const char*)
+				if (value.type() == typeid(const char*)) {
+					const char* buffer = std::any_cast<const char*>(value);
+					const auto length = (int)strlen(buffer);
 
-						if (sqlite3_bind_int(statement, index, integer) != SQLITE_OK) {
-							error = d_.sqlite_error();
-							sqlite3_finalize(statement);
-							return false;
-						}
+					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
+						error = d_.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
 					}
+				}
 
-					// bind floats (float)
-					if (value.data.type() == typeid(float)) {
-						const auto f = std::any_cast<float>(value.data);
+				// bind text (std::string)
+				if (value.type() == typeid(std::string)) {
+					const std::string data = std::any_cast<std::string>(value);
+					const char* buffer = data.c_str();
+					const auto length = (int)data.length();
 
-						if (sqlite3_bind_double(statement, index, f) != SQLITE_OK) {
-							error = d_.sqlite_error();
-							sqlite3_finalize(statement);
-							return false;
-						}
+					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
+						error = d_.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
 					}
+				}
 
-					// bind doubles (double)
-					if (value.data.type() == typeid(double)) {
-						const auto d = std::any_cast<double>(value.data);
+				// bind blob (database::blob)
+				if (value.type() == typeid(blob)) {
+					std::string& data = std::any_cast<blob>(value).get();
+					const char* buffer = data.c_str();
+					const auto size = (int)data.length();
 
-						if (sqlite3_bind_double(statement, index, d) != SQLITE_OK) {
-							error = d_.sqlite_error();
-							sqlite3_finalize(statement);
-							return false;
-						}
+					if (sqlite3_bind_blob(statement, index, buffer, size, SQLITE_STATIC) != SQLITE_OK) {
+						error = d_.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
 					}
 				}
 			}

@@ -14,6 +14,28 @@
 
 using namespace liblec::leccore::database;
 
+class blob::blob_impl {
+public:
+	std::string& data_;
+	blob_impl(std::string& data) :
+		data_(data) {}
+	~blob_impl() {}
+};
+
+blob::blob(std::string& data) :
+	d_(*new blob_impl(data)) {}
+
+blob::~blob() {
+	delete& d_;
+}
+
+blob::blob(const blob& obj) :
+	d_(*new blob_impl(obj.d_.data_)) {}
+
+std::string& blob::get() {
+	return d_.data_;
+}
+
 class connection::impl {
 public:
 	impl(const std::string& type,
@@ -68,7 +90,7 @@ bool connection::connect(std::string& error) {
 }
 
 bool connection::execute(const std::string& sql,
-	const std::vector<value>& values,
+	const std::vector<std::any>& values,
 	std::string& error) {
 	if (d_.p_db_) {
 		return d_.p_db_->execute(sql, values, error);

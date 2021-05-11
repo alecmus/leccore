@@ -23,7 +23,7 @@ namespace liblec {
 
 				bool connect(std::string& error) override;
 				bool disconnect(std::string& error) override;
-				bool execute(const std::string& sql, const std::vector<value>& values, std::string& error) override;
+				bool execute(const std::string& sql, const std::vector<std::any>& values, std::string& error) override;
 				bool execute_query(const std::string& sql, table& results, std::string& error) override;
 
 			private:
