@@ -25,3 +25,7 @@ connection_base::~connection_base() {
 bool connection_base::connected() {
 	return connected_;
 }
+
+void connection_base::set_connected(bool connected) {
+	connected_ = connected;
+}

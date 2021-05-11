@@ -17,10 +17,14 @@ namespace liblec {
 		namespace database {
 			class connection_base {
 			public:
+				const std::string connection_string_;
+				const std::string password_;
+
 				connection_base(const std::string& connection_string, const std::string& password);
 				virtual ~connection_base();
 
 				bool connected();
+				void set_connected(bool connected);
 
 				virtual bool connect(std::string& error) = 0;
 				virtual bool disconnect(std::string& error) = 0;
@@ -29,8 +33,6 @@ namespace liblec {
 
 			private:
 				bool connected_;
-				const std::string connection_string_;
-				const std::string password_;
 			};
 		}
 	}
