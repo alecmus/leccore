@@ -14,6 +14,22 @@
 
 using namespace liblec::leccore::database;
 
+int get::integer(const std::any& value) {
+	return std::any_cast<int>(value);
+}
+
+double get::real(const std::any& value) {
+	return std::any_cast<double>(value);
+}
+
+std::string get::text(const std::any& value) {
+	return std::any_cast<std::string>(value);
+}
+
+blob liblec::leccore::database::get::blob(const std::any& value) {
+	return std::any_cast<database::blob>(value);
+}
+
 class connection::impl {
 public:
 	impl(const std::string& type,
@@ -58,21 +74,26 @@ bool connection::connected() {
 }
 
 bool connection::connect(std::string& error) {
-	if (d_.p_db_) {
+	if (d_.p_db_)
 		return d_.p_db_->connect(error);
-	}
 	else {
 		error = "liblec::leccore::database::connection - initialization error";
 		return false;
 	}
 }
 
+bool connection::disconnect(std::string& error) {
+	if (d_.p_db_)
+		return d_.p_db_->disconnect(error);
+	else
+		return true;
+}
+
 bool connection::execute(const std::string& sql,
 	const std::vector<std::any>& values,
 	std::string& error) {
-	if (d_.p_db_) {
+	if (d_.p_db_)
 		return d_.p_db_->execute(sql, values, error);
-	}
 	else {
 		error = "liblec::leccore::database::connection - initialization error";
 		return false;
@@ -82,27 +103,10 @@ bool connection::execute(const std::string& sql,
 bool connection::execute_query(const std::string& sql,
 	table& results,
 	std::string& error) {
-	if (d_.p_db_) {
+	if (d_.p_db_) 
 		return d_.p_db_->execute_query(sql, results, error);
-	}
 	else {
 		error = "liblec::leccore::database::connection - initialization error";
 		return false;
 	}
-}
-
-int get::integer(const std::any& value) {
-	return std::any_cast<int>(value);
-}
-
-double get::real(const std::any& value) {
-	return std::any_cast<double>(value);
-}
-
-std::string get::text(const std::any& value) {
-	return std::any_cast<std::string>(value);
-}
-
-blob liblec::leccore::database::get::blob(const std::any& value) {
-	return std::any_cast<database::blob>(value);
 }

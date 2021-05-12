@@ -24,8 +24,12 @@
 namespace liblec {
 	namespace leccore {
 		namespace database {
-			struct blob {
-				std::string data;
+			using blob = struct { std::string data; };
+			using row = std::map<std::string, std::any>;
+			using table = struct {
+				std::string name;
+				std::vector<std::string> columns;
+				std::vector<row> data;
 			};
 
 			class leccore_api get {
@@ -34,14 +38,6 @@ namespace liblec {
 				static double real(const std::any& value);
 				static std::string text(const std::any& value);
 				static blob blob(const std::any& value);
-			};
-
-			using row = std::map<std::string, std::any>;
-
-			struct table {
-				std::string name;
-				std::vector<std::string> columns;
-				std::vector<row> data;
 			};
 
 			class leccore_api connection {
@@ -53,12 +49,18 @@ namespace liblec {
 
 				bool connected();
 				bool connect(std::string& error);
+				bool disconnect(std::string& error);
 				bool execute(const std::string& sql, const std::vector<std::any>& values, std::string& error);
 				bool execute_query(const std::string& sql, table& results, std::string& error);
 
 			private:
 				class impl;
 				impl& d_;
+
+				// Default constructor and copying an object of this class are not allowed
+				connection() = delete;
+				connection(const connection&) = delete;
+				connection& operator=(const connection&) = delete;
 			};
 		}
 	}

@@ -124,6 +124,20 @@ bool sqlcipher_connection::execute(const std::string& sql,
 		return false;
 	}
 
+	// check for unsupported types
+	for (const auto& value : values) {
+		if (value.type() != typeid(int) &&
+			value.type() != typeid(float) &&
+			value.type() != typeid(double) &&
+			value.type() != typeid(const char*) &&
+			value.type() != typeid(std::string) &&
+			value.type() != typeid(blob)
+			) {
+			error = "Unsupported type: " + std::string(value.type().name());
+			return false;
+		}
+	}
+
 	// prepare statement
 	sqlite3_stmt* statement = nullptr;
 	if (sqlite3_prepare(d_.db_, sql.c_str(), -1, &statement, 0) == SQLITE_OK) {
