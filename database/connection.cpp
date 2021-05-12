@@ -16,13 +16,13 @@ using namespace liblec::leccore::database;
 
 class blob::blob_impl {
 public:
-	std::string& data_;
-	blob_impl(std::string& data) :
+	const std::string data_;
+	blob_impl(const std::string& data) :
 		data_(data) {}
 	~blob_impl() {}
 };
 
-blob::blob(std::string& data) :
+blob::blob(const std::string& data) :
 	d_(*new blob_impl(data)) {}
 
 blob::~blob() {
@@ -32,7 +32,7 @@ blob::~blob() {
 blob::blob(const blob& obj) :
 	d_(*new blob_impl(obj.d_.data_)) {}
 
-std::string& blob::get() {
+const std::string& blob::get() {
 	return d_.data_;
 }
 
@@ -125,6 +125,6 @@ std::string get::text(const std::any& value) {
 	return std::any_cast<std::string>(value);
 }
 
-std::string liblec::leccore::database::get::blob(const std::any& value) {
-	return get::text(value);
+blob liblec::leccore::database::get::blob(const std::any& value) {
+	return std::any_cast<database::blob>(value);
 }

@@ -154,6 +154,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 		// do some binding
 		// supported types: int, float, double, text(const char*, std::string), blob(database::blob)
 		// 
+		std::vector<blob> blob_data;	// to keep blob data until sqlite3_step() is executed
 		int index = 1;
 		for (auto& value : values) {
 			if (value.has_value()) {
@@ -217,7 +218,8 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 				// bind blob (database::blob)
 				if (value.type() == typeid(blob)) {
-					std::string& data = std::any_cast<blob>(value).get();
+					blob_data.push_back(std::any_cast<blob>(value));
+					const std::string& data = blob_data.back().get();
 					const char* buffer = data.c_str();
 					const auto size = (int)data.length();
 
@@ -290,55 +292,45 @@ bool sqlcipher_connection::execute_query(const std::string& sql, table& results,
 							if (ccTable) results.name = ccTable;
 						}
 
-						if (true) {
-							database::column current_column;
-							current_column.name = column_name;
+						// get column type
+						switch (sqlite3_column_type(statement, column)) {
+						case SQLITE_INTEGER: {
+							current_row.insert(std::make_pair(column_name, sqlite3_column_int(statement, column)));
+						} break;
+						case SQLITE_FLOAT: {
+							current_row.insert(std::make_pair(column_name, sqlite3_column_double(statement, column)));
+						} break;
+						case SQLITE_TEXT: {
+							char* ccData = (char*)sqlite3_column_text(statement, column);
+							std::string value;
+							if (ccData) value = ccData;
+							current_row.insert(std::make_pair(column_name, value));
+						} break;
+						case SQLITE_BLOB: {
+							auto read_blob = [&](char** buffer, int* size)->void {
+								*size = sqlite3_column_bytes(statement, column);
+								*buffer = (char*)malloc(*size);
+								memcpy(*buffer, sqlite3_column_blob(statement, column), *size);
+							};
 
-							// get column type
-							switch (sqlite3_column_type(statement, column)) {
-							case SQLITE_INTEGER: {
-								current_column.type = data_type::integer;
-								current_row.insert(std::make_pair(column_name, sqlite3_column_int(statement, column)));
-							} break;
-							case SQLITE_FLOAT: {
-								current_column.type = data_type::real;
-								current_row.insert(std::make_pair(column_name, sqlite3_column_double(statement, column)));
-							} break;
-							case SQLITE_TEXT: {
-								current_column.type = data_type::text;
-								char* ccData = (char*)sqlite3_column_text(statement, column);
-								std::string value;
-								if (ccData) value = ccData;
-								current_row.insert(std::make_pair(column_name, value));
-							} break;
-							case SQLITE_BLOB: {
-								current_column.type = data_type::blob;
+							int size;
+							char* buffer;
 
-								auto read_blob = [&](char** buffer, int* size)->void {
-									*size = sqlite3_column_bytes(statement, column);
-									*buffer = (char*)malloc(*size);
-									memcpy(*buffer, sqlite3_column_blob(statement, column), *size);
-								};
+							read_blob(&buffer, &size);
+							std::string value(buffer, size);
+							blob b(value);
+							current_row.insert(std::make_pair(column_name, b));
 
-								int size;
-								char* buffer;
+							free(buffer);
+						}break;
 
-								read_blob(&buffer, &size);
-								std::string value(buffer, size);
-								current_row.insert(std::make_pair(column_name, value));
-
-								free(buffer);
-							}break;
-
-							case SQLITE_NULL:
-							default:
-								current_column.type = data_type::null;
-								break;
-							}
-
-							if (first_row)
-								results.columns.push_back(current_column);
+						case SQLITE_NULL:
+						default:
+							break;
 						}
+
+						if (first_row)
+							results.columns.push_back(column_name);
 					}
 				}
 

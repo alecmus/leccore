@@ -26,10 +26,10 @@ namespace liblec {
 		namespace database {
 			class leccore_api blob {
 			public:
-				blob(std::string& data);
+				blob(const std::string& data);
 				~blob();
 				blob(const blob& obj);
-				std::string& get();
+				const std::string& get();
 
 			private:
 				class blob_impl;
@@ -41,27 +41,14 @@ namespace liblec {
 				static int integer(const std::any& value);
 				static double real(const std::any& value);
 				static std::string text(const std::any& value);
-				static std::string blob(const std::any& value);
-			};
-
-			enum class data_type {
-				integer = 0,
-				real,
-				text,
-				blob,
-				null,
-			};
-
-			struct column {
-				std::string name;
-				data_type type;
+				static blob blob(const std::any& value);
 			};
 
 			using row = std::map<std::string, std::any>;
 
 			struct table {
 				std::string name;
-				std::vector<column> columns;
+				std::vector<std::string> columns;
 				std::vector<row> data;
 			};
 
