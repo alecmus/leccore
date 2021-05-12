@@ -154,13 +154,12 @@ bool sqlcipher_connection::execute(const std::string& sql,
 		// do some binding
 		// supported types: int, float, double, text(const char*, std::string), blob(database::blob)
 		// 
-		std::vector<blob> blob_data;	// to keep blob data until sqlite3_step() is executed
 		int index = 1;
 		for (auto& value : values) {
 			if (value.has_value()) {
 				// bind integers (int)
 				if (value.type() == typeid(int)) {
-					const auto integer = std::any_cast<int>(value);
+					auto integer = std::any_cast<int>(value);
 
 					if (sqlite3_bind_int(statement, index, integer) != SQLITE_OK) {
 						error = d_.sqlite_error();
@@ -171,7 +170,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 				// bind floats (float)
 				if (value.type() == typeid(float)) {
-					const auto f = std::any_cast<float>(value);
+					auto f = std::any_cast<float>(value);
 
 					if (sqlite3_bind_double(statement, index, f) != SQLITE_OK) {
 						error = d_.sqlite_error();
@@ -182,7 +181,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 				// bind doubles (double)
 				if (value.type() == typeid(double)) {
-					const auto d = std::any_cast<double>(value);
+					auto d = std::any_cast<double>(value);
 
 					if (sqlite3_bind_double(statement, index, d) != SQLITE_OK) {
 						error = d_.sqlite_error();
@@ -193,8 +192,8 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 				// bind text (const char*)
 				if (value.type() == typeid(const char*)) {
-					const char* buffer = std::any_cast<const char*>(value);
-					const auto length = (int)strlen(buffer);
+					auto buffer = std::any_cast<const char*>(value);
+					auto length = (int)strlen(buffer);
 
 					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
 						error = d_.sqlite_error();
@@ -205,9 +204,9 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 				// bind text (std::string)
 				if (value.type() == typeid(std::string)) {
-					const std::string data = std::any_cast<std::string>(value);
-					const char* buffer = data.c_str();
-					const auto length = (int)data.length();
+					auto data = std::any_cast<std::string>(value);
+					char* buffer = (char*)data.c_str();
+					auto length = (int)data.length();
 
 					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
 						error = d_.sqlite_error();
@@ -218,10 +217,9 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 				// bind blob (database::blob)
 				if (value.type() == typeid(blob)) {
-					blob_data.push_back(std::any_cast<blob>(value));
-					const std::string& data = blob_data.back().get();
-					const char* buffer = data.c_str();
-					const auto size = (int)data.length();
+					auto data = std::any_cast<blob>(value).data;
+					char* buffer = (char*)data.c_str();
+					auto size = (int)data.length();
 
 					if (sqlite3_bind_blob(statement, index, buffer, size, SQLITE_STATIC) != SQLITE_OK) {
 						error = d_.sqlite_error();
@@ -318,7 +316,7 @@ bool sqlcipher_connection::execute_query(const std::string& sql, table& results,
 
 							read_blob(&buffer, &size);
 							std::string value(buffer, size);
-							blob b(value);
+							blob b{ value };
 							current_row.insert(std::make_pair(column_name, b));
 
 							free(buffer);

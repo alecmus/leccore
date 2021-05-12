@@ -14,28 +14,6 @@
 
 using namespace liblec::leccore::database;
 
-class blob::blob_impl {
-public:
-	const std::string data_;
-	blob_impl(const std::string& data) :
-		data_(data) {}
-	~blob_impl() {}
-};
-
-blob::blob(const std::string& data) :
-	d_(*new blob_impl(data)) {}
-
-blob::~blob() {
-	delete& d_;
-}
-
-blob::blob(const blob& obj) :
-	d_(*new blob_impl(obj.d_.data_)) {}
-
-const std::string& blob::get() {
-	return d_.data_;
-}
-
 class connection::impl {
 public:
 	impl(const std::string& type,

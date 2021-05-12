@@ -24,16 +24,8 @@
 namespace liblec {
 	namespace leccore {
 		namespace database {
-			class leccore_api blob {
-			public:
-				blob(const std::string& data);
-				~blob();
-				blob(const blob& obj);
-				const std::string& get();
-
-			private:
-				class blob_impl;
-				blob_impl& d_;
+			struct blob {
+				std::string data;
 			};
 
 			class leccore_api get {
