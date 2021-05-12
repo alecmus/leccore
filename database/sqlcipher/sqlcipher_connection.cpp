@@ -168,6 +168,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 		// do some binding
 		// supported types: int, float, double, text(const char*, std::string), blob(database::blob)
 		// 
+		std::vector<std::string> blob_data;	// to keep blob data until sqlite3_step() is executed
 		int index = 1;
 		for (auto& value : values) {
 			if (value.has_value()) {
@@ -231,7 +232,8 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 				// bind blob (database::blob)
 				if (value.type() == typeid(blob)) {
-					auto data = std::any_cast<blob>(value).data;
+					blob_data.push_back(std::any_cast<blob>(value).data);
+					std::string& data = blob_data.back();
 					char* buffer = (char*)data.c_str();
 					auto size = (int)data.length();
 
