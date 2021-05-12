@@ -27,3 +27,11 @@ fundamental building blocks like databases, file management, registry settings, 
 specially designed to make building robust, sophisticated applications a breeze. Furthermore, it is designed to
 bind together all the other liblec libraries like [lecui](https://github.com/alecmus/lecui) and
 [lecnet](https://github.com/alecmus/lecnet).
+
+## Compile-time Dependencies
+1. sqlcipher - you can use the pre-compiled files [here](https://github.com/alecmus/files).
+
+## Run-time Dependencies
+1. sqlcipher
+2. openssl
+You can use the pre-compiled files for both from [here](https://github.com/alecmus/files).
