@@ -34,4 +34,5 @@ bind together all the other liblec libraries like [lecui](https://github.com/ale
 ## Run-time Dependencies
 1. sqlcipher
 2. openssl
+
 You can use the pre-compiled files for both from [here](https://github.com/alecmus/files).
