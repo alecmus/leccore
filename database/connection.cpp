@@ -112,3 +112,19 @@ bool connection::execute_query(const std::string& sql,
 		return false;
 	}
 }
+
+int get::integer(const std::any& value) {
+	return std::any_cast<int>(value);
+}
+
+double get::real(const std::any& value) {
+	return std::any_cast<double>(value);
+}
+
+std::string get::text(const std::any& value) {
+	return std::any_cast<std::string>(value);
+}
+
+std::string liblec::leccore::database::get::blob(const std::any& value) {
+	return get::text(value);
+}

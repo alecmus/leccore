@@ -36,6 +36,14 @@ namespace liblec {
 				blob_impl& d_;
 			};
 
+			class leccore_api get {
+			public:
+				static int integer(const std::any& value);
+				static double real(const std::any& value);
+				static std::string text(const std::any& value);
+				static std::string blob(const std::any& value);
+			};
+
 			enum class data_type {
 				integer = 0,
 				real,
