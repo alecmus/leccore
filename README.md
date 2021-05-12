@@ -28,10 +28,17 @@ specially designed to make building robust, sophisticated applications a breeze.
 bind together all the other liblec libraries like [lecui](https://github.com/alecmus/lecui) and
 [lecnet](https://github.com/alecmus/lecnet).
 
-## Compile-time Dependencies
+### Classes
+The following classes have been added to the library
+Class Name           | Description          | Interface
+-------------------- | -------------------- | ------------------------------------------------
+database::connection | Database connection  | [#include <liblec/leccore/database/connection.h>](https://github.com/alecmus/leccore/blob/master/database/connection.h)
+
+
+### Compile-time Dependencies
 1. sqlcipher - you can use the pre-compiled files [here](https://github.com/alecmus/files).
 
-## Run-time Dependencies
+### Run-time Dependencies
 1. sqlcipher
 2. openssl
 
