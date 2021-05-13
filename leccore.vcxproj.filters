@@ -15,6 +15,9 @@
     <Filter Include="leccore\database\sqlcipher">
       <UniqueIdentifier>{c8d78b29-21c2-4cb1-baa4-9b0d3b7eeb19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\file">
+      <UniqueIdentifier>{7e23c7b9-5772-42c7-a570-2a05aca3d00a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -32,6 +35,9 @@
     <ClInclude Include="database.h">
       <Filter>leccore</Filter>
     </ClInclude>
+    <ClInclude Include="file.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="leccore.cpp">
@@ -45,6 +51,9 @@
     </ClCompile>
     <ClCompile Include="database\sqlcipher\sqlcipher_connection.cpp">
       <Filter>leccore\database\sqlcipher</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file.cpp">
+      <Filter>leccore\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
