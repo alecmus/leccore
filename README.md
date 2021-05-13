@@ -23,7 +23,7 @@ liblec core library
 ### About the Library
 The leccore is designed for the rapid development of modern, efficient and easy to maintain C++ applications.
 It is part of the [liblec libraries](https://github.com/alecmus/liblec). It is built to contain the most
-fundamental building blocks like databases, file management, registry settings, and other general helper utilities
+fundamental building blocks like databases, file handling, registry settings, and other general helper utilities
 specially designed to make building robust, sophisticated applications a breeze. Furthermore, it is designed to
 bind together all the other liblec libraries like [lecui](https://github.com/alecmus/lecui) and
 [lecnet](https://github.com/alecmus/lecnet).
@@ -32,7 +32,8 @@ bind together all the other liblec libraries like [lecui](https://github.com/ale
 The following classes have been added to the library
 Class Name           | Description          | Interface
 -------------------- | -------------------- | ------------------------------------------------
-database::connection | Database connection  | [#include <liblec/leccore/database/connection.h>](https://github.com/alecmus/leccore/blob/master/database/connection.h)
+database::connection | Database connection  | [#include <liblec/leccore/database.h>](https://github.com/alecmus/leccore/blob/master/database.h)
+file                 | File handling helper | [#include <liblec/leccore/file.h>](https://github.com/alecmus/leccore/blob/master/file.h)
 
 
 ### Compile-time Dependencies
