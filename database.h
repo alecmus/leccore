@@ -1,5 +1,5 @@
 //
-// connection.h - database connection interface
+// database.h - database interface
 //
 // leccore library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
@@ -11,7 +11,7 @@
 #pragma once
 
 #if defined(LECCORE_EXPORTS)
-#include "../leccore.h"
+#include "leccore.h"
 #else
 #include <liblec/leccore.h>
 #endif

@@ -8,7 +8,7 @@
 // LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md
 //
 
-#include "connection.h"
+#include "../database.h"
 #include "connection_base.h"
 #include "sqlcipher/sqlcipher_connection.h"
 

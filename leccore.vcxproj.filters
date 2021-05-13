@@ -23,14 +23,14 @@
     <ClInclude Include="versioninfo.h">
       <Filter>leccore</Filter>
     </ClInclude>
-    <ClInclude Include="database\connection.h">
-      <Filter>leccore\database</Filter>
-    </ClInclude>
     <ClInclude Include="database\connection_base.h">
       <Filter>leccore\database</Filter>
     </ClInclude>
     <ClInclude Include="database\sqlcipher\sqlcipher_connection.h">
       <Filter>leccore\database\sqlcipher</Filter>
+    </ClInclude>
+    <ClInclude Include="database.h">
+      <Filter>leccore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -116,7 +116,7 @@
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
 
-xcopy "$(ProjectDir)database\connection.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\database\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,7 +145,7 @@ xcopy "$(ProjectDir)database\connection.h" "$(SolutionDir)..\include\liblec\$(Pr
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
 
-xcopy "$(ProjectDir)database\connection.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\database\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -170,7 +170,7 @@ xcopy "$(ProjectDir)database\connection.h" "$(SolutionDir)..\include\liblec\$(Pr
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
 
-xcopy "$(ProjectDir)database\connection.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\database\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -199,11 +199,11 @@ xcopy "$(ProjectDir)database\connection.h" "$(SolutionDir)..\include\liblec\$(Pr
 xcopy "$(OutDir)$(TargetName)$(TargetExt)" "$(ProjectDir)..\bin\" /F /R /Y /I
 xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /Y /I
 
-xcopy "$(ProjectDir)database\connection.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\database\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="database\connection.h" />
+    <ClInclude Include="database.h" />
     <ClInclude Include="database\connection_base.h" />
     <ClInclude Include="database\sqlcipher\sqlcipher_connection.h" />
     <ClInclude Include="leccore.h" />

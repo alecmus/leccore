@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "connection.h"
+#include "../database.h"
 
 namespace liblec {
 	namespace leccore {
