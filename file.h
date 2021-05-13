@@ -1,5 +1,5 @@
 //
-// file.h - file helper interface
+// file.h - file handling helper interface
 //
 // leccore library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)

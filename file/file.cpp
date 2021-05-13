@@ -1,5 +1,5 @@
 //
-// file.cpp - file helper implementation
+// file.cpp - file handling helper implementation
 //
 // leccore library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
