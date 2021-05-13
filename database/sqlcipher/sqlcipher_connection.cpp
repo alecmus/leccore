@@ -113,6 +113,7 @@ bool sqlcipher_connection::disconnect(std::string& error) {
 	}
 
 	d_.db_ = nullptr;
+	set_connected(false);
 	return true;
 }
 
