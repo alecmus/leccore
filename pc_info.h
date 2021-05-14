@@ -35,29 +35,48 @@ namespace liblec {
 
 			enum class battery_status { charging, discharging, ac_line, };
 
-			struct battery_info {
+			using battery_info = struct {
 				std::string name;
 				std::string manufacturer;
 				std::string serial_number;
 				std::string unique_id;
-				int designed_capacity = 0;
-				int fully_charged_capacity = 0;
-				double health = 0.0;
-				int current_capacity = 0;							// current battery capacity in mWh, -1 means unknown
-				double level = 0.0;									// current battery level as a percentage
-				int current_voltage = 0;							// current battery capacity in mV, -1 means unknown
-				int current_charge_rate = 0;						// current battery charge rate in mW
-				battery_status status = battery_status::ac_line;	// battery status
+				int designed_capacity;
+				int fully_charged_capacity;
+				double health;
+				int current_capacity;			// current battery capacity in mWh, -1 means unknown
+				double level;					// current battery level as a percentage
+				int current_voltage;			// current battery capacity in mV, -1 means unknown
+				int current_charge_rate;		// current battery charge rate in mW
+				battery_status status;			// battery status
 			};
 
 			enum class power_status { high, low, critical, charging, no_battery, unknown, };
 
-			struct power_info {
-				bool ac = false;
+			using power_info = struct {
+				bool ac;
 				power_status status;
-				int level = 0;						// overall battery level as a percentage, -1 means unknown
+				int level;							// overall battery level as a percentage, -1 means unknown
 				std::string lifetime_remaining;		// estimated lifetime remaining in hours and minutes
 				std::vector<battery_info> batteries;
+			};
+
+			using cpu_info = struct {
+				std::string name;
+				std::string manufacturer;
+				int cores;
+				int logical_processors;
+			};
+
+			using ram_chip = struct {
+				std::string name;
+				std::string part_number;
+				std::string manufacturer;
+				unsigned long long capacity;
+			};
+
+			using ram_info = struct {
+				unsigned long long size;
+				std::vector<ram_chip> ram_chips;
 			};
 
 			pc_info();
@@ -68,6 +87,10 @@ namespace liblec {
 			bool drives(std::vector<drive_info>& info,
 				std::string& error);
 			bool power(power_info& info,
+				std::string& error);
+			bool cpu(cpu_info& info,
+				std::string& error);
+			bool ram(ram_info& info,
 				std::string& error);
 
 			static std::string to_string(battery_status status);
