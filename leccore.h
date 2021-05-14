@@ -31,7 +31,6 @@
 #endif
 
 #include <string>
-#include <vector>
 
 namespace liblec {
 	namespace leccore {
@@ -39,5 +38,17 @@ namespace liblec {
 		/// <returns>Returns the version number as a string in the form
 		/// "leccore 1.0.0 11 May 2021".</returns>
 		std::string leccore_api version();
+
+		/// <summary>
+		/// Format data size in B, KB, MB, GB or TB.
+		/// </summary>
+		/// 
+		/// <param name="size">The size, in bytes.</param>
+		/// <param name="precision">The number of decimal places to use for the formatted string.</param>
+		///
+		/// <returns>
+		/// Returns a formatted string in the form 5B, 45KB, 146MB, 52GB, 9TB etc.
+		/// </returns>
+		std::string leccore_api format_size(unsigned long long size, unsigned short precision = 0);
 	}
 }
