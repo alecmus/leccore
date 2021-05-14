@@ -30,10 +30,11 @@ bind together all the other liblec libraries like [lecui](https://github.com/ale
 
 ### Classes
 The following classes have been added to the library
-Class Name           | Description          | Interface
--------------------- | -------------------- | ------------------------------------------------
-database::connection | Database connection  | [#include <liblec/leccore/database.h>](https://github.com/alecmus/leccore/blob/master/database.h)
-file                 | File handling helper | [#include <liblec/leccore/file.h>](https://github.com/alecmus/leccore/blob/master/file.h)
+Class Name           | Description             | Interface
+-------------------- | ----------------------- | ------------------------------------------------
+database::connection | Database connection     | [#include <liblec/leccore/database.h>](https://github.com/alecmus/leccore/blob/master/database.h)
+file                 | File handling helper    | [#include <liblec/leccore/file.h>](https://github.com/alecmus/leccore/blob/master/file.h)
+pc_info              | PC hardware information | [#include <liblec/leccore/pc_info.h>](https://github.com/alecmus/leccore/blob/master/pc_info.h)
 
 
 ### Compile-time Dependencies
