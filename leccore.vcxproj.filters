@@ -18,6 +18,12 @@
     <Filter Include="leccore\file">
       <UniqueIdentifier>{7e23c7b9-5772-42c7-a570-2a05aca3d00a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\pc_info">
+      <UniqueIdentifier>{e9dff646-4b3f-4f35-a6fb-ccda11271f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="leccore\error">
+      <UniqueIdentifier>{a0d5ebfa-aed5-45fc-bf89-3236b9cf0c9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -38,6 +44,21 @@
     <ClInclude Include="file.h">
       <Filter>leccore</Filter>
     </ClInclude>
+    <ClInclude Include="pc_info.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
+    <ClInclude Include="leccore_common.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
+    <ClInclude Include="pc_info\get_wmi_data.h">
+      <Filter>leccore\pc_info</Filter>
+    </ClInclude>
+    <ClInclude Include="pc_info\get_power_info.h">
+      <Filter>leccore\pc_info</Filter>
+    </ClInclude>
+    <ClInclude Include="error\win_error.h">
+      <Filter>leccore\error</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="leccore.cpp">
@@ -54,6 +75,18 @@
     </ClCompile>
     <ClCompile Include="file\file.cpp">
       <Filter>leccore\file</Filter>
+    </ClCompile>
+    <ClCompile Include="pc_info\pc_info.cpp">
+      <Filter>leccore\pc_info</Filter>
+    </ClCompile>
+    <ClCompile Include="pc_info\get_wmi_data.cpp">
+      <Filter>leccore\pc_info</Filter>
+    </ClCompile>
+    <ClCompile Include="pc_info\get_power_info.cpp">
+      <Filter>leccore\pc_info</Filter>
+    </ClCompile>
+    <ClCompile Include="error\win_error.cpp">
+      <Filter>leccore\error</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
