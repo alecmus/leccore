@@ -182,38 +182,75 @@ bool pc_info::os(os_info& info,
 		return false;
 }
 
-bool pc_info::drives(std::vector<pc_info::drive_info>& info,
-	std::string& error) {
+bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 	info.clear();
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_DiskDrive",
-		{ "Index", "Model", "SerialNumber", "InterfaceType", "MediaType", "Status", "Size" },
-		data, error)) {
+	if (d_.get_info("Win32_Processor",
+		{ "Name", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" }, data, error)) {
 		try {
-			std::map<size_t, drive_info> info_map;
+			std::map<size_t, cpu_info> info_map;
 			for (const auto& [property, values] : data) {
 				if (!values.empty()) {
 					for (size_t i = 0; i < values.size(); i++) {
-						if (property == "Index") {
-							info_map[i].index = any_cast<INT>(values[i]);
+						if (property == "Name") {
+							info_map[i].name = any_cast<string>(values[i]);
 						}
-						if (property == "Model") {
-							info_map[i].model = any_cast<string>(values[i]);
+						if (property == "Manufacturer") {
+							info_map[i].manufacturer = any_cast<string>(values[i]);
 						}
-						if (property == "SerialNumber") {
-							info_map[i].serial_number = any_cast<string>(values[i]);
+						if (property == "NumberOfCores") {
+							info_map[i].cores = any_cast<int>(values[i]);
 						}
-						if (property == "InterfaceType") {
-							info_map[i].interface_type = any_cast<string>(values[i]);
+						if (property == "NumberOfLogicalProcessors") {
+							info_map[i].logical_processors = any_cast<int>(values[i]);
 						}
-						if (property == "MediaType") {
-							info_map[i].media_type = any_cast<string>(values[i]);
+						if (property == "MaxClockSpeed") {
+							const auto speed_mhz = any_cast<int>(values[i]);
+							info_map[i].base_speed = roundoff::tod(speed_mhz / 1000.0, 2);
 						}
-						if (property == "Status") {
-							info_map[i].status = any_cast<string>(values[i]);
+					}
+				}
+			}
+
+			for (auto& it : info_map)
+				info.push_back(it.second);
+
+			return true;
+		}
+		catch (const std::exception& e) {
+			error = e.what();
+			return false;
+		}
+	}
+	else
+		return false;
+}
+
+bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
+	info.clear();
+	map<string, vector<any>> data;
+	if (d_.get_info("Win32_VideoController",
+		{ "Name", "CurrentHorizontalResolution", "CurrentVerticalResolution", "CurrentRefreshRate", "AdapterRAM" },
+		data, error)) {
+		try {
+			std::map<size_t, gpu_info> info_map;
+			for (const auto& [property, values] : data) {
+				if (!values.empty()) {
+					for (size_t i = 0; i < values.size(); i++) {
+						if (property == "Name") {
+							info_map[i].name = any_cast<string>(values[i]);
 						}
-						if (property == "Size") {
-							info_map[i].size = any_cast<unsigned long long>(values[i]);
+						if (property == "CurrentHorizontalResolution") {
+							info_map[i].horizontal_resolution = any_cast<int>(values[i]);
+						}
+						if (property == "CurrentVerticalResolution") {
+							info_map[i].vertical_resolution = any_cast<int>(values[i]);
+						}
+						if (property == "CurrentRefreshRate") {
+							info_map[i].refresh_rate = any_cast<int>(values[i]);
+						}
+						if (property == "AdapterRAM") {
+							info_map[i].ram = any_cast<int>(values[i]);
 						}
 					}
 				}
@@ -230,47 +267,6 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 		}
 
 		return true;
-	}
-	else
-		return false;
-}
-
-bool pc_info::power(power_info& info,
-	std::string& error) {
-	return get_power_info(info, error);
-}
-
-bool pc_info::cpu(cpu_info& info, std::string& error) {
-	info = {};
-	map<string, vector<any>> data;
-	if (d_.get_info("Win32_Processor", { "Name", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" }, data, error)) {
-		try {
-			for (const auto& [property, values] : data) {
-				if (!values.empty()) {
-					if (property == "Name") {
-						info.name = any_cast<string>(values[0]);
-					}
-					if (property == "Manufacturer") {
-						info.manufacturer = any_cast<string>(values[0]);
-					}
-					if (property == "NumberOfCores") {
-						info.cores = any_cast<int>(values[0]);
-					}
-					if (property == "NumberOfLogicalProcessors") {
-						info.logical_processors = any_cast<int>(values[0]);
-					}
-					if (property == "MaxClockSpeed") {
-						const auto speed_mhz = any_cast<int>(values[0]);
-						info.base_speed = roundoff::tod(speed_mhz / 1000.0, 2);
-					}
-				}
-			}
-			return true;
-		}
-		catch (const std::exception& e) {
-			error = e.what();
-			return false;
-		}
 	}
 	else
 		return false;
@@ -475,7 +471,7 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 			}
 
 			if (!info.ram_chips.empty())
-				info.speed /= info.ram_chips.size();
+				info.speed /= static_cast<int>(info.ram_chips.size());
 
 			return true;
 		}
@@ -486,6 +482,64 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 	}
 	else
 		return false;
+}
+
+bool pc_info::drives(std::vector<pc_info::drive_info>& info,
+	std::string& error) {
+	info.clear();
+	map<string, vector<any>> data;
+	if (d_.get_info("Win32_DiskDrive",
+		{ "Index", "Model", "SerialNumber", "InterfaceType", "MediaType", "Status", "Size" },
+		data, error)) {
+		try {
+			std::map<size_t, drive_info> info_map;
+			for (const auto& [property, values] : data) {
+				if (!values.empty()) {
+					for (size_t i = 0; i < values.size(); i++) {
+						if (property == "Index") {
+							info_map[i].index = any_cast<INT>(values[i]);
+						}
+						if (property == "Model") {
+							info_map[i].model = any_cast<string>(values[i]);
+						}
+						if (property == "SerialNumber") {
+							info_map[i].serial_number = any_cast<string>(values[i]);
+						}
+						if (property == "InterfaceType") {
+							info_map[i].interface_type = any_cast<string>(values[i]);
+						}
+						if (property == "MediaType") {
+							info_map[i].media_type = any_cast<string>(values[i]);
+						}
+						if (property == "Status") {
+							info_map[i].status = any_cast<string>(values[i]);
+						}
+						if (property == "Size") {
+							info_map[i].size = any_cast<unsigned long long>(values[i]);
+						}
+					}
+				}
+			}
+
+			for (auto& it : info_map)
+				info.push_back(it.second);
+
+			return true;
+		}
+		catch (const std::exception& e) {
+			error = e.what();
+			return false;
+		}
+
+		return true;
+	}
+	else
+		return false;
+}
+
+bool pc_info::power(power_info& info,
+	std::string& error) {
+	return get_power_info(info, error);
 }
 
 std::string pc_info::to_string(battery_status status) {

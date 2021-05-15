@@ -38,6 +38,38 @@ namespace liblec {
 				std::string version;
 			};
 
+			using cpu_info = struct {
+				std::string name;
+				std::string manufacturer;
+				int cores;
+				int logical_processors;
+				double base_speed;			// speed in GHz
+			};
+
+			using gpu_info = struct {
+				std::string name;
+				int horizontal_resolution;
+				int vertical_resolution;
+				int refresh_rate;
+				int ram;	// in bytes
+			};
+
+			using ram_chip = struct {
+				std::string tag;
+				std::string type;
+				std::string form_factor;
+				std::string part_number;
+				std::string manufacturer;
+				unsigned long long capacity;	// capacity in bytes
+				int speed;						// speed in MHz
+			};
+
+			using ram_info = struct {
+				unsigned long long size;		// size in bytes
+				int speed;						// speed in MHz
+				std::vector<ram_chip> ram_chips;
+			};
+
 			using drive_info = struct {
 				unsigned int index;
 				std::string model;
@@ -75,30 +107,6 @@ namespace liblec {
 				std::vector<battery_info> batteries;
 			};
 
-			using cpu_info = struct {
-				std::string name;
-				std::string manufacturer;
-				int cores;
-				int logical_processors;
-				double base_speed;			// speed in GHz
-			};
-
-			using ram_chip = struct {
-				std::string tag;
-				std::string type;
-				std::string form_factor;
-				std::string part_number;
-				std::string manufacturer;
-				unsigned long long capacity;	// capacity in bytes
-				int speed;						// speed in MHz
-			};
-
-			using ram_info = struct {
-				unsigned long long size;		// size in bytes
-				int speed;						// speed in MHz
-				std::vector<ram_chip> ram_chips;
-			};
-
 			pc_info();
 			~pc_info();
 
@@ -106,13 +114,15 @@ namespace liblec {
 				std::string& error);
 			bool os(os_info& info,
 				std::string& error);
+			bool cpu(std::vector<cpu_info>& info,
+				std::string& error);
+			bool gpu(std::vector<gpu_info>& info,
+				std::string& error);
+			bool ram(ram_info& info,
+				std::string& error);
 			bool drives(std::vector<drive_info>& info,
 				std::string& error);
 			bool power(power_info& info,
-				std::string& error);
-			bool cpu(cpu_info& info,
-				std::string& error);
-			bool ram(ram_info& info,
 				std::string& error);
 
 			static std::string to_string(battery_status status);
