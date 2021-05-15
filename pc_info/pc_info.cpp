@@ -71,14 +71,73 @@ pc_info::~pc_info() {
 	delete& d_;
 }
 
-bool pc_info::bios_serial(std::string& serial,
-	std::string& error) {
-	serial.clear();
+bool pc_info::pc_details(pc_info::details& info, std::string& error) {
+	info = {};
+
+	auto bios_serial = [&](std::string& serial,
+		std::string& error)->bool {
+			serial.clear();
+			map<string, vector<any>> data;
+			if (d_.get_info("Win32_Bios", { "SerialNumber" }, data, error)) {
+				try {
+					if (!data.empty() && !data.at("SerialNumber").empty())
+						serial = any_cast<string>(data.at("SerialNumber")[0]);
+					return true;
+				}
+				catch (const std::exception& e) {
+					error = e.what();
+					return false;
+				}
+			}
+			else
+				return false;
+	};
+
+	auto baseboard_serial = [&](std::string& serial,
+		std::string& error)->bool {
+			serial.clear();
+			map<string, vector<any>> data;
+			if (d_.get_info("Win32_BaseBoard", { "SerialNumber" }, data, error)) {
+				try {
+					if (!data.empty() && !data.at("SerialNumber").empty())
+						serial = any_cast<string>(data.at("SerialNumber")[0]);
+					return true;
+				}
+				catch (const std::exception& e) {
+					error = e.what();
+					return false;
+				}
+			}
+			else
+				return false;
+	};
+
+	if (!bios_serial(info.bios_serial_number, error)) {
+		// to-do: log
+		error.clear();
+	}
+
+	if (!baseboard_serial(info.motherboard_serial_number, error)) {
+		// to-do: log
+		error.clear();
+	}
+
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_Bios", { "SerialNumber" }, data, error)) {
+	if (d_.get_info("Win32_ComputerSystem", { "Manufacturer", "Model", "SystemType" }, data, error)) {
 		try {
-			if (!data.empty() && !data.at("SerialNumber").empty())
-				serial = any_cast<string>(data.at("SerialNumber")[0]);
+			for (const auto& [property, values] : data) {
+				if (!values.empty()) {
+					if (property == "Manufacturer") {
+						info.manufacturer = any_cast<string>(values[0]);
+					}
+					if (property == "Model") {
+						info.model = any_cast<string>(values[0]);
+					}
+					if (property == "SystemType") {
+						info.system_type = any_cast<string>(values[0]);
+					}
+				}
+			}
 			return true;
 		}
 		catch (const std::exception& e) {

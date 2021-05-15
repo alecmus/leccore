@@ -23,6 +23,14 @@ namespace liblec {
 	namespace leccore {
 		class leccore_api pc_info {
 		public:
+			using details = struct {
+				std::string manufacturer;
+				std::string model;
+				std::string system_type;
+				std::string bios_serial_number;
+				std::string motherboard_serial_number;
+			};
+
 			using drive_info = struct {
 				unsigned int index;
 				std::string model;
@@ -82,7 +90,7 @@ namespace liblec {
 			pc_info();
 			~pc_info();
 
-			bool bios_serial(std::string& serial,
+			bool pc_details(details& info,
 				std::string& error);
 			bool drives(std::vector<drive_info>& info,
 				std::string& error);
