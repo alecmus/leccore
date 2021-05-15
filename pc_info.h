@@ -23,12 +23,19 @@ namespace liblec {
 	namespace leccore {
 		class leccore_api pc_info {
 		public:
-			using details = struct {
+			using pc_details = struct {
+				std::string name;
 				std::string manufacturer;
 				std::string model;
 				std::string system_type;
 				std::string bios_serial_number;
 				std::string motherboard_serial_number;
+			};
+
+			using os_info = struct {
+				std::string name;
+				std::string architecture;
+				std::string version;
 			};
 
 			using drive_info = struct {
@@ -73,24 +80,31 @@ namespace liblec {
 				std::string manufacturer;
 				int cores;
 				int logical_processors;
+				double base_speed;			// speed in GHz
 			};
 
 			using ram_chip = struct {
-				std::string name;
+				std::string tag;
+				std::string type;
+				std::string form_factor;
 				std::string part_number;
 				std::string manufacturer;
-				unsigned long long capacity;
+				unsigned long long capacity;	// capacity in bytes
+				int speed;						// speed in MHz
 			};
 
 			using ram_info = struct {
-				unsigned long long size;
+				unsigned long long size;		// size in bytes
+				int speed;						// speed in MHz
 				std::vector<ram_chip> ram_chips;
 			};
 
 			pc_info();
 			~pc_info();
 
-			bool pc_details(details& info,
+			bool pc(pc_details& info,
+				std::string& error);
+			bool os(os_info& info,
 				std::string& error);
 			bool drives(std::vector<drive_info>& info,
 				std::string& error);

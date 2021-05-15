@@ -127,6 +127,10 @@ bool liblec::leccore::get_wmi_data(
 				wmi_data[std::string(property)].push_back(vtProp.bstrVal ? convert_string(vtProp.bstrVal) : "");
 				break;
 
+			case CIM_UINT16:
+				wmi_data[std::string(property)].push_back(vtProp.intVal);
+				break;
+
 			case CIM_UINT32:
 				wmi_data[std::string(property)].push_back(vtProp.intVal);
 				break;

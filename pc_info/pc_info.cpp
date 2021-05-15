@@ -71,7 +71,7 @@ pc_info::~pc_info() {
 	delete& d_;
 }
 
-bool pc_info::pc_details(pc_info::details& info, std::string& error) {
+bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 	info = {};
 
 	auto bios_serial = [&](std::string& serial,
@@ -123,10 +123,13 @@ bool pc_info::pc_details(pc_info::details& info, std::string& error) {
 	}
 
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_ComputerSystem", { "Manufacturer", "Model", "SystemType" }, data, error)) {
+	if (d_.get_info("Win32_ComputerSystem", { "Name", "Manufacturer", "Model", "SystemType" }, data, error)) {
 		try {
 			for (const auto& [property, values] : data) {
 				if (!values.empty()) {
+					if (property == "Name") {
+						info.name = any_cast<string>(values[0]);
+					}
 					if (property == "Manufacturer") {
 						info.manufacturer = any_cast<string>(values[0]);
 					}
@@ -135,6 +138,36 @@ bool pc_info::pc_details(pc_info::details& info, std::string& error) {
 					}
 					if (property == "SystemType") {
 						info.system_type = any_cast<string>(values[0]);
+					}
+				}
+			}
+			return true;
+		}
+		catch (const std::exception& e) {
+			error = e.what();
+			return false;
+		}
+	}
+	else
+		return false;
+}
+
+bool pc_info::os(os_info& info,
+	std::string& error) {
+	info = {};
+	map<string, vector<any>> data;
+	if (d_.get_info("Win32_OperatingSystem", { "Caption", "OSArchitecture", "Version" }, data, error)) {
+		try {
+			for (const auto& [property, values] : data) {
+				if (!values.empty()) {
+					if (property == "Caption") {
+						info.name = any_cast<string>(values[0]);
+					}
+					if (property == "OSArchitecture") {
+						info.architecture = any_cast<string>(values[0]);
+					}
+					if (property == "Version") {
+						info.version = any_cast<string>(values[0]);
 					}
 				}
 			}
@@ -210,7 +243,7 @@ bool pc_info::power(power_info& info,
 bool pc_info::cpu(cpu_info& info, std::string& error) {
 	info = {};
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_Processor", { "Name", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors" }, data, error)) {
+	if (d_.get_info("Win32_Processor", { "Name", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" }, data, error)) {
 		try {
 			for (const auto& [property, values] : data) {
 				if (!values.empty()) {
@@ -225,6 +258,10 @@ bool pc_info::cpu(cpu_info& info, std::string& error) {
 					}
 					if (property == "NumberOfLogicalProcessors") {
 						info.logical_processors = any_cast<int>(values[0]);
+					}
+					if (property == "MaxClockSpeed") {
+						const auto speed_mhz = any_cast<int>(values[0]);
+						info.base_speed = roundoff::tod(speed_mhz / 1000.0, 2);
 					}
 				}
 			}
@@ -242,14 +279,178 @@ bool pc_info::cpu(cpu_info& info, std::string& error) {
 bool pc_info::ram(ram_info& info, std::string& error) {
 	info = {};
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_PhysicalMemory", { "Name", "PartNumber", "Manufacturer", "Capacity" }, data, error)) {
+	if (d_.get_info("Win32_PhysicalMemory",
+		{ "Tag", "MemoryType", "FormFactor", "PartNumber", "Manufacturer", "Capacity", "Speed" }, data, error)) {
 		try {
 			std::map<size_t, ram_chip> info_map;
 			for (const auto& [property, values] : data) {
 				if (!values.empty()) {
 					for (size_t i = 0; i < values.size(); i++) {
-						if (property == "Name") {
-							info_map[i].name = any_cast<string>(values[i]);
+						if (property == "Tag") {
+							info_map[i].tag = any_cast<string>(values[i]);
+						}
+						if (property == "MemoryType") {
+							const auto type = any_cast<int>(values[i]);
+							switch (type) {
+							case 1:
+								info_map[i].type = "Other";
+								break;
+							case 2:
+								info_map[i].type = "DRAM";
+								break;
+							case 3:
+								info_map[i].type = "Synchronous DRAM";
+								break;
+							case 4:
+								info_map[i].type = "Cached DRAM";
+								break;
+							case 5:
+								info_map[i].type = "EDO";
+								break;
+							case 6:
+								info_map[i].type = "EDRAM";
+								break;
+							case 7:
+								info_map[i].type = "VRAM";
+								break;
+							case 8:
+								info_map[i].type = "SRAM";
+								break;
+							case 9:
+								info_map[i].type = "RAM";
+								break;
+							case 10:
+								info_map[i].type = "ROM";
+								break;
+							case 11:
+								info_map[i].type = "Flash";
+								break;
+							case 12:
+								info_map[i].type = "EEPROM";
+								break;
+							case 13:
+								info_map[i].type = "FEPROM";
+								break;
+							case 14:
+								info_map[i].type = "EPROM";
+								break;
+							case 15:
+								info_map[i].type = "CDRAM";
+								break;
+							case 16:
+								info_map[i].type = "3DRAM";
+								break;
+							case 17:
+								info_map[i].type = "SDRAM";
+								break;
+							case 18:
+								info_map[i].type = "SGRAM";
+								break;
+							case 19:
+								info_map[i].type = "RDRAM";
+								break;
+							case 20:
+								info_map[i].type = "DDR";
+								break;
+							case 21:	// May not be available
+								info_map[i].type = "DDR2";
+								break;
+							case 22:	// May not be available
+								info_map[i].type = "DDR2 FB-DIMM";
+								break;
+							case 24:	// May not be available
+								info_map[i].type = "DDR3";
+								break;
+							case 25:
+								info_map[i].type = "FBD2";
+								break;
+							case 26:
+								info_map[i].type = "DDR4";
+								break;
+							case 0:
+							default:
+								info_map[i].type = "Unknown";
+								break;
+							}
+						}
+						if (property == "FormFactor") {
+							const auto factor = any_cast<int>(values[i]);
+							switch (factor) {
+							case 1:
+								info_map[i].form_factor = "Other";
+								break;
+							case 2:
+								info_map[i].form_factor = "SIP";
+								break;
+							case 3:
+								info_map[i].form_factor = "DIP";
+								break;
+							case 4:
+								info_map[i].form_factor = "ZIP";
+								break;
+							case 5:
+								info_map[i].form_factor = "SOJ";
+								break;
+							case 6:
+								info_map[i].form_factor = "Proprietary";
+								break;
+							case 7:
+								info_map[i].form_factor = "SIMM";
+								break;
+							case 8:
+								info_map[i].form_factor = "DIMM";
+								break;
+							case 9:
+								info_map[i].form_factor = "TSOP";
+								break;
+							case 10:
+								info_map[i].form_factor = "PGA";
+								break;
+							case 11:
+								info_map[i].form_factor = "RIMM";
+								break;
+							case 12:
+								info_map[i].form_factor = "SODIMM";
+								break;
+							case 13:
+								info_map[i].form_factor = "SRIMM";
+								break;
+							case 14:
+								info_map[i].form_factor = "SMD";
+								break;
+							case 15:
+								info_map[i].form_factor = "SSMP";
+								break;
+							case 16:
+								info_map[i].form_factor = "QFP";
+								break;
+							case 17:
+								info_map[i].form_factor = "TQFP";
+								break;
+							case 18:
+								info_map[i].form_factor = "SOIC";
+								break;
+							case 19:
+								info_map[i].form_factor = "LLC";
+								break;
+							case 20:
+								info_map[i].form_factor = "PLCC";
+								break;
+							case 21:
+								info_map[i].form_factor = "BGA";
+								break;
+							case 22:
+								info_map[i].form_factor = "FPBGA";
+								break;
+							case 23:
+								info_map[i].form_factor = "LGA";
+								break;
+
+							case 0:
+							default:
+								info_map[i].form_factor = "Unknown";
+								break;
+							}
 						}
 						if (property == "PartNumber") {
 							info_map[i].part_number = any_cast<string>(values[i]);
@@ -260,14 +461,21 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 						if (property == "Capacity") {
 							info_map[i].capacity = any_cast<unsigned long long>(values[i]);
 						}
+						if (property == "Speed") {
+							info_map[i].speed = any_cast<int>(values[i]);
+						}
 					}
 				}
 			}
 
 			for (auto& [index, ram_chip] : info_map) {
 				info.size += ram_chip.capacity;
+				info.speed += ram_chip.speed;
 				info.ram_chips.push_back(ram_chip);
 			}
+
+			if (!info.ram_chips.empty())
+				info.speed /= info.ram_chips.size();
 
 			return true;
 		}
