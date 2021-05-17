@@ -571,25 +571,32 @@ std::string pc_info::to_string(battery_status status) {
 std::string pc_info::to_string(power_status flag) {
 	std::string flag_string;
 	switch (flag) {
-	case power_status::high:
+	case liblec::leccore::pc_info::power_status::high:
 		flag_string.assign("High");
 		break;
-	case power_status::low:
+	case liblec::leccore::pc_info::power_status::low:
 		flag_string.assign("Low");
 		break;
-	case power_status::critical:
+	case liblec::leccore::pc_info::power_status::critical:
 		flag_string.assign("Critical");
 		break;
-	case power_status::charging:
-		flag_string.assign("Charging");
+	case liblec::leccore::pc_info::power_status::high_charging:
+		flag_string.assign("High and charging");
 		break;
-	case power_status::no_battery:
+	case liblec::leccore::pc_info::power_status::low_charging:
+		flag_string.assign("Low and charging");
+		break;
+	case liblec::leccore::pc_info::power_status::critical_charging:
+		flag_string.assign("Critical but charging");
+		break;
+	case liblec::leccore::pc_info::power_status::no_battery:
 		flag_string.assign("No system battery");
 		break;
-	case power_status::unknown:
+	case liblec::leccore::pc_info::power_status::unknown:
 	default:
 		flag_string.assign("Unknown");
 		break;
 	}
+
 	return flag_string;
 }
