@@ -18,7 +18,9 @@
 
 namespace liblec {
 	namespace leccore {
-		bool get_wmi_data(bstr_t class_name,
+		bool get_wmi_data(
+			bstr_t path,
+			bstr_t class_name,
 			std::vector<bstr_t> properties,
 			std::map<std::string, std::vector<std::any>>& wmi_data,
 			std::string& error);

@@ -15,6 +15,7 @@
 #pragma comment(lib, "wbemuuid.lib")
 
 bool liblec::leccore::get_wmi_data(
+	bstr_t path,
 	bstr_t class_name,
 	std::vector<bstr_t> properties,
 	std::map<std::string, std::vector<std::any>>& wmi_data,	// key is the property name
@@ -39,14 +40,14 @@ bool liblec::leccore::get_wmi_data(
 	IWbemServices* p_svc = nullptr;
 
 	h_res = p_loc->ConnectServer(
-		_bstr_t(L"ROOT\\CIMV2"), // Object path of WMI namespace
-		NULL,                    // User name. NULL = current user
-		NULL,                    // User password. NULL = current
-		0,                       // Locale. NULL indicates current
-		NULL,                    // Security flags.
-		0,                       // Authority (for example, Kerberos)
-		0,                       // Context object 
-		&p_svc                   // pointer to IWbemServices proxy
+		path,   // Object path of WMI namespace
+		NULL,   // User name. NULL = current user
+		NULL,   // User password. NULL = current
+		0,      // Locale. NULL indicates current
+		NULL,   // Security flags.
+		0,      // Authority (for example, Kerberos)
+		0,      // Context object 
+		&p_svc  // pointer to IWbemServices proxy
 	);
 
 	if (FAILED(h_res)) {

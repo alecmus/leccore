@@ -75,9 +75,11 @@ namespace liblec {
 
 			using drive_info = struct {
 				unsigned int index;
+				std::string device_id;
 				std::string model;
 				std::string serial_number;
-				std::string interface_type;
+				std::string storage_type;
+				std::string bus_type;
 				std::string media_type;
 				std::string status;
 				unsigned long long size;

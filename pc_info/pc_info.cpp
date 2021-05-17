@@ -48,7 +48,9 @@ public:
 		CoUninitialize();
 	}
 
-	bool get_info(const string& class_name,
+	bool get_info(
+		const string& path,
+		const string& class_name,
 		const vector<string>& properties,
 		map<string, vector<any>>& data,
 		string& error) {
@@ -57,6 +59,7 @@ public:
 			properties_[i] = properties[i].c_str();
 
 		return get_wmi_data(
+			path.c_str(),
 			class_name.c_str(),
 			properties_,
 			data,
@@ -78,7 +81,7 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 		std::string& error)->bool {
 			serial.clear();
 			map<string, vector<any>> data;
-			if (d_.get_info("Win32_Bios", { "SerialNumber" }, data, error)) {
+			if (d_.get_info("ROOT\\CIMV2", "Win32_Bios", { "SerialNumber" }, data, error)) {
 				try {
 					if (!data.empty() && !data.at("SerialNumber").empty())
 						serial = any_cast<string>(data.at("SerialNumber")[0]);
@@ -97,7 +100,7 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 		std::string& error)->bool {
 			serial.clear();
 			map<string, vector<any>> data;
-			if (d_.get_info("Win32_BaseBoard", { "SerialNumber" }, data, error)) {
+			if (d_.get_info("ROOT\\CIMV2", "Win32_BaseBoard", { "SerialNumber" }, data, error)) {
 				try {
 					if (!data.empty() && !data.at("SerialNumber").empty())
 						serial = any_cast<string>(data.at("SerialNumber")[0]);
@@ -123,7 +126,8 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 	}
 
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_ComputerSystem", { "Name", "Manufacturer", "Model", "SystemType" }, data, error)) {
+	if (d_.get_info("ROOT\\CIMV2", "Win32_ComputerSystem",
+		{ "Name", "Manufacturer", "Model", "SystemType" }, data, error)) {
 		try {
 			for (const auto& [property, values] : data) {
 				if (!values.empty()) {
@@ -156,7 +160,8 @@ bool pc_info::os(os_info& info,
 	std::string& error) {
 	info = {};
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_OperatingSystem", { "Caption", "OSArchitecture", "Version" }, data, error)) {
+	if (d_.get_info("ROOT\\CIMV2",
+		"Win32_OperatingSystem", { "Caption", "OSArchitecture", "Version" }, data, error)) {
 		try {
 			for (const auto& [property, values] : data) {
 				if (!values.empty()) {
@@ -185,8 +190,10 @@ bool pc_info::os(os_info& info,
 bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 	info.clear();
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_Processor",
-		{ "Name", "Status", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" }, data, error)) {
+	if (d_.get_info("ROOT\\CIMV2",
+		"Win32_Processor",
+		{ "Name", "Status", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" },
+		data, error)) {
 		try {
 			std::map<size_t, cpu_info> info_map;
 			for (const auto& [property, values] : data) {
@@ -232,7 +239,7 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 	info.clear();
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_VideoController",
+	if (d_.get_info("ROOT\\CIMV2", "Win32_VideoController",
 		{ "Name", "Status", "CurrentHorizontalResolution", "CurrentVerticalResolution", "CurrentRefreshRate", "AdapterRAM" },
 		data, error)) {
 		try {
@@ -281,8 +288,9 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 bool pc_info::ram(ram_info& info, std::string& error) {
 	info = {};
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_PhysicalMemory",
-		{ "Tag", "MemoryType", "FormFactor", "PartNumber", "Status", "Manufacturer", "Capacity", "Speed" }, data, error)) {
+	if (d_.get_info("ROOT\\CIMV2", "Win32_PhysicalMemory",
+		{ "Tag", "MemoryType", "FormFactor", "PartNumber", "Status", "Manufacturer", "Capacity", "Speed" },
+		data, error)) {
 		try {
 			std::map<size_t, ram_chip> info_map;
 			for (const auto& [property, values] : data) {
@@ -496,9 +504,137 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 	std::string& error) {
 	info.clear();
+
+	struct extra_drive_info {
+		std::string device_id;
+		std::string friendly_name;
+		std::string bus_type;
+		std::string storage_type;
+	};
+
+	// key is device_id
+	auto get_extra = [&](std::map<std::string, extra_drive_info>& extra_info, std::string& error) {
+		map<string, vector<any>> data;
+		if (d_.get_info("Root\\Microsoft\\Windows\\Storage", "MSFT_PhysicalDisk",
+			{ "DeviceID", "FriendlyName", "MediaType", "BusType" },
+			data, error)) {
+			try {
+				std::map<size_t, extra_drive_info> info_map;
+				for (const auto& [property, values] : data) {
+					if (!values.empty()) {
+						for (size_t i = 0; i < values.size(); i++) {
+							if (property == "DeviceID") {
+								info_map[i].device_id = any_cast<string>(values[i]);
+							}
+							if (property == "FriendlyName") {
+								info_map[i].friendly_name = any_cast<string>(values[i]);
+							}
+							if (property == "MediaType") {
+								const auto media_type = any_cast<int>(values[i]);
+								switch (media_type) {
+								case 3:
+									info_map[i].storage_type = "HDD";
+									break;
+								case 4:
+									info_map[i].storage_type = "SSD";
+									break;
+								case 5:
+									info_map[i].storage_type = "SCM";
+									break;
+								case 0:
+								default:
+									info_map[i].storage_type = "Unspecified";
+									break;
+								}
+							}
+							if (property == "BusType") {
+								const auto bus_type = any_cast<int>(values[i]);
+
+								switch (bus_type) {
+								case 1:
+									info_map[i].bus_type = "SCSI";
+									break;
+								case 2:
+									info_map[i].bus_type = "ATAPI";
+									break;
+								case 3:
+									info_map[i].bus_type = "ATA";
+									break;
+								case 4:
+									info_map[i].bus_type = "1394";
+									break;
+								case 5:
+									info_map[i].bus_type = "SSA";
+									break;
+								case 6:
+									info_map[i].bus_type = "Fibre Channel";
+									break;
+								case 7:
+									info_map[i].bus_type = "USB";
+									break;
+								case 8:
+									info_map[i].bus_type = "RAID";
+									break;
+								case 9:
+									info_map[i].bus_type = "iSCSI";
+									break;
+								case 10:
+									info_map[i].bus_type = "SAS";
+									break;
+								case 11:
+									info_map[i].bus_type = "SATA";
+									break;
+								case 12:
+									info_map[i].bus_type = "SD";
+									break;
+								case 13:
+									info_map[i].bus_type = "MMC";
+									break;
+								case 14:
+									info_map[i].bus_type = "MAX";
+									break;
+								case 15:
+									info_map[i].bus_type = "File-Backed Virtual";
+									break;
+								case 16:
+									info_map[i].bus_type = "Storage Spaces";
+									break;
+								case 17:
+									info_map[i].bus_type = "NVMe";
+									break;
+								case 0:
+								default:
+									info_map[i].bus_type = "Unknown";
+									break;
+								}
+							}
+						}
+					}
+				}
+
+				for (auto& it : info_map)
+					extra_info[it.second.device_id] = it.second;
+
+				return true;
+			}
+			catch (const std::exception& e) {
+				error = e.what();
+				return false;
+			}
+
+			return true;
+		}
+		else
+			return false;
+	};
+
+	std::map<std::string, extra_drive_info> extra_info;
+	if (!get_extra(extra_info, error))
+		return false;
+
 	map<string, vector<any>> data;
-	if (d_.get_info("Win32_DiskDrive",
-		{ "Index", "Model", "SerialNumber", "InterfaceType", "MediaType", "Status", "Size" },
+	if (d_.get_info("ROOT\\CIMV2", "Win32_DiskDrive",
+		{ "Index", "DeviceID", "Model", "SerialNumber", "MediaType", "Status", "Size" },
 		data, error)) {
 		try {
 			std::map<size_t, drive_info> info_map;
@@ -508,14 +644,14 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 						if (property == "Index") {
 							info_map[i].index = any_cast<INT>(values[i]);
 						}
+						if (property == "DeviceID") {
+							info_map[i].device_id = any_cast<string>(values[i]);
+						}
 						if (property == "Model") {
 							info_map[i].model = any_cast<string>(values[i]);
 						}
 						if (property == "SerialNumber") {
 							info_map[i].serial_number = any_cast<string>(values[i]);
-						}
-						if (property == "InterfaceType") {
-							info_map[i].interface_type = any_cast<string>(values[i]);
 						}
 						if (property == "MediaType") {
 							info_map[i].media_type = any_cast<string>(values[i]);
@@ -532,6 +668,56 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 
 			for (auto& it : info_map)
 				info.push_back(it.second);
+
+			// add extra info
+			try {
+				// try using exact match
+				for (auto& it : info) {
+					it.storage_type = extra_info.at(it.device_id).storage_type;
+					it.bus_type = extra_info.at(it.device_id).bus_type;
+				}
+			}
+			catch (const std::exception&) {
+				// exact match failed ... try using search match
+				for (auto& [device_id, it] : extra_info) {
+					try {
+						for (auto& m_it : info) {
+							if (m_it.device_id.find(it.device_id) != m_it.device_id.npos) {
+								m_it.storage_type = it.storage_type;
+								m_it.bus_type = it.bus_type;
+								break;
+							}
+						}
+					}
+					catch (const std::exception&) {
+						// to-do: log
+					}
+				}
+			}
+
+			// replace "search" with "replace" in the string "subject"
+			auto replace_string = [](std::string& s,
+				const std::string& search,
+				const std::string& replace) {
+					size_t pos = 0;
+					while ((pos = s.find(search, pos)) != std::string::npos) {
+						s.replace(pos, search.length(), replace);
+						pos += replace.length();
+					}
+					return;
+			};
+
+			// replace hard disk media when SSD storage is detected
+			for (auto& it : info) {
+				if (it.storage_type == "SSD") {
+					// erase "hard disk " from the text
+					replace_string(it.media_type, "hard disk ", "solid state ");
+				}
+				if (it.storage_type == "SCM") {
+					// erase "hard disk " from the text
+					replace_string(it.media_type, "hard disk ", "storage class memory ");
+				}
+			}
 
 			return true;
 		}
