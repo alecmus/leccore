@@ -40,18 +40,20 @@ namespace liblec {
 
 			using cpu_info = struct {
 				std::string name;
+				std::string status;
 				std::string manufacturer;
 				int cores;
 				int logical_processors;
-				double base_speed;			// speed in GHz
+				double base_speed;			// in GHz
 			};
 
 			using gpu_info = struct {
 				std::string name;
+				std::string status;
 				int horizontal_resolution;
 				int vertical_resolution;
-				int refresh_rate;
-				int ram;	// in bytes
+				int refresh_rate;			// in Hz
+				int ram;					// in bytes
 			};
 
 			using ram_chip = struct {
@@ -59,14 +61,15 @@ namespace liblec {
 				std::string type;
 				std::string form_factor;
 				std::string part_number;
+				std::string status;
 				std::string manufacturer;
-				unsigned long long capacity;	// capacity in bytes
-				int speed;						// speed in MHz
+				unsigned long long capacity;	// in bytes
+				int speed;						// in MHz
 			};
 
 			using ram_info = struct {
-				unsigned long long size;		// size in bytes
-				int speed;						// speed in MHz
+				unsigned long long size;		// in bytes
+				int speed;						// in MHz
 				std::vector<ram_chip> ram_chips;
 			};
 
@@ -90,10 +93,10 @@ namespace liblec {
 				int designed_capacity;
 				int fully_charged_capacity;
 				double health;
-				int current_capacity;			// current battery capacity in mWh, -1 means unknown
+				int current_capacity;			// in mWh, -1 means unknown
 				double level;					// current battery level as a percentage
-				int current_voltage;			// current battery capacity in mV, -1 means unknown
-				int current_charge_rate;		// current battery charge rate in mW
+				int current_voltage;			// in mV, -1 means unknown
+				int current_charge_rate;		// in mW
 				battery_status status;			// battery status
 			};
 

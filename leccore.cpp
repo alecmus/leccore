@@ -57,8 +57,8 @@ namespace nmReadableSize {
 
 	// size conventions
 	enum SizeConvention {
-		SIZE_CONV_TRADITIONAL,  // 1024 bytes = 1 KB
-		SIZE_CONV_SI            // 1000 bytes = 1 KB
+		SIZE_CONV_TRADITIONAL,  // 1024 bytes = 1KB
+		SIZE_CONV_SI            // 1000 bytes = 1KB
 	};
 
 	std::string GetHumanReadableSize(const long double& dSize,
@@ -95,21 +95,21 @@ namespace nmReadableSize {
 		char pszDest[cchDest];
 
 		if (bytesize < kiloByteSize)
-			StringCchPrintfA(pszDest, cchDest, "%.*f B", 0, dSize);
+			StringCchPrintfA(pszDest, cchDest, "%.*fB", 0, dSize);
 		else if (bytesize < megaByteSize)
-			StringCchPrintfA(pszDest, cchDest, "%.*f KB", precision, bytesize / kiloByteSize);
+			StringCchPrintfA(pszDest, cchDest, "%.*fKB", precision, bytesize / kiloByteSize);
 		else if (bytesize < gigaByteSize)
-			StringCchPrintfA(pszDest, cchDest, "%.*f MB", precision, bytesize / megaByteSize);
+			StringCchPrintfA(pszDest, cchDest, "%.*fMB", precision, bytesize / megaByteSize);
 		else if (bytesize < teraByteSize)
-			StringCchPrintfA(pszDest, cchDest, "%.*f GB", precision, bytesize / gigaByteSize);
+			StringCchPrintfA(pszDest, cchDest, "%.*fGB", precision, bytesize / gigaByteSize);
 		else
-			StringCchPrintfA(pszDest, cchDest, "%.*f TB", precision, bytesize / teraByteSize);
+			StringCchPrintfA(pszDest, cchDest, "%.*fTB", precision, bytesize / teraByteSize);
 
 		return pszDest;
 	}
 }
 
 std::string liblec::leccore::format_size(unsigned long long size, unsigned short precision) {
-	return nmReadableSize::GetHumanReadableSize(static_cast<long double>(size), "0 B", precision,
+	return nmReadableSize::GetHumanReadableSize(static_cast<long double>(size), "0B", precision,
 		nmReadableSize::SIZE_CONV_TRADITIONAL);
 }

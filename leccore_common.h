@@ -12,7 +12,6 @@
 
 #include <string>
 #include <Windows.h>
-#include <sstream>
 
 namespace liblec {
 	namespace leccore {
@@ -51,44 +50,5 @@ namespace liblec {
 		static inline T largest(T a, T b) {
 			return (((a) > (b)) ? (a) : (b));
 		}
-
-		/// <summary>Rounding off class.</summary>
-		class roundoff {
-		public:
-			/// <summary>Round-off a double to a string.</summary>
-			/// <param name="d">The double to round-off.</param>
-			/// <param name="precision">The number of decimal places to round it off to.</param>
-			/// <returns>The rounded-off value, as a string.</returns>
-			template <typename T>
-			static std::basic_string<T> tostr(const double& d, int precision) {
-				std::basic_stringstream<T> ss;
-				ss << std::fixed;
-				ss.precision(precision);
-				ss << d;
-				return ss.str();
-			}
-
-			/// <summary>Round-off a double to another double.</summary>
-			/// <param name="d">The double to round-off.</param>
-			/// <param name="precision">The number of decimal places to round it off to.</param>
-			/// <returns>The rounded-off value.</returns>
-			static double tod(const double& d, int precision) {
-				int y = (int)d;
-				double z = d - (double)y;
-				double m = pow(10, precision);
-				double q = z * m;
-				double r = round(q);
-
-				return static_cast<double>(y) + (1.0 / m) * r;
-			}
-
-			/// <summary>Round-off a float to another float.</summary>
-			/// <param name="d">The float to round-off.</param>
-			/// <param name="precision">The number of decimal places to round it off to.</param>
-			/// <returns>The rounded-off value.</returns>
-			static float tof(const float& f, int precision) {
-				return static_cast<float>(tod(static_cast<double>(f), precision));
-			}
-		};
 	}
 }

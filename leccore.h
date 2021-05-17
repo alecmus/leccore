@@ -31,6 +31,7 @@
 #endif
 
 #include <string>
+#include <sstream>
 
 namespace liblec {
 	namespace leccore {
@@ -50,5 +51,44 @@ namespace liblec {
 		/// Returns a formatted string in the form 5B, 45KB, 146MB, 52GB, 9TB etc.
 		/// </returns>
 		std::string leccore_api format_size(unsigned long long size, unsigned short precision = 0);
+
+		/// <summary>Rounding off class.</summary>
+		class leccore_api round_off {
+		public:
+			/// <summary>Round-off a double to a string.</summary>
+			/// <param name="d">The double to round-off.</param>
+			/// <param name="precision">The number of decimal places to round it off to.</param>
+			/// <returns>The rounded-off value, as a string.</returns>
+			template <typename T>
+			static std::basic_string<T> tostr(const double& d, int precision) {
+				std::basic_stringstream<T> ss;
+				ss << std::fixed;
+				ss.precision(precision);
+				ss << d;
+				return ss.str();
+			}
+
+			/// <summary>Round-off a double to another double.</summary>
+			/// <param name="d">The double to round-off.</param>
+			/// <param name="precision">The number of decimal places to round it off to.</param>
+			/// <returns>The rounded-off value.</returns>
+			static double tod(const double& d, int precision) {
+				int y = (int)d;
+				double z = d - (double)y;
+				double m = pow(10, precision);
+				double q = z * m;
+				double r = round(q);
+
+				return static_cast<double>(y) + (1.0 / m) * r;
+			}
+
+			/// <summary>Round-off a float to another float.</summary>
+			/// <param name="d">The float to round-off.</param>
+			/// <param name="precision">The number of decimal places to round it off to.</param>
+			/// <returns>The rounded-off value.</returns>
+			static float tof(const float& f, int precision) {
+				return static_cast<float>(tod(static_cast<double>(f), precision));
+			}
+		};
 	}
 }

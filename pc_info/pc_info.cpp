@@ -186,7 +186,7 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 	info.clear();
 	map<string, vector<any>> data;
 	if (d_.get_info("Win32_Processor",
-		{ "Name", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" }, data, error)) {
+		{ "Name", "Status", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" }, data, error)) {
 		try {
 			std::map<size_t, cpu_info> info_map;
 			for (const auto& [property, values] : data) {
@@ -194,6 +194,9 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 					for (size_t i = 0; i < values.size(); i++) {
 						if (property == "Name") {
 							info_map[i].name = any_cast<string>(values[i]);
+						}
+						if (property == "Status") {
+							info_map[i].status = any_cast<string>(values[i]);
 						}
 						if (property == "Manufacturer") {
 							info_map[i].manufacturer = any_cast<string>(values[i]);
@@ -206,7 +209,7 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 						}
 						if (property == "MaxClockSpeed") {
 							const auto speed_mhz = any_cast<int>(values[i]);
-							info_map[i].base_speed = roundoff::tod(speed_mhz / 1000.0, 2);
+							info_map[i].base_speed = round_off::tod(speed_mhz / 1000.0, 2);
 						}
 					}
 				}
@@ -230,7 +233,7 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 	info.clear();
 	map<string, vector<any>> data;
 	if (d_.get_info("Win32_VideoController",
-		{ "Name", "CurrentHorizontalResolution", "CurrentVerticalResolution", "CurrentRefreshRate", "AdapterRAM" },
+		{ "Name", "Status", "CurrentHorizontalResolution", "CurrentVerticalResolution", "CurrentRefreshRate", "AdapterRAM" },
 		data, error)) {
 		try {
 			std::map<size_t, gpu_info> info_map;
@@ -239,6 +242,9 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 					for (size_t i = 0; i < values.size(); i++) {
 						if (property == "Name") {
 							info_map[i].name = any_cast<string>(values[i]);
+						}
+						if (property == "Status") {
+							info_map[i].status = any_cast<string>(values[i]);
 						}
 						if (property == "CurrentHorizontalResolution") {
 							info_map[i].horizontal_resolution = any_cast<int>(values[i]);
@@ -276,7 +282,7 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 	info = {};
 	map<string, vector<any>> data;
 	if (d_.get_info("Win32_PhysicalMemory",
-		{ "Tag", "MemoryType", "FormFactor", "PartNumber", "Manufacturer", "Capacity", "Speed" }, data, error)) {
+		{ "Tag", "MemoryType", "FormFactor", "PartNumber", "Status", "Manufacturer", "Capacity", "Speed" }, data, error)) {
 		try {
 			std::map<size_t, ram_chip> info_map;
 			for (const auto& [property, values] : data) {
@@ -450,6 +456,9 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 						}
 						if (property == "PartNumber") {
 							info_map[i].part_number = any_cast<string>(values[i]);
+						}
+						if (property == "Status") {
+							info_map[i].status = any_cast<string>(values[i]);
 						}
 						if (property == "Manufacturer") {
 							info_map[i].manufacturer = any_cast<string>(values[i]);
