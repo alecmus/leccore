@@ -100,9 +100,9 @@ namespace liblec {
 				battery_status status;			// battery status
 			};
 
-			enum class power_status { high, low, critical,
+			enum class power_status { high, medium, low, critical,
 				high_charging, low_charging, critical_charging,
-				no_battery, unknown };
+				charging, no_battery, unknown };
 
 			using power_info = struct {
 				bool ac;

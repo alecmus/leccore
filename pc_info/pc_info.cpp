@@ -574,6 +574,9 @@ std::string pc_info::to_string(power_status flag) {
 	case liblec::leccore::pc_info::power_status::high:
 		flag_string.assign("High");
 		break;
+	case liblec::leccore::pc_info::power_status::medium:
+		flag_string.assign("Medium");
+		break;
 	case liblec::leccore::pc_info::power_status::low:
 		flag_string.assign("Low");
 		break;
@@ -588,6 +591,9 @@ std::string pc_info::to_string(power_status flag) {
 		break;
 	case liblec::leccore::pc_info::power_status::critical_charging:
 		flag_string.assign("Critical but charging");
+		break;
+	case liblec::leccore::pc_info::power_status::charging:
+		flag_string.assign("Charging");
 		break;
 	case liblec::leccore::pc_info::power_status::no_battery:
 		flag_string.assign("No system battery");

@@ -88,34 +88,44 @@ namespace liblec {
 
 			// 1A. get ac status
 			info.ac = ps.ACLineStatus == 1;
+			info.status = pc_info::power_status::unknown;
 
 			// 1B. get power status
-			if (ps.BatteryFlag == 255)
+			switch (ps.BatteryFlag) {
+			case 0:
+				info.status = pc_info::power_status::medium;
+				break;
+			case 1:
+				info.status = pc_info::power_status::high;
+				break;
+			case 2:
+				info.status = pc_info::power_status::low;
+				break;
+			case 4:
+				info.status = pc_info::power_status::critical;
+				break;
+			case 8:
+				info.status = pc_info::power_status::charging;
+				break;
+			case 128:
+				info.status = pc_info::power_status::no_battery;
+				break;
+			case 255:
 				info.status = pc_info::power_status::unknown;
-			else {
-				if (ps.BatteryFlag == 128)
-					info.status = pc_info::power_status::no_battery;
-				else {
-					if (ps.BatteryFlag & 8) {
-						// charging
-						if (ps.BatteryFlag & 1)
-							info.status = pc_info::power_status::high_charging;
+				break;
+			default: {
+				if (ps.BatteryFlag & 8) {
+					// charging
+					if (ps.BatteryFlag & 1)
+						info.status = pc_info::power_status::high_charging;
+					else
+						if (ps.BatteryFlag & 2)
+							info.status = pc_info::power_status::low_charging;
 						else
-							if (ps.BatteryFlag & 2)
-								info.status = pc_info::power_status::low_charging;
-							else
+							if (ps.BatteryFlag & 4)
 								info.status = pc_info::power_status::critical_charging;
-					}
-					else {
-						if (ps.BatteryFlag & 1)
-							info.status = pc_info::power_status::high;
-						else
-							if (ps.BatteryFlag & 2)
-								info.status = pc_info::power_status::low;
-							else
-								info.status = pc_info::power_status::critical;
-					}
 				}
+			} break;
 			}
 
 			// 1C. Get battery level
