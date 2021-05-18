@@ -24,6 +24,9 @@
     <Filter Include="leccore\error">
       <UniqueIdentifier>{a0d5ebfa-aed5-45fc-bf89-3236b9cf0c9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\hash">
+      <UniqueIdentifier>{47be85a6-5a69-4fc5-b37f-47acb470631e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -59,6 +62,12 @@
     <ClInclude Include="error\win_error.h">
       <Filter>leccore\error</Filter>
     </ClInclude>
+    <ClInclude Include="hash.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
+    <ClInclude Include="hash\sha256.h">
+      <Filter>leccore\hash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="leccore.cpp">
@@ -87,6 +96,12 @@
     </ClCompile>
     <ClCompile Include="error\win_error.cpp">
       <Filter>leccore\error</Filter>
+    </ClCompile>
+    <ClCompile Include="hash\hash.cpp">
+      <Filter>leccore\hash</Filter>
+    </ClCompile>
+    <ClCompile Include="hash\sha256.cpp">
+      <Filter>leccore\hash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
