@@ -8,7 +8,7 @@
 // LICENSE.txt or go to https://github.com/alecmus/liblec/blob/master/LICENSE.md
 //
 
-#include "..\hash.h"
+#include "../hash.h"
 #include "sha256.h"
 #include "sha512.h"
 

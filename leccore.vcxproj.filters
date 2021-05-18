@@ -118,6 +118,9 @@
     <ClCompile Include="encode\base32.cpp">
       <Filter>leccore\encode</Filter>
     </ClCompile>
+    <ClCompile Include="encode\base64.cpp">
+      <Filter>leccore\encode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">

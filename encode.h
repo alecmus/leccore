@@ -29,5 +29,15 @@ namespace liblec {
 			static std::string decode(const std::string& input,
 				std::string alphabet = default_alphabet());
 		};
+
+		class leccore_api base64 {
+		public:
+			static const std::string default_alphabet();
+
+			static std::string encode(const std::string& input,
+				std::string alphabet = default_alphabet());
+			static std::string decode(const std::string& input,
+				std::string alphabet = default_alphabet());
+		};
 	}
 }

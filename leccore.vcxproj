@@ -244,6 +244,7 @@ xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" 
     <ClCompile Include="database\connection_base.cpp" />
     <ClCompile Include="database\sqlcipher\sqlcipher_connection.cpp" />
     <ClCompile Include="encode\base32.cpp" />
+    <ClCompile Include="encode\base64.cpp" />
     <ClCompile Include="error\win_error.cpp" />
     <ClCompile Include="file\file.cpp" />
     <ClCompile Include="hash\hash.cpp" />

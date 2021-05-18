@@ -1,5 +1,5 @@
 //
-// base32.cpp - base32 encoding/decoding implementation
+// base64.cpp - base64 encoding/decoding implementation
 //
 // leccore library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
@@ -10,7 +10,7 @@
 
 #include "../encode.h"
 #include <cryptlib.h>
-#include <base32.h>
+#include <base64.h>
 
 #ifdef _WIN64
 
@@ -30,23 +30,23 @@
 
 #endif
 
-const std::string liblec::leccore::base32::default_alphabet() {
-    return std::string("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
+const std::string liblec::leccore::base64::default_alphabet() {
+    return std::string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
 }
 
-std::string liblec::leccore::base32::encode(const std::string& input,
+std::string liblec::leccore::base64::encode(const std::string& input,
     std::string alphabet) {
     std::string encoded;
     try {
-        if (alphabet.length() != 32)
+        if (alphabet.length() != 64)
             alphabet = default_alphabet();
-        
+
         const CryptoPP::AlgorithmParameters encoder_params =
             CryptoPP::MakeParameters(CryptoPP::Name::EncodingLookupArray(),
                 (const CryptoPP::byte*)alphabet.c_str());
 
-        CryptoPP::Base32Encoder* p_encoder =
-            new CryptoPP::Base32Encoder(new CryptoPP::StringSink(encoded));
+        CryptoPP::Base64Encoder* p_encoder =
+            new CryptoPP::Base64Encoder(new CryptoPP::StringSink(encoded));
         p_encoder->IsolatedInitialize(encoder_params);
         CryptoPP::StringSource ss(input, true, p_encoder);
     }
@@ -60,22 +60,22 @@ std::string liblec::leccore::base32::encode(const std::string& input,
     return encoded;
 }
 
-std::string liblec::leccore::base32::decode(const std::string& input,
+std::string liblec::leccore::base64::decode(const std::string& input,
     std::string alphabet) {
     std::string decoded;
     try {
-        if (alphabet.length() != 32)
+        if (alphabet.length() != 64)
             alphabet = default_alphabet();
 
         int decoder_lookup[256];
-        CryptoPP::Base32Decoder::InitializeDecodingLookupArray(decoder_lookup,
-            (const CryptoPP::byte*)alphabet.c_str(), 32, true);
+        CryptoPP::Base64Decoder::InitializeDecodingLookupArray(decoder_lookup,
+            (const CryptoPP::byte*)alphabet.c_str(), 64, false);
         const CryptoPP::AlgorithmParameters decoder_params =
             CryptoPP::MakeParameters(CryptoPP::Name::DecodingLookupArray(),
                 (const int*)decoder_lookup);
 
-        CryptoPP::Base32Decoder* p_decoder =
-            new CryptoPP::Base32Decoder(new CryptoPP::StringSink(decoded));
+        CryptoPP::Base64Decoder* p_decoder =
+            new CryptoPP::Base64Decoder(new CryptoPP::StringSink(decoded));
         p_decoder->IsolatedInitialize(decoder_params);
         CryptoPP::StringSource ss(input, true, p_decoder);
     }
