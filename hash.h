@@ -23,6 +23,7 @@ namespace liblec {
 		class leccore_api hash {
 		public:
 			static std::string sha256(const std::string& input);
+			static std::string sha512(const std::string& input);
 		};
 	}
 }

@@ -222,6 +222,7 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
     <ClInclude Include="file.h" />
     <ClInclude Include="hash.h" />
     <ClInclude Include="hash\sha256.h" />
+    <ClInclude Include="hash\sha512.h" />
     <ClInclude Include="leccore.h" />
     <ClInclude Include="leccore_common.h" />
     <ClInclude Include="pc_info.h" />
@@ -237,6 +238,7 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
     <ClCompile Include="file\file.cpp" />
     <ClCompile Include="hash\hash.cpp" />
     <ClCompile Include="hash\sha256.cpp" />
+    <ClCompile Include="hash\sha512.cpp" />
     <ClCompile Include="leccore.cpp" />
     <ClCompile Include="pc_info\get_power_info.cpp" />
     <ClCompile Include="pc_info\pc_info.cpp" />
