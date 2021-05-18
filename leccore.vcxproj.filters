@@ -68,12 +68,6 @@
     <ClInclude Include="hash.h">
       <Filter>leccore</Filter>
     </ClInclude>
-    <ClInclude Include="hash\sha256.h">
-      <Filter>leccore\hash</Filter>
-    </ClInclude>
-    <ClInclude Include="hash\sha512.h">
-      <Filter>leccore\hash</Filter>
-    </ClInclude>
     <ClInclude Include="encode.h">
       <Filter>leccore</Filter>
     </ClInclude>
@@ -107,12 +101,6 @@
       <Filter>leccore\error</Filter>
     </ClCompile>
     <ClCompile Include="hash\hash.cpp">
-      <Filter>leccore\hash</Filter>
-    </ClCompile>
-    <ClCompile Include="hash\sha256.cpp">
-      <Filter>leccore\hash</Filter>
-    </ClCompile>
-    <ClCompile Include="hash\sha512.cpp">
       <Filter>leccore\hash</Filter>
     </ClCompile>
     <ClCompile Include="encode\base32.cpp">
