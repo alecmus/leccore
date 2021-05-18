@@ -103,13 +103,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -119,7 +119,9 @@ xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /
 xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +135,7 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,7 +143,7 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -151,7 +153,9 @@ xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /
 xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -163,13 +167,13 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -179,7 +183,9 @@ xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /
 xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -193,7 +199,7 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -201,7 +207,7 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -211,13 +217,16 @@ xcopy "$(ProjectDir)$(ProjectName).h" "$(SolutionDir)..\include\liblec\" /F /R /
 xcopy "$(ProjectDir)database.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
-xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I</Command>
+xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="database.h" />
     <ClInclude Include="database\connection_base.h" />
     <ClInclude Include="database\sqlcipher\sqlcipher_connection.h" />
+    <ClInclude Include="encode.h" />
     <ClInclude Include="error\win_error.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="hash.h" />
@@ -234,6 +243,7 @@ xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
     <ClCompile Include="database\connection.cpp" />
     <ClCompile Include="database\connection_base.cpp" />
     <ClCompile Include="database\sqlcipher\sqlcipher_connection.cpp" />
+    <ClCompile Include="encode\base32.cpp" />
     <ClCompile Include="error\win_error.cpp" />
     <ClCompile Include="file\file.cpp" />
     <ClCompile Include="hash\hash.cpp" />

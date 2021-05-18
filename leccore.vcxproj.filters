@@ -27,6 +27,9 @@
     <Filter Include="leccore\hash">
       <UniqueIdentifier>{47be85a6-5a69-4fc5-b37f-47acb470631e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\encode">
+      <UniqueIdentifier>{e42d87ce-77b9-4cf1-8398-cbdb5ba2b0cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -71,6 +74,9 @@
     <ClInclude Include="hash\sha512.h">
       <Filter>leccore\hash</Filter>
     </ClInclude>
+    <ClInclude Include="encode.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="leccore.cpp">
@@ -108,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="hash\sha512.cpp">
       <Filter>leccore\hash</Filter>
+    </ClCompile>
+    <ClCompile Include="encode\base32.cpp">
+      <Filter>leccore\encode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
