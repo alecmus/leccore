@@ -87,7 +87,7 @@ namespace liblec {
 
 			enum class battery_status { charging, discharging, ac_line, };
 
-			using battery_info = struct {
+			using battery_info = struct battery_info {
 				std::string name;
 				std::string manufacturer;
 				std::string serial_number;
@@ -100,6 +100,25 @@ namespace liblec {
 				int current_voltage;			// in mV, -1 means unknown
 				int current_charge_rate;		// in mW
 				battery_status status;			// battery status
+
+				bool operator==(const pc_info::battery_info& param) {
+					return name == param.name &&
+						manufacturer == param.manufacturer &&
+						serial_number == param.serial_number &&
+						unique_id == param.unique_id &&
+						designed_capacity == param.designed_capacity &&
+						fully_charged_capacity == param.fully_charged_capacity &&
+						health == param.health &&
+						current_capacity == param.current_capacity &&
+						level == param.level &&
+						current_voltage == param.current_voltage &&
+						current_charge_rate == param.current_charge_rate &&
+						status == param.status;
+				}
+
+				bool operator !=(const pc_info::battery_info& param) {
+					return !operator==(param);
+				}
 			};
 
 			enum class power_status { high, medium, low, critical,
