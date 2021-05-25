@@ -24,6 +24,7 @@ namespace liblec {
 		public:
 			static std::string sha256(const std::string& input);
 			static std::string sha512(const std::string& input);
+			static std::string random_string(int length);
 		};
 	}
 }

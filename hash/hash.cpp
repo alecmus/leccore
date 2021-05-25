@@ -12,6 +12,7 @@
 #include <cryptlib.h>
 #include <sha.h>
 #include <hex.h>
+#include <osrng.h>
 
 std::string liblec::leccore::hash::sha256(const std::string& input) {
     try {
@@ -39,6 +40,24 @@ std::string liblec::leccore::hash::sha512(const std::string& input) {
             new CryptoPP::HashFilter(hash,
                 new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
         return output;
+    }
+    catch (CryptoPP::Exception&) {
+        // to-do: log
+    }
+    catch (std::exception&) {
+        // to-do: log
+    }
+    return std::string();
+}
+
+std::string liblec::leccore::hash::random_string(int length) {
+    try {
+        std::string random;
+        CryptoPP::AutoSeededRandomPool rng;
+        CryptoPP::RandomNumberSource rns(rng, length, true,
+            new CryptoPP::StringSink(random)
+        );
+        return random;
     }
     catch (CryptoPP::Exception&) {
         // to-do: log
