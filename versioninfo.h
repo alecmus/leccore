@@ -14,6 +14,7 @@
 #define leccoredescription	"liblec core library"
 #define leccorecomments		"This file is part of the liblec library"
 #define leccorecopyright	"(c) 2019 Alec Musasa"
+#define leccorecompany		"Alec Musasa"
 #define leccorefilename		"leccore.dll"
 
 #define leccoreversion		"1.0.0 alpha 1"
