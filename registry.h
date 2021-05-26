@@ -31,9 +31,17 @@ namespace liblec {
 				const std::string& value_name,
 				std::string& value,
 				std::string& error);
+			bool do_read_binary(const std::string& path,
+				const std::string& value_name,
+				std::string& data,
+				std::string& error);
 			bool do_write(const std::string& path,
 				const std::string& value_name,
 				const std::string& value,
+				std::string& error);
+			bool do_write_binary(const std::string& path,
+				const std::string& value_name,
+				const std::string& data,
 				std::string& error);
 			bool do_delete(const std::string& path,
 				const std::string& value_name,

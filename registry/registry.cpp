@@ -195,6 +195,76 @@ bool registry::do_read(const std::string& path, const std::string& value_name,
 	return true;
 }
 
+bool registry::do_read_binary(const std::string& path,
+	const std::string& value_name,
+	std::string& data, std::string& error) {
+	HKEY h_key;
+	LONG result = RegOpenKeyExA(d_.root_, path.c_str(),
+		0, KEY_QUERY_VALUE, &h_key);
+
+	if (result != ERROR_SUCCESS) {
+		if (result == ERROR_FILE_NOT_FOUND)
+			return true;
+
+		_com_error err(result);
+		error = convert_string(err.ErrorMessage());
+		return false;
+	}
+
+	DWORD type;
+
+	/*
+	** determine size of buffer
+	** If lpData is NULL, and lpcbData is non-NULL, the function returns ERROR_SUCCESS
+	** and stores the size of the data, in bytes, in the variable pointed to by lpcbData.
+	** This enables an application to determine the best way to allocate a buffer for the value's data.
+	** https://msdn.microsoft.com/en-us/library/windows/desktop/ms724911(v=vs.85).aspx
+	*/
+	DWORD len = 1;
+
+	result = RegQueryValueExA(h_key, value_name.c_str(),
+		0, &type, NULL, &len);
+
+	/*
+	** Q: Why does the RegQueryValueEx() always return ERROR_MORE_DATA?
+	** A: If the lpData buffer is too small to receive the data, the function returns ERROR_MORE_DATA.
+	** Tips:
+	** When you are using RegQueryValueExW(), the parameter of lpcbData
+	** SHOULD be the array size in BYTES, not in characters.
+	** from: http://nogeekhere.blogspot.com/2008/08/why-did-regqueryvalueex-return.html
+	** MSDN Reference:
+	** https://msdn.microsoft.com/en-us/library/windows/desktop/ms724911(v=vs.85).aspx
+	*/
+	int string_length = len / sizeof(CHAR);
+	CHAR* buf = new CHAR[string_length];
+
+	result = RegQueryValueExA(h_key, value_name.c_str(),
+		0, &type, (BYTE*)buf, &len);
+
+	RegCloseKey(h_key);
+
+	if (result != ERROR_SUCCESS) {
+		if (buf) {
+			delete[] buf;
+			buf = nullptr;
+		}
+
+		_com_error err(result);
+		error = convert_string(err.ErrorMessage());
+		return false;
+	}
+
+	if (string_length > 0)
+		data = std::string(buf, string_length);
+
+	if (buf) {
+		delete[] buf;
+		buf = nullptr;
+	}
+
+	return true;
+}
+
 bool registry::do_write(const std::string& path,
 	const std::string& value_name, const std::string& value, std::string& error) {
 	const std::string sub_key = path;
@@ -211,8 +281,39 @@ bool registry::do_write(const std::string& path,
 	}
 
 	result = RegSetValueExA(h_key, value_name.c_str(),
-		0, REG_SZ, (const BYTE*)value.c_str(),
-		(strlen(value.c_str()) + 1) * sizeof(CHAR));
+		0, REG_SZ, reinterpret_cast<const BYTE*>(value.c_str()),
+		static_cast<DWORD>((value.length() + 1) * sizeof(CHAR)));
+
+	RegCloseKey(h_key);
+
+	if (result != ERROR_SUCCESS) {
+		_com_error err(result);
+		error = convert_string(err.ErrorMessage());
+		return false;
+	}
+
+	return true;
+}
+
+bool registry::do_write_binary(const std::string& path,
+	const std::string& value_name,
+	const std::string& data, std::string& error) {
+	const std::string sub_key = path;
+
+	HKEY h_key;
+	LONG result = RegCreateKeyExA(d_.root_, sub_key.c_str(),
+		0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE,
+		NULL, &h_key, NULL);
+
+	if (result != ERROR_SUCCESS) {
+		_com_error err(result);
+		error = convert_string(err.ErrorMessage());
+		return false;
+	}
+
+	result = RegSetValueExA(h_key, value_name.c_str(),
+		0, REG_BINARY, reinterpret_cast<const BYTE*>(data.c_str()),
+		static_cast<DWORD>(data.length() * sizeof(CHAR)));
 
 	RegCloseKey(h_key);
 
