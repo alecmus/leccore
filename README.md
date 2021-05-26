@@ -30,15 +30,23 @@ bind together all the other liblec libraries like [lecui](https://github.com/ale
 
 ### Classes
 The following classes have been added to the library
-Class Name           | Description             | Interface
--------------------- | ----------------------- | ------------------------------------------------
-database::connection | Database connection     | [#include <liblec/leccore/database.h>](https://github.com/alecmus/leccore/blob/master/database.h)
-file                 | File handling helper    | [#include <liblec/leccore/file.h>](https://github.com/alecmus/leccore/blob/master/file.h)
-pc_info              | PC hardware information | [#include <liblec/leccore/pc_info.h>](https://github.com/alecmus/leccore/blob/master/pc_info.h)
+Class Name           | Description                      | Interface
+-------------------- | -------------------------------- | ------------------------------------------------
+database::connection | Database connection              | [#include <liblec/leccore/database.h>](https://github.com/alecmus/leccore/blob/master/database.h)
+file                 | File handling helper             | [#include <liblec/leccore/file.h>](https://github.com/alecmus/leccore/blob/master/file.h)
+pc_info              | PC hardware information          | [#include <liblec/leccore/pc_info.h>](https://github.com/alecmus/leccore/blob/master/pc_info.h)
+hash                 | Cryptographic hash               | [#include <liblec/leccore/hash.h>](https://github.com/alecmus/leccore/blob/master/hash.h)
+encode::base32       | Base32 character encoding        | [#include <liblec/leccore/encode.h>](https://github.com/alecmus/leccore/blob/master/encode.h)
+encode::base64       | Base64 character encoding        | [#include <liblec/leccore/encode.h>](https://github.com/alecmus/leccore/blob/master/encode.h)
+app_version_info     | Application version information  | [#include <liblec/leccore/app_version_info.h>](https://github.com/alecmus/leccore/blob/master/app_version_info.h)
+registry             | Registry reading and writing     | [#include <liblec/leccore/registry.h>](https://github.com/alecmus/leccore/blob/master/registry.h)
+encrypt              | Encryption                       | [#include <liblec/leccore/encrypt.h>](https://github.com/alecmus/leccore/blob/master/encrypt.h)
+settings             | Application settings             | [#include <liblec/leccore/settings.h>](https://github.com/alecmus/leccore/blob/master/settings.h)
 
 
 ### Compile-time Dependencies
-1. sqlcipher - you can use the pre-compiled files [here](https://github.com/alecmus/files).
+1. sqlcipher - you can use the pre-compiled files [here](https://github.com/alecmus/files)
+2. crypto++
 
 ### Run-time Dependencies
 1. sqlcipher
