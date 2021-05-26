@@ -121,6 +121,7 @@ xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)app_version_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -155,6 +156,7 @@ xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)app_version_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -185,6 +187,7 @@ xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)app_version_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -219,10 +222,12 @@ xcopy "$(ProjectDir)file.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F
 xcopy "$(ProjectDir)pc_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)hash.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)app_version_info.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="app_version_info.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="database\connection_base.h" />
     <ClInclude Include="database\sqlcipher\sqlcipher_connection.h" />
@@ -238,6 +243,7 @@ xcopy "$(ProjectDir)encode.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" 
     <ClInclude Include="versioninfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="app_version_info\app_version_info.cpp" />
     <ClCompile Include="database\connection.cpp" />
     <ClCompile Include="database\connection_base.cpp" />
     <ClCompile Include="database\sqlcipher\sqlcipher_connection.cpp" />
