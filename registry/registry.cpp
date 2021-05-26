@@ -133,6 +133,9 @@ bool registry::do_read(const std::string& path, const std::string& value_name,
 		0, KEY_QUERY_VALUE, &h_key);
 
 	if (result != ERROR_SUCCESS) {
+		if (result == ERROR_FILE_NOT_FOUND)
+			return true;
+
 		_com_error err(result);
 		error = convert_string(err.ErrorMessage());
 		return false;
