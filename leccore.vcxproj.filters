@@ -36,6 +36,9 @@
     <Filter Include="leccore\app_version_info">
       <UniqueIdentifier>{9425d0a1-23e4-441d-be48-6ac595eba088}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\encrypt">
+      <UniqueIdentifier>{699f2c91-055f-4cca-862d-f8fc4875bf5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -83,6 +86,9 @@
     <ClInclude Include="app_version_info.h">
       <Filter>leccore</Filter>
     </ClInclude>
+    <ClInclude Include="encrypt.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="leccore.cpp">
@@ -126,6 +132,9 @@
     </ClCompile>
     <ClCompile Include="app_version_info\app_version_info.cpp">
       <Filter>leccore\app_version_info</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\aes.cpp">
+      <Filter>leccore\encrypt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
