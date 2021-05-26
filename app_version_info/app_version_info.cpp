@@ -15,6 +15,9 @@
 #include <Windows.h>
 #include <comdef.h>	// for _com_error
 
+#include <WinVer.h>
+#pragma comment(lib, "version.lib")
+
 using namespace liblec::leccore;
 
 class app_version_info::impl {
