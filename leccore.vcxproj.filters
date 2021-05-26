@@ -30,6 +30,9 @@
     <Filter Include="leccore\encode">
       <UniqueIdentifier>{e42d87ce-77b9-4cf1-8398-cbdb5ba2b0cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\registry">
+      <UniqueIdentifier>{243e6570-4f01-40d2-a3dd-a713bb42def5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="leccore\app_version_info">
       <UniqueIdentifier>{9425d0a1-23e4-441d-be48-6ac595eba088}</UniqueIdentifier>
     </Filter>
@@ -74,6 +77,9 @@
     <ClInclude Include="encode.h">
       <Filter>leccore</Filter>
     </ClInclude>
+    <ClInclude Include="registry.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
     <ClInclude Include="app_version_info.h">
       <Filter>leccore</Filter>
     </ClInclude>
@@ -114,6 +120,9 @@
     </ClCompile>
     <ClCompile Include="encode\base64.cpp">
       <Filter>leccore\encode</Filter>
+    </ClCompile>
+    <ClCompile Include="registry\registry.cpp">
+      <Filter>leccore\registry</Filter>
     </ClCompile>
     <ClCompile Include="app_version_info\app_version_info.cpp">
       <Filter>leccore\app_version_info</Filter>
