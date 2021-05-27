@@ -148,6 +148,9 @@
     <ClCompile Include="settings\settings.cpp">
       <Filter>leccore\settings</Filter>
     </ClCompile>
+    <ClCompile Include="settings\ini_settings.cpp">
+      <Filter>leccore\settings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">

@@ -83,5 +83,40 @@ namespace liblec {
 			registry_settings(const registry_settings&) = delete;
 			registry_settings& operator=(const registry_settings&) = delete;
 		};
+
+		class leccore_api ini_settings : public settings {
+		public:
+			ini_settings(const std::string& file_name);
+			ini_settings(const std::string& file_name,
+				const std::string& key, const std::string& iv);
+			~ini_settings();
+
+			void set_ini_path(const std::string& ini_path);
+			bool get_ini_path(std::string& ini_path,
+				std::string& error);
+
+			bool write_value(const std::string& branch,
+				const std::string& value_name,
+				const std::string& value,
+				std::string& error) override;
+			bool read_value(const std::string& branch,
+				const std::string& value_name,
+				std::string& value,
+				std::string& error) override;
+			bool delete_value(const std::string& branch,
+				const std::string& value_name,
+				std::string& error) override;
+			bool delete_recursive(const std::string& branch,
+				std::string& error) override;
+
+		private:
+			class impl;
+			impl& d_;
+
+			// Default constructor and copying an object of this class are not allowed
+			ini_settings() = delete;
+			ini_settings(const ini_settings&) = delete;
+			ini_settings& operator=(const ini_settings&) = delete;
+		};
 	}
 }
