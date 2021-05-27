@@ -273,6 +273,7 @@ xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\
     <ClCompile Include="pc_info\pc_info.cpp" />
     <ClCompile Include="pc_info\get_wmi_data.cpp" />
     <ClCompile Include="registry\registry.cpp" />
+    <ClCompile Include="settings\registry_settings.cpp" />
     <ClCompile Include="settings\settings.cpp" />
   </ItemGroup>
   <ItemGroup>

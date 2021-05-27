@@ -133,7 +133,7 @@
     <ClCompile Include="encode\base64.cpp">
       <Filter>leccore\encode</Filter>
     </ClCompile>
-    <ClCompile Include="settings\settings.cpp">
+    <ClCompile Include="settings\registry_settings.cpp">
       <Filter>leccore\settings</Filter>
     </ClCompile>
     <ClCompile Include="registry\registry.cpp">
@@ -144,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="encrypt\aes.cpp">
       <Filter>leccore\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="settings\settings.cpp">
+      <Filter>leccore\settings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

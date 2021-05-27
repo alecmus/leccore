@@ -26,10 +26,35 @@ namespace liblec {
 		public:
 			using byte = unsigned char;
 
-			settings(registry::scope settings_scope);
-			settings(registry::scope settings_scope,
+			settings();
+			virtual ~settings();
+
+			virtual bool write_value(const std::string& branch,
+				const std::string& value_name,
+				const std::string& value,
+				std::string& error) = 0;
+			virtual bool read_value(const std::string& branch,
+				const std::string& value_name,
+				std::string& value,
+				std::string& error) = 0;
+			virtual bool delete_value(const std::string& branch,
+				const std::string& value_name,
+				std::string& error) = 0;
+			virtual bool delete_recursive(const std::string& branch,
+				std::string& error) = 0;
+
+		private:
+			// Copying an object of this class is not allowed
+			settings(const settings&) = delete;
+			settings& operator=(const settings&) = delete;
+		};
+
+		class leccore_api registry_settings : public settings {
+		public:
+			registry_settings(registry::scope settings_scope);
+			registry_settings(registry::scope settings_scope,
 				const std::string& key, const std::string& iv);
-			~settings();
+			~registry_settings();
 
 			void set_registry_path(const std::string& registry_path);
 			bool get_registry_path(std::string& registry_path,
@@ -38,25 +63,25 @@ namespace liblec {
 			bool write_value(const std::string& branch,
 				const std::string& value_name,
 				const std::string& value,
-				std::string& error);
+				std::string& error) override;
 			bool read_value(const std::string& branch,
 				const std::string& value_name,
 				std::string& value,
-				std::string& error);
+				std::string& error) override;
 			bool delete_value(const std::string& branch,
 				const std::string& value_name,
-				std::string& error);
+				std::string& error) override;
 			bool delete_recursive(const std::string& branch,
-				std::string& error);
+				std::string& error) override;
 
 		private:
 			class impl;
 			impl& d_;
 
 			// Default constructor and copying an object of this class are not allowed
-			settings() = delete;
-			settings(const settings&) = delete;
-			settings& operator=(const settings&) = delete;
+			registry_settings() = delete;
+			registry_settings(const registry_settings&) = delete;
+			registry_settings& operator=(const registry_settings&) = delete;
 		};
 	}
 }
