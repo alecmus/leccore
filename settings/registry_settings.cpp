@@ -10,7 +10,6 @@
 
 #include "../settings.h"
 #include "../leccore_common.h"
-#include "../error/win_error.h"
 #include "../app_version_info.h"
 #include "../encode.h"
 #include "../hash.h"
@@ -144,6 +143,11 @@ bool registry_settings::read_value(const std::string& branch,
 
 bool liblec::leccore::registry_settings::delete_value(const std::string& branch,
 	const std::string& value_name, std::string& error) {
+	if (value_name.empty()) {
+		error = "Value name not specified";
+		return false;
+	}
+
 	std::string registry_path;
 	if (!get_registry_path(registry_path, error))
 		return false;
