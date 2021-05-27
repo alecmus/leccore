@@ -175,7 +175,7 @@ bool ini_settings::write_value(const std::string& branch,
 			if (!d_.encrypt_string(value, data_encrypted, error))
 				return false;
 
-			std::string encoded = base64::encode(data_encrypted);
+			std::string encoded = base32::encode(data_encrypted);
 			pt.put(path_, encoded);
 			boost::property_tree::write_ini(full_ini_file_path, pt);
 			return true;
@@ -218,7 +218,7 @@ bool ini_settings::read_value(const std::string& branch,
 				return true;
 			}
 
-			std::string data_encrypted = base64::decode(encoded);
+			std::string data_encrypted = base32::decode(encoded);
 			return d_.decrypt_string(data_encrypted, value, error);
 		}
 		else {
