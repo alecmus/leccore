@@ -115,10 +115,10 @@ bool ini_settings::get_ini_path(std::string& ini_path, std::string& error) {
 		auto get_app_data = [](std::string& app_data_folder, std::string& error)->bool {
 			app_data_folder.clear();
 			CHAR szPath[MAX_PATH];
-			HRESULT h_res = SHGetFolderPathA(NULL, CSIDL_LOCAL_APPDATA, NULL, 0, szPath);
+			HRESULT result = SHGetFolderPathA(NULL, CSIDL_LOCAL_APPDATA, NULL, 0, szPath);
 			
-			if (FAILED(h_res)) {
-				error = convert_string(_com_error(h_res).ErrorMessage());
+			if (FAILED(result)) {
+				error = convert_string(_com_error(result).ErrorMessage());
 				return false;
 			}
 			
@@ -179,7 +179,6 @@ bool ini_settings::write_value(const std::string& branch,
 			pt.put(path_, encoded);
 			boost::property_tree::write_ini(full_ini_file_path, pt);
 			return true;
-
 		}
 		else {
 			pt.put(path_, value);

@@ -25,21 +25,21 @@ bool liblec::leccore::get_wmi_data(
 	// 1. Obtain the initial locator to WMI
 	IWbemLocator* p_loc = nullptr;
 
-	HRESULT h_res = CoCreateInstance(
+	HRESULT result = CoCreateInstance(
 		CLSID_WbemLocator,
 		0,
 		CLSCTX_INPROC_SERVER,
 		IID_IWbemLocator, (LPVOID*)&p_loc);
 
-	if (FAILED(h_res)) {
-		error = convert_string(_com_error(h_res).ErrorMessage());
+	if (FAILED(result)) {
+		error = convert_string(_com_error(result).ErrorMessage());
 		return false;
 	}
 
 	// 2. Connect to WMI through the IWbemLocator::ConnectServer method
 	IWbemServices* p_svc = nullptr;
 
-	h_res = p_loc->ConnectServer(
+	result = p_loc->ConnectServer(
 		path,   // Object path of WMI namespace
 		NULL,   // User name. NULL = current user
 		NULL,   // User password. NULL = current
@@ -50,15 +50,15 @@ bool liblec::leccore::get_wmi_data(
 		&p_svc  // pointer to IWbemServices proxy
 	);
 
-	if (FAILED(h_res)) {
+	if (FAILED(result)) {
 		p_loc->Release();
 
-		error = convert_string(_com_error(h_res).ErrorMessage());
+		error = convert_string(_com_error(result).ErrorMessage());
 		return false;
 	}
 
 	// 3. Set security levels on the proxy
-	h_res = CoSetProxyBlanket(
+	result = CoSetProxyBlanket(
 		p_svc,                       // Indicates the proxy to set
 		RPC_C_AUTHN_WINNT,           // RPC_C_AUTHN_xxx
 		RPC_C_AUTHZ_NONE,            // RPC_C_AUTHZ_xxx
@@ -69,28 +69,28 @@ bool liblec::leccore::get_wmi_data(
 		EOAC_NONE                    // proxy capabilities 
 	);
 
-	if (FAILED(h_res)) {
+	if (FAILED(result)) {
 		p_svc->Release();
 		p_loc->Release();
 
-		error = convert_string(_com_error(h_res).ErrorMessage());
+		error = convert_string(_com_error(result).ErrorMessage());
 		return false;
 	}
 
 	// 4. Use the IWbemServices pointer to make requests of WMI
 	IEnumWbemClassObject* p_enumerator = nullptr;
-	h_res = p_svc->ExecQuery(
+	result = p_svc->ExecQuery(
 		bstr_t("WQL"),
 		bstr_t("SELECT * FROM ") + class_name,
 		WBEM_FLAG_FORWARD_ONLY | WBEM_FLAG_RETURN_IMMEDIATELY,
 		NULL,
 		&p_enumerator);
 
-	if (FAILED(h_res)) {
+	if (FAILED(result)) {
 		p_svc->Release();
 		p_loc->Release();
 
-		error = convert_string(_com_error(h_res).ErrorMessage());
+		error = convert_string(_com_error(result).ErrorMessage());
 		return false;
 	}
 
@@ -99,7 +99,7 @@ bool liblec::leccore::get_wmi_data(
 	ULONG u_return = 0;
 
 	while (p_enumerator) {
-		HRESULT hr = p_enumerator->Next(WBEM_INFINITE, 1,
+		HRESULT result = p_enumerator->Next(WBEM_INFINITE, 1,
 			&p_class_object, &u_return);
 
 		if (0 == u_return)
@@ -110,16 +110,16 @@ bool liblec::leccore::get_wmi_data(
 
 			// Get the value of the Name property
 			CIMTYPE type;
-			hr = p_class_object->Get(property, 0, &vtProp, &type, 0);
+			result = p_class_object->Get(property, 0, &vtProp, &type, 0);
 
-			if (FAILED(hr)) {
+			if (FAILED(result)) {
 				VariantClear(&vtProp);
 
 				p_svc->Release();
 				p_loc->Release();
 
 				wmi_data.clear();
-				error = convert_string(_com_error(h_res).ErrorMessage());
+				error = convert_string(_com_error(result).ErrorMessage());
 				return false;
 			}
 

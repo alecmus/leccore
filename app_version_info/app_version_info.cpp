@@ -78,10 +78,8 @@ public:
 		const size_t idx = 0;
 
 		char lang[9];
-		HRESULT result;
-
-		result = _snprintf_s(lang, 9, 8,
-			"%04x%04x",
+		HRESULT result = _snprintf_s(
+			lang, 9, 8, "%04x%04x",
 			p_translations[idx].language,
 			p_translations[idx].codepage);
 
@@ -114,7 +112,7 @@ public:
 
 		data_buffer fi(version_info_size);
 
-		if (!GetFileVersionInfoA(exe_file_name, unused_handle, version_info_size, fi.data)) {
+		if (!GetFileVersionInfoA(exe_file_name, 0, version_info_size, fi.data)) {
 			error = get_last_error();
 			return false;
 		}
