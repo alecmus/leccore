@@ -43,13 +43,72 @@ registry             | Registry reading and writing     | [#include <liblec/lecc
 encrypt              | Encryption                       | [#include <liblec/leccore/encrypt.h>](https://github.com/alecmus/leccore/blob/master/encrypt.h)
 settings             | Application settings             | [#include <liblec/leccore/settings.h>](https://github.com/alecmus/leccore/blob/master/settings.h)
 
+### Usage Examples
+The library is used in the [pc_info](https://github.com/alecmus/pc_info) app.
+
+### Prebuilt Binaries
+Prebuilt binaries of the library can be found under
+[releases](https://github.com/alecmus/leccore/releases).
 
 ### Compile-time Dependencies
-1. sqlcipher - you can use the pre-compiled files [here](https://github.com/alecmus/files)
-2. crypto++
+The library has the following compile-time dependencies:
+1. boost C++ libraries
+* assumes boost 1.72 prebuilt binaries are in C:\local\libs\boost_1_72_0
+* download prebuilt boost binaries [here](https://sourceforge.net/projects/boost/files/boost-binaries/)
+* For example, the binaries for boost 1.72 are [here](https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/)
+* For Microsoft Visual Studio 2019 you can download the file boost_1_72_0-msvc-14.2-64.exe (64 bit)
+and boost_1_72_0-msvc-14.2-32.exe (32 bit).
+2. sqlcipher
+* assumes sqlcipher prebuilt binaries are in C:\local\libs\sqlcipher
+* you can use the pre-compiled files [here](https://github.com/alecmus/files)
+4. crypto++
+* assumes crypto++ prebuilt static library files are in C:\local\libs\cryptopp
+
+If the boost, sqlcipher and/or crypto++ libraries are installed elsewhere you will need to change the Microsoft Visual Studio project
+properties under Properties - C/C++ - General - Additional Include Directories and also under
+Properties - Linker - General - Additional Library Directories.
 
 ### Run-time Dependencies
 1. sqlcipher
 2. openssl
 
 You can use the pre-compiled files for both from [here](https://github.com/alecmus/files).
+
+### Building
+Create a folder '\liblec' and clone the repository into it such that it resides in 'liblec\leccore'. Open the Microsoft Visual Studio Solution file liblec\leccore\leccore.sln. Select Build -> Batch Build, then select the desired configurations of the given four:
+1. Debug x86
+2. Relese x86 (32 bit Release Build)
+3. Debug x64
+4. Release x64 (64 bit Release Build)
+
+Build.
+
+Three folders will be created in the \liblec directory, namely bin, lib and include. Below is a description of these subdirectories.
+
+1. bin - contains the binary files. The following files will be created:
+
+File             | Description
+---------------- | ------------------------------------
+leccore32.dll    | 32 bit release build
+leccore64.dll    | 64 bit release build
+leccore32d.dll   | 32 bit debug build
+leccore64d.dll   | 64 bit debug build
+
+2. lib - contains the static library files that accompany the dlls. The files are named after the respective dlls.
+3. include - contains the include files
+
+### Linking to the Library
+
+#### Microsoft Visual Studio
+Open your project's properties and for All Configurations and All Platforms set the following:
+1. C/C++ -> General -> Additional Include Directories -> Edit -> New Line ... add \liblec\include
+2. Linker -> General -> Additional Library Directories -> Edit -> New Line ... add \liblec\lib
+3. Debugging -> Environment -> Edit ... add PATH=\liblec\bin;PATH%
+
+Now you can use the required functions by calling #include <liblec/leccore/...>
+
+Build.
+
+### Deploying your Application
+If it's the 32 bit build you will need to deploy it with leccore32.dll, sqlcipher32.dll and libeay32.dll in the same folder. If it's a
+64 bit build use leccore64.dll, sqlcipher64.dll and libeay64.dll.
