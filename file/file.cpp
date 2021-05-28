@@ -11,6 +11,7 @@
 #include "../file.h"
 #include <fstream>
 #include <filesystem>
+#include <Windows.h>
 using namespace std;
 using namespace liblec::leccore;
 
@@ -18,11 +19,26 @@ bool liblec::leccore::file::read(const string& file_path,
 	string& data,
 	string& error) {
 	try {
+		// make a path object for the file
+		filesystem::path path(file_path);
+
+		// check if the file exists
+		if (!filesystem::exists(path)) {
+			error = file_path + " does not exist";
+			return false;
+		}
+
+		// verify that it's a file
+		if (!filesystem::is_regular_file(path)) {
+			error = file_path + " is not a file";
+			return false;
+		}
+
 		// open the file
 		ifstream file(file_path, ios::binary);
 
-		if (!file) {
-			error = "Error reading file";
+		if (!file || !file.is_open()) {
+			error = "Opening file failed";
 			return false;
 		}
 
@@ -36,16 +52,26 @@ bool liblec::leccore::file::read(const string& file_path,
 		// dynamically allocate memory for a buffer that matches the file size
 		char* buffer = new char[file_size];
 
-		// read the file into the buffer and close the file
-		file.read(buffer, file_size);
-		file.close();
+		try {
+			// read the file into the buffer and close the file
+			file.read(buffer, file_size);
+			file.close();
 
-		// write back the data to the caller
-		data = string(buffer, file_size);
+			// write back the data to the caller
+			data = string(buffer, file_size);
 
-		// free the dynamically allocated memory
-		delete[]buffer;
-		return true;
+			// free the dynamically allocated memory
+			delete[] buffer;
+			return true;
+		}
+		catch (const std::exception& e) {
+			// free the dynamically allocated memory
+			delete[] buffer;
+			return true;
+
+			error = e.what();
+			return false;
+		}
 	}
 	catch (const exception& e) {
 		error = e.what();
@@ -57,11 +83,32 @@ bool liblec::leccore::file::write(const string& file_path,
 	const string& data,
 	string& error) {
 	try {
+		// make a path object for the file
+		filesystem::path path(file_path);
+
+		// check if the file exists
+		if (filesystem::exists(path)) {
+			// verify that it's a file
+			if (!filesystem::is_regular_file(path)) {
+				error = file_path + " is not a file";
+				return false;
+			}
+
+			// check if the file is read-only
+			DWORD attributes = GetFileAttributesA(file_path.c_str());
+			if (attributes != INVALID_FILE_ATTRIBUTES) {
+				if (attributes & FILE_ATTRIBUTE_READONLY) {
+					error = "File is read-only";
+					return false;
+				}
+			}
+		}
+
 		// open the file
 		ofstream file(file_path, ios::out | ios::trunc | ios::binary);
 
-		if (!file) {
-			error = "Error opening destination file";
+		if (!file || !file.is_open()) {
+			error = "Opening destination file failed";
 			return false;
 		}
 
