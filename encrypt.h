@@ -36,6 +36,11 @@ namespace liblec {
 		private:
 			class impl;
 			impl& d_;
+
+			// Default constructor and copying an object of this class are not allowed.
+			aes() = delete;
+			aes(const aes&) = delete;
+			aes& operator==(const aes&) = delete;
 		};
 	}
 }
