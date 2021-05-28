@@ -29,6 +29,7 @@ public:
 		std::vector<std::string>& sub_keys,
 		std::vector<std::string>& values,
 		std::string& error) {
+		error.clear();
 		sub_keys.clear();
 		values.clear();
 
@@ -128,6 +129,8 @@ registry::~registry() { delete& d_; }
 
 bool registry::do_read(const std::string& path, const std::string& value_name,
 	std::string& value, std::string& error) {
+	error.clear();
+	value.clear();
 	HKEY h_key;
 	LONG result = RegOpenKeyExA(d_.root_, path.c_str(),
 		0, KEY_QUERY_VALUE, &h_key);
@@ -198,6 +201,8 @@ bool registry::do_read(const std::string& path, const std::string& value_name,
 bool registry::do_read_binary(const std::string& path,
 	const std::string& value_name,
 	std::string& data, std::string& error) {
+	error.clear();
+	data.clear();
 	HKEY h_key;
 	LONG result = RegOpenKeyExA(d_.root_, path.c_str(),
 		0, KEY_QUERY_VALUE, &h_key);
@@ -267,6 +272,7 @@ bool registry::do_read_binary(const std::string& path,
 
 bool registry::do_write(const std::string& path,
 	const std::string& value_name, const std::string& value, std::string& error) {
+	error.clear();
 	const std::string sub_key = path;
 
 	HKEY h_key;
@@ -298,6 +304,7 @@ bool registry::do_write(const std::string& path,
 bool registry::do_write_binary(const std::string& path,
 	const std::string& value_name,
 	const std::string& data, std::string& error) {
+	error.clear();
 	const std::string sub_key = path;
 
 	HKEY h_key;
@@ -328,6 +335,7 @@ bool registry::do_write_binary(const std::string& path,
 
 bool registry::do_delete(const std::string& path,
 	const std::string& value_name, std::string& error) {
+	error.clear();
 	HKEY h_key;
 	LONG result = RegOpenKeyExA(d_.root_, path.c_str(),
 		0, KEY_ALL_ACCESS, &h_key);
@@ -356,16 +364,21 @@ bool registry::do_delete(const std::string& path,
 	return true;
 }
 
-void registry::do_recursive_delete(const std::string& sub_key) {
+bool registry::do_recursive_delete(const std::string& sub_key,
+	std::string& error) {
+	error.clear();
 	std::vector<std::string> sub_keys, values;
-	std::string error;
 	d_.registry_enumerate(d_.root_, sub_key, sub_keys, values, error);
 
-	for (auto& it : sub_keys)
-		do_recursive_delete(sub_key + "\\" + it);
+	for (auto& it : sub_keys) {
+		if (!do_recursive_delete(sub_key + "\\" + it, error))
+			return false;
+	}
 
-	for (auto& it : values)
-		do_delete(sub_key, it, error);
+	for (auto& it : values) {
+		if (!do_delete(sub_key, it, error))
+			return false;
+	}
 
-	do_delete(sub_key, "", error);
+	return do_delete(sub_key, "", error);
 }

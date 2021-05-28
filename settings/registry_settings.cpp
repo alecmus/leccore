@@ -38,6 +38,8 @@ public:
 	bool encrypt_string(const std::string& plain,
 		std::string& encrypted,
 		std::string& error) {
+		error.clear();
+		encrypted.clear();
 		const std::string salt = hash::random_string(salt_length_);
 		std::string encoded = base64::encode(salt + plain);
 		aes enc(key_, iv_);
@@ -47,6 +49,8 @@ public:
 	bool decrypt_string(const std::string& encrypted,
 		std::string& decrypted,
 		std::string& error) {
+		error.clear();
+		decrypted.clear();
 		std::string encoded;
 		aes enc(key_, iv_);
 		if (!enc.decrypt(encrypted, encoded, error))
@@ -65,6 +69,8 @@ registry_settings::registry_settings(registry::scope settings_scope,
 registry_settings::~registry_settings() { delete& d_; }
 
 bool registry_settings::get_registry_path(std::string& registry_path, std::string& error) {
+	error.clear();
+	registry_path.clear();
 	if (d_.registry_path_.empty()) {
 		app_version_info ver_info;
 
@@ -89,6 +95,7 @@ void registry_settings::set_registry_path(const std::string& registry_path) {
 
 bool registry_settings::write_value(const std::string& branch,
 	const std::string& value_name, const std::string& value, std::string& error) {
+	error.clear();
 	std::string registry_path;
 	if (!get_registry_path(registry_path, error))
 		return false;
@@ -116,6 +123,8 @@ bool registry_settings::write_value(const std::string& branch,
 
 bool registry_settings::read_value(const std::string& branch,
 	const std::string& value_name, std::string& value, std::string& error) {
+	error.clear();
+	value.clear();
 	std::string registry_path;
 	if (!get_registry_path(registry_path, error))
 		return false;
@@ -143,6 +152,7 @@ bool registry_settings::read_value(const std::string& branch,
 
 bool liblec::leccore::registry_settings::delete_value(const std::string& branch,
 	const std::string& value_name, std::string& error) {
+	error.clear();
 	if (value_name.empty()) {
 		error = "Value name not specified";
 		return false;
@@ -165,6 +175,7 @@ bool liblec::leccore::registry_settings::delete_value(const std::string& branch,
 
 bool registry_settings::delete_recursive(const std::string& branch,
 	std::string& error) {
+	error.clear();
 	std::string registry_path;
 	if (!get_registry_path(registry_path, error))
 		return false;
@@ -177,6 +188,5 @@ bool registry_settings::delete_recursive(const std::string& branch,
 	const std::string sub_key = registry_path + branch_;
 
 	registry reg(d_.scope_);
-	reg.do_recursive_delete(sub_key);
-	return true;
+	return reg.do_recursive_delete(sub_key, error);
 }

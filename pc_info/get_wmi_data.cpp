@@ -20,6 +20,7 @@ bool liblec::leccore::get_wmi_data(
 	std::vector<bstr_t> properties,
 	std::map<std::string, std::vector<std::any>>& wmi_data,	// key is the property name
 	std::string& error) {
+	error.clear();
 	wmi_data.clear();
 
 	// 1. Obtain the initial locator to WMI

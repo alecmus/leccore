@@ -55,6 +55,7 @@ sqlcipher_connection::~sqlcipher_connection() {
 }
 
 bool sqlcipher_connection::connect(std::string& error) {
+	error.clear();
 	if (connected()) return true;
 
 	int error_code = 0;
@@ -104,6 +105,7 @@ bool sqlcipher_connection::connect(std::string& error) {
 }
 
 bool sqlcipher_connection::disconnect(std::string& error) {
+	error.clear();
 	if (!d_.db_)
 		return true;
 
@@ -120,6 +122,7 @@ bool sqlcipher_connection::disconnect(std::string& error) {
 bool sqlcipher_connection::execute(const std::string& sql,
 	const std::vector<std::any>& values,
 	std::string& error) {
+	error.clear();
 	if (!d_.db_) {
 		error = "Database not open";
 		return false;
@@ -269,14 +272,15 @@ bool sqlcipher_connection::execute(const std::string& sql,
 }
 
 bool sqlcipher_connection::execute_query(const std::string& sql, table& results, std::string& error) {
+	error.clear();
+	results.name.clear();
+	results.columns.clear();
+	results.data.clear();
+
 	if (!d_.db_) {
 		error = "Database not open";
 		return false;
 	}
-
-	results.name.clear();
-	results.columns.clear();
-	results.data.clear();
 
 	// prepare statement
 	sqlite3_stmt* statement = nullptr;

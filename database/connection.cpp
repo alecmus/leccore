@@ -74,6 +74,7 @@ bool connection::connected() {
 }
 
 bool connection::connect(std::string& error) {
+	error.clear();
 	if (d_.p_db_)
 		return d_.p_db_->connect(error);
 	else {
@@ -83,6 +84,7 @@ bool connection::connect(std::string& error) {
 }
 
 bool connection::disconnect(std::string& error) {
+	error.clear();
 	if (d_.p_db_)
 		return d_.p_db_->disconnect(error);
 	else
@@ -92,6 +94,7 @@ bool connection::disconnect(std::string& error) {
 bool connection::execute(const std::string& sql,
 	const std::vector<std::any>& values,
 	std::string& error) {
+	error.clear();
 	if (d_.p_db_)
 		return d_.p_db_->execute(sql, values, error);
 	else {
@@ -103,7 +106,8 @@ bool connection::execute(const std::string& sql,
 bool connection::execute_query(const std::string& sql,
 	table& results,
 	std::string& error) {
-	if (d_.p_db_) 
+	error.clear();
+	if (d_.p_db_)
 		return d_.p_db_->execute_query(sql, results, error);
 	else {
 		error = "liblec::leccore::database::connection - initialization error";

@@ -79,6 +79,7 @@ namespace liblec {
 		/// Code adapted from https://docs.microsoft.com/en-gb/windows/desktop/Power/enumerating-battery-devices
 		/// </summary>
 		bool GetBatteryState(pc_info::power_info& info, std::string& error) {
+			error.clear();
 			SYSTEM_POWER_STATUS ps = { 0 };
 
 			if (!GetSystemPowerStatus(&ps)) {
@@ -351,6 +352,7 @@ namespace liblec {
 
 		bool get_power_info(pc_info::power_info& info,
 			std::string& error) {
+			error.clear();
 			info.ac = false;
 			info.status = pc_info::power_status::unknown;
 			info.level = -1;

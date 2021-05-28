@@ -108,9 +108,12 @@ namespace liblec {
 			/// including other sub-keys.</summary>
 			/// <param name="sub_key">The path, relative to the scope as defined in the
 			/// <see cref="scope"></see> enumeration, e.g. Software\com.github.alecmus\PC Info</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>True if successful, else false.</returns>
 			/// <remarks>Use with care as the changes are irreversible.</remarks>
 			[[nodiscard]]
-			void do_recursive_delete(const std::string& sub_key);
+			bool do_recursive_delete(const std::string& sub_key,
+				std::string& error);
 
 		private:
 			class impl;

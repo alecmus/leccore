@@ -54,6 +54,8 @@ public:
 		const vector<string>& properties,
 		map<string, vector<any>>& data,
 		string& error) {
+		error.clear();
+		data.clear();
 		vector<bstr_t> properties_(properties.size());
 		for (size_t i = 0; i < properties.size(); i++)
 			properties_[i] = properties[i].c_str();
@@ -75,10 +77,12 @@ pc_info::~pc_info() {
 }
 
 bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
+	error.clear();
 	info = {};
 
 	auto bios_serial = [&](std::string& serial,
 		std::string& error)->bool {
+			error.clear();
 			serial.clear();
 			map<string, vector<any>> data;
 			if (d_.get_info("ROOT\\CIMV2", "Win32_Bios", { "SerialNumber" }, data, error)) {
@@ -98,6 +102,7 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 
 	auto baseboard_serial = [&](std::string& serial,
 		std::string& error)->bool {
+			error.clear();
 			serial.clear();
 			map<string, vector<any>> data;
 			if (d_.get_info("ROOT\\CIMV2", "Win32_BaseBoard", { "SerialNumber" }, data, error)) {
@@ -158,6 +163,7 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 
 bool pc_info::os(os_info& info,
 	std::string& error) {
+	error.clear();
 	info = {};
 	map<string, vector<any>> data;
 	if (d_.get_info("ROOT\\CIMV2",
@@ -188,6 +194,7 @@ bool pc_info::os(os_info& info,
 }
 
 bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
+	error.clear();
 	info.clear();
 	map<string, vector<any>> data;
 	if (d_.get_info("ROOT\\CIMV2",
@@ -237,6 +244,7 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 }
 
 bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
+	error.clear();
 	info.clear();
 	map<string, vector<any>> data;
 	if (d_.get_info("ROOT\\CIMV2", "Win32_VideoController",
@@ -286,6 +294,7 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 }
 
 bool pc_info::ram(ram_info& info, std::string& error) {
+	error.clear();
 	info = {};
 	map<string, vector<any>> data;
 	if (d_.get_info("ROOT\\CIMV2", "Win32_PhysicalMemory",
@@ -503,6 +512,7 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 
 bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 	std::string& error) {
+	error.clear();
 	info.clear();
 
 	struct extra_drive_info {

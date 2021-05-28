@@ -50,6 +50,8 @@ public:
 	bool encrypt_string(const std::string& plain,
 		std::string& encrypted,
 		std::string& error) {
+		error.clear();
+		encrypted.clear();
 		const std::string salt = hash::random_string(salt_length_);
 		std::string encoded = base64::encode(salt + plain);
 		aes enc(key_, iv_);
@@ -59,6 +61,8 @@ public:
 	bool decrypt_string(const std::string& encrypted,
 		std::string& decrypted,
 		std::string& error) {
+		error.clear();
+		decrypted.clear();
 		std::string encoded;
 		aes enc(key_, iv_);
 		if (!enc.decrypt(encrypted, encoded, error))
@@ -73,6 +77,7 @@ public:
 	static bool erase_path(boost::property_tree::ptree& pt,
 		const boost::property_tree::ptree::key_type& key_path,
 		std::string& error) {
+		error.clear();
 		try {
 			boost::property_tree::ptree::path_type path(key_path);
 			boost::property_tree::ptree::key_type parent_path;
@@ -102,6 +107,8 @@ ini_settings::ini_settings(const std::string& file_name, const std::string& key,
 ini_settings::~ini_settings() { delete& d_; }
 
 bool ini_settings::get_ini_path(std::string& ini_path, std::string& error) {
+	error.clear();
+	ini_path.clear();
 	if (!d_.ini_path_set_ && d_.ini_path_.empty()) {
 		app_version_info ver_info;
 
@@ -146,6 +153,7 @@ void ini_settings::set_ini_path(const std::string& ini_path) {
 
 bool ini_settings::write_value(const std::string& branch,
 	const std::string& value_name, const std::string& value, std::string& error) {
+	error.clear();
 	std::string ini_path;
 	if (!get_ini_path(ini_path, error))
 		return false;
@@ -194,6 +202,8 @@ bool ini_settings::write_value(const std::string& branch,
 
 bool ini_settings::read_value(const std::string& branch,
 	const std::string& value_name, std::string& value, std::string& error) {
+	error.clear();
+	value.clear();
 	std::string ini_path;
 	if (!get_ini_path(ini_path, error))
 		return false;
@@ -238,6 +248,7 @@ bool ini_settings::read_value(const std::string& branch,
 
 bool liblec::leccore::ini_settings::delete_value(const std::string& branch,
 	const std::string& value_name, std::string& error) {
+	error.clear();
 	if (value_name.empty()) {
 		error = "Value name not specified";
 		return false;
@@ -272,6 +283,7 @@ bool liblec::leccore::ini_settings::delete_value(const std::string& branch,
 
 bool ini_settings::delete_recursive(const std::string& branch,
 	std::string& error) {
+	error.clear();
 	std::string ini_path;
 	if (!get_ini_path(ini_path, error))
 		return false;
