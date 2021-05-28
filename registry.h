@@ -104,15 +104,33 @@ namespace liblec {
 				const std::string& value_name,
 				std::string& error);
 
+			/// <summary>Delete a sub-key if it's empty.</summary>
+			/// <param name="path">The path, relative to the scope as defined in the
+			/// <see cref="scope"></see> enumeration, e.g. Software\com.github.alecmus\PC Info</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>True if successful, else false.</returns>
+			/// <remarks>Only deletes the sub-key if it's empty. If the sub-key is not empty
+			/// an access is denied error is returned. This is a useful method to call on the
+			/// Software\company-name sub-key after deleting a specific application's sub-key, e.g.
+			/// after deleting the sub-key Software\com.github.alecmus\PC Info using the
+			/// <see cref="do_recursive_delete"></see> it's a great idea to then call this method. If
+			/// no settings for other applications are stored under the Software\com.github.alecmus
+			/// subkey then it is deleted as well, leaving a clean registry. This is highly
+			/// recommended as it leaves a clean registry after all apps for a given company
+			/// are uninstalled.</remarks>
+			[[nodiscard]]
+			bool do_delete(const std::string& path,
+				std::string& error);
+
 			/// <summary>Delete a sub-key and everything contained within it,
 			/// including other sub-keys.</summary>
-			/// <param name="sub_key">The path, relative to the scope as defined in the
+			/// <param name="path">The path, relative to the scope as defined in the
 			/// <see cref="scope"></see> enumeration, e.g. Software\com.github.alecmus\PC Info</param>
 			/// <param name="error">Error information.</param>
 			/// <returns>True if successful, else false.</returns>
 			/// <remarks>Use with care as the changes are irreversible.</remarks>
 			[[nodiscard]]
-			bool do_recursive_delete(const std::string& sub_key,
+			bool do_recursive_delete(const std::string& path,
 				std::string& error);
 
 		private:

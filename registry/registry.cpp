@@ -364,21 +364,27 @@ bool registry::do_delete(const std::string& path,
 	return true;
 }
 
-bool registry::do_recursive_delete(const std::string& sub_key,
+bool liblec::leccore::registry::do_delete(const std::string& path,
+	std::string& error) {
+	error.clear();
+	return do_delete(path, "", error);
+}
+
+bool registry::do_recursive_delete(const std::string& path,
 	std::string& error) {
 	error.clear();
 	std::vector<std::string> sub_keys, values;
-	d_.registry_enumerate(d_.root_, sub_key, sub_keys, values, error);
+	d_.registry_enumerate(d_.root_, path, sub_keys, values, error);
 
 	for (auto& it : sub_keys) {
-		if (!do_recursive_delete(sub_key + "\\" + it, error))
+		if (!do_recursive_delete(path + "\\" + it, error))
 			return false;
 	}
 
 	for (auto& it : values) {
-		if (!do_delete(sub_key, it, error))
+		if (!do_delete(path, it, error))
 			return false;
 	}
 
-	return do_delete(sub_key, "", error);
+	return do_delete(path, "", error);
 }
