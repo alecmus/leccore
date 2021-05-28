@@ -29,6 +29,7 @@ namespace liblec {
 			/// <param name="data">The contents of the file, whether text or binary.</param>
 			/// <param name="error">Error information</param>
 			/// <returns>Returns true if successful, else false.</returns>
+			[[nodiscard]]
 			static bool read(const std::string& file_path,
 				std::string& data,
 				std::string& error);
@@ -40,6 +41,7 @@ namespace liblec {
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
 			/// <remarks>If the file already exists all contents will be overwritten.</remarks>
+			[[nodiscard]]
 			static bool write(const std::string& file_path,
 				const std::string& data,
 				std::string& error);
@@ -49,6 +51,7 @@ namespace liblec {
 			/// file's name and extension.</param>
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
+			[[nodiscard]]
 			static bool remove(const std::string& file_path,
 				std::string& error);
 		};
