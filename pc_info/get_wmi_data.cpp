@@ -172,8 +172,8 @@ bool liblec::leccore::get_wmi_data(
 					it = std::string();	// TO BE FILLED BY O.E.M.
 
 				// check if BIOS serial is less than three characters in length
-				const char* buf = class_name;
-				std::string class_name_ = std::string(buf ? buf : "", class_name.length());
+				const char* buffer = class_name;
+				std::string class_name_ = std::string(buffer ? buffer : "", class_name.length());
 				if (class_name_ == "Win32_Bios" && data_str.length() < 3)
 					it = std::string();
 			}

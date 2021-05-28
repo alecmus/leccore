@@ -166,17 +166,17 @@ bool registry::do_read(const std::string& path, const std::string& value_name,
 	** https://msdn.microsoft.com/en-us/library/windows/desktop/ms724911(v=vs.85).aspx
 	*/
 	int string_length = len / sizeof(CHAR);
-	CHAR* buf = new CHAR[string_length];
+	CHAR* buffer = new CHAR[string_length];
 
 	result = RegQueryValueExA(h_key, value_name.c_str(),
-		0, &type, (BYTE*)buf, &len);
+		0, &type, (BYTE*)buffer, &len);
 
 	RegCloseKey(h_key);
 
 	if (result != ERROR_SUCCESS) {
-		if (buf) {
-			delete[] buf;
-			buf = nullptr;
+		if (buffer) {
+			delete[] buffer;
+			buffer = nullptr;
 		}
 
 		_com_error err(result);
@@ -185,11 +185,11 @@ bool registry::do_read(const std::string& path, const std::string& value_name,
 	}
 
 	if (string_length > 0)
-		value = std::string(buf, string_length - 1);	// -1 in order to exclude the NULL terminator (/0)
+		value = std::string(buffer, string_length - 1);	// -1 in order to exclude the NULL terminator (/0)
 
-	if (buf) {
-		delete[] buf;
-		buf = nullptr;
+	if (buffer) {
+		delete[] buffer;
+		buffer = nullptr;
 	}
 
 	return true;
@@ -236,17 +236,17 @@ bool registry::do_read_binary(const std::string& path,
 	** https://msdn.microsoft.com/en-us/library/windows/desktop/ms724911(v=vs.85).aspx
 	*/
 	int string_length = len / sizeof(CHAR);
-	CHAR* buf = new CHAR[string_length];
+	CHAR* buffer = new CHAR[string_length];
 
 	result = RegQueryValueExA(h_key, value_name.c_str(),
-		0, &type, (BYTE*)buf, &len);
+		0, &type, (BYTE*)buffer, &len);
 
 	RegCloseKey(h_key);
 
 	if (result != ERROR_SUCCESS) {
-		if (buf) {
-			delete[] buf;
-			buf = nullptr;
+		if (buffer) {
+			delete[] buffer;
+			buffer = nullptr;
 		}
 
 		_com_error err(result);
@@ -255,11 +255,11 @@ bool registry::do_read_binary(const std::string& path,
 	}
 
 	if (string_length > 0)
-		data = std::string(buf, string_length);
+		data = std::string(buffer, string_length);
 
-	if (buf) {
-		delete[] buf;
-		buf = nullptr;
+	if (buffer) {
+		delete[] buffer;
+		buffer = nullptr;
 	}
 
 	return true;
