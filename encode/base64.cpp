@@ -12,24 +12,6 @@
 #include <cryptlib.h>
 #include <base64.h>
 
-#ifdef _WIN64
-
-#ifdef _DEBUG
-#pragma comment(lib, "cryptlib64d.lib")
-#else
-#pragma comment(lib, "cryptlib64.lib")
-#endif
-
-#else
-
-#ifdef _DEBUG
-#pragma comment(lib, "cryptlib32d.lib")
-#else
-#pragma comment(lib, "cryptlib32.lib")
-#endif
-
-#endif
-
 const std::string liblec::leccore::base64::default_alphabet() {
     return std::string("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
 }

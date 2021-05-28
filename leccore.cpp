@@ -14,6 +14,25 @@
 #include <Windows.h>
 #include <strsafe.h>	// for StringCchPrintfA
 
+// crypto++
+#ifdef _WIN64
+
+#ifdef _DEBUG
+#pragma comment(lib, "cryptlib64d.lib")
+#else
+#pragma comment(lib, "cryptlib64.lib")
+#endif
+
+#else
+
+#ifdef _DEBUG
+#pragma comment(lib, "cryptlib32d.lib")
+#else
+#pragma comment(lib, "cryptlib32.lib")
+#endif
+
+#endif
+
 // DllMain function
 BOOL APIENTRY DllMain(HMODULE hModule,
 	DWORD  ul_reason_for_call,
