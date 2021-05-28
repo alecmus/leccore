@@ -47,6 +47,8 @@ aes::~aes() { delete& d_; }
 
 bool aes::encrypt(const std::string& input,
 	std::string& encrypted, std::string& error) {
+	error.clear();
+	encrypted.clear();
 	try {
 		CryptoPP::AES::Encryption aesEncryption(d_.key_, CryptoPP::AES::MAX_KEYLENGTH);
 		CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption(aesEncryption, d_.iv_);
@@ -68,6 +70,8 @@ bool aes::encrypt(const std::string& input,
 
 bool aes::decrypt(const std::string& input,
 	std::string& decrypted, std::string& error) {
+	error.clear();
+	decrypted.clear();
 	try {
 		CryptoPP::AES::Decryption aesDecryption(d_.key_, CryptoPP::AES::MAX_KEYLENGTH);
 		CryptoPP::CBC_Mode_ExternalCipher::Decryption cbcDecryption(aesDecryption, d_.iv_);
