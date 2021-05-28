@@ -18,6 +18,8 @@ using namespace liblec::leccore;
 bool liblec::leccore::file::read(const string& file_path,
 	string& data,
 	string& error) {
+	error.clear();
+	data.clear();
 	try {
 		// make a path object for the file
 		filesystem::path path(file_path);
@@ -82,6 +84,7 @@ bool liblec::leccore::file::read(const string& file_path,
 bool liblec::leccore::file::write(const string& file_path,
 	const string& data,
 	string& error) {
+	error.clear();
 	try {
 		// make a path object for the file
 		filesystem::path path(file_path);
@@ -124,6 +127,7 @@ bool liblec::leccore::file::write(const string& file_path,
 }
 
 bool file::remove(const string& file_path, string& error) {
+	error.clear();
 	try {
 		// make a path object for the file
 		filesystem::path path(file_path);
