@@ -20,10 +20,25 @@
 
 namespace liblec {
 	namespace leccore {
+		/// <summary>Hash class.</summary>
 		class leccore_api hash {
 		public:
+			/// <summary>SHA256 hash.</summary>
+			/// <param name="input">The string that is to be hashed.</param>
+			/// <returns>The SHA256 hash of <see cref="input"></see>.</returns>
+			[[nodiscard]]
 			static std::string sha256(const std::string& input);
+
+			/// <summary>SHA512 hash.</summary>
+			/// <param name="input">The string that is to be hashed.</param>
+			/// <returns>The SHA512 hash of <see cref="input"></see>.</returns>
+			[[nodiscard]]
 			static std::string sha512(const std::string& input);
+
+			/// <summary>Generate a random string.</summary>
+			/// <param name="length">The length of the random string.</param>
+			/// <returns>A random string of the specified <see cref="length"></see>.</returns>
+			[[nodiscard]]
 			static std::string random_string(int length);
 		};
 	}
