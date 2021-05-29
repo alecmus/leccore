@@ -20,6 +20,7 @@
 
 namespace liblec {
 	namespace leccore {
+		/// <summary>Base32 encoding/decoding class.</summary>
 		class leccore_api base32 {
 		public:
 			/// <summary>Get the default base32 encoding alphabet
@@ -45,6 +46,7 @@ namespace liblec {
 				std::string alphabet = default_alphabet());
 		};
 
+		/// <summary>Base64 encoding/decoding class.</summary>
 		class leccore_api base64 {
 		public:
 			/// <summary>Get the default base64 encoding alphabet
