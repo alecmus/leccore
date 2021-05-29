@@ -22,4 +22,4 @@
 #define leccoreminor		0
 #define leccorerevision		0
 
-#define leccoredate			"27 May 2021"
+#define leccoredate			"29 May 2021"
