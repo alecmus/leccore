@@ -29,6 +29,7 @@ using namespace liblec::leccore;
 
 class ini_settings::impl {
 public:
+	const std::string default_file_name_ = "config.ini";
 	const std::string file_name_;
 	const std::string key_;
 	const std::string iv_;
@@ -40,7 +41,7 @@ public:
 	impl(const std::string& file_name,
 		const std::string& key,
 		const std::string& iv) :
-		file_name_(file_name.empty() ? "config.ini" : file_name),
+		file_name_(file_name.empty() ? default_file_name_ : file_name),
 		key_(key),
 		iv_(iv),
 		encrypted_(!key_.empty() && !iv_.empty()),
@@ -52,8 +53,13 @@ public:
 		std::string& error) {
 		error.clear();
 		encrypted.clear();
+		// make random salt (makes the encoded and encrypted results different for the same input)
 		const std::string salt = hash::random_string(salt_length_);
+
+		// encode the salt and plain text to base64
 		std::string encoded = base64::encode(salt + plain);
+
+		// encrypt the encoded text
 		aes enc(key_, iv_);
 		return enc.encrypt(encoded, encrypted, error);
 	}
@@ -63,13 +69,17 @@ public:
 		std::string& error) {
 		error.clear();
 		decrypted.clear();
+		// decrypt the text
 		std::string encoded;
 		aes enc(key_, iv_);
 		if (!enc.decrypt(encrypted, encoded, error))
 			return false;
 
+		// decode the decrypted text
 		base64 base64_encoder;
 		decrypted = base64_encoder.decode(encoded);
+
+		// step over the salt
 		decrypted = decrypted.substr(salt_length_);
 		return true;
 	}
