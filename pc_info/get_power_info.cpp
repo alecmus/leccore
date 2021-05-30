@@ -26,10 +26,6 @@
 #define GUID_DEVCLASS_BATTERY GUID_DEVICE_BATTERY
 constexpr int MAX_NUMBER_OF_BATTERIES = 100;
 
-static void trim(std::string& s) {
-	s = s.substr(s.find_first_not_of(' '), (s.find_last_not_of(' ') - s.find_first_not_of(' ')) + 1);
-}
-
 void timeConv(int iTotalSeconds,
 	int& iHours, int& iMinutes, int& iSeconds) {
 	iHours = 0, iMinutes = 0, iSeconds = 0;

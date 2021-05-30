@@ -50,5 +50,20 @@ namespace liblec {
 		static inline T largest(T a, T b) {
 			return (((a) > (b)) ? (a) : (b));
 		}
+
+		static inline void trim(std::string& s) {
+			auto trim_left = [](std::string& s) {
+				s.erase(s.begin(), std::find_if(s.begin(), s.end(),
+					[](unsigned char ch) { return !std::isspace(ch); }));
+			};
+
+			auto trim_right = [](std::string& s) {
+				s.erase(std::find_if(s.rbegin(), s.rend(),
+					[](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+			};
+
+			trim_left(s);
+			trim_right(s);
+		}
 	}
 }
