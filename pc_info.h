@@ -94,6 +94,9 @@ namespace liblec {
 				/// in pixels, e.g. 1080.</summary>
 				int vertical_resolution;
 
+				/// <summary>The resolution name, e.g. Full HD.</summary>
+				std::string resolution_name;
+
 				/// <summary>The refresh rate of the display, in Hz.</summary>
 				int refresh_rate;
 

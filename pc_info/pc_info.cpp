@@ -277,8 +277,32 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 				}
 			}
 
-			for (auto& it : info_map)
+			auto resolution_name = [](const int horizontal_res, const int vertical_res)->std::string {
+				if (horizontal_res >= 7680 && vertical_res >= 4320)
+					return "8K Ultra HD";
+				if (horizontal_res >= 3840 && vertical_res >= 2160)
+					return "4K Ultra HD";
+				if (horizontal_res >= 3456 && vertical_res >= 2160)
+					return "3.5K";
+				if (horizontal_res >= 2560 && vertical_res >= 1440)
+					return "Quad HD";
+				if (horizontal_res >= 2048 && vertical_res >= 1080)
+					return "2K";
+				if (horizontal_res >= 1920 && vertical_res >= 1080)
+					return "Full HD";
+				if (horizontal_res >= 1600 && vertical_res >= 900)
+					return "HD+";
+				if (horizontal_res >= 1280 && vertical_res >= 720)
+					return "HD";
+
+				return "";
+			};
+
+			for (auto& it : info_map) {
+				it.second.resolution_name =
+					resolution_name(it.second.horizontal_resolution, it.second.vertical_resolution);
 				info.push_back(it.second);
+			}
 
 			return true;
 		}
