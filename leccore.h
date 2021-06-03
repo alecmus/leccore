@@ -90,5 +90,7 @@ namespace liblec {
 				return static_cast<float>(tod(static_cast<double>(f), precision));
 			}
 		};
+
+		void leccore_api sleep(unsigned long long milliseconds);
 	}
 }

@@ -14,6 +14,9 @@
 #include <Windows.h>
 #include <strsafe.h>	// for StringCchPrintfA
 
+#include <thread>
+#include <chrono>
+
 // crypto++
 #ifdef _WIN64
 
@@ -131,4 +134,8 @@ namespace nmReadableSize {
 std::string liblec::leccore::format_size(unsigned long long size, unsigned short precision) {
 	return nmReadableSize::GetHumanReadableSize(static_cast<long double>(size), "0B", precision,
 		nmReadableSize::SIZE_CONV_TRADITIONAL);
+}
+
+void liblec::leccore::sleep(unsigned long long milliseconds) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
