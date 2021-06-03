@@ -42,6 +42,9 @@
     <Filter Include="leccore\encrypt">
       <UniqueIdentifier>{699f2c91-055f-4cca-862d-f8fc4875bf5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\web_update">
+      <UniqueIdentifier>{f6aea60d-e7a9-4a50-8fc8-c9afcd7b4e3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -94,6 +97,15 @@
     </ClInclude>
     <ClInclude Include="encrypt.h">
       <Filter>leccore</Filter>
+    </ClInclude>
+    <ClInclude Include="web_update.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
+    <ClInclude Include="web_update\download.h">
+      <Filter>leccore\web_update</Filter>
+    </ClInclude>
+    <ClInclude Include="web_update\appcast.h">
+      <Filter>leccore\web_update</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -151,8 +163,17 @@
     <ClCompile Include="settings\ini_settings.cpp">
       <Filter>leccore\settings</Filter>
     </ClCompile>
+    <ClCompile Include="web_update\check_update.cpp">
+      <Filter>leccore\web_update</Filter>
+    </ClCompile>
     <ClCompile Include="auto_mutex.cpp">
       <Filter>leccore</Filter>
+    </ClCompile>
+    <ClCompile Include="web_update\download.cpp">
+      <Filter>leccore\web_update</Filter>
+    </ClCompile>
+    <ClCompile Include="web_update\appcast.cpp">
+      <Filter>leccore\web_update</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
