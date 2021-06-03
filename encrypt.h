@@ -57,7 +57,7 @@ namespace liblec {
 			// Default constructor and copying an object of this class are not allowed.
 			aes() = delete;
 			aes(const aes&) = delete;
-			aes& operator==(const aes&) = delete;
+			aes& operator=(const aes&) = delete;
 		};
 	}
 }

@@ -140,7 +140,7 @@ namespace liblec {
 			// Default constructor and copying an object of this class are not allowed
 			registry() = delete;
 			registry(const registry&) = delete;
-			registry& operator==(const registry&) = delete;
+			registry& operator=(const registry&) = delete;
 		};
 	}
 }
