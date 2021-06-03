@@ -13,21 +13,35 @@
 
 std::string get_last_error() {
 	std::string last_error;
-
-	CHAR buffer[256] = "?";
-
 	const DWORD dw_last_error = GetLastError();
 
 	if (dw_last_error != 0) {
-		FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM,		// It's a system error
-			NULL,										// No string to be formatted needed
-			dw_last_error,								// Hey Windows: Please explain this error!
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),	// Do it in the standard language
-			buffer,										// Put the message here
-			256 - 1,									// Number of bytes to store the message
-			NULL);
+		LPSTR buffer;
+		if (FormatMessageA(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER
+			| FORMAT_MESSAGE_FROM_SYSTEM,	// retrieve message from system
+			NULL,
+			dw_last_error,
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPSTR)&buffer, 0, NULL)) {
+			last_error = buffer;
+			LocalFree(buffer);
+		}
+	}
 
-		last_error = buffer;
+	if (last_error.empty()) {
+		LPSTR buffer;
+		if (FormatMessageA(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER
+			| FORMAT_MESSAGE_IGNORE_INSERTS
+			| FORMAT_MESSAGE_FROM_HMODULE,	// retrieve message from specified DLL
+			GetModuleHandleA("wininet.dll"),
+			dw_last_error,
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPSTR)&buffer, 0, NULL)) {
+			last_error = buffer;
+			LocalFree(buffer);
+		}
 	}
 
 	return last_error;
