@@ -31,7 +31,7 @@ public:
 		appcast_url_(appcast_url) {}
 	~impl() {}
 
-	static check_update_result server_func(check_update::impl* p_impl) {
+	static check_update_result check_update_func(check_update::impl* p_impl) {
 		check_update::impl& d_ = *p_impl;
 
 		check_update_result result;
@@ -77,7 +77,7 @@ void liblec::leccore::check_update::start() {
 	}
 
 	// run task asynchronously
-	d_.fut_ = std::async(std::launch::async, d_.server_func, &d_);
+	d_.fut_ = std::async(std::launch::async, d_.check_update_func, &d_);
 	return;
 }
 
