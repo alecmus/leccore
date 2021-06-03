@@ -151,6 +151,9 @@
     <ClCompile Include="settings\ini_settings.cpp">
       <Filter>leccore\settings</Filter>
     </ClCompile>
+    <ClCompile Include="auto_mutex.cpp">
+      <Filter>leccore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">

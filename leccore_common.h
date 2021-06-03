@@ -65,5 +65,50 @@ namespace liblec {
 			trim_left(s);
 			trim_right(s);
 		}
+
+		class auto_mutex;
+
+		/// <summary>
+		/// A mutex object with no publicly accessible methods.
+		/// Can only be used by the <see cref="auto_mutex"/> class.
+		/// </summary>
+		class mutex {
+		public:
+			mutex();
+			~mutex();
+
+		private:
+			friend auto_mutex;
+			class impl;
+			impl& d_;
+		};
+
+		/// <summary>
+		/// A mutex class that automatically unlocks the mutex when it's out of scope.
+		/// </summary>
+		/// 
+		/// <remarks>
+		/// Usage example to prevent multiple threads from accessing a function at the same moment:
+		/// 
+		/// liblec::mutex print_mutex;
+		/// 
+		/// void print() {
+		///		liblec::auto_mutex lock(print_mutex);
+		/// 
+		///		// do printing
+		/// 
+		///		return;
+		/// }
+		/// 
+		/// </remarks>
+		class auto_mutex {
+		public:
+			auto_mutex(mutex& mtx);
+			~auto_mutex();
+
+		private:
+			class impl;
+			impl& d_;
+		};
 	}
 }
