@@ -23,7 +23,7 @@ liblec core library
 ### About the Library
 The leccore is designed for the rapid development of modern, efficient and easy to maintain C++ applications.
 It is part of the [liblec libraries](https://github.com/alecmus/liblec). It is built to contain the most
-fundamental building blocks like databases, file handling, registry settings, and other general helper utilities
+fundamental building blocks like databases, file handling, application updates, registry settings, and other general helper utilities
 specially designed to make building robust, sophisticated applications a breeze. Furthermore, it is designed to
 bind together all the other liblec libraries like [lecui](https://github.com/alecmus/lecui) and
 [lecnet](https://github.com/alecmus/lecnet).
@@ -42,6 +42,8 @@ app_version_info     | Application version information  | [#include <liblec/lecc
 registry             | Registry reading and writing     | [#include <liblec/leccore/registry.h>](https://github.com/alecmus/leccore/blob/master/registry.h)
 encrypt              | Encryption                       | [#include <liblec/leccore/encrypt.h>](https://github.com/alecmus/leccore/blob/master/encrypt.h)
 settings             | Application settings             | [#include <liblec/leccore/settings.h>](https://github.com/alecmus/leccore/blob/master/settings.h)
+check_update         | Checking for app updates         | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
+download_update      | Downloading app updates          | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
 
 ### Usage Examples
 The library is used in the [pc_info](https://github.com/alecmus/pc_info) app.
