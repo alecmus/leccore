@@ -22,6 +22,7 @@ public:
 	struct download_update_result {
 		bool success = false;
 		std::string error;
+		std::string full_path;
 	};
 
 	std::string url_;
@@ -38,6 +39,7 @@ public:
 	class update_download_sink : public download_sink {
 		FILE* p_file_;
 		const std::string& directory_;
+		std::string full_path_;
 		size_t downloaded_, total_;
 		clock_t last_update_;
 
@@ -76,8 +78,8 @@ public:
 				return false;
 			}
 
-			auto path = directory_.empty() ? filename : directory_ + "\\" + filename;
-			fopen_s(&p_file_, path.c_str(), "wb");
+			full_path_ = directory_.empty() ? filename : directory_ + "\\" + filename;
+			fopen_s(&p_file_, full_path_.c_str(), "wb");
 			if (!p_file_) {
 				error = "Cannot save update file";
 				return false;
@@ -113,6 +115,10 @@ public:
 
 			return true;
 		}
+
+		std::string get_fullpath() override {
+			return full_path_;
+		}
 	};
 
 	static download_update_result download_update_func(download_update::impl* p_impl) {
@@ -120,6 +126,7 @@ public:
 
 		download_update_result result;
 		result.error.clear();
+		result.full_path.clear();
 		result.success = false;
 
 		if (d_.url_.empty()) {
@@ -137,6 +144,7 @@ public:
 		if (!result.success)
 			return result;
 
+		result.full_path = sink.get_fullpath();
 		result.success = true;
 		return result;
 	}
@@ -180,8 +188,10 @@ bool download_update::downloading(download_info& progress) {
 	return res;
 }
 
-bool download_update::result(std::string& error) {
+bool download_update::result(std::string& full_path,
+	std::string& error) {
 	error.clear();
+	full_path.clear();
 	
 	if (downloading()) {
 		error = "Task not yet complete";

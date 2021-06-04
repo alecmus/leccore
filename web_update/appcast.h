@@ -15,7 +15,7 @@
 namespace liblec {
 	namespace leccore {
 		bool load_appcast(const std::string& xml,
-			liblec::leccore::check_update::appcast& details,
+			liblec::leccore::check_update::update_info& details,
 			std::string& error);
 	}
 }

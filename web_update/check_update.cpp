@@ -21,7 +21,7 @@ public:
 	struct check_update_result {
 		bool success = false;
 		std::string error;
-		appcast details;
+		update_info details;
 	};
 
 	const std::string appcast_url_;
@@ -34,15 +34,22 @@ public:
 	class string_download_sink : public download_sink {
 	public:
 		std::string data;
+
 		void set_length(size_t) override {}
+
 		bool set_filename(const std::string&, std::string& error) override {
 			error.clear();
 			return true;
 		}
+
 		bool add_chunk(const void* data, size_t len, std::string& error) override {
 			error.clear();
 			this->data.append(reinterpret_cast<const char*>(data), len);
 			return true;
+		}
+
+		std::string get_fullpath() override {
+			return std::string();
 		}
 	};
 
@@ -103,7 +110,7 @@ bool check_update::checking() {
 		return false;
 }
 
-bool check_update::result(appcast& details, std::string& error) {
+bool check_update::result(update_info& details, std::string& error) {
 	error.clear();
 	details = {};
 

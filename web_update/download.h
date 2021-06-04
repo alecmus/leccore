@@ -19,6 +19,7 @@ namespace liblec {
 			virtual void set_length(size_t len) = 0;
 			virtual bool set_filename(const std::string& filename, std::string& error) = 0;
 			virtual bool add_chunk(const void* data, size_t len, std::string& error) = 0;
+			virtual std::string get_fullpath() = 0;
 		};
 
 		bool download(const std::string& url,

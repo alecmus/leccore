@@ -94,7 +94,7 @@ namespace liblec {
 			int in_channel, in_item, in_relnotes, in_title, in_description;
 
 			// parsed <item>s
-			std::vector<check_update::appcast> items;
+			std::vector<check_update::update_info> items;
 		};
 
 		void XMLCALL on_start_element(void* data, const char* name, const char** attrs) {
@@ -104,7 +104,7 @@ namespace liblec {
 				ctxt.in_channel++;
 			else if (ctxt.in_channel && strcmp(name, NODE_ITEM) == 0) {
 				ctxt.in_item++;
-				check_update::appcast item;
+				check_update::update_info item;
 				ctxt.items.push_back(item);
 			}
 			else
@@ -125,8 +125,6 @@ namespace liblec {
 								ctxt.items[size - 1].download_url = value;
 							else if (strcmp(name, ATTR_VERSION) == 0)
 								ctxt.items[size - 1].version = value;
-							else if (strcmp(name, ATTR_SHORTVERSION) == 0)
-								ctxt.items[size - 1].short_version = value;
 							else if (strcmp(name, ATTR_OS) == 0)
 								ctxt.items[size - 1].operating_system = value;
 						}
@@ -170,12 +168,12 @@ namespace liblec {
 				ctxt.items[size - 1].description.append(s, len);
 		}
 
-		bool is_windows_item(const check_update::appcast& item) {
+		bool is_windows_item(const check_update::update_info& item) {
 			return item.operating_system == OS_MARKER;
 		}
 
 		bool load_appcast(const std::string& xml,
-			liblec::leccore::check_update::appcast& details,
+			liblec::leccore::check_update::update_info& details,
 			std::string& error) {
 			details = {};
 
@@ -209,7 +207,7 @@ namespace liblec {
 
 			// Search for first <item> which has "sparkle:os=windows" attribute.
 			// If none, use the first item.
-			std::vector<check_update::appcast>::iterator it = std::find_if(ctxt.items.begin(), ctxt.items.end(), is_windows_item);
+			std::vector<check_update::update_info>::iterator it = std::find_if(ctxt.items.begin(), ctxt.items.end(), is_windows_item);
 			if (it != ctxt.items.end())
 				details = *it;
 			else
