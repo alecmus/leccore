@@ -10,7 +10,7 @@
 
 #include "../web_update.h"
 #include "download.h"
-#include "appcast.h"
+#include "parse_update_xml.h"
 #include <thread>
 #include <future>
 
@@ -24,11 +24,11 @@ public:
 		update_info details;
 	};
 
-	const std::string appcast_url_;
+	const std::string update_xml_url_;
 	std::future<check_update_result> fut_;
 
-	impl(const std::string& appcast_url) :
-		appcast_url_(appcast_url) {}
+	impl(const std::string& update_xml_url) :
+		update_xml_url_(update_xml_url) {}
 	~impl() {}
 
 	class string_download_sink : public download_sink {
@@ -61,19 +61,19 @@ public:
 		result.success = false;
 		result.details = {};
 
-		if (d_.appcast_url_.empty()) {
-			result.error = "Appcast URL not specified";
+		if (d_.update_xml_url_.empty()) {
+			result.error = "Update XML url not specified";
 			result.success = false;
 			return result;
 		}
 
-		string_download_sink appcast_xml;
-		if (!download(d_.appcast_url_, appcast_xml, true, result.error)) {
+		string_download_sink sink;
+		if (!download(d_.update_xml_url_, sink, true, result.error)) {
 			result.success = false;
 			return result;
 		}
 
-		if (!load_appcast(appcast_xml.data, result.details, result.error)) {
+		if (!parse_update_xml(sink.data, result.details, result.error)) {
 			result.success = false;
 			return result;
 		}
@@ -83,8 +83,8 @@ public:
 	}
 };
 
-check_update::check_update(const std::string& appcast_url) :
-	d_(*new impl(appcast_url)) {}
+check_update::check_update(const std::string& update_xml_url) :
+	d_(*new impl(update_xml_url)) {}
 check_update::~check_update() {
 	if (d_.fut_.valid())
 		d_.fut_.get();

@@ -104,7 +104,7 @@
     <ClInclude Include="web_update\download.h">
       <Filter>leccore\web_update</Filter>
     </ClInclude>
-    <ClInclude Include="web_update\appcast.h">
+    <ClInclude Include="web_update\parse_update_xml.h">
       <Filter>leccore\web_update</Filter>
     </ClInclude>
   </ItemGroup>
@@ -172,7 +172,7 @@
     <ClCompile Include="web_update\download.cpp">
       <Filter>leccore\web_update</Filter>
     </ClCompile>
-    <ClCompile Include="web_update\appcast.cpp">
+    <ClCompile Include="web_update\parse_update_xml.cpp">
       <Filter>leccore\web_update</Filter>
     </ClCompile>
     <ClCompile Include="web_update\download_update.cpp">

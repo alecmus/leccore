@@ -25,8 +25,8 @@ namespace liblec {
 		class leccore_api check_update {
 		public:
 			/// <summary>The constructor.</summary>
-			/// <param name="appcast_url">The url to the appcast XML file.</param>
-			check_update(const std::string& appcast_url);
+			/// <param name="update_xml_url">The url to the update XML file.</param>
+			check_update(const std::string& update_xml_url);
 			~check_update();
 
 			/// <summary>Update details.</summary>
@@ -40,14 +40,17 @@ namespace liblec {
 				/// <summary>The update version, e.g. 1.0.0 beta 3.</summary>
 				std::string version;
 
+				/// <summary>The release date.</summary>
+				std::string date;
+
 				/// <summary>The url of the update file.</summary>
 				std::string download_url;
 
-				/// <summary>The release notes.</summary>
-				std::string release_notes;
+				/// <summary>The size of the file.</summary>
+				unsigned long long size;
 
-				/// <summary>The target operating system.</summary>
-				std::string operating_system;
+				/// <summary>The sha256 hash of the file.</summary>
+				std::string hash;
 			};
 
 			/// <summary>Start checking for updates.</summary>

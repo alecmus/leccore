@@ -103,13 +103,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;C:\local\libs\libexpat\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\libexpat\lib;C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib32-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib32-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -140,7 +140,7 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;C:\local\libs\libexpat\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,7 +148,7 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\libexpat\lib;C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib32-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib32-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -177,13 +177,13 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;C:\local\libs\libexpat\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\libexpat\lib;C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib64-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib64-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -214,7 +214,7 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;C:\local\libs\libexpat\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\libs\boost_1_72_0;C:\local\libs\cryptopp\include;C:\local\libs\sqlcipher\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -222,7 +222,7 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>C:\local\libs\libexpat\lib;C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib64-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\libs\cryptopp\lib;C:\local\libs\sqlcipher\lib;C:\local\libs\boost_1_72_0\lib64-msvc-14.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(OutDir)$(TargetName).lib" "$(ProjectDir)..\lib\" /F /R /Y /I
@@ -261,7 +261,7 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
     <ClInclude Include="settings.h" />
     <ClInclude Include="versioninfo.h" />
     <ClInclude Include="web_update.h" />
-    <ClInclude Include="web_update\appcast.h" />
+    <ClInclude Include="web_update\parse_update_xml.h" />
     <ClInclude Include="web_update\download.h" />
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +284,7 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
     <ClCompile Include="settings\ini_settings.cpp" />
     <ClCompile Include="settings\registry_settings.cpp" />
     <ClCompile Include="settings\settings.cpp" />
-    <ClCompile Include="web_update\appcast.cpp" />
+    <ClCompile Include="web_update\parse_update_xml.cpp" />
     <ClCompile Include="web_update\check_update.cpp" />
     <ClCompile Include="web_update\download.cpp" />
     <ClCompile Include="web_update\download_update.cpp" />

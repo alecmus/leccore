@@ -1,5 +1,5 @@
 //
-// appcast.h - appcast interface
+// parse_update_xml.h - parse update xml interface
 //
 // leccore library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
@@ -14,7 +14,7 @@
 
 namespace liblec {
 	namespace leccore {
-		bool load_appcast(const std::string& xml,
+		bool parse_update_xml(const std::string& xml,
 			liblec::leccore::check_update::update_info& details,
 			std::string& error);
 	}
