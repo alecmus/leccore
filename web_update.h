@@ -49,5 +49,26 @@ namespace liblec {
 			check_update(const check_update&) = delete;
 			check_update& operator=(const check_update&) = delete;
 		};
+
+		class leccore_api download_update {
+		public:
+			download_update();
+			~download_update();
+
+			using download_info = struct {
+				unsigned long long file_size;
+				unsigned long long downloaded;
+			};
+
+			void start(const std::string& url,
+				const std::string& directory);
+			bool downloading();
+			bool downloading(download_info& progress);
+			bool result(std::string& error);
+
+		private:
+			class impl;
+			impl& d_;
+		};
 	}
 }

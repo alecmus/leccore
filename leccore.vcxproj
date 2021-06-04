@@ -287,6 +287,7 @@ xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName
     <ClCompile Include="web_update\appcast.cpp" />
     <ClCompile Include="web_update\check_update.cpp" />
     <ClCompile Include="web_update\download.cpp" />
+    <ClCompile Include="web_update\download_update.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc" />

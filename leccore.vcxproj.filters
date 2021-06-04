@@ -175,6 +175,9 @@
     <ClCompile Include="web_update\appcast.cpp">
       <Filter>leccore\web_update</Filter>
     </ClCompile>
+    <ClCompile Include="web_update\download_update.cpp">
+      <Filter>leccore\web_update</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">
