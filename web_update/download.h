@@ -17,18 +17,8 @@ namespace liblec {
 		class download_sink {
 		public:
 			virtual void set_length(size_t len) = 0;
-			virtual void set_filename(const std::string& filename) = 0;
-			virtual void add_chunk(const void* data, size_t len) = 0;
-		};
-
-		class string_download_sink : public download_sink {
-		public:
-			std::string data;
-			virtual void set_length (size_t) override {}
-			virtual void set_filename(const std::string&) override {}
-			virtual void add_chunk(const void* data, size_t len) override {
-				this->data.append(reinterpret_cast<const char*>(data), len);
-			}
+			virtual bool set_filename(const std::string& filename, std::string& error) = 0;
+			virtual bool add_chunk(const void* data, size_t len, std::string& error) = 0;
 		};
 
 		bool download(const std::string& url,

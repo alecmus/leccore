@@ -184,13 +184,17 @@ bool liblec::leccore::download(const std::string& url,
 			else
 				*ptr2 = 0;
 
-			sink.set_filename(c_filename);
+			if (!sink.set_filename(c_filename, error))
+				return false;
+
 			filename_set = true;
 		}
 	}
 
-	if (!filename_set)
-		sink.set_filename(get_url_filename(urlc));
+	if (!filename_set) {
+		if (!sink.set_filename(get_url_filename(urlc), error))
+			return false;
+	}
 
 	// download the data
 	while (true) {
@@ -203,7 +207,8 @@ bool liblec::leccore::download(const std::string& url,
 		if (read == 0)
 			break;	// download complete
 
-		sink.add_chunk(buffer, read);
+		if (!sink.add_chunk(buffer, read, error))
+			return false;
 	}
 
 	return true;

@@ -31,6 +31,21 @@ public:
 		appcast_url_(appcast_url) {}
 	~impl() {}
 
+	class string_download_sink : public download_sink {
+	public:
+		std::string data;
+		void set_length(size_t) override {}
+		bool set_filename(const std::string&, std::string& error) override {
+			error.clear();
+			return true;
+		}
+		bool add_chunk(const void* data, size_t len, std::string& error) override {
+			error.clear();
+			this->data.append(reinterpret_cast<const char*>(data), len);
+			return true;
+		}
+	};
+
 	static check_update_result check_update_func(check_update::impl* p_impl) {
 		check_update::impl& d_ = *p_impl;
 
@@ -61,16 +76,16 @@ public:
 	}
 };
 
-liblec::leccore::check_update::check_update(const std::string& appcast_url) :
+check_update::check_update(const std::string& appcast_url) :
 	d_(*new impl(appcast_url)) {}
-liblec::leccore::check_update::~check_update() {
+check_update::~check_update() {
 	if (d_.fut_.valid())
 		d_.fut_.get();
 
 	delete& d_;
 }
 
-void liblec::leccore::check_update::start() {
+void check_update::start() {
 	if (checking()) {
 		// allow only one instance
 		return;
@@ -81,14 +96,14 @@ void liblec::leccore::check_update::start() {
 	return;
 }
 
-bool liblec::leccore::check_update::checking() {
+bool check_update::checking() {
 	if (d_.fut_.valid())
 		return d_.fut_.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
 	else
 		return false;
 }
 
-bool liblec::leccore::check_update::result(appcast& details, std::string& error) {
+bool check_update::result(appcast& details, std::string& error) {
 	error.clear();
 	details = {};
 
