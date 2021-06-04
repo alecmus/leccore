@@ -116,7 +116,7 @@ namespace liblec {
 					else if (strcmp(name, NODE_DESCRIPTION) == 0)
 						ctxt.in_description++;
 					else if (strcmp(name, NODE_ENCLOSURE) == 0) {
-						const int size = ctxt.items.size();
+						const auto size = ctxt.items.size();
 						for (int i = 0; attrs[i]; i += 2) {
 							const char* name = attrs[i];
 							const char* value = attrs[i + 1];
@@ -160,7 +160,7 @@ namespace liblec {
 
 		void XMLCALL on_text(void* data, const char* s, int len) {
 			context_data& ctxt = *static_cast<context_data*>(data);
-			const int size = ctxt.items.size();
+			const auto size = ctxt.items.size();
 
 			if (ctxt.in_relnotes)
 				ctxt.items[size - 1].release_notes.append(s, len);
@@ -191,7 +191,7 @@ namespace liblec {
 			XML_SetElementHandler(p, on_start_element, on_end_element);
 			XML_SetCharacterDataHandler(p, on_text);
 
-			XML_Status st = XML_Parse(p, xml.c_str(), xml.size(), XML_TRUE);
+			XML_Status st = XML_Parse(p, xml.c_str(), static_cast<int>(xml.size()), XML_TRUE);
 
 			if (st == XML_STATUS_ERROR) {
 				error = std::string("XML parser error: ");
