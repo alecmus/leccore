@@ -14,6 +14,10 @@
 #include <hex.h>
 #include <osrng.h>
 
+// for UuidToString, RpcStringFree
+#include <rpc.h>
+#pragma comment(lib, "rpcrt4.lib")
+
 std::string liblec::leccore::hash::sha256(const std::string& input) {
     try {
         CryptoPP::SHA256 hash;
@@ -66,4 +70,15 @@ std::string liblec::leccore::hash::random_string(int length) {
         // to-do: log
     }
     return std::string();
+}
+
+std::string liblec::leccore::hash::uuid() {
+    std::string uuid_string;
+    UUID uuid;
+    UuidCreate(&uuid);
+    RPC_CSTR uuidStr;
+    RPC_STATUS status = UuidToStringA(&uuid, &uuidStr);
+    uuid_string += reinterpret_cast<char*>(uuidStr);
+    RpcStringFreeA(&uuidStr);
+    return uuid_string;
 }

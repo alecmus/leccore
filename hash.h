@@ -40,6 +40,10 @@ namespace liblec {
 			/// <returns>A random string of the specified <see cref="length"></see>.</returns>
 			[[nodiscard]]
 			static std::string random_string(int length);
+
+			/// <summary>Make a universally unique identifier (uuid).</summary>
+			/// <returns>The uuid string.</returns>
+			static std::string uuid();
 		};
 	}
 }
