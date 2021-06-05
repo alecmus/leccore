@@ -187,6 +187,9 @@
     <ClCompile Include="zip\zip.cpp">
       <Filter>leccore\zip</Filter>
     </ClCompile>
+    <ClCompile Include="zip\unzip.cpp">
+      <Filter>leccore\zip</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">

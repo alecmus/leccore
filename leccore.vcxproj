@@ -293,6 +293,7 @@ xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F 
     <ClCompile Include="web_update\check_update.cpp" />
     <ClCompile Include="web_update\download.cpp" />
     <ClCompile Include="web_update\download_update.cpp" />
+    <ClCompile Include="zip\unzip.cpp" />
     <ClCompile Include="zip\zip.cpp" />
   </ItemGroup>
   <ItemGroup>
