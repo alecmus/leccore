@@ -62,9 +62,13 @@ The library has the following compile-time dependencies:
 and boost_1_72_0-msvc-14.2-32.exe (32 bit).
 2. sqlcipher
 * assumes sqlcipher prebuilt binaries are in C:\local\libs\sqlcipher
-* you can use the pre-compiled files [here](https://github.com/alecmus/files)
-4. crypto++
+* you can use the pre-compiled files [here](https://github.com/alecmus/files/tree/master/sqlcipher)
+3. crypto++
 * assumes crypto++ prebuilt static library files are in C:\local\libs\cryptopp
+* you can use the pre-compiled files [here](https://github.com/alecmus/files/tree/master/cryptopp)
+4. poco
+* assumes poco prebuild static library files are in C:\local\libs\poco
+* you can use the pre-compiled files [here](https://github.com/alecmus/files/tree/master/poco)
 
 If the boost, sqlcipher and/or crypto++ libraries are installed elsewhere you will need to change the Microsoft Visual Studio project
 properties under Properties - C/C++ - General - Additional Include Directories and also under
