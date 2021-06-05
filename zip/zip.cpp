@@ -21,7 +21,7 @@
 #include <Poco\Delegate.h>
 #include <Poco\File.h>
 
-// cater for GetAdaptersInfo in PocoFoundationmdd.lib
+// cater for GetAdaptersInfo used in PocoFoundation static lib
 #pragma comment(lib, "iphlpapi.lib")
 
 using namespace liblec::leccore;
@@ -61,6 +61,15 @@ public:
 		}
 
 		try {
+			// add trailing slashes to directories (if missing)
+			for (auto& it : d_.entries_) {
+				std::filesystem::path path(it);
+				if (std::filesystem::exists(path) && std::filesystem::is_directory(path)) {
+					if (it[it.length() - 1] != '\\')
+						it += "\\";
+				}
+			}
+
 			Poco::File file(d_.filename_);
 
 			if (file.exists() && !file.canWrite()) {
@@ -97,6 +106,11 @@ public:
 		}
 		catch (Poco::Exception& e) {
 			result.error = e.displayText();
+			result.success = false;
+			return result;
+		}
+		catch (const std::exception& e) {
+			result.error = e.what();
 			result.success = false;
 			return result;
 		}
