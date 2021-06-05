@@ -104,11 +104,14 @@ public:
 			}
 
 			Poco::Zip::Decompress decompress(in, d_.directory_);
+
 			decompress.EError += Poco::Delegate<unzip::impl,
 				std::pair<const ZipLocalFileHeader, const std::string> >(p_impl, &unzip::impl::on_error);
 			decompress.EOk += Poco::Delegate<unzip::impl,
 				std::pair<const ZipLocalFileHeader, const Poco::Path>>(p_impl, &unzip::impl::on_ok);
+
 			decompress.decompressAllFiles();
+
 			decompress.EError -= Poco::Delegate<unzip::impl,
 				std::pair<const ZipLocalFileHeader, const std::string> >(p_impl, &unzip::impl::on_error);
 			decompress.EOk -= Poco::Delegate<unzip::impl,
@@ -147,6 +150,7 @@ void unzip::start(const std::string& filename,
 
 	d_.filename_ = filename;
 	d_.directory_ = directory;
+	d_.log_ = {};
 
 	// run task asynchronously
 	d_.fut_ = std::async(std::launch::async, d_.unzip_func, &d_);
