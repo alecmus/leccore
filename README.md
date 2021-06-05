@@ -44,6 +44,8 @@ encrypt              | Encryption                       | [#include <liblec/lecc
 settings             | Application settings             | [#include <liblec/leccore/settings.h>](https://github.com/alecmus/leccore/blob/master/settings.h)
 check_update         | Checking for app updates         | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
 download_update      | Downloading app updates          | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
+zip                  | Zipping to a zip archive         | [#include <liblec/leccore/zip.h>](https://github.com/alecmus/leccore/blob/master/zip.h)
+unzip                | Unzipping a zip archive          | [#include <liblec/leccore/zip.h>](https://github.com/alecmus/leccore/blob/master/zip.h)
 
 ### Usage Examples
 The library is used in the [pc_info](https://github.com/alecmus/pc_info) app.
