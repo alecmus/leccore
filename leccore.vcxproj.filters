@@ -45,6 +45,9 @@
     <Filter Include="leccore\web_update">
       <UniqueIdentifier>{f6aea60d-e7a9-4a50-8fc8-c9afcd7b4e3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\zip">
+      <UniqueIdentifier>{129156f1-65e8-4ee9-ba80-91e6c2e1b27e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="web_update\parse_update_xml.h">
       <Filter>leccore\web_update</Filter>
+    </ClInclude>
+    <ClInclude Include="zip.h">
+      <Filter>leccore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +183,9 @@
     </ClCompile>
     <ClCompile Include="web_update\download_update.cpp">
       <Filter>leccore\web_update</Filter>
+    </ClCompile>
+    <ClCompile Include="zip\zip.cpp">
+      <Filter>leccore\zip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
