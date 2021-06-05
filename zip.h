@@ -65,6 +65,7 @@ namespace liblec {
 
 			/// <summary>Unzip log.</summary>
 			using unzip_log = struct {
+				std::vector<std::string> message_list;
 				std::vector<std::string> error_list;
 			};
 

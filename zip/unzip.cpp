@@ -51,6 +51,7 @@ public:
 	}
 
 	void on_ok(const void*, std::pair<const ZipLocalFileHeader, const Poco::Path>& info) {
+		log_.message_list.push_back("Extracting: " + info.second.toString(Poco::Path::PATH_UNIX));
 		std::string path = directory_ + info.second.toString(Poco::Path::PATH_WINDOWS);
 
 		// set file last modified time
