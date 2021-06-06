@@ -16,16 +16,12 @@
 
 #define POCO_STATIC
 
-#include <Poco/AutoPtr.h>
 #include <Poco/Zip/Decompress.h>
 #include <Poco/Zip/ZipLocalFileHeader.h>
 #include <Poco/Zip/ZipArchive.h>
 #include <Poco/Path.h>
 #include <Poco/File.h>
 #include <Poco/Delegate.h>
-
-using Poco::Zip::ZipLocalFileHeader;
-using Poco::AutoPtr;
 
 using namespace liblec::leccore;
 
@@ -45,11 +41,11 @@ public:
 	impl() {}
 	~impl() {}
 
-	void on_error(const void*, std::pair<const ZipLocalFileHeader, const std::string>& info) {
+	void on_error(const void*, std::pair<const Poco::Zip::ZipLocalFileHeader, const std::string>& info) {
 		log_.error_list.push_back(info.second);
 	}
 
-	void on_ok(const void*, std::pair<const ZipLocalFileHeader, const Poco::Path>& info) {
+	void on_ok(const void*, std::pair<const Poco::Zip::ZipLocalFileHeader, const Poco::Path>& info) {
 		log_.message_list.push_back("Extracting: " + info.second.toString(Poco::Path::PATH_UNIX));
 		std::string path = directory_ + info.second.toString(Poco::Path::PATH_WINDOWS);
 
@@ -105,16 +101,16 @@ public:
 			Poco::Zip::Decompress decompress(in, d_.directory_);
 
 			decompress.EError += Poco::Delegate<unzip::impl,
-				std::pair<const ZipLocalFileHeader, const std::string> >(p_impl, &unzip::impl::on_error);
+				std::pair<const Poco::Zip::ZipLocalFileHeader, const std::string> >(p_impl, &unzip::impl::on_error);
 			decompress.EOk += Poco::Delegate<unzip::impl,
-				std::pair<const ZipLocalFileHeader, const Poco::Path>>(p_impl, &unzip::impl::on_ok);
+				std::pair<const Poco::Zip::ZipLocalFileHeader, const Poco::Path>>(p_impl, &unzip::impl::on_ok);
 
 			decompress.decompressAllFiles();
 
 			decompress.EError -= Poco::Delegate<unzip::impl,
-				std::pair<const ZipLocalFileHeader, const std::string> >(p_impl, &unzip::impl::on_error);
+				std::pair<const Poco::Zip::ZipLocalFileHeader, const std::string> >(p_impl, &unzip::impl::on_error);
 			decompress.EOk -= Poco::Delegate<unzip::impl,
-				std::pair<const ZipLocalFileHeader, const Poco::Path> >(p_impl, &unzip::impl::on_ok);
+				std::pair<const Poco::Zip::ZipLocalFileHeader, const Poco::Path> >(p_impl, &unzip::impl::on_ok);
 
 			result.success = true;
 			return result;

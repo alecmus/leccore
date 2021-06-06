@@ -27,14 +27,36 @@ namespace liblec {
 			zip();
 			~zip();
 
+			/// <summary>The compression level to use.</summary>
+			enum class compression_level {
+				/// <summary>Balance between size and speed. The default.</summary>
+				normal,
+
+				/// <summary>For the smallest archive size, but takes longer.</summary>
+				maximum,
+
+				/// <summary>Compromises compression level in favor of speed.</summary>
+				fast,
+
+				/// <summary>Lowest compression level for super fast zipping.</summary>
+				superfast,
+
+				/// <summary>No compression. Use this for the ultimate speed when
+				/// you don't need any compression and just want to store files.</summary>
+				none,
+			};
+
 			/// <summary>Start zipping operation.</summary>
 			/// <param name="filename">The target filename, including the extension.</param>
 			/// <param name="entries">The archive entries (files, directories).</param>
+			/// <param name="level">The compression level, as defined in the
+			/// <see cref="compression_level"></see> enumeration.</param>
 			/// <remarks>This method returns almost immediately. The actual zipping is executed
 			/// on a seperate thread. To check the status of the zipping call the
 			/// <see cref="zipping"></see> method.</remarks>
 			void start(const std::string& filename,
-				const std::vector<std::string>& entries);
+				const std::vector<std::string>& entries,
+				compression_level level = compression_level::normal);
 
 			/// <summary>Check whether the zipping operation is still underway.</summary>
 			/// <returns>Returns true if the zipping is still underway, else false.</returns>

@@ -29,6 +29,7 @@ class zip::impl {
 public:
 	std::string filename_;
 	std::vector<std::string> entries_;
+	compression_level level_ = compression_level::normal;
 	bool add_root_;
 
 	struct zip_result {
@@ -86,15 +87,38 @@ public:
 				if (file.exists()) {
 					Poco::Path entry(it);
 
+					Poco::Zip::ZipCommon::CompressionLevel level;
+
+					switch (d_.level_) {
+						break;
+					case liblec::leccore::zip::compression_level::maximum:
+						level = Poco::Zip::ZipCommon::CompressionLevel::CL_MAXIMUM;
+						break;
+					case liblec::leccore::zip::compression_level::fast:
+						level = Poco::Zip::ZipCommon::CompressionLevel::CL_FAST;
+						break;
+					case liblec::leccore::zip::compression_level::superfast:
+						level = Poco::Zip::ZipCommon::CompressionLevel::CL_SUPERFAST;
+						break;
+					case liblec::leccore::zip::compression_level::normal:
+					case liblec::leccore::zip::compression_level::none:
+					default:
+						level = Poco::Zip::ZipCommon::CompressionLevel::CL_NORMAL;
+						break;
+					}
+
+					Poco::Zip::ZipCommon::CompressionMethod method =
+						d_.level_ == compression_level::none ?
+						Poco::Zip::ZipCommon::CompressionMethod::CM_STORE : Poco::Zip::ZipCommon::CompressionMethod::CM_DEFLATE;
+
 					if (entry.isDirectory()) {
 						entry.makeDirectory();
 						const bool add_root = d_.add_root_ ? true : d_.entries_.size() > 1;
-						compress.addRecursive(entry, Poco::Zip::ZipCommon::CompressionLevel::CL_NORMAL, !add_root);
+						compress.addRecursive(entry, level, !add_root);
 					}
 					else {
 						entry.makeFile();
-						compress.addFile(entry, entry, Poco::Zip::ZipCommon::CompressionMethod::CM_DEFLATE,
-							Poco::Zip::ZipCommon::CompressionLevel::CL_NORMAL);
+						compress.addFile(entry, entry, method, level);
 					}
 				}
 			}
@@ -125,7 +149,8 @@ zip::~zip() {
 }
 
 void zip::start(const std::string& filename,
-	const std::vector<std::string>& entries) {
+	const std::vector<std::string>& entries,
+	compression_level level) {
 	if (zipping()) {
 		// allow only one instance
 		return;
@@ -133,6 +158,7 @@ void zip::start(const std::string& filename,
 
 	d_.filename_ = filename;
 	d_.entries_ = entries;
+	d_.level_ = level;
 
 	// run task asynchronously
 	d_.fut_ = std::async(std::launch::async, d_.zip_func, &d_);
