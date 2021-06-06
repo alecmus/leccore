@@ -11,7 +11,6 @@
 #include "../zip.h"
 #include <thread>
 #include <future>
-#include <iostream>
 #include <fstream>
 #include <filesystem>
 

@@ -12,7 +12,6 @@
 #include <thread>
 #include <future>
 #include <fstream>
-#include <iostream>
 #include <filesystem>
 
 #define POCO_STATIC
