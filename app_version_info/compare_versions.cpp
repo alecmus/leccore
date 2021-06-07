@@ -65,10 +65,10 @@ namespace liblec {
 			if (version.empty())
 				return list;
 
-			std::string s;
+			std::string part;
 			const size_t len = version.length();
 
-			s = version[0];
+			part = version[0];
 			char_type previous_type = classify_char(version[0]);
 
 			for (size_t i = 1; i < len; i++) {
@@ -79,17 +79,22 @@ namespace liblec {
 					previous_type == char_type::type_period) {
 					// we have reached a new segment. Periods get a special treatment
 					// as delimiters (and so ".." means there's empty component value)
-					list.push_back(s);
-					s = c;
+					list.push_back(part);
+					part = c;
 				}
 				else
-					s += c;	// Add character to current segment and continue.
+					part += c;	// Add character to current segment and continue.
 
 				previous_type = new_type;
 			}
 
 			// add the last part
-			list.push_back(s);
+			list.push_back(part);
+
+			// trim spaces before and after all parts
+			for (auto& it : list)
+				trim(it);
+
 			return list;
 		}
 
