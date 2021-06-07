@@ -193,6 +193,9 @@
     <ClCompile Include="hash\hash_file.cpp">
       <Filter>leccore\hash</Filter>
     </ClCompile>
+    <ClCompile Include="app_version_info\compare_versions.cpp">
+      <Filter>leccore\app_version_info</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">

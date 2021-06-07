@@ -20,6 +20,17 @@
 
 namespace liblec {
 	namespace leccore {
+		/// <summary>Compare two version strings.</summary>
+		/// <param name="left">The left side version number, e.g. 1.0.0 alpha 2.</param>
+		/// <param name="right">The right side version number, e.g. 1.0.1.</param>
+		/// <returns>Returns 1 if the version number on the left is greater,
+		/// -1 if it's smaller, and 0 if the two are the same.</returns>
+		/// <remarks>Users dots as delimiters, and also splits up the version number
+		/// once the character type changes, e.g. 1.0.0 alpha 2 is split into
+		/// [1][0][0][alpha][2].</remarks>
+		int leccore_api compare_versions(const std::string& left,
+			const std::string& right);
+
 		class leccore_api app_version_info {
 		public:
 			app_version_info();

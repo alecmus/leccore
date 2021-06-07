@@ -271,6 +271,7 @@ xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F 
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="app_version_info\app_version_info.cpp" />
+    <ClCompile Include="app_version_info\compare_versions.cpp" />
     <ClCompile Include="auto_mutex.cpp" />
     <ClCompile Include="database\connection.cpp" />
     <ClCompile Include="database\connection_base.cpp" />
