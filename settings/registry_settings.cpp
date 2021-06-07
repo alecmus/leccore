@@ -41,7 +41,7 @@ public:
 		error.clear();
 		encrypted.clear();
 		// make random salt (makes the encoded and encrypted results different for the same input)
-		const std::string salt = hash::random_string(salt_length_);
+		const std::string salt = hash_string::random_string(salt_length_);
 
 		// encode the salt and plain text to base64
 		std::string encoded = base64::encode(salt + plain);

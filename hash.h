@@ -20,8 +20,8 @@
 
 namespace liblec {
 	namespace leccore {
-		/// <summary>Hash class.</summary>
-		class leccore_api hash {
+		/// <summary>String hashing class.</summary>
+		class leccore_api hash_string {
 		public:
 			/// <summary>SHA256 hash.</summary>
 			/// <param name="input">The string that is to be hashed.</param>

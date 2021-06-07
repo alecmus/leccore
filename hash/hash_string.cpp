@@ -1,5 +1,5 @@
 //
-// hash.cpp - hash implementation
+// hash_string.cpp - string hashing implementation
 //
 // leccore library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
@@ -18,7 +18,7 @@
 #include <rpc.h>
 #pragma comment(lib, "rpcrt4.lib")
 
-std::string liblec::leccore::hash::sha256(const std::string& input) {
+std::string liblec::leccore::hash_string::sha256(const std::string& input) {
     try {
         CryptoPP::SHA256 hash;
         std::string output;
@@ -36,7 +36,7 @@ std::string liblec::leccore::hash::sha256(const std::string& input) {
     return std::string();
 }
 
-std::string liblec::leccore::hash::sha512(const std::string& input) {
+std::string liblec::leccore::hash_string::sha512(const std::string& input) {
     try {
         CryptoPP::SHA512 hash;
         std::string output;
@@ -54,7 +54,7 @@ std::string liblec::leccore::hash::sha512(const std::string& input) {
     return std::string();
 }
 
-std::string liblec::leccore::hash::random_string(int length) {
+std::string liblec::leccore::hash_string::random_string(int length) {
     try {
         std::string random;
         CryptoPP::AutoSeededRandomPool rng;
@@ -72,7 +72,7 @@ std::string liblec::leccore::hash::random_string(int length) {
     return std::string();
 }
 
-std::string liblec::leccore::hash::uuid() {
+std::string liblec::leccore::hash_string::uuid() {
     std::string uuid_string;
     UUID uuid;
     UuidCreate(&uuid);

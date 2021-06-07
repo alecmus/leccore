@@ -142,7 +142,7 @@
     <ClCompile Include="error\win_error.cpp">
       <Filter>leccore\error</Filter>
     </ClCompile>
-    <ClCompile Include="hash\hash.cpp">
+    <ClCompile Include="hash\hash_string.cpp">
       <Filter>leccore\hash</Filter>
     </ClCompile>
     <ClCompile Include="encode\base32.cpp">
