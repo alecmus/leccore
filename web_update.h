@@ -78,6 +78,7 @@ namespace liblec {
 			class impl;
 			impl& d_;
 
+			// Default constructor and copying an object of this class are not allowed.
 			check_update() = delete;
 			check_update(const check_update&) = delete;
 			check_update& operator=(const check_update&) = delete;
@@ -133,6 +134,10 @@ namespace liblec {
 		private:
 			class impl;
 			impl& d_;
+
+			// Copying an object of this class is not allowed
+			download_update(const download_update&) = delete;
+			download_update& operator=(const download_update&) = delete;
 		};
 	}
 }
