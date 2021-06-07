@@ -190,6 +190,9 @@
     <ClCompile Include="zip\unzip.cpp">
       <Filter>leccore\zip</Filter>
     </ClCompile>
+    <ClCompile Include="hash\hash_file.cpp">
+      <Filter>leccore\hash</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">
