@@ -52,11 +52,18 @@ bool liblec::leccore::parse_update_xml(const std::string& xml,
 	if (!read_value(xml, "leccore.update.date", details_.date, error))
 		return false;
 
-	if (!read_value(xml, "leccore.update.download_url", details_.download_url, error))
+	std::string architecture;
+#ifdef _WIN64
+	architecture = "x64";
+#else
+	architecture = "x86";
+#endif
+
+	if (!read_value(xml, "leccore.update." + architecture + ".download_url", details_.download_url, error))
 		return false;
 
 	std::string size;
-	if (!read_value(xml, "leccore.update.size", size, error))
+	if (!read_value(xml, "leccore.update." + architecture + ".size", size, error))
 		return false;
 	else {
 		try {
@@ -70,7 +77,7 @@ bool liblec::leccore::parse_update_xml(const std::string& xml,
 		}
 	}
 
-	if (!read_value(xml, "leccore.update.hash.sha256", details_.hash, error))
+	if (!read_value(xml, "leccore.update." + architecture + ".hash.sha256", details_.hash, error))
 		return false;
 
 	details = details_;
