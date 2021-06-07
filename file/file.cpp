@@ -15,29 +15,29 @@
 using namespace std;
 using namespace liblec::leccore;
 
-bool liblec::leccore::file::read(const string& file_path,
+bool liblec::leccore::file::read(const string& fullpath,
 	string& data,
 	string& error) {
 	error.clear();
 	data.clear();
 	try {
 		// make a path object for the file
-		filesystem::path path(file_path);
+		filesystem::path path(fullpath);
 
 		// check if the file exists
 		if (!filesystem::exists(path)) {
-			error = file_path + " does not exist";
+			error = fullpath + " does not exist";
 			return false;
 		}
 
 		// verify that it's a file
 		if (!filesystem::is_regular_file(path)) {
-			error = file_path + " is not a file";
+			error = fullpath + " is not a file";
 			return false;
 		}
 
 		// open the file
-		ifstream file(file_path, ios::binary);
+		ifstream file(fullpath, ios::binary);
 
 		if (!file || !file.is_open()) {
 			error = "Opening file failed";
@@ -81,24 +81,24 @@ bool liblec::leccore::file::read(const string& file_path,
 	}
 }
 
-bool liblec::leccore::file::write(const string& file_path,
+bool liblec::leccore::file::write(const string& fullpath,
 	const string& data,
 	string& error) {
 	error.clear();
 	try {
 		// make a path object for the file
-		filesystem::path path(file_path);
+		filesystem::path path(fullpath);
 
 		// check if the file exists
 		if (filesystem::exists(path)) {
 			// verify that it's a file
 			if (!filesystem::is_regular_file(path)) {
-				error = file_path + " is not a file";
+				error = fullpath + " is not a file";
 				return false;
 			}
 
 			// check if the file is read-only
-			DWORD attributes = GetFileAttributesA(file_path.c_str());
+			DWORD attributes = GetFileAttributesA(fullpath.c_str());
 			if (attributes != INVALID_FILE_ATTRIBUTES) {
 				if (attributes & FILE_ATTRIBUTE_READONLY) {
 					error = "File is read-only";
@@ -108,7 +108,7 @@ bool liblec::leccore::file::write(const string& file_path,
 		}
 
 		// open the file
-		ofstream file(file_path, ios::out | ios::trunc | ios::binary);
+		ofstream file(fullpath, ios::out | ios::trunc | ios::binary);
 
 		if (!file || !file.is_open()) {
 			error = "Opening destination file failed";
@@ -126,11 +126,11 @@ bool liblec::leccore::file::write(const string& file_path,
 	}
 }
 
-bool file::remove(const string& file_path, string& error) {
+bool file::remove(const string& fullpath, string& error) {
 	error.clear();
 	try {
 		// make a path object for the file
-		filesystem::path path(file_path);
+		filesystem::path path(fullpath);
 
 		// verify that it's a file
 		if (!filesystem::is_regular_file(path))

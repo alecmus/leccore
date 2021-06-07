@@ -125,10 +125,10 @@ namespace liblec {
 			bool downloading(download_info& progress);
 
 			/// <summary>Get the result of the download operation.</summary>
-			/// <param name="full_path">the full path to the downloaded file.</param>
+			/// <param name="fullpath">the full path to the downloaded file.</param>
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if the file was downloaded successfully, else false.</returns>
-			bool result(std::string& full_path,
+			bool result(std::string& fullpath,
 				std::string& error);
 
 		private:
