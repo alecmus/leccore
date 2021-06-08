@@ -150,3 +150,45 @@ bool file::remove(const string& fullpath, string& error) {
 		return false;
 	}
 }
+
+bool file::create_directory(const std::string& fullpath,
+	std::string& error) {
+	try {
+		std::filesystem::path path(fullpath);
+
+		if (filesystem::exists(path)) {
+			if (filesystem::is_directory(path))
+				return true;
+			else {
+				error = fullpath + " is not a directory";
+				return false;
+			}
+		}
+
+		filesystem::create_directories(path);
+		return true;
+	}
+	catch (const exception& e) {
+		error = e.what();
+		return false;
+	}
+}
+
+bool file::remove_directory(const std::string& fullpath,
+	std::string& error) {
+	try {
+		std::filesystem::path path(fullpath);
+
+		if (filesystem::exists(path) && !filesystem::is_directory(path)) {
+			error = fullpath + " is not a directory";
+			return false;
+		}
+
+		filesystem::remove_all(path);
+		return true;
+	}
+	catch (const exception& e) {
+		error = e.what();
+		return false;
+	}
+}

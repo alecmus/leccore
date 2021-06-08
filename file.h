@@ -54,6 +54,25 @@ namespace liblec {
 			[[nodiscard]]
 			static bool remove(const std::string& fullpath,
 				std::string& error);
+
+			/// <summary>Create a directory path, recursively.</summary>
+			/// <param name="fullpath">The full path to the directory.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			[[nodiscard]]
+			static bool create_directory(const std::string& fullpath,
+				std::string& error);
+
+			/// <summary>Remove a directory, recursively.</summary>
+			/// <param name="fullpath">The full path to the directory.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			/// <remarks>Use with care. This method will attempt to delete
+			/// the directory and all of its contents, including sub-directories.
+			/// </remarks>
+			[[nodiscard]]
+			static bool remove_directory(const std::string& fullpath,
+				std::string& error);
 		};
 	}
 }
