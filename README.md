@@ -30,22 +30,24 @@ bind together all the other liblec libraries like [lecui](https://github.com/ale
 
 ### Classes
 The following classes have been added to the library
-Class Name           | Description                      | Interface
--------------------- | -------------------------------- | ------------------------------------------------
-database::connection | Database connection              | [#include <liblec/leccore/database.h>](https://github.com/alecmus/leccore/blob/master/database.h)
-file                 | File handling helper             | [#include <liblec/leccore/file.h>](https://github.com/alecmus/leccore/blob/master/file.h)
-pc_info              | PC hardware information          | [#include <liblec/leccore/pc_info.h>](https://github.com/alecmus/leccore/blob/master/pc_info.h)
-hash                 | Cryptographic hash               | [#include <liblec/leccore/hash.h>](https://github.com/alecmus/leccore/blob/master/hash.h)
-encode::base32       | Base32 character encoding        | [#include <liblec/leccore/encode.h>](https://github.com/alecmus/leccore/blob/master/encode.h)
-encode::base64       | Base64 character encoding        | [#include <liblec/leccore/encode.h>](https://github.com/alecmus/leccore/blob/master/encode.h)
-app_version_info     | Application version information  | [#include <liblec/leccore/app_version_info.h>](https://github.com/alecmus/leccore/blob/master/app_version_info.h)
-registry             | Registry reading and writing     | [#include <liblec/leccore/registry.h>](https://github.com/alecmus/leccore/blob/master/registry.h)
-encrypt              | Encryption                       | [#include <liblec/leccore/encrypt.h>](https://github.com/alecmus/leccore/blob/master/encrypt.h)
-settings             | Application settings             | [#include <liblec/leccore/settings.h>](https://github.com/alecmus/leccore/blob/master/settings.h)
-check_update         | Checking for app updates         | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
-download_update      | Downloading app updates          | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
-zip                  | Zipping to a zip archive         | [#include <liblec/leccore/zip.h>](https://github.com/alecmus/leccore/blob/master/zip.h)
-unzip                | Unzipping a zip archive          | [#include <liblec/leccore/zip.h>](https://github.com/alecmus/leccore/blob/master/zip.h)
+Class Name            | Description                            | Interface
+--------------------- | -------------------------------------- | ------------------------------------------------
+database::connection  | Database connection                    | [#include <liblec/leccore/database.h>](https://github.com/alecmus/leccore/blob/master/database.h)
+file                  | File handling helper                   | [#include <liblec/leccore/file.h>](https://github.com/alecmus/leccore/blob/master/file.h)
+pc_info               | PC hardware information                | [#include <liblec/leccore/pc_info.h>](https://github.com/alecmus/leccore/blob/master/pc_info.h)
+hash                  | Cryptographic hash                     | [#include <liblec/leccore/hash.h>](https://github.com/alecmus/leccore/blob/master/hash.h)
+encode::base32        | Base32 character encoding              | [#include <liblec/leccore/encode.h>](https://github.com/alecmus/leccore/blob/master/encode.h)
+encode::base64        | Base64 character encoding              | [#include <liblec/leccore/encode.h>](https://github.com/alecmus/leccore/blob/master/encode.h)
+app_version_info      | Application version information        | [#include <liblec/leccore/app_version_info.h>](https://github.com/alecmus/leccore/blob/master/app_version_info.h)
+registry              | Registry reading and writing           | [#include <liblec/leccore/registry.h>](https://github.com/alecmus/leccore/blob/master/registry.h)
+encrypt               | Encryption                             | [#include <liblec/leccore/encrypt.h>](https://github.com/alecmus/leccore/blob/master/encrypt.h)
+settings              | Application settings                   | [#include <liblec/leccore/settings.h>](https://github.com/alecmus/leccore/blob/master/settings.h)
+check_update          | Checking for app updates               | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
+download_update       | Downloading app updates                | [#include <liblec/leccore/web_update.h>](https://github.com/alecmus/leccore/blob/master/web_update.h)
+zip                   | Zipping to a zip archive               | [#include <liblec/leccore/zip.h>](https://github.com/alecmus/leccore/blob/master/zip.h)
+unzip                 | Unzipping a zip archive                | [#include <liblec/leccore/zip.h>](https://github.com/alecmus/leccore/blob/master/zip.h)
+user_folder           | Getting the path to known user folders | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
+commandline_arguments | Parsing command line arguments         | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
 
 ### Usage Examples
 The library is used in the [pc_info](https://github.com/alecmus/pc_info) app.
