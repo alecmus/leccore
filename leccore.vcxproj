@@ -296,6 +296,7 @@ xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" 
     <ClCompile Include="settings\ini_settings.cpp" />
     <ClCompile Include="settings\registry_settings.cpp" />
     <ClCompile Include="settings\settings.cpp" />
+    <ClCompile Include="system\commandline_arguments.cpp" />
     <ClCompile Include="system\user_folder.cpp" />
     <ClCompile Include="web_update\parse_update_xml.cpp" />
     <ClCompile Include="web_update\check_update.cpp" />

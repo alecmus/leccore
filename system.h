@@ -17,6 +17,7 @@
 #endif
 
 #include <string>
+#include <vector>
 
 namespace liblec {
 	namespace leccore {
@@ -61,6 +62,22 @@ namespace liblec {
 			/// <summary>Get the path to the folder designated for temporary files.</summary>
 			/// <returns>The temporary files directory.</returns>
 			static const std::string temp();
+		};
+
+		/// <summary>Command line arguments parser.</summary>
+		class leccore_api commandline_arguments {
+		public:
+			/// <summary>Get command line arguments.</summary>
+			/// <returns>The list of arguments/tokens.</returns>
+			static const std::vector<std::string>& get();
+
+			/// <summary>Check whether a given token is in the list of arguments.</summary>
+			/// <param name="token">The token to check.</param>
+			/// <returns>Returns true if the token is in the list, else false.</returns>
+			static bool contains(const std::string& token);
+
+		private:
+			class impl;
 		};
 	}
 }
