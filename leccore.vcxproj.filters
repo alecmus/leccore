@@ -48,6 +48,9 @@
     <Filter Include="leccore\zip">
       <UniqueIdentifier>{129156f1-65e8-4ee9-ba80-91e6c2e1b27e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\system">
+      <UniqueIdentifier>{b81c099d-fc50-4f99-bc5f-7c869d72f3e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="leccore.h">
@@ -111,6 +114,9 @@
       <Filter>leccore\web_update</Filter>
     </ClInclude>
     <ClInclude Include="zip.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
+    <ClInclude Include="system.h">
       <Filter>leccore</Filter>
     </ClInclude>
   </ItemGroup>
@@ -195,6 +201,9 @@
     </ClCompile>
     <ClCompile Include="app_version_info\compare_versions.cpp">
       <Filter>leccore\app_version_info</Filter>
+    </ClCompile>
+    <ClCompile Include="system\user_folder.cpp">
+      <Filter>leccore\system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -127,6 +127,7 @@ xcopy "$(ProjectDir)encrypt.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\"
 xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -167,6 +168,7 @@ xcopy "$(ProjectDir)encrypt.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\"
 xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -203,6 +205,7 @@ xcopy "$(ProjectDir)encrypt.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\"
 xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -243,6 +246,7 @@ xcopy "$(ProjectDir)encrypt.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\"
 xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -263,6 +267,7 @@ xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F 
     <ClInclude Include="pc_info\get_wmi_data.h" />
     <ClInclude Include="registry.h" />
     <ClInclude Include="settings.h" />
+    <ClInclude Include="system.h" />
     <ClInclude Include="versioninfo.h" />
     <ClInclude Include="web_update.h" />
     <ClInclude Include="web_update\parse_update_xml.h" />
@@ -291,6 +296,7 @@ xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F 
     <ClCompile Include="settings\ini_settings.cpp" />
     <ClCompile Include="settings\registry_settings.cpp" />
     <ClCompile Include="settings\settings.cpp" />
+    <ClCompile Include="system\user_folder.cpp" />
     <ClCompile Include="web_update\parse_update_xml.cpp" />
     <ClCompile Include="web_update\check_update.cpp" />
     <ClCompile Include="web_update\download.cpp" />
