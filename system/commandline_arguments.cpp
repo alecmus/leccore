@@ -16,6 +16,10 @@ namespace liblec {
 		/*
 		** win32 commandline parser, adapted from
 		** http://www.codeguru.com/cpp/w-p/win32/article.php/c1427/A-Simple-Win32-CommandLine-Parser.htm
+		**
+		** Usage: simply declare a commandline_arguments::impl object.
+		** The class inherits from a vector and will be automatically
+		** populated with the commandline arguments.
 		*/
 		class commandline_arguments::impl : public std::vector<char*> {
 		public:
@@ -118,7 +122,6 @@ namespace liblec {
 				}
 			}
 		};
-
 
 		const std::vector<std::string>& commandline_arguments::get() {
 			// must be static so it persists through-out app session
