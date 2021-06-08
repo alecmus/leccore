@@ -12,7 +12,6 @@
 #include "../leccore_common.h"
 #include "../file.h"
 
-#include <filesystem>
 #include <initguid.h>
 #include <KnownFolders.h>
 #include <ShlObj.h>
@@ -74,14 +73,9 @@ namespace liblec {
 					path.erase(path.length() - 1, 1);
 
 				// if the path doesn't exist, attempt to create it
-				try {
-					std::filesystem::path p(path);
-					if (!std::filesystem::exists(p))
-						std::filesystem::create_directories(p);
-				}
-				catch (const std::exception&) {
+				std::string error;
+				if (!file::create_directory(path, error))
 					path.clear();
-				}
 			}
 			
 			return path;
