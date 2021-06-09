@@ -227,6 +227,10 @@ bool ini_settings::read_value(const std::string& branch,
 		path_ = branch + "." + path_;
 
 	try {
+		std::filesystem::path path(full_ini_file_path);
+		if (!std::filesystem::exists(path))
+			return true;
+
 		boost::property_tree::ptree pt;
 		boost::property_tree::ini_parser::read_ini(full_ini_file_path, pt);
 
