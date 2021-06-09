@@ -73,6 +73,18 @@ namespace liblec {
 			[[nodiscard]]
 			static bool remove_directory(const std::string& fullpath,
 				std::string& error);
+
+			/// <summary>Rename a file or directory.</summary>
+			/// <param name="fullpath">The full path to the file or directory, including the
+			/// file's name and extension in the case of a file.</param>
+			/// <param name="new_name">The new name, including the extension in the case of
+			/// a file.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			[[nodiscard]]
+			static bool rename(const std::string& fullpath,
+				const std::string& new_name,
+				std::string& error);
 		};
 	}
 }
