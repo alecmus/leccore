@@ -89,6 +89,7 @@ public:
 		std::string& error) {
 		error.clear();
 		try {
+			boost::property_tree::ptree* p_sub_tree = &pt;
 			boost::property_tree::ptree::path_type path(key_path);
 			boost::property_tree::ptree::key_type parent_path;
 			boost::property_tree::ptree::key_type sub_key;
@@ -97,11 +98,16 @@ public:
 				sub_key = path.reduce();
 				parent_path = parent_path.empty() ? sub_key :
 					parent_path + path.separator() + sub_key;
-				pt = pt.get_child(sub_key);
+				p_sub_tree = &(p_sub_tree->get_child(sub_key));
 			}
 
 			sub_key = path.reduce();
-			pt.erase(sub_key);
+			if (p_sub_tree->erase(sub_key) == 0)
+				return false;
+			
+			if (p_sub_tree->empty() && !parent_path.empty())
+				return erase_path(pt, parent_path, error);
+			
 			return true;
 		}
 		catch (const std::exception& e) {
