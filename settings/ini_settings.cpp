@@ -86,6 +86,7 @@ public:
 
 	static bool erase_path(boost::property_tree::ptree& pt,
 		const boost::property_tree::ptree::key_type& key_path,
+		size_t& erased_subkeys,
 		std::string& error) {
 		error.clear();
 		try {
@@ -102,11 +103,13 @@ public:
 			}
 
 			sub_key = path.reduce();
-			if (p_sub_tree->erase(sub_key) == 0)
-				return false;
+			const auto count_ = p_sub_tree->erase(sub_key);
+			erased_subkeys += count_;
+			if (count_ == 0)
+				return true;
 			
 			if (p_sub_tree->empty() && !parent_path.empty())
-				return erase_path(pt, parent_path, error);
+				return erase_path(pt, parent_path, erased_subkeys, error);
 			
 			return true;
 		}
@@ -289,10 +292,13 @@ bool liblec::leccore::ini_settings::delete_value(const std::string& branch,
 	try {
 		boost::property_tree::ptree pt;
 		boost::property_tree::ini_parser::read_ini(full_ini_file_path, pt);
-		if (!impl::erase_path(pt, path_, error))
+		size_t erased_subkeys = 0;
+		if (!impl::erase_path(pt, path_, erased_subkeys, error))
 			return false;
 
-		boost::property_tree::write_ini(full_ini_file_path, pt);
+		if (erased_subkeys > 0)
+			boost::property_tree::write_ini(full_ini_file_path, pt);
+
 		return true;
 	}
 	catch (const std::exception& e) {
@@ -316,13 +322,16 @@ bool ini_settings::delete_recursive(const std::string& branch,
 	try {
 		boost::property_tree::ptree pt;
 
+		size_t erased_subkeys = 0;
 		if (!path_.empty()) {
 			boost::property_tree::ini_parser::read_ini(full_ini_file_path, pt);
-			if (!impl::erase_path(pt, path_, error))
+			if (!impl::erase_path(pt, path_, erased_subkeys, error))
 				return false;
 		}
 
-		boost::property_tree::write_ini(full_ini_file_path, pt);
+		if (erased_subkeys > 0)
+			boost::property_tree::write_ini(full_ini_file_path, pt);
+
 		return true;
 	}
 	catch (const std::exception& e) {
