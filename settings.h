@@ -77,6 +77,13 @@ namespace liblec {
 			virtual bool delete_recursive(const std::string& branch,
 				std::string& error) = 0;
 
+			/// <summary>Get a reference to the base class.</summary>
+			/// <returns>A reference to the base class.</returns>
+			/// <remarks>Useful for use in the ternary operator, e.g. if r is and instance of
+			/// <see cref="registry_settings"></see> and i is an instance of <see cref="inisettings"></see>
+			/// then one can initialize a settings reference s by calling s = condition ? r : i.</remarks>
+			settings& base() { return *this; }
+
 		private:
 			// Copying an object of this class is not allowed
 			settings(const settings&) = delete;
