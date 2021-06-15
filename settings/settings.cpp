@@ -14,3 +14,4 @@ using namespace liblec::leccore;
 
 settings::settings() {}
 settings::~settings() {}
+settings& settings::base() { return *this; }

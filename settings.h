@@ -82,7 +82,7 @@ namespace liblec {
 			/// <remarks>Useful for use in the ternary operator, e.g. if r is and instance of
 			/// <see cref="registry_settings"></see> and i is an instance of <see cref="inisettings"></see>
 			/// then one can initialize a settings reference s by calling s = condition ? r : i.</remarks>
-			settings& base() { return *this; }
+			settings& base();
 
 		private:
 			// Copying an object of this class is not allowed
