@@ -223,7 +223,7 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 						}
 						if (property == "MaxClockSpeed") {
 							const auto speed_mhz = any_cast<int>(values[i]);
-							info_map[i].base_speed = round_off::tod(speed_mhz / 1000.0, 2);
+							info_map[i].base_speed = round_off::to_double(speed_mhz / 1000.0, 2);
 						}
 					}
 				}

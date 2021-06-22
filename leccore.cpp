@@ -139,3 +139,25 @@ std::string liblec::leccore::format_size(unsigned long long size, unsigned short
 void liblec::leccore::sleep(unsigned long long milliseconds) {
 	std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
+
+std::string liblec::leccore::round_off::to_string(const double& d, int precision) {
+	std::stringstream ss;
+	ss << std::fixed;
+	ss.precision(precision);
+	ss << d;
+	return ss.str();
+}
+
+double liblec::leccore::round_off::to_double(const double& d, int precision) {
+	int y = (int)d;
+	double z = d - (double)y;
+	double m = pow(10, precision);
+	double q = z * m;
+	double r = round(q);
+
+	return static_cast<double>(y) + (1.0 / m) * r;
+}
+
+float liblec::leccore::round_off::to_float(const float& f, int precision) {
+	return static_cast<float>(to_double(static_cast<double>(f), precision));
+}
