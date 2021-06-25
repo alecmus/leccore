@@ -101,7 +101,7 @@ namespace liblec {
 				int refresh_rate;
 
 				/// <summary>The size of the graphics memory, in bytes.</summary>
-				int ram;
+				unsigned long long ram;
 			};
 
 			/// <summary>Random Access Memory chip type.</summary>
