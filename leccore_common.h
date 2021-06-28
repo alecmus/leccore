@@ -15,6 +15,14 @@
 
 namespace liblec {
 	namespace leccore {
+		template<class Interface>
+		static inline void safe_release(Interface** pp_interface_to_release) {
+			if (*pp_interface_to_release != nullptr) {
+				(*pp_interface_to_release)->Release();
+				(*pp_interface_to_release) = nullptr;
+			}
+		}
+
 		static inline std::wstring convert_string(const std::string& input) {
 			int s_length = (int)input.length() + 1;
 			int len = MultiByteToWideChar(CP_ACP, 0, input.c_str(), s_length, 0, 0);

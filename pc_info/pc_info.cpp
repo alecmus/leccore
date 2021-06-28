@@ -14,6 +14,7 @@
 #include "get_wmi_data.h"
 #include <map>
 #include <any>
+#include <dxgi.h>
 
 using namespace std;
 using namespace liblec::leccore;
@@ -271,7 +272,9 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 							info_map[i].refresh_rate = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "AdapterRAM") {
-							info_map[i].ram = any_cast<unsigned long>(values[i]);
+							// something to fall-back on if we aren't able to get info from dxgi
+							// and will be overwritten if dxgi info is available
+							info_map[i].total_graphics_memory = any_cast<unsigned long>(values[i]);
 						}
 					}
 				}
@@ -302,6 +305,73 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 				it.second.resolution_name =
 					resolution_name(it.second.horizontal_resolution, it.second.vertical_resolution);
 				info.push_back(it.second);
+			}
+
+			struct dxgi_graphics_memory {
+				unsigned long long dedicated = 0;
+				unsigned long long total = 0;
+			};
+
+			auto get_dxgi_graphics_memory = []()->std::map<std::string, dxgi_graphics_memory> {
+				std::map<std::string, dxgi_graphics_memory> result;
+
+				HINSTANCE h_dxgi = LoadLibrary(L"dxgi.dll");
+				if (!h_dxgi)
+					return result;
+
+				typedef HRESULT(WINAPI* LPCREATEDXGIFACTORY)(REFIID, void**);
+
+				LPCREATEDXGIFACTORY p_create_dxgi_factory = nullptr;
+				IDXGIFactory* p_dxgi_factory = nullptr;
+
+				// We prefer the use of DXGI 1.1
+				p_create_dxgi_factory = (LPCREATEDXGIFACTORY)GetProcAddress(h_dxgi, "CreateDXGIFactory1");
+
+				if (!p_create_dxgi_factory) {
+					p_create_dxgi_factory = (LPCREATEDXGIFACTORY)GetProcAddress(h_dxgi, "CreateDXGIFactory");
+
+					if (!p_create_dxgi_factory) {
+						FreeLibrary(h_dxgi);
+						// dxgi.dll missing entry-point
+						return result;
+					}
+				}
+
+				HRESULT hr = p_create_dxgi_factory(__uuidof(IDXGIFactory), (LPVOID*)&p_dxgi_factory);
+
+				if (SUCCEEDED(hr)) {
+					for (UINT index = 0; ; ++index) {
+						IDXGIAdapter* p_adapter = nullptr;
+						if (FAILED(p_dxgi_factory->EnumAdapters(index, &p_adapter)))
+							break;	// DXGIERR_NOT_FOUND is expected when the end of the list is hit
+
+						DXGI_ADAPTER_DESC desc;
+						memset(&desc, 0, sizeof(DXGI_ADAPTER_DESC));
+						if (SUCCEEDED(p_adapter->GetDesc(&desc)))
+							result.insert(std::make_pair(convert_string(desc.Description),
+								dxgi_graphics_memory{ desc.DedicatedVideoMemory,
+								desc.DedicatedVideoMemory + desc.DedicatedSystemMemory + desc.SharedSystemMemory }));
+
+						safe_release(&p_adapter);
+					}
+
+					safe_release(&p_dxgi_factory);
+				}
+
+				FreeLibrary(h_dxgi);
+				return result;
+			};
+
+			// get graphics memory using dxgi
+			auto result = get_dxgi_graphics_memory();
+			for (auto& it : info) {
+				try {
+					it.dedicated_vram = result.at(it.name).dedicated;
+
+					// overwrite the less reliable WMI "AdapterRAM" fallback
+					it.total_graphics_memory = result.at(it.name).total;
+				}
+				catch (const std::exception&) {}
 			}
 
 			return true;

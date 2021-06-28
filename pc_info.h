@@ -100,8 +100,11 @@ namespace liblec {
 				/// <summary>The refresh rate of the display, in Hz.</summary>
 				int refresh_rate;
 
-				/// <summary>The size of the graphics memory, in bytes.</summary>
-				unsigned long long ram;
+				/// <summary>The size of the dedicated video memory, in bytes.</summary>
+				unsigned long long dedicated_vram;
+
+				/// <summary>The size of the total available graphics memory, in bytes.</summary>
+				unsigned long long total_graphics_memory;
 			};
 
 			/// <summary>Random Access Memory chip type.</summary>
