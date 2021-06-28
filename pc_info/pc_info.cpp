@@ -216,13 +216,13 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 							info_map[i].manufacturer = any_cast<string>(values[i]);
 						}
 						if (property == "NumberOfCores") {
-							info_map[i].cores = any_cast<int>(values[i]);
+							info_map[i].cores = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "NumberOfLogicalProcessors") {
-							info_map[i].logical_processors = any_cast<int>(values[i]);
+							info_map[i].logical_processors = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "MaxClockSpeed") {
-							const auto speed_mhz = any_cast<int>(values[i]);
+							const auto speed_mhz = any_cast<unsigned long>(values[i]);
 							info_map[i].base_speed = round_off::to_double(speed_mhz / 1000.0, 2);
 						}
 					}
@@ -262,16 +262,16 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 							info_map[i].status = any_cast<string>(values[i]);
 						}
 						if (property == "CurrentHorizontalResolution") {
-							info_map[i].horizontal_resolution = any_cast<int>(values[i]);
+							info_map[i].horizontal_resolution = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "CurrentVerticalResolution") {
-							info_map[i].vertical_resolution = any_cast<int>(values[i]);
+							info_map[i].vertical_resolution = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "CurrentRefreshRate") {
-							info_map[i].refresh_rate = any_cast<int>(values[i]);
+							info_map[i].refresh_rate = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "AdapterRAM") {
-							info_map[i].ram = any_cast<int>(values[i]);
+							info_map[i].ram = any_cast<unsigned long>(values[i]);
 						}
 					}
 				}
@@ -333,7 +333,7 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 							info_map[i].tag = any_cast<string>(values[i]);
 						}
 						if (property == "MemoryType") {
-							const auto type = any_cast<int>(values[i]);
+							const auto type = any_cast<unsigned long>(values[i]);
 							switch (type) {
 							case 1:
 								info_map[i].type = "Other";
@@ -417,7 +417,7 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 							}
 						}
 						if (property == "FormFactor") {
-							const auto factor = any_cast<int>(values[i]);
+							const auto factor = any_cast<unsigned long>(values[i]);
 							switch (factor) {
 							case 1:
 								info_map[i].form_factor = "Other";
@@ -508,7 +508,7 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 							info_map[i].capacity = any_cast<unsigned long long>(values[i]);
 						}
 						if (property == "Speed") {
-							info_map[i].speed = any_cast<int>(values[i]);
+							info_map[i].speed = any_cast<unsigned long>(values[i]);
 						}
 					}
 				}
@@ -564,7 +564,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 								info_map[i].friendly_name = any_cast<string>(values[i]);
 							}
 							if (property == "MediaType") {
-								const auto media_type = any_cast<int>(values[i]);
+								const auto media_type = any_cast<unsigned long>(values[i]);
 								switch (media_type) {
 								case 3:
 									info_map[i].storage_type = "HDD";
@@ -582,7 +582,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 								}
 							}
 							if (property == "BusType") {
-								const auto bus_type = any_cast<int>(values[i]);
+								const auto bus_type = any_cast<unsigned long>(values[i]);
 
 								switch (bus_type) {
 								case 1:
@@ -676,7 +676,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 				if (!values.empty()) {
 					for (size_t i = 0; i < values.size(); i++) {
 						if (property == "Index") {
-							info_map[i].index = any_cast<INT>(values[i]);
+							info_map[i].index = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "DeviceID") {
 							info_map[i].device_id = any_cast<string>(values[i]);
