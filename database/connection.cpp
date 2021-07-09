@@ -19,11 +19,17 @@ int get::integer(const std::any& value) {
 }
 
 double get::real(const std::any& value) {
-	return std::any_cast<double>(value);
+	if (value.type() == typeid(float))
+		return std::any_cast<float>(value);
+	else
+		return std::any_cast<double>(value);
 }
 
 std::string get::text(const std::any& value) {
-	return std::any_cast<std::string>(value);
+	if (value.type() == typeid(const char*))
+		return std::string(std::any_cast<const char*>(value));
+	else
+		return std::any_cast<std::string>(value);
 }
 
 blob liblec::leccore::database::get::blob(const std::any& value) {

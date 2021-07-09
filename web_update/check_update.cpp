@@ -86,8 +86,10 @@ public:
 check_update::check_update(const std::string& update_xml_url) :
 	d_(*new impl(update_xml_url)) {}
 check_update::~check_update() {
-	if (d_.fut_.valid())
+	if (d_.fut_.valid()) {
+		// to-do: add mechanism for stopping immediately
 		d_.fut_.get();
+	}
 
 	delete& d_;
 }

@@ -152,8 +152,10 @@ public:
 
 download_update::download_update() : d_(*new impl()) {}
 download_update::~download_update() {
-	if (d_.fut_.valid())
+	if (d_.fut_.valid()) {
+		// to-do: add mechanism for stopping immediately
 		d_.fut_.get();
+	}
 	
 	delete& d_;
 }
