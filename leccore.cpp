@@ -151,7 +151,7 @@ std::string liblec::leccore::round_off::to_string(const double& d, int precision
 double liblec::leccore::round_off::to_double(const double& d, int precision) {
 	int y = (int)d;
 	double z = d - (double)y;
-	double m = pow(10, precision);
+	double m = pow(10.0, (double)precision);
 	double q = z * m;
 	double r = round(q);
 
@@ -159,5 +159,11 @@ double liblec::leccore::round_off::to_double(const double& d, int precision) {
 }
 
 float liblec::leccore::round_off::to_float(const float& f, int precision) {
-	return static_cast<float>(to_double(static_cast<double>(f), precision));
+	int y = (int)f;
+	float z = f - (float)y;
+	float m = pow(10.f, (float)precision);
+	float q = z * m;
+	float r = round(q);
+
+	return static_cast<float>(y) + (1.f / m) * r;
 }
