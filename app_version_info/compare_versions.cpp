@@ -110,21 +110,21 @@ namespace liblec {
 			const size_t n = min(parts_left.size(), parts_right.size());
 
 			for (size_t i = 0; i < n; i++) {
-				const std::string& left_ = parts_left[i];
-				const std::string& right_ = parts_right[i];
+				const std::string& _left = parts_left[i];
+				const std::string& _right = parts_right[i];
 
-				const char_type type_left = classify_char(left_[0]);
-				const char_type type_right = classify_char(right_[0]);
+				const char_type type_left = classify_char(_left[0]);
+				const char_type type_right = classify_char(_right[0]);
 
 				if (type_left == type_right) {
 					if (type_left == char_type::type_string) {
-						int result = left_.compare(right_);
+						int result = _left.compare(_right);
 						if (result != 0)
 							return result;
 					}
 					else if (type_left == char_type::type_number) {
-						const int int_left = atoi(left_.c_str());
-						const int int_right = atoi(right_.c_str());
+						const int int_left = atoi(_left.c_str());
+						const int int_right = atoi(_right.c_str());
 						if (int_left > int_right)
 							return 1;
 						else if (int_left < int_right)

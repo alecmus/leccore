@@ -29,23 +29,23 @@ using namespace liblec::leccore;
 
 class ini_settings::impl {
 public:
-	const std::string default_file_name_ = "config.ini";
-	const std::string file_name_;
-	const std::string key_;
-	const std::string iv_;
-	const bool encrypted_;
-	const int salt_length_ = 4;
-	std::string ini_path_;
-	bool ini_path_set_;
+	const std::string _default_file_name = "config.ini";
+	const std::string _file_name;
+	const std::string _key;
+	const std::string _iv;
+	const bool _encrypted;
+	const int _salt_length = 4;
+	std::string _ini_path;
+	bool _ini_path_set;
 
 	impl(const std::string& file_name,
 		const std::string& key,
 		const std::string& iv) :
-		file_name_(file_name.empty() ? default_file_name_ : file_name),
-		key_(key),
-		iv_(iv),
-		encrypted_(!key_.empty() && !iv_.empty()),
-		ini_path_set_(false) {}
+		_file_name(file_name.empty() ? _default_file_name : file_name),
+		_key(key),
+		_iv(iv),
+		_encrypted(!_key.empty() && !_iv.empty()),
+		_ini_path_set(false) {}
 	~impl() {}
 
 	bool encrypt_string(const std::string& plain,
@@ -54,13 +54,13 @@ public:
 		error.clear();
 		encrypted.clear();
 		// make random salt (makes the encoded and encrypted results different for the same input)
-		const std::string salt = hash_string::random_string(salt_length_);
+		const std::string salt = hash_string::random_string(_salt_length);
 
 		// encode the salt and plain text to base64
 		std::string encoded = base64::encode(salt + plain);
 
 		// encrypt the encoded text
-		aes enc(key_, iv_);
+		aes enc(_key, _iv);
 		return enc.encrypt(encoded, encrypted, error);
 	}
 
@@ -71,7 +71,7 @@ public:
 		decrypted.clear();
 		// decrypt the text
 		std::string encoded;
-		aes enc(key_, iv_);
+		aes enc(_key, _iv);
 		if (!enc.decrypt(encrypted, encoded, error))
 			return false;
 
@@ -80,7 +80,7 @@ public:
 		decrypted = base64_encoder.decode(encoded);
 
 		// step over the salt
-		decrypted = decrypted.substr(salt_length_);
+		decrypted = decrypted.substr(_salt_length);
 		return true;
 	}
 
@@ -103,9 +103,9 @@ public:
 			}
 
 			sub_key = path.reduce();
-			const auto count_ = p_sub_tree->erase(sub_key);
-			erased_subkeys += count_;
-			if (count_ == 0)
+			const auto _count = p_sub_tree->erase(sub_key);
+			erased_subkeys += _count;
+			if (_count == 0)
 				return true;
 			
 			if (p_sub_tree->empty() && !parent_path.empty())
@@ -122,13 +122,13 @@ public:
 
 ini_settings::ini_settings(const std::string& file_name) : ini_settings(file_name, "", "") {}
 ini_settings::ini_settings(const std::string& file_name, const std::string& key,
-	const std::string& iv) : d_(*new impl(file_name, key, iv)) {}
-ini_settings::~ini_settings() { delete& d_; }
+	const std::string& iv) : _d(*new impl(file_name, key, iv)) {}
+ini_settings::~ini_settings() { delete& _d; }
 
 bool ini_settings::get_ini_path(std::string& ini_path, std::string& error) {
 	error.clear();
 	ini_path.clear();
-	if (!d_.ini_path_set_ && d_.ini_path_.empty()) {
+	if (!_d._ini_path_set && _d._ini_path.empty()) {
 		app_version_info ver_info;
 
 		std::string company_name, app_name;
@@ -157,17 +157,17 @@ bool ini_settings::get_ini_path(std::string& ini_path, std::string& error) {
 		if (!get_app_data(app_data_folder, error))
 			return false;
 
-		d_.ini_path_ = app_data_folder + "\\" +
+		_d._ini_path = app_data_folder + "\\" +
 			company_name + "\\" +
 			app_name;
 	}
-	ini_path = d_.ini_path_;
+	ini_path = _d._ini_path;
 	return true;
 }
 
 void ini_settings::set_ini_path(const std::string& ini_path) {
-	d_.ini_path_ = ini_path;
-	d_.ini_path_set_ = true;
+	_d._ini_path = ini_path;
+	_d._ini_path_set = true;
 }
 
 bool ini_settings::write_value(const std::string& branch,
@@ -178,12 +178,12 @@ bool ini_settings::write_value(const std::string& branch,
 		return false;
 
 	const std::string full_ini_file_path = ini_path.empty() ?
-		d_.file_name_ : ini_path + "\\" + d_.file_name_;
+		_d._file_name : ini_path + "\\" + _d._file_name;
 
-	std::string path_ = value_name;
+	std::string _path = value_name;
 
 	if (!branch.empty())
-		path_ = branch + "." + path_;
+		_path = branch + "." + _path;
 
 	try {
 		if (!ini_path.empty()) {
@@ -197,18 +197,18 @@ bool ini_settings::write_value(const std::string& branch,
 		if (std::filesystem::is_regular_file(file))
 			boost::property_tree::ini_parser::read_ini(full_ini_file_path, pt);
 
-		if (d_.encrypted_) {
+		if (_d._encrypted) {
 			std::string data_encrypted;
-			if (!d_.encrypt_string(value, data_encrypted, error))
+			if (!_d.encrypt_string(value, data_encrypted, error))
 				return false;
 
 			std::string encoded = base32::encode(data_encrypted);
-			pt.put(path_, encoded);
+			pt.put(_path, encoded);
 			boost::property_tree::write_ini(full_ini_file_path, pt);
 			return true;
 		}
 		else {
-			pt.put(path_, value);
+			pt.put(_path, value);
 			boost::property_tree::write_ini(full_ini_file_path, pt);
 			return true;
 		}
@@ -228,12 +228,12 @@ bool ini_settings::read_value(const std::string& branch,
 		return false;
 
 	const std::string full_ini_file_path = ini_path.empty() ?
-		d_.file_name_ : ini_path + "\\" + d_.file_name_;
+		_d._file_name : ini_path + "\\" + _d._file_name;
 
-	std::string path_ = value_name;
+	std::string _path = value_name;
 
 	if (!branch.empty())
-		path_ = branch + "." + path_;
+		_path = branch + "." + _path;
 
 	try {
 		std::filesystem::path path(full_ini_file_path);
@@ -243,19 +243,19 @@ bool ini_settings::read_value(const std::string& branch,
 		boost::property_tree::ptree pt;
 		boost::property_tree::ini_parser::read_ini(full_ini_file_path, pt);
 
-		if (d_.encrypted_) {
+		if (_d._encrypted) {
 			std::string encoded;
-			try { encoded = pt.get<std::string>(path_); }
+			try { encoded = pt.get<std::string>(_path); }
 			catch (const std::exception&) {
 				return true;
 			}
 
 			std::string data_encrypted = base32::decode(encoded);
-			return d_.decrypt_string(data_encrypted, value, error);
+			return _d.decrypt_string(data_encrypted, value, error);
 		}
 		else {
 			try {
-				value = pt.get<std::string>(path_);
+				value = pt.get<std::string>(_path);
 				return true;
 			}
 			catch (const std::exception&) {
@@ -282,18 +282,18 @@ bool liblec::leccore::ini_settings::delete_value(const std::string& branch,
 		return false;
 
 	const std::string full_ini_file_path = ini_path.empty() ?
-		d_.file_name_ : ini_path + "\\" + d_.file_name_;
+		_d._file_name : ini_path + "\\" + _d._file_name;
 
-	std::string path_ = value_name;
+	std::string _path = value_name;
 
 	if (!branch.empty())
-		path_ = branch + "." + path_;
+		_path = branch + "." + _path;
 
 	try {
 		boost::property_tree::ptree pt;
 		boost::property_tree::ini_parser::read_ini(full_ini_file_path, pt);
 		size_t erased_subkeys = 0;
-		if (!impl::erase_path(pt, path_, erased_subkeys, error))
+		if (!impl::erase_path(pt, _path, erased_subkeys, error))
 			return false;
 
 		if (erased_subkeys > 0)
@@ -315,17 +315,17 @@ bool ini_settings::delete_recursive(const std::string& branch,
 		return false;
 
 	const std::string full_ini_file_path = ini_path.empty() ?
-		d_.file_name_ : ini_path + "\\" + d_.file_name_;
+		_d._file_name : ini_path + "\\" + _d._file_name;
 
-	std::string path_ = branch;
+	std::string _path = branch;
 
 	try {
 		boost::property_tree::ptree pt;
 
 		size_t erased_subkeys = 0;
-		if (!path_.empty()) {
+		if (!_path.empty()) {
 			boost::property_tree::ini_parser::read_ini(full_ini_file_path, pt);
-			if (!impl::erase_path(pt, path_, erased_subkeys, error))
+			if (!impl::erase_path(pt, _path, erased_subkeys, error))
 				return false;
 		}
 

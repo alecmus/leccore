@@ -15,37 +15,37 @@ class mutex;
 
 // Wrapper for the std::mutex object.
 class liblec::leccore::mutex::impl {
-	std::mutex mtx_;
+	std::mutex _mtx;
 
 public:
 	impl() {}
 	~impl() {}
 
 	void lock() {
-		mtx_.lock();
+		_mtx.lock();
 	}
 
 	void unlock() {
-		mtx_.unlock();
+		_mtx.unlock();
 	}
 };
 
-liblec::leccore::mutex::mutex() : d_(*new impl()) {}
-liblec::leccore::mutex::~mutex() { delete& d_; }
+liblec::leccore::mutex::mutex() : _d(*new impl()) {}
+liblec::leccore::mutex::~mutex() { delete& _d; }
 
 class liblec::leccore::auto_mutex::impl {
-	mutex& mtx_;
+	mutex& _mtx;
 
 public:
 	impl(mutex& mtx) :
-		mtx_(mtx) {
-		mtx_.d_.lock();
+		_mtx(mtx) {
+		_mtx._d.lock();
 	}
 
 	~impl() {
-		mtx_.d_.unlock();
+		_mtx._d.unlock();
 	}
 };
 
-liblec::leccore::auto_mutex::auto_mutex(mutex& mtx) : d_(*new impl(mtx)) {}
-liblec::leccore::auto_mutex::~auto_mutex() { delete& d_; }
+liblec::leccore::auto_mutex::auto_mutex(mutex& mtx) : _d(*new impl(mtx)) {}
+liblec::leccore::auto_mutex::~auto_mutex() { delete& _d; }

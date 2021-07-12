@@ -24,11 +24,11 @@ public:
 		update_info details;
 	};
 
-	const std::string update_xml_url_;
-	std::future<check_update_result> fut_;
+	const std::string _update_xml_url;
+	std::future<check_update_result> _fut;
 
 	impl(const std::string& update_xml_url) :
-		update_xml_url_(update_xml_url) {}
+		_update_xml_url(update_xml_url) {}
 	~impl() {}
 
 	class string_download_sink : public download_sink {
@@ -54,21 +54,21 @@ public:
 	};
 
 	static check_update_result check_update_func(check_update::impl* p_impl) {
-		check_update::impl& d_ = *p_impl;
+		check_update::impl& _d = *p_impl;
 
 		check_update_result result;
 		result.error.clear();
 		result.success = false;
 		result.details = {};
 
-		if (d_.update_xml_url_.empty()) {
+		if (_d._update_xml_url.empty()) {
 			result.error = "Update XML url not specified";
 			result.success = false;
 			return result;
 		}
 
 		string_download_sink sink;
-		if (!download(d_.update_xml_url_, sink, true, result.error)) {
+		if (!download(_d._update_xml_url, sink, true, result.error)) {
 			result.success = false;
 			return result;
 		}
@@ -84,14 +84,14 @@ public:
 };
 
 check_update::check_update(const std::string& update_xml_url) :
-	d_(*new impl(update_xml_url)) {}
+	_d(*new impl(update_xml_url)) {}
 check_update::~check_update() {
-	if (d_.fut_.valid()) {
+	if (_d._fut.valid()) {
 		// to-do: add mechanism for stopping immediately
-		d_.fut_.get();
+		_d._fut.get();
 	}
 
-	delete& d_;
+	delete& _d;
 }
 
 void check_update::start() {
@@ -101,13 +101,13 @@ void check_update::start() {
 	}
 
 	// run task asynchronously
-	d_.fut_ = std::async(std::launch::async, d_.check_update_func, &d_);
+	_d._fut = std::async(std::launch::async, _d.check_update_func, &_d);
 	return;
 }
 
 bool check_update::checking() {
-	if (d_.fut_.valid())
-		return d_.fut_.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
+	if (_d._fut.valid())
+		return _d._fut.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
 	else
 		return false;
 }
@@ -121,8 +121,8 @@ bool check_update::result(update_info& details, std::string& error) {
 		return false;
 	}
 
-	if (d_.fut_.valid()) {
-		auto result = d_.fut_.get();
+	if (_d._fut.valid()) {
+		auto result = _d._fut.get();
 		details = result.details;
 		error = result.error;
 		return result.success;

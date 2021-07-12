@@ -14,18 +14,18 @@ using namespace liblec::leccore::database;
 
 connection_base::connection_base(const std::string& connection_string,
 	const std::string& password) :
-	connected_(false),
-	connection_string_(connection_string),
-	password_(password) {}
+	_connected(false),
+	_connection_string(connection_string),
+	_password(password) {}
 
 connection_base::~connection_base() {
-	connected_ = false;
+	_connected = false;
 }
 
 bool connection_base::connected() {
-	return connected_;
+	return _connected;
 }
 
 void connection_base::set_connected(bool connected) {
-	connected_ = connected;
+	_connected = connected;
 }

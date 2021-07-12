@@ -22,8 +22,8 @@ using namespace liblec::leccore;
 
 class hash_file::impl {
 public:
-	std::string fullpath_;
-	std::vector<algorithm> algorithms_;
+	std::string _fullpath;
+	std::vector<algorithm> _algorithms;
 
 	struct do_hash_result {
 		bool success = false;
@@ -31,26 +31,26 @@ public:
 		std::map<algorithm, std::string> hashes;
 	};
 
-	std::future<do_hash_result> fut_;
+	std::future<do_hash_result> _fut;
 
 	impl() {}
 	~impl() {}
 
 	static do_hash_result hash_func(hash_file::impl* p_impl) {
-		hash_file::impl& d_ = *p_impl;
+		hash_file::impl& _d = *p_impl;
 
 		do_hash_result result;
 		result.error.clear();
 		result.success = false;
 		result.hashes.clear();
 
-		if (d_.fullpath_.empty()) {
+		if (_d._fullpath.empty()) {
 			result.error = "File path not specified";
 			result.success = false;
 			return result;
 		}
 
-		if (d_.algorithms_.empty()) {
+		if (_d._algorithms.empty()) {
 			result.error = "Algorithms not specified";
 			result.success = false;
 			return result;
@@ -63,7 +63,7 @@ public:
 			CryptoPP::SHA256 sha256_hash;
 			CryptoPP::SHA512 sha512_hash;
 
-			for (const auto& algo : d_.algorithms_)	{
+			for (const auto& algo : _d._algorithms)	{
 				result.hashes[algo] = "";
 
 				if (algo == algorithm::sha256) {
@@ -78,7 +78,7 @@ public:
 				}
 			}
 
-			CryptoPP::FileSource fs(d_.fullpath_.c_str(), true, new CryptoPP::Redirector(cs));
+			CryptoPP::FileSource fs(_d._fullpath.c_str(), true, new CryptoPP::Redirector(cs));
 
 			result.success = true;
 			return result;
@@ -96,12 +96,12 @@ public:
 	}
 };
 
-hash_file::hash_file() : d_(*new impl()) {}
+hash_file::hash_file() : _d(*new impl()) {}
 liblec::leccore::hash_file::~hash_file() {
-	if (d_.fut_.valid())
-		d_.fut_.get();
+	if (_d._fut.valid())
+		_d._fut.get();
 
-	delete& d_;
+	delete& _d;
 }
 
 void hash_file::start(const std::string& fullpath,
@@ -111,17 +111,17 @@ void hash_file::start(const std::string& fullpath,
 		return;
 	}
 
-	d_.fullpath_ = fullpath;
-	d_.algorithms_ = algorithms;
+	_d._fullpath = fullpath;
+	_d._algorithms = algorithms;
 
 	// run task asynchronously
-	d_.fut_ = std::async(std::launch::async, d_.hash_func, &d_);
+	_d._fut = std::async(std::launch::async, _d.hash_func, &_d);
 	return;
 }
 
 bool hash_file::hashing() {
-	if (d_.fut_.valid())
-		return d_.fut_.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
+	if (_d._fut.valid())
+		return _d._fut.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
 	else
 		return false;
 }
@@ -136,8 +136,8 @@ bool hash_file::result(hash_results& results,
 		return false;
 	}
 
-	if (d_.fut_.valid()) {
-		auto result = d_.fut_.get();
+	if (_d._fut.valid()) {
+		auto result = _d._fut.get();
 		results = result.hashes;
 		error = result.error;
 		return result.success;

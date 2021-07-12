@@ -72,7 +72,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Copying an object of this class is not allowed
 			zip(const zip&) = delete;
@@ -119,7 +119,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Copying an object of this class is not allowed
 			unzip(const unzip&) = delete;

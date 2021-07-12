@@ -41,48 +41,48 @@ public:
 	impl(const std::string& type,
 		const std::string& connection_string,
 		const std::string& password) :
-		type_(type),
-		connection_string_(connection_string),
-		password_(password) {
+		_type(type),
+		_connection_string(connection_string),
+		_password(password) {
 
 		if (type == "sqlcipher")
-			p_db_ = new sqlcipher_connection(connection_string_, password);
+			_p_db = new sqlcipher_connection(_connection_string, password);
 		else
-			p_db_ = new sqlcipher_connection(connection_string_, password);
+			_p_db = new sqlcipher_connection(_connection_string, password);
 	}
 	~impl() {
-		if (p_db_) {
-			delete p_db_;
-			p_db_ = nullptr;
+		if (_p_db) {
+			delete _p_db;
+			_p_db = nullptr;
 		}
 	}
 
-	const std::string type_;
-	const std::string connection_string_;
-	const std::string password_;
-	connection_base* p_db_;
+	const std::string _type;
+	const std::string _connection_string;
+	const std::string _password;
+	connection_base* _p_db;
 };
 
 connection::connection(const std::string& type,
 	const std::string& connection_string,
 	const std::string& password) :
-	d_(*new impl(type, connection_string, password)) {}
+	_d(*new impl(type, connection_string, password)) {}
 
 connection::~connection() {
-	delete& d_;
+	delete& _d;
 }
 
 bool connection::connected() {
-	if (d_.p_db_)
-		return d_.p_db_->connected();
+	if (_d._p_db)
+		return _d._p_db->connected();
 	else
 		return false;
 }
 
 bool connection::connect(std::string& error) {
 	error.clear();
-	if (d_.p_db_)
-		return d_.p_db_->connect(error);
+	if (_d._p_db)
+		return _d._p_db->connect(error);
 	else {
 		error = "liblec::leccore::database::connection - initialization error";
 		return false;
@@ -91,8 +91,8 @@ bool connection::connect(std::string& error) {
 
 bool connection::disconnect(std::string& error) {
 	error.clear();
-	if (d_.p_db_)
-		return d_.p_db_->disconnect(error);
+	if (_d._p_db)
+		return _d._p_db->disconnect(error);
 	else
 		return true;
 }
@@ -101,8 +101,8 @@ bool connection::execute(const std::string& sql,
 	const std::vector<std::any>& values,
 	std::string& error) {
 	error.clear();
-	if (d_.p_db_)
-		return d_.p_db_->execute(sql, values, error);
+	if (_d._p_db)
+		return _d._p_db->execute(sql, values, error);
 	else {
 		error = "liblec::leccore::database::connection - initialization error";
 		return false;
@@ -113,8 +113,8 @@ bool connection::execute_query(const std::string& sql,
 	table& results,
 	std::string& error) {
 	error.clear();
-	if (d_.p_db_)
-		return d_.p_db_->execute_query(sql, results, error);
+	if (_d._p_db)
+		return _d._p_db->execute_query(sql, results, error);
 	else {
 		error = "liblec::leccore::database::connection - initialization error";
 		return false;

@@ -25,62 +25,62 @@ public:
 		std::string fullpath;
 	};
 
-	std::string url_;
-	std::string directory_;
-	std::future<download_update_result> fut_;
+	std::string _url;
+	std::string _directory;
+	std::future<download_update_result> _fut;
 	
-	download_info progress_;
-	mutex progress_mutex_;
+	download_info _progress;
+	mutex _progress_mutex;
 
 	impl() :
-		progress_({ 0, 0 }) {}
+		_progress({ 0, 0 }) {}
 	~impl() {}
 
 	class update_download_sink : public download_sink {
-		FILE* p_file_;
-		const std::string& directory_;
-		std::string fullpath_;
-		size_t downloaded_, total_;
-		clock_t last_update_;
+		FILE* _p_file;
+		const std::string& _directory;
+		std::string _fullpath;
+		size_t _downloaded, _total;
+		clock_t _last_update;
 
-		download_update::download_info& progress_;
-		mutex& progress_mutex_;
+		download_update::download_info& _progress;
+		mutex& _progress_mutex;
 
 	public:
 		update_download_sink() = delete;
 		update_download_sink(const std::string& directory,
 			download_update::download_info& progress,
 			mutex& progress_mutex) :
-			p_file_(nullptr),
-			directory_(directory),
-			downloaded_(0),
-			total_(0),
-			last_update_(-1),
-			progress_(progress),
-			progress_mutex_(progress_mutex) {}
+			_p_file(nullptr),
+			_directory(directory),
+			_downloaded(0),
+			_total(0),
+			_last_update(-1),
+			_progress(progress),
+			_progress_mutex(progress_mutex) {}
 		~update_download_sink() {
 			close();
 		}
 
 		void close() {
-			if (p_file_) {
-				fclose(p_file_);
-				p_file_ = nullptr;
+			if (_p_file) {
+				fclose(_p_file);
+				_p_file = nullptr;
 			}
 		}
 
-		void set_length(size_t length) override { total_ = length; }
+		void set_length(size_t length) override { _total = length; }
 		bool set_filename(const std::string& filename, std::string& error) override {
 			error.clear();
 
-			if (p_file_) {
+			if (_p_file) {
 				error = "Update file already set";
 				return false;
 			}
 
-			fullpath_ = directory_.empty() ? filename : directory_ + "\\" + filename;
-			fopen_s(&p_file_, fullpath_.c_str(), "wb");
-			if (!p_file_) {
+			_fullpath = _directory.empty() ? filename : _directory + "\\" + filename;
+			fopen_s(&_p_file, _fullpath.c_str(), "wb");
+			if (!_p_file) {
 				error = "Cannot save update file";
 				return false;
 			}
@@ -89,55 +89,55 @@ public:
 		}
 
 		bool add_chunk(const void* data, size_t len, std::string& error) override {
-			if (!p_file_) {
+			if (!_p_file) {
 				error = "Filename is not set";
 				return false;
 			}
 
-			if (fwrite(data, len, 1, p_file_) != 1) {
+			if (fwrite(data, len, 1, _p_file) != 1) {
 				error = "Cannot save update file";
 				return false;
 			}
 
-			downloaded_ += len;
+			_downloaded += len;
 
 			// only update at most 10 times/sec so that we don't flood the UI:
 			clock_t now = clock();
-			if (now == -1 || downloaded_ == total_ ||
-				((double(now - last_update_) / CLOCKS_PER_SEC) >= 0.1)) {
-				auto_mutex lock(progress_mutex_);
+			if (now == -1 || _downloaded == _total ||
+				((double(now - _last_update) / CLOCKS_PER_SEC) >= 0.1)) {
+				auto_mutex lock(_progress_mutex);
 
 				// update download progress
-				progress_.downloaded = downloaded_;
-				progress_.file_size = total_;
-				last_update_ = now;
+				_progress.downloaded = _downloaded;
+				_progress.file_size = _total;
+				_last_update = now;
 			}
 
 			return true;
 		}
 
 		std::string get_fullpath() override {
-			return fullpath_;
+			return _fullpath;
 		}
 	};
 
 	static download_update_result download_update_func(download_update::impl* p_impl) {
-		download_update::impl& d_ = *p_impl;
+		download_update::impl& _d = *p_impl;
 
 		download_update_result result;
 		result.error.clear();
 		result.fullpath.clear();
 		result.success = false;
 
-		if (d_.url_.empty()) {
+		if (_d._url.empty()) {
 			result.error = "Download URL not specified";
 			result.success = false;
 			return result;
 		}
 
-		update_download_sink sink(d_.directory_, d_.progress_, d_.progress_mutex_);
+		update_download_sink sink(_d._directory, _d._progress, _d._progress_mutex);
 
-		result.success = download(d_.url_, sink, true, result.error);
+		result.success = download(_d._url, sink, true, result.error);
 		
 		sink.close();
 
@@ -150,14 +150,14 @@ public:
 	}
 };
 
-download_update::download_update() : d_(*new impl()) {}
+download_update::download_update() : _d(*new impl()) {}
 download_update::~download_update() {
-	if (d_.fut_.valid()) {
+	if (_d._fut.valid()) {
 		// to-do: add mechanism for stopping immediately
-		d_.fut_.get();
+		_d._fut.get();
 	}
 	
-	delete& d_;
+	delete& _d;
 }
 
 void download_update::start(const std::string& url,
@@ -167,17 +167,17 @@ void download_update::start(const std::string& url,
 		return;
 	}
 
-	d_.url_ = url;
-	d_.directory_ = directory;
+	_d._url = url;
+	_d._directory = directory;
 
 	// run task asynchronously
-	d_.fut_ = std::async(std::launch::async, d_.download_update_func, &d_);
+	_d._fut = std::async(std::launch::async, _d.download_update_func, &_d);
 	return;
 }
 
 bool download_update::downloading() {
-	if (d_.fut_.valid())
-		return d_.fut_.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
+	if (_d._fut.valid())
+		return _d._fut.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
 	else
 		return false;
 }
@@ -185,8 +185,8 @@ bool download_update::downloading() {
 bool download_update::downloading(download_info& progress) {
 	auto res = downloading();
 
-	auto_mutex lock(d_.progress_mutex_);
-	progress = d_.progress_;
+	auto_mutex lock(_d._progress_mutex);
+	progress = _d._progress;
 	return res;
 }
 
@@ -200,8 +200,8 @@ bool download_update::result(std::string& fullpath,
 		return false;
 	}
 
-	if (d_.fut_.valid()) {
-		auto result = d_.fut_.get();
+	if (_d._fut.valid()) {
+		auto result = _d._fut.get();
 		fullpath = result.fullpath;
 		error = result.error;
 		return result.success;

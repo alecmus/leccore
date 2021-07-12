@@ -39,17 +39,17 @@ bool liblec::leccore::parse_update_xml(const std::string& xml,
 	error.clear();
 	details = {};
 
-	check_update::update_info details_ = {};
-	if (!read_value(xml, "leccore.update.title", details_.title, error))
+	check_update::update_info _details = {};
+	if (!read_value(xml, "leccore.update.title", _details.title, error))
 		return false;
 
-	if (!read_value(xml, "leccore.update.description", details_.description, error))
+	if (!read_value(xml, "leccore.update.description", _details.description, error))
 		return false;
 
-	if (!read_value(xml, "leccore.update.version", details_.version, error))
+	if (!read_value(xml, "leccore.update.version", _details.version, error))
 		return false;
 
-	if (!read_value(xml, "leccore.update.date", details_.date, error))
+	if (!read_value(xml, "leccore.update.date", _details.date, error))
 		return false;
 
 	std::string architecture;
@@ -59,7 +59,7 @@ bool liblec::leccore::parse_update_xml(const std::string& xml,
 	architecture = "x86";
 #endif
 
-	if (!read_value(xml, "leccore.update." + architecture + ".download_url", details_.download_url, error))
+	if (!read_value(xml, "leccore.update." + architecture + ".download_url", _details.download_url, error))
 		return false;
 
 	std::string size;
@@ -69,7 +69,7 @@ bool liblec::leccore::parse_update_xml(const std::string& xml,
 		try {
 			std::stringstream ss;
 			ss << size;
-			ss >> details_.size;
+			ss >> _details.size;
 		}
 		catch (const std::exception& e) {
 			error = e.what();
@@ -77,9 +77,9 @@ bool liblec::leccore::parse_update_xml(const std::string& xml,
 		}
 	}
 
-	if (!read_value(xml, "leccore.update." + architecture + ".hash.sha256", details_.hash, error))
+	if (!read_value(xml, "leccore.update." + architecture + ".hash.sha256", _details.hash, error))
 		return false;
 
-	details = details_;
+	details = _details;
 	return true;
 }

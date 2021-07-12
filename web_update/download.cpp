@@ -42,17 +42,17 @@
 #pragma comment(lib, "wininet.lib")
 
 class inet_handle {
-	HINTERNET handle_;
+	HINTERNET _handle;
 public:
 	inet_handle(HINTERNET handle) :
-		handle_(handle) {}
+		_handle(handle) {}
 
 	~inet_handle() {
-		if (handle_)
-			InternetCloseHandle(handle_);
+		if (_handle)
+			InternetCloseHandle(_handle);
 	}
 
-	operator HINTERNET() const { return handle_; }
+	operator HINTERNET() const { return _handle; }
 };
 
 std::string make_user_agent() {

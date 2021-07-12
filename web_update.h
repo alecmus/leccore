@@ -76,7 +76,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Default constructor and copying an object of this class are not allowed.
 			check_update() = delete;
@@ -133,7 +133,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Copying an object of this class is not allowed
 			download_update(const download_update&) = delete;

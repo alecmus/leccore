@@ -88,7 +88,7 @@ namespace liblec {
 		private:
 			friend auto_mutex;
 			class impl;
-			impl& d_;
+			impl& _d;
 		};
 
 		/// <summary>
@@ -116,7 +116,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 		};
 	}
 }

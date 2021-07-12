@@ -131,11 +131,11 @@ namespace liblec {
 			if (!tokens.empty())
 				return tokens;
 
-			impl d_;
+			impl _d;
 
-			tokens.reserve(d_.size());
+			tokens.reserve(_d.size());
 
-			for (const auto& it : d_)
+			for (const auto& it : _d)
 				tokens.push_back(it);
 
 			return tokens;

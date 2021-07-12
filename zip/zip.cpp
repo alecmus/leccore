@@ -27,34 +27,34 @@ using namespace liblec::leccore;
 
 class zip::impl {
 public:
-	std::string filename_;
-	std::vector<std::string> entries_;
-	compression_level level_ = compression_level::normal;
-	bool add_root_;
+	std::string _filename;
+	std::vector<std::string> _entries;
+	compression_level _level = compression_level::normal;
+	bool _add_root;
 
 	struct zip_result {
 		bool success = false;
 		std::string error;
 	};
 
-	std::future<zip_result> fut_;
+	std::future<zip_result> _fut;
 
 	impl() :
-		add_root_(true) {}
+		_add_root(true) {}
 	~impl() {}
 
 	static zip_result zip_func(impl* p_impl) {
-		impl& d_ = *p_impl;
+		impl& _d = *p_impl;
 
 		zip_result result = {};
 
-		if (d_.filename_.empty()) {
+		if (_d._filename.empty()) {
 			result.error = "Destination file not specified";
 			result.success = false;
 			return result;
 		}
 
-		if (d_.entries_.empty()) {
+		if (_d._entries.empty()) {
 			result.error = "Zip archive entries not specified";
 			result.success = false;
 			return result;
@@ -62,7 +62,7 @@ public:
 
 		try {
 			// add trailing slashes to directories (if missing)
-			for (auto& it : d_.entries_) {
+			for (auto& it : _d._entries) {
 				std::filesystem::path path(it);
 				if (std::filesystem::exists(path) && std::filesystem::is_directory(path)) {
 					if (it[it.length() - 1] != '\\')
@@ -70,7 +70,7 @@ public:
 				}
 			}
 
-			Poco::File file(d_.filename_);
+			Poco::File file(_d._filename);
 
 			if (file.exists() && !file.canWrite()) {
 				result.error = "File cannot be written to";
@@ -78,10 +78,10 @@ public:
 				return result;
 			}
 
-			std::ofstream out(d_.filename_, std::ios::binary | std::ios::trunc);
+			std::ofstream out(_d._filename, std::ios::binary | std::ios::trunc);
 			Poco::Zip::Compress compress(out, true);
 
-			for (const auto& it : d_.entries_) {
+			for (const auto& it : _d._entries) {
 				Poco::File file(it);
 
 				if (file.exists()) {
@@ -89,7 +89,7 @@ public:
 
 					Poco::Zip::ZipCommon::CompressionLevel level;
 
-					switch (d_.level_) {
+					switch (_d._level) {
 						break;
 					case liblec::leccore::zip::compression_level::maximum:
 						level = Poco::Zip::ZipCommon::CompressionLevel::CL_MAXIMUM;
@@ -108,12 +108,12 @@ public:
 					}
 
 					Poco::Zip::ZipCommon::CompressionMethod method =
-						d_.level_ == compression_level::none ?
+						_d._level == compression_level::none ?
 						Poco::Zip::ZipCommon::CompressionMethod::CM_STORE : Poco::Zip::ZipCommon::CompressionMethod::CM_DEFLATE;
 
 					if (entry.isDirectory()) {
 						entry.makeDirectory();
-						const bool add_root = d_.add_root_ ? true : d_.entries_.size() > 1;
+						const bool add_root = _d._add_root ? true : _d._entries.size() > 1;
 						compress.addRecursive(entry, level, !add_root);
 					}
 					else {
@@ -140,12 +140,12 @@ public:
 	}
 };
 
-zip::zip() : d_(*new impl()) {}
+zip::zip() : _d(*new impl()) {}
 zip::~zip() {
-	if (d_.fut_.valid())
-		d_.fut_.get();
+	if (_d._fut.valid())
+		_d._fut.get();
 
-	delete& d_;
+	delete& _d;
 }
 
 void zip::start(const std::string& filename,
@@ -156,18 +156,18 @@ void zip::start(const std::string& filename,
 		return;
 	}
 
-	d_.filename_ = filename;
-	d_.entries_ = entries;
-	d_.level_ = level;
+	_d._filename = filename;
+	_d._entries = entries;
+	_d._level = level;
 
 	// run task asynchronously
-	d_.fut_ = std::async(std::launch::async, d_.zip_func, &d_);
+	_d._fut = std::async(std::launch::async, _d.zip_func, &_d);
 	return;
 }
 
 bool zip::zipping() {
-	if (d_.fut_.valid())
-		return d_.fut_.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
+	if (_d._fut.valid())
+		return _d._fut.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
 	else
 		return false;
 }
@@ -180,8 +180,8 @@ bool zip::result(std::string& error) {
 		return false;
 	}
 
-	if (d_.fut_.valid()) {
-		auto result = d_.fut_.get();
+	if (_d._fut.valid()) {
+		auto result = _d._fut.get();
 		error = result.error;
 		return result.success;
 	}

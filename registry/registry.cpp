@@ -18,10 +18,10 @@ using namespace liblec::leccore;
 
 class registry::impl {
 public:
-	const HKEY root_;
+	const HKEY _root;
 
 	impl(scope registry_scope) :
-		root_(registry_scope == scope::local_machine ? HKEY_LOCAL_MACHINE : HKEY_CURRENT_USER) {}
+		_root(registry_scope == scope::local_machine ? HKEY_LOCAL_MACHINE : HKEY_CURRENT_USER) {}
 	~impl() {}
 
 	// adapted from https://msdn.microsoft.com/en-us/library/windows/desktop/ms724256(v=vs.85).aspx
@@ -124,15 +124,15 @@ public:
 	}
 };
 
-registry::registry(scope registry_scope) : d_(*new impl(registry_scope)) {}
-registry::~registry() { delete& d_; }
+registry::registry(scope registry_scope) : _d(*new impl(registry_scope)) {}
+registry::~registry() { delete& _d; }
 
 bool registry::do_read(const std::string& path, const std::string& value_name,
 	std::string& value, std::string& error) {
 	error.clear();
 	value.clear();
 	HKEY h_key;
-	LONG result = RegOpenKeyExA(d_.root_, path.c_str(),
+	LONG result = RegOpenKeyExA(_d._root, path.c_str(),
 		0, KEY_QUERY_VALUE, &h_key);
 
 	if (result != ERROR_SUCCESS) {
@@ -207,7 +207,7 @@ bool registry::do_read_binary(const std::string& path,
 	error.clear();
 	data.clear();
 	HKEY h_key;
-	LONG result = RegOpenKeyExA(d_.root_, path.c_str(),
+	LONG result = RegOpenKeyExA(_d._root, path.c_str(),
 		0, KEY_QUERY_VALUE, &h_key);
 
 	if (result != ERROR_SUCCESS) {
@@ -279,7 +279,7 @@ bool registry::do_write(const std::string& path,
 	const std::string sub_key = path;
 
 	HKEY h_key;
-	LONG result = RegCreateKeyExA(d_.root_, sub_key.c_str(),
+	LONG result = RegCreateKeyExA(_d._root, sub_key.c_str(),
 		0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE,
 		NULL, &h_key, NULL);
 
@@ -311,7 +311,7 @@ bool registry::do_write_binary(const std::string& path,
 	const std::string sub_key = path;
 
 	HKEY h_key;
-	LONG result = RegCreateKeyExA(d_.root_, sub_key.c_str(),
+	LONG result = RegCreateKeyExA(_d._root, sub_key.c_str(),
 		0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE,
 		NULL, &h_key, NULL);
 
@@ -340,7 +340,7 @@ bool registry::do_delete(const std::string& path,
 	const std::string& value_name, std::string& error) {
 	error.clear();
 	HKEY h_key;
-	LONG result = RegOpenKeyExA(d_.root_, path.c_str(),
+	LONG result = RegOpenKeyExA(_d._root, path.c_str(),
 		0, KEY_ALL_ACCESS, &h_key);
 
 	if (result == ERROR_SUCCESS) {
@@ -377,7 +377,7 @@ bool registry::do_recursive_delete(const std::string& path,
 	std::string& error) {
 	error.clear();
 	std::vector<std::string> sub_keys, values;
-	d_.registry_enumerate(d_.root_, path, sub_keys, values, error);
+	_d.registry_enumerate(_d._root, path, sub_keys, values, error);
 
 	for (auto& it : sub_keys) {
 		if (!do_recursive_delete(path + "\\" + it, error))

@@ -47,7 +47,7 @@ namespace liblec {
 
 		private:
 			class impl;
-			impl& d_;
+			impl& _d;
 
 			// Copying an object of this class is not allowed
 			app_version_info(const app_version_info&) = delete;

@@ -27,27 +27,27 @@ using namespace liblec::leccore;
 
 class unzip::impl {
 public:
-	std::string filename_;
-	std::string directory_;
-	unzip_log log_;
+	std::string _filename;
+	std::string _directory;
+	unzip_log _log;
 
 	struct unzip_result {
 		bool success = false;
 		std::string error;
 	};
 
-	std::future<unzip_result> fut_;
+	std::future<unzip_result> _fut;
 
 	impl() {}
 	~impl() {}
 
 	void on_error(const void*, std::pair<const Poco::Zip::ZipLocalFileHeader, const std::string>& info) {
-		log_.error_list.push_back(info.second);
+		_log.error_list.push_back(info.second);
 	}
 
 	void on_ok(const void*, std::pair<const Poco::Zip::ZipLocalFileHeader, const Poco::Path>& info) {
-		log_.message_list.push_back("Extracting: " + info.second.toString(Poco::Path::PATH_UNIX));
-		std::string path = directory_ + info.second.toString(Poco::Path::PATH_WINDOWS);
+		_log.message_list.push_back("Extracting: " + info.second.toString(Poco::Path::PATH_UNIX));
+		std::string path = _directory + info.second.toString(Poco::Path::PATH_WINDOWS);
 
 		// set file last modified time
 		Poco::File file(path);
@@ -61,19 +61,19 @@ public:
 	}
 
 	static unzip_result unzip_func(impl* p_impl) {
-		impl& d_ = *p_impl;
+		impl& _d = *p_impl;
 
 		unzip_result result = {};
 
-		if (d_.filename_.empty()) {
+		if (_d._filename.empty()) {
 			result.error = "File not specified";
 			result.success = false;
 			return result;
 		}
 
 		try {
-			if (!d_.directory_.empty()) {
-				std::filesystem::path path(d_.directory_);
+			if (!_d._directory.empty()) {
+				std::filesystem::path path(_d._directory);
 				if (std::filesystem::exists(path) && !std::filesystem::is_directory(path)) {
 					result.error = "Invalid output directory";
 					result.success = false;
@@ -81,16 +81,16 @@ public:
 				}
 			}
 
-			if (!d_.directory_.empty()) {
+			if (!_d._directory.empty()) {
 				// add trailing slash if it's missing
-				if (d_.directory_[d_.directory_.length() - 1] != '\\')
-					d_.directory_ += "\\";
+				if (_d._directory[_d._directory.length() - 1] != '\\')
+					_d._directory += "\\";
 
-				std::filesystem::path path(d_.directory_);
+				std::filesystem::path path(_d._directory);
 				std::filesystem::create_directories(path);
 			}
 
-			std::ifstream in(d_.filename_, std::ios::binary);
+			std::ifstream in(_d._filename, std::ios::binary);
 
 			if (!in.is_open()) {
 				result.error = "Error opening file";
@@ -98,7 +98,7 @@ public:
 				return result;
 			}
 
-			Poco::Zip::Decompress decompress(in, d_.directory_);
+			Poco::Zip::Decompress decompress(in, _d._directory);
 
 			decompress.EError += Poco::Delegate<unzip::impl,
 				std::pair<const Poco::Zip::ZipLocalFileHeader, const std::string> >(p_impl, &unzip::impl::on_error);
@@ -128,12 +128,12 @@ public:
 	}
 };
 
-unzip::unzip() : d_(*new impl()) {}
+unzip::unzip() : _d(*new impl()) {}
 unzip::~unzip() {
-	if (d_.fut_.valid())
-		d_.fut_.get();
+	if (_d._fut.valid())
+		_d._fut.get();
 
-	delete& d_;
+	delete& _d;
 }
 
 void unzip::start(const std::string& filename,
@@ -143,18 +143,18 @@ void unzip::start(const std::string& filename,
 		return;
 	}
 
-	d_.filename_ = filename;
-	d_.directory_ = directory;
-	d_.log_ = {};
+	_d._filename = filename;
+	_d._directory = directory;
+	_d._log = {};
 
 	// run task asynchronously
-	d_.fut_ = std::async(std::launch::async, d_.unzip_func, &d_);
+	_d._fut = std::async(std::launch::async, _d.unzip_func, &_d);
 	return;
 }
 
 bool unzip::unzipping() {
-	if (d_.fut_.valid())
-		return d_.fut_.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
+	if (_d._fut.valid())
+		return _d._fut.wait_for(std::chrono::seconds{ 0 }) != std::future_status::ready;
 	else
 		return false;
 }
@@ -168,14 +168,14 @@ bool unzip::result(unzip_log& log, std::string& error) {
 		return false;
 	}
 
-	if (d_.fut_.valid()) {
-		auto result = d_.fut_.get();
+	if (_d._fut.valid()) {
+		auto result = _d._fut.get();
 		error = result.error;
-		log = d_.log_;
+		log = _d._log;
 		return result.success;
 	}
 
 	error = "unexpected error";
-	log = d_.log_;
+	log = _d._log;
 	return false;
 }

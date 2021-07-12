@@ -22,19 +22,19 @@ using namespace liblec::leccore;
 
 class app_version_info::impl {
 public:
-	HMODULE h_module_ = nullptr;
-	std::string app_name_;
-	std::string app_version_;
-	std::string company_name_;
+	HMODULE _h_module = nullptr;
+	std::string _app_name;
+	std::string _app_version;
+	std::string _company_name;
 
 	impl() = delete;
 	impl(const std::string& app_name,
 		const std::string& app_version,
 		const std::string& company_name) :
-		app_name_(app_name),
-		app_version_(app_version),
-		company_name_(company_name),
-		h_module_(GetModuleHandle(nullptr)) {}
+		_app_name(app_name),
+		_app_version(app_version),
+		_company_name(company_name),
+		_h_module(GetModuleHandle(nullptr)) {}
 	~impl() {}
 
 	// Helper class for RIIA handling of allocated buffers
@@ -97,7 +97,7 @@ public:
 		std::string& value, std::string& error) {
 		char exe_file_name[MAX_PATH + 1];
 
-		if (!GetModuleFileNameA(h_module_, exe_file_name, MAX_PATH)) {
+		if (!GetModuleFileNameA(_h_module, exe_file_name, MAX_PATH)) {
 			error = get_last_error();
 			return false;
 		}
@@ -124,15 +124,15 @@ public:
 		const std::string key = "\\StringFileInfo\\" + language + "\\" + field;
 		LPSTR key_str = (LPSTR)key.c_str(); // explicit cast to work around VC2005 bug
 
-		CHAR* value_;
+		CHAR* _value;
 		UINT len;
 
-		if (!VerQueryValueA(fi.data, key_str, (LPVOID*)&value_, &len)) {
+		if (!VerQueryValueA(fi.data, key_str, (LPVOID*)&_value, &len)) {
 			error = "Executable doesn't have required key in StringFileInfo";
 			return false;
 		}
 
-		value = value_;
+		value = _value;
 		return true;
 	}
 };
@@ -143,31 +143,31 @@ app_version_info::app_version_info() :
 app_version_info::app_version_info(const std::string& app_name,
 	const std::string& app_version,
 	const std::string& company_name) :
-	d_(*new impl(app_name, app_version, company_name)) {}
+	_d(*new impl(app_name, app_version, company_name)) {}
 
 bool app_version_info::get_app_name(std::string& app_name, std::string& error) {
-	if (d_.app_name_.empty()) {
-		if (!d_.get_version_info_field("ProductName", d_.app_name_, error))
+	if (_d._app_name.empty()) {
+		if (!_d.get_version_info_field("ProductName", _d._app_name, error))
 			return false;
 	}
-	app_name = d_.app_name_;
+	app_name = _d._app_name;
 	return true;
 }
 
 bool app_version_info::get_app_version(std::string& app_version, std::string& error) {
-	if (d_.app_version_.empty()) {
-		if (!d_.get_version_info_field("FileVersion", d_.app_version_, error))
+	if (_d._app_version.empty()) {
+		if (!_d.get_version_info_field("FileVersion", _d._app_version, error))
 			return false;
 	}
-	app_version = d_.app_version_;
+	app_version = _d._app_version;
 	return true;
 }
 
 bool app_version_info::get_company_name(std::string& company_name, std::string& error) {
-	if (d_.company_name_.empty()) {
-		if (!d_.get_version_info_field("CompanyName", d_.company_name_, error))
+	if (_d._company_name.empty()) {
+		if (!_d.get_version_info_field("CompanyName", _d._company_name, error))
 			return false;
 	}
-	company_name = d_.company_name_;
+	company_name = _d._company_name;
 	return true;
 }

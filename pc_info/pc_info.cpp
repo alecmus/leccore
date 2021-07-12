@@ -57,24 +57,24 @@ public:
 		string& error) {
 		error.clear();
 		data.clear();
-		vector<bstr_t> properties_(properties.size());
+		vector<bstr_t> _properties(properties.size());
 		for (size_t i = 0; i < properties.size(); i++)
-			properties_[i] = properties[i].c_str();
+			_properties[i] = properties[i].c_str();
 
 		return get_wmi_data(
 			path.c_str(),
 			class_name.c_str(),
-			properties_,
+			_properties,
 			data,
 			error);
 	}
 };
 
 pc_info::pc_info() :
-	d_(*new impl()) {}
+	_d(*new impl()) {}
 
 pc_info::~pc_info() {
-	delete& d_;
+	delete& _d;
 }
 
 bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
@@ -86,7 +86,7 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 			error.clear();
 			serial.clear();
 			map<string, vector<any>> data;
-			if (d_.get_info("ROOT\\CIMV2", "Win32_Bios", { "SerialNumber" }, data, error)) {
+			if (_d.get_info("ROOT\\CIMV2", "Win32_Bios", { "SerialNumber" }, data, error)) {
 				try {
 					if (!data.empty() && !data.at("SerialNumber").empty())
 						serial = any_cast<string>(data.at("SerialNumber")[0]);
@@ -106,7 +106,7 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 			error.clear();
 			serial.clear();
 			map<string, vector<any>> data;
-			if (d_.get_info("ROOT\\CIMV2", "Win32_BaseBoard", { "SerialNumber" }, data, error)) {
+			if (_d.get_info("ROOT\\CIMV2", "Win32_BaseBoard", { "SerialNumber" }, data, error)) {
 				try {
 					if (!data.empty() && !data.at("SerialNumber").empty())
 						serial = any_cast<string>(data.at("SerialNumber")[0]);
@@ -132,7 +132,7 @@ bool pc_info::pc(pc_info::pc_details& info, std::string& error) {
 	}
 
 	map<string, vector<any>> data;
-	if (d_.get_info("ROOT\\CIMV2", "Win32_ComputerSystem",
+	if (_d.get_info("ROOT\\CIMV2", "Win32_ComputerSystem",
 		{ "Name", "Manufacturer", "Model", "SystemType" }, data, error)) {
 		try {
 			for (const auto& [property, values] : data) {
@@ -167,7 +167,7 @@ bool pc_info::os(os_info& info,
 	error.clear();
 	info = {};
 	map<string, vector<any>> data;
-	if (d_.get_info("ROOT\\CIMV2",
+	if (_d.get_info("ROOT\\CIMV2",
 		"Win32_OperatingSystem", { "Caption", "OSArchitecture", "Version" }, data, error)) {
 		try {
 			for (const auto& [property, values] : data) {
@@ -198,7 +198,7 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 	error.clear();
 	info.clear();
 	map<string, vector<any>> data;
-	if (d_.get_info("ROOT\\CIMV2",
+	if (_d.get_info("ROOT\\CIMV2",
 		"Win32_Processor",
 		{ "Name", "Status", "Manufacturer", "NumberOfCores", "NumberOfLogicalProcessors", "MaxClockSpeed" },
 		data, error)) {
@@ -248,7 +248,7 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 	error.clear();
 	info.clear();
 	map<string, vector<any>> data;
-	if (d_.get_info("ROOT\\CIMV2", "Win32_VideoController",
+	if (_d.get_info("ROOT\\CIMV2", "Win32_VideoController",
 		{ "Name", "Status", "CurrentHorizontalResolution", "CurrentVerticalResolution", "CurrentRefreshRate", "AdapterRAM" },
 		data, error)) {
 		try {
@@ -391,7 +391,7 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 	error.clear();
 	info = {};
 	map<string, vector<any>> data;
-	if (d_.get_info("ROOT\\CIMV2", "Win32_PhysicalMemory",
+	if (_d.get_info("ROOT\\CIMV2", "Win32_PhysicalMemory",
 		{ "Tag", "MemoryType", "FormFactor", "PartNumber", "Status", "Manufacturer", "Capacity", "Speed" },
 		data, error)) {
 		try {
@@ -619,7 +619,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 	// key is device_id
 	auto get_extra = [&](std::map<std::string, extra_drive_info>& extra_info, std::string& error) {
 		map<string, vector<any>> data;
-		if (d_.get_info("Root\\Microsoft\\Windows\\Storage", "MSFT_PhysicalDisk",
+		if (_d.get_info("Root\\Microsoft\\Windows\\Storage", "MSFT_PhysicalDisk",
 			{ "DeviceID", "FriendlyName", "MediaType", "BusType" },
 			data, error)) {
 			try {
@@ -737,7 +737,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 		return false;
 
 	map<string, vector<any>> data;
-	if (d_.get_info("ROOT\\CIMV2", "Win32_DiskDrive",
+	if (_d.get_info("ROOT\\CIMV2", "Win32_DiskDrive",
 		{ "Index", "DeviceID", "Model", "SerialNumber", "MediaType", "Status", "Size" },
 		data, error)) {
 		try {

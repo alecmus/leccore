@@ -21,20 +21,20 @@ using namespace liblec::leccore::database;
 
 class sqlcipher_connection::impl {
 public:
-	sqlite3* db_;
+	sqlite3* _db;
 
 	impl() :
-		db_(nullptr) {}
+		_db(nullptr) {}
 	~impl() {
-		if (db_) {
-			sqlite3_close(db_);
-			db_ = nullptr;
+		if (_db) {
+			sqlite3_close(_db);
+			_db = nullptr;
 		}
 	}
 
 	std::string sqlite_error() {
-		if (db_) {
-			std::string error = sqlite3_errmsg(db_);
+		if (_db) {
+			std::string error = sqlite3_errmsg(_db);
 			if (error == "not an error") error.clear();
 			if (error.length() > 0) error[0] = toupper(error[0]);
 			return error;
@@ -48,10 +48,10 @@ public:
 sqlcipher_connection::sqlcipher_connection(const std::string& file_name,
 	const std::string& password) :
 	connection_base(file_name, password),
-	d_(*new impl()) {}
+	_d(*new impl()) {}
 
 sqlcipher_connection::~sqlcipher_connection() {
-	delete& d_;
+	delete& _d;
 }
 
 bool sqlcipher_connection::connect(std::string& error) {
@@ -59,44 +59,44 @@ bool sqlcipher_connection::connect(std::string& error) {
 	if (connected()) return true;
 
 	int error_code = 0;
-	if (password_.empty()) {
-		error_code = sqlite3_open_v2(connection_string_.c_str(), &d_.db_,
+	if (_password.empty()) {
+		error_code = sqlite3_open_v2(_connection_string.c_str(), &_d._db,
 			SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX, NULL);
-		error_code = sqlite3_exec(d_.db_, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
+		error_code = sqlite3_exec(_d._db, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
 	}
 	else {
-		error_code = sqlite3_open_v2(connection_string_.c_str(), &d_.db_,
+		error_code = sqlite3_open_v2(_connection_string.c_str(), &_d._db,
 			SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX, NULL);
 
 		sqlite3_stmt* stm = nullptr;
 		const char* pzTail = nullptr;
 
 		// key the database
-		auto pragma_string = "PRAGMA key = '" + password_ + "';";
-		sqlite3_prepare(d_.db_, pragma_string.c_str(), -1, &stm, &pzTail);
+		auto pragma_string = "PRAGMA key = '" + _password + "';";
+		sqlite3_prepare(_d._db, pragma_string.c_str(), -1, &stm, &pzTail);
 		sqlite3_step(stm);
 		sqlite3_finalize(stm);
 
 		// test if key is correct
-		error_code = sqlite3_exec(d_.db_, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
+		error_code = sqlite3_exec(_d._db, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
 
 		if (error_code == SQLITE_NOTADB) {
-			error = d_.sqlite_error() + " or password is incorrect";
+			error = _d.sqlite_error() + " or password is incorrect";
 
 			// close database
-			sqlite3_close(d_.db_);
-			d_.db_ = nullptr;
+			sqlite3_close(_d._db);
+			_d._db = nullptr;
 			return false;
 		}
 	}
 
 	if (error_code != SQLITE_OK) {
 		// an error occured
-		error = d_.sqlite_error();
+		error = _d.sqlite_error();
 
 		// close database
-		sqlite3_close(d_.db_);
-		d_.db_ = nullptr;
+		sqlite3_close(_d._db);
+		_d._db = nullptr;
 		return false;
 	}
 
@@ -106,15 +106,15 @@ bool sqlcipher_connection::connect(std::string& error) {
 
 bool sqlcipher_connection::disconnect(std::string& error) {
 	error.clear();
-	if (!d_.db_)
+	if (!_d._db)
 		return true;
 
-	if (sqlite3_close(d_.db_) != SQLITE_OK) {
-		error = d_.sqlite_error();
+	if (sqlite3_close(_d._db) != SQLITE_OK) {
+		error = _d.sqlite_error();
 		return false;
 	}
 
-	d_.db_ = nullptr;
+	_d._db = nullptr;
 	set_connected(false);
 	return true;
 }
@@ -123,7 +123,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 	const std::vector<std::any>& values,
 	std::string& error) {
 	error.clear();
-	if (!d_.db_) {
+	if (!_d._db) {
 		error = "Database not open";
 		return false;
 	}
@@ -144,7 +144,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 
 	// prepare statement
 	sqlite3_stmt* statement = nullptr;
-	if (sqlite3_prepare(d_.db_, sql.c_str(), -1, &statement, 0) == SQLITE_OK) {
+	if (sqlite3_prepare(_d._db, sql.c_str(), -1, &statement, 0) == SQLITE_OK) {
 		// get number of bind parameters
 		const int bind_parameter_count = sqlite3_bind_parameter_count(statement);
 
@@ -156,7 +156,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 			sqlite3_finalize(statement);
 
 			if (result != SQLITE_OK) {
-				error = d_.sqlite_error();
+				error = _d.sqlite_error();
 				return false;
 			}
 
@@ -182,7 +182,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 					auto integer = std::any_cast<int>(value);
 
 					if (sqlite3_bind_int(statement, index, integer) != SQLITE_OK) {
-						error = d_.sqlite_error();
+						error = _d.sqlite_error();
 						sqlite3_finalize(statement);
 						return false;
 					}
@@ -193,7 +193,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 					auto f = std::any_cast<float>(value);
 
 					if (sqlite3_bind_double(statement, index, f) != SQLITE_OK) {
-						error = d_.sqlite_error();
+						error = _d.sqlite_error();
 						sqlite3_finalize(statement);
 						return false;
 					}
@@ -204,7 +204,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 					auto d = std::any_cast<double>(value);
 
 					if (sqlite3_bind_double(statement, index, d) != SQLITE_OK) {
-						error = d_.sqlite_error();
+						error = _d.sqlite_error();
 						sqlite3_finalize(statement);
 						return false;
 					}
@@ -216,7 +216,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 					auto length = (int)strlen(buffer);
 
 					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
-						error = d_.sqlite_error();
+						error = _d.sqlite_error();
 						sqlite3_finalize(statement);
 						return false;
 					}
@@ -230,7 +230,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 					auto length = (int)data.length();
 
 					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
-						error = d_.sqlite_error();
+						error = _d.sqlite_error();
 						sqlite3_finalize(statement);
 						return false;
 					}
@@ -244,7 +244,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 					auto size = (int)data.length();
 
 					if (sqlite3_bind_blob(statement, index, buffer, size, SQLITE_STATIC) != SQLITE_OK) {
-						error = d_.sqlite_error();
+						error = _d.sqlite_error();
 						sqlite3_finalize(statement);
 						return false;
 					}
@@ -261,14 +261,14 @@ bool sqlcipher_connection::execute(const std::string& sql,
 		sqlite3_finalize(statement);
 
 		if (result != SQLITE_OK) {
-			error = d_.sqlite_error();
+			error = _d.sqlite_error();
 			return false;
 		}
 
 		return true;
 	}
 	else {
-		error = d_.sqlite_error();
+		error = _d.sqlite_error();
 		return false;
 	}
 }
@@ -279,7 +279,7 @@ bool sqlcipher_connection::execute_query(const std::string& sql, table& results,
 	results.columns.clear();
 	results.data.clear();
 
-	if (!d_.db_) {
+	if (!_d._db) {
 		error = "Database not open";
 		return false;
 	}
@@ -287,7 +287,7 @@ bool sqlcipher_connection::execute_query(const std::string& sql, table& results,
 	// prepare statement
 	sqlite3_stmt* statement = nullptr;
 
-	if (sqlite3_prepare_v2(d_.db_, sql.c_str(), -1, &statement, 0) == SQLITE_OK) {
+	if (sqlite3_prepare_v2(_d._db, sql.c_str(), -1, &statement, 0) == SQLITE_OK) {
 		const int columns = sqlite3_column_count(statement);
 		int result = SQLITE_OK;
 
@@ -367,12 +367,12 @@ bool sqlcipher_connection::execute_query(const std::string& sql, table& results,
 		sqlite3_finalize(statement);
 
 		if (result != SQLITE_OK) {
-			error = d_.sqlite_error();
+			error = _d.sqlite_error();
 			return false;
 		}
 	}
 	else {
-		error = d_.sqlite_error();
+		error = _d.sqlite_error();
 		return false;
 	}
 
