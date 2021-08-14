@@ -60,7 +60,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 }
 
 std::string liblec::leccore::version() {
-	return leccorename + std::string(" ") + leccoreversion + std::string(" ") + leccoredate;
+	return leccorename + std::string(" ") + leccoreversion + std::string(", ") + leccoredate;
 }
 
 namespace nmReadableSize {

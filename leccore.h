@@ -37,7 +37,7 @@ namespace liblec {
 	namespace leccore {
 		/// <summary>Get the version of the leccore library.</summary>
 		/// <returns>Returns the version number as a string in the form
-		/// "leccore 1.0.0 11 May 2021".</returns>
+		/// "leccore 1.0.0, 11 May 2021".</returns>
 		std::string leccore_api version();
 
 		/// <summary>
