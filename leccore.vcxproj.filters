@@ -208,6 +208,9 @@
     <ClCompile Include="system\commandline_arguments.cpp">
       <Filter>leccore\system</Filter>
     </ClCompile>
+    <ClCompile Include="system\shell.cpp">
+      <Filter>leccore\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">

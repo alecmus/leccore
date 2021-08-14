@@ -79,5 +79,15 @@ namespace liblec {
 		private:
 			class impl;
 		};
+
+		/// <summary>Shell helper class.</summary>
+		class leccore_api shell {
+		public:
+			/// <summary>Open a resource using the Operating System default action, equivalent to a double click action.</summary>
+			/// <param name="path">The path to the resource, e.g. "C:\", "C:\Files\MyFile.pdf" or "https://github.com/alecmus/leccore".</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if the operation is successful, else false.</returns>
+			static const bool open(const std::string& path, std::string& error);
+		};
 	}
 }
