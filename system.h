@@ -88,6 +88,14 @@ namespace liblec {
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if the operation is successful, else false.</returns>
 			static const bool open(const std::string& path, std::string& error);
+
+			/// <summary>Create a process.</summary>
+			/// <param name="fullpath">The full path to the executable file.</param>
+			/// <param name="args">The list of command-line arguments.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if the operation is successful, else false.</returns>
+			static const bool create_process(const std::string& fullpath,
+				const std::vector<std::string>& args, std::string& error);
 		};
 	}
 }
