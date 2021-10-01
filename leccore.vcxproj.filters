@@ -119,6 +119,9 @@
     <ClInclude Include="system.h">
       <Filter>leccore</Filter>
     </ClInclude>
+    <ClInclude Include="pc_info\get_monitor_info.h">
+      <Filter>leccore\pc_info</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="leccore.cpp">
@@ -210,6 +213,9 @@
     </ClCompile>
     <ClCompile Include="system\shell.cpp">
       <Filter>leccore\system</Filter>
+    </ClCompile>
+    <ClCompile Include="pc_info\get_monitor_info.cpp">
+      <Filter>leccore\pc_info</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

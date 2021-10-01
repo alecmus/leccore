@@ -107,6 +107,35 @@ namespace liblec {
 				unsigned long long total_graphics_memory;
 			};
 
+			/// <summary>Monitor video mode type.</summary>
+			using video_mode = struct {
+				/// <summary>The current horizontal resolution of the display,
+				/// in pixels, e.g. 1920.</summary>
+				int horizontal_resolution;
+
+				/// <summary>The current vertical resolution of the display,
+				/// in pixels, e.g. 1080.</summary>
+				int vertical_resolution;
+
+				/// <summary>The resolution name, e.g. Full HD.</summary>
+				std::string resolution_name;
+
+				/// <summary>The pixel clock rate, in Hz.</summary>
+				unsigned long long pixel_clock_rate;
+			};
+
+			/// <summary>Monitor information type.</summary>
+			using monitor_info = struct {
+				/// <summary>The name of the monitor.</summary>
+				std::string name;
+
+				/// <summary>The manufacturer of the monitor, e.g. Lenovo.</summary>
+				std::string manufacturer;
+
+				/// <summary>The supported video modes, as defined in the <see cref="video_mode"></see> type.</summary>
+				std::vector<video_mode> supported_modes;
+			};
+
 			/// <summary>Random Access Memory chip type.</summary>
 			using ram_chip = struct {
 				/// <summary>The tag of the RAM chip.</summary>
@@ -352,6 +381,14 @@ namespace liblec {
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
 			bool gpu(std::vector<gpu_info>& info,
+				std::string& error);
+
+			/// <summary>Get information about the PC's monitors.</summary>
+			/// <param name="info">A list of monitors as defined by the
+			/// <see cref="monitor_info"></see> type.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			bool monitor(std::vector<monitor_info>& info,
 				std::string& error);
 
 			/// <summary>Get PC Random Access Memory information.</summary>

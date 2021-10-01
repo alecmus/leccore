@@ -10,6 +10,7 @@
 
 #include "../pc_info.h"
 #include "get_power_info.h"
+#include "get_monitor_info.h"
 #include "../leccore_common.h"
 #include "get_wmi_data.h"
 #include <map>
@@ -385,6 +386,12 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 	}
 	else
 		return false;
+}
+
+bool liblec::leccore::pc_info::monitor(std::vector<monitor_info>& info, std::string& error) {
+	error.clear();
+	info.clear();
+	return get_monitor_info(info, error);
 }
 
 bool pc_info::ram(ram_info& info, std::string& error) {
