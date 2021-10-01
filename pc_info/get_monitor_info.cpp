@@ -507,6 +507,58 @@ bool get_other_monitor_info(std::vector<pc_info::monitor_info>& info,
 			VariantClear(&vtProp);
 		}
 
+		// get manufacture year
+		{
+			VARIANT vtProp;
+
+			// Get the value of the property
+			CIMTYPE type;
+			result = p_class_object->Get(L"YearOfManufacture", 0, &vtProp, &type, 0);
+
+			if (FAILED(result)) {
+				VariantClear(&vtProp);
+
+				p_svc->Release();
+				p_loc->Release();
+
+				error = convert_string(_com_error(result).ErrorMessage());
+				return false;
+			}
+
+			if (type == CIM_UINT16) {
+				this_monitor_info.year_of_manufacture = static_cast<SHORT>(vtProp.ulVal);
+				trim(this_monitor_info.name);
+			}
+
+			VariantClear(&vtProp);
+		}
+
+		// get manufacture week
+		{
+			VARIANT vtProp;
+
+			// Get the value of the property
+			CIMTYPE type;
+			result = p_class_object->Get(L"WeekOfManufacture", 0, &vtProp, &type, 0);
+
+			if (FAILED(result)) {
+				VariantClear(&vtProp);
+
+				p_svc->Release();
+				p_loc->Release();
+
+				error = convert_string(_com_error(result).ErrorMessage());
+				return false;
+			}
+
+			if (type == CIM_UINT8) {
+				this_monitor_info.week_of_manufacture = static_cast<SHORT>(vtProp.ulVal);
+				trim(this_monitor_info.name);
+			}
+
+			VariantClear(&vtProp);
+		}
+
 		p_class_object->Release();
 
 		// add to monitor info list

@@ -135,6 +135,12 @@ namespace liblec {
 				/// <summary>The product code ID.</summary>
 				std::string product_code_id;
 
+				/// <summary>The manufacture year.</summary>
+				short year_of_manufacture;
+
+				/// <summary>The manufacture week.</summary>
+				short week_of_manufacture;
+
 				/// <summary>The supported video modes, as defined in the <see cref="video_mode"></see> type.</summary>
 				std::vector<video_mode> supported_modes;
 			};
