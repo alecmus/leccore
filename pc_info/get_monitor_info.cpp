@@ -447,6 +447,66 @@ bool get_other_monitor_info(std::vector<pc_info::monitor_info>& info,
 			VariantClear(&vtProp);
 		}
 
+		// get product code ID
+		{
+			VARIANT vtProp;
+
+			// Get the value of the property
+			CIMTYPE type;
+			result = p_class_object->Get(L"ProductCodeID", 0, &vtProp, &type, 0);
+
+			if (FAILED(result)) {
+				VariantClear(&vtProp);
+
+				p_svc->Release();
+				p_loc->Release();
+
+				error = convert_string(_com_error(result).ErrorMessage());
+				return false;
+			}
+
+			if (type & CIM_FLAG_ARRAY && type & CIM_UINT16) {
+				// verify if it's an array
+				if (V_ISARRAY(&vtProp)) {
+					// get safe array
+					LPSAFEARRAY pSafeArray = V_ARRAY(&vtProp);
+
+					// determine the type of item in the array
+					VARTYPE itemType;
+					if (SUCCEEDED(SafeArrayGetVartype(pSafeArray, &itemType))) {
+
+						// verify it's the type we expect
+						if (V_VT(&vtProp) == (VT_ARRAY | VT_I4)) {
+							SAFEARRAY* psa = V_ARRAY(&vtProp);
+
+							LONG lBound, uBound;
+							SafeArrayGetLBound(psa, 1, &lBound);
+							SafeArrayGetUBound(psa, 1, &uBound);
+							long numElems = uBound - lBound + 1;
+
+							INT* rawArray = nullptr;
+							SafeArrayAccessData(psa, (void**)&rawArray);
+
+							for (LONG i = 0; i < numElems; i++) {
+								INT pElem = rawArray[i];
+
+								if (pElem) {
+									char c = pElem;
+									std::string s;
+									s = c;
+									this_monitor_info.product_code_id += s;
+								}
+							}
+
+							SafeArrayUnaccessData(psa);
+						}
+					}
+				}
+			}
+
+			VariantClear(&vtProp);
+		}
+
 		p_class_object->Release();
 
 		// add to monitor info list
