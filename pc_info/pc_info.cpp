@@ -213,6 +213,9 @@ bool pc_info::cpu(std::vector<cpu_info>& info, std::string& error) {
 						}
 						if (property == "Status") {
 							info_map[i].status = any_cast<string>(values[i]);
+
+							if (info_map[i].status.empty())
+								info_map[i].status = "OK";	// default to OK
 						}
 						if (property == "Manufacturer") {
 							info_map[i].manufacturer = any_cast<string>(values[i]);
@@ -262,6 +265,9 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 						}
 						if (property == "Status") {
 							info_map[i].status = any_cast<string>(values[i]);
+
+							if (info_map[i].status.empty())
+								info_map[i].status = "OK";	// default to OK
 						}
 						if (property == "CurrentRefreshRate") {
 							info_map[i].refresh_rate = any_cast<unsigned long>(values[i]);
@@ -547,6 +553,9 @@ bool pc_info::ram(ram_info& info, std::string& error) {
 						}
 						if (property == "Status") {
 							info_map[i].status = any_cast<string>(values[i]);
+
+							if (info_map[i].status.empty())
+								info_map[i].status = "OK";	// default to OK
 						}
 						if (property == "Manufacturer") {
 							info_map[i].manufacturer = any_cast<string>(values[i]);
@@ -739,6 +748,9 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 						}
 						if (property == "Status") {
 							info_map[i].status = any_cast<string>(values[i]);
+
+							if (info_map[i].status.empty())
+								info_map[i].status = "OK";	// default to OK
 						}
 						if (property == "Size") {
 							info_map[i].size = any_cast<unsigned long long>(values[i]);

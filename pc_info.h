@@ -111,6 +111,10 @@ namespace liblec {
 
 				/// <summary>The pixel clock rate, in Hz.</summary>
 				unsigned long long pixel_clock_rate;
+
+				/// <summary>The physical size of the display in inches.</summary>
+				/// <remarks>This is the length of the diagonal across the screen.</remarks>
+				double physical_size;
 			};
 
 			/// <summary>Monitor information type.</summary>

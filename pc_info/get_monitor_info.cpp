@@ -173,6 +173,7 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 
 								if (p_obj != NULL) {
 									ULONG horizontal_res = 0, vertical_res = 0, pixel_clock_rate = 0;
+									ULONG width_mm = 0, height_mm = 0;
 
 									// get the value of the horizontal resolution
 									if (true) {
@@ -219,6 +220,36 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 											pixel_clock_rate = vtProp.ulVal;
 									}
 
+									// get the value of the horizontal image size
+									if (true) {
+										VARIANT vtProp;
+										CIMTYPE type;
+										result = p_obj->Get(L"HorizontalImageSize", 0, &vtProp, &type, 0);
+
+										if (FAILED(result)) {
+											VariantClear(&vtProp);
+											continue;
+										}
+
+										if (type == CIM_UINT16)
+											width_mm = vtProp.ulVal;
+									}
+
+									// get the value of the vertical image size
+									if (true) {
+										VARIANT vtProp;
+										CIMTYPE type;
+										result = p_obj->Get(L"VerticalImageSize", 0, &vtProp, &type, 0);
+
+										if (FAILED(result)) {
+											VariantClear(&vtProp);
+											continue;
+										}
+
+										if (type == CIM_UINT16)
+											height_mm = vtProp.ulVal;
+									}
+
 									auto resolution_name = [](const int horizontal_res, const int vertical_res)->std::string {
 										if (horizontal_res >= 7680 && vertical_res >= 4320)
 											return "8K Ultra HD";
@@ -240,11 +271,17 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 										return "";
 									};
 
+									auto screen_size = [](const int width_mm, const int height_mm)->double {
+										double diagonal_mm = sqrt(double(width_mm) * double(width_mm) + double(height_mm) * double(height_mm));
+										return diagonal_mm / 25.4;
+									};
+
 									pc_info::video_mode mode;
 									mode.horizontal_resolution = horizontal_res;
 									mode.vertical_resolution = vertical_res;
 									mode.resolution_name = resolution_name(mode.horizontal_resolution, mode.vertical_resolution);
 									mode.pixel_clock_rate = pixel_clock_rate;
+									mode.physical_size = screen_size(width_mm, height_mm);
 
 									// capture supported mode
 									this_monitor_info.supported_modes.push_back(mode);
