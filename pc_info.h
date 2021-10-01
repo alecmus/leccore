@@ -115,8 +115,8 @@ namespace liblec {
 
 			/// <summary>Monitor information type.</summary>
 			using monitor_info = struct {
-				/// <summary>The name of the monitor.</summary>
-				std::string name;
+				/// <summary>The instance name of the monitor.</summary>
+				std::string instance_name;
 
 				/// <summary>The manufacturer of the monitor, e.g. Lenovo.</summary>
 				std::string manufacturer;

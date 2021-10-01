@@ -120,8 +120,8 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 			}
 
 			if (type == CIM_STRING) {
-				this_monitor_info.name = vtProp.bstrVal ? convert_string(vtProp.bstrVal) : "";
-				trim(this_monitor_info.name);
+				this_monitor_info.instance_name = vtProp.bstrVal ? convert_string(vtProp.bstrVal) : "";
+				trim(this_monitor_info.instance_name);
 			}
 
 			VariantClear(&vtProp);
@@ -380,8 +380,8 @@ bool get_other_monitor_info(std::vector<pc_info::monitor_info>& info,
 			}
 
 			if (type == CIM_STRING) {
-				this_monitor_info.name = vtProp.bstrVal ? convert_string(vtProp.bstrVal) : "";
-				trim(this_monitor_info.name);
+				this_monitor_info.instance_name = vtProp.bstrVal ? convert_string(vtProp.bstrVal) : "";
+				trim(this_monitor_info.instance_name);
 			}
 
 			VariantClear(&vtProp);
@@ -525,10 +525,8 @@ bool get_other_monitor_info(std::vector<pc_info::monitor_info>& info,
 				return false;
 			}
 
-			if (type == CIM_UINT16) {
+			if (type == CIM_UINT16)
 				this_monitor_info.year_of_manufacture = static_cast<SHORT>(vtProp.ulVal);
-				trim(this_monitor_info.name);
-			}
 
 			VariantClear(&vtProp);
 		}
@@ -551,10 +549,8 @@ bool get_other_monitor_info(std::vector<pc_info::monitor_info>& info,
 				return false;
 			}
 
-			if (type == CIM_UINT8) {
+			if (type == CIM_UINT8)
 				this_monitor_info.week_of_manufacture = static_cast<SHORT>(vtProp.ulVal);
-				trim(this_monitor_info.name);
-			}
 
 			VariantClear(&vtProp);
 		}
@@ -590,7 +586,7 @@ bool get_monitor_info(std::vector<pc_info::monitor_info>& info,
 
 	for (auto& it : info) {
 		for (auto& m_it : video_modes_info) {
-			if (m_it.name == it.name) {
+			if (m_it.instance_name == it.instance_name) {
 				it.supported_modes = m_it.supported_modes;
 				break;
 			}
