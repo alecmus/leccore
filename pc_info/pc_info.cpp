@@ -250,7 +250,7 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 	info.clear();
 	map<string, vector<any>> data;
 	if (_d.get_info("ROOT\\CIMV2", "Win32_VideoController",
-		{ "Name", "Status", "CurrentHorizontalResolution", "CurrentVerticalResolution", "CurrentRefreshRate", "AdapterRAM" },
+		{ "Name", "Status", "CurrentRefreshRate", "AdapterRAM" },
 		data, error)) {
 		try {
 			std::map<size_t, gpu_info> info_map;
@@ -262,12 +262,6 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 						}
 						if (property == "Status") {
 							info_map[i].status = any_cast<string>(values[i]);
-						}
-						if (property == "CurrentHorizontalResolution") {
-							info_map[i].horizontal_resolution = any_cast<unsigned long>(values[i]);
-						}
-						if (property == "CurrentVerticalResolution") {
-							info_map[i].vertical_resolution = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "CurrentRefreshRate") {
 							info_map[i].refresh_rate = any_cast<unsigned long>(values[i]);
@@ -281,32 +275,8 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 				}
 			}
 
-			auto resolution_name = [](const int horizontal_res, const int vertical_res)->std::string {
-				if (horizontal_res >= 7680 && vertical_res >= 4320)
-					return "8K Ultra HD";
-				if (horizontal_res >= 3840 && vertical_res >= 2160)
-					return "4K Ultra HD";
-				if (horizontal_res >= 3456 && vertical_res >= 2160)
-					return "3.5K";
-				if (horizontal_res >= 2560 && vertical_res >= 1440)
-					return "Quad HD";
-				if (horizontal_res >= 2048 && vertical_res >= 1080)
-					return "2K";
-				if (horizontal_res >= 1920 && vertical_res >= 1080)
-					return "Full HD";
-				if (horizontal_res >= 1600 && vertical_res >= 900)
-					return "HD+";
-				if (horizontal_res >= 1280 && vertical_res >= 720)
-					return "HD";
-
-				return "";
-			};
-
-			for (auto& it : info_map) {
-				it.second.resolution_name =
-					resolution_name(it.second.horizontal_resolution, it.second.vertical_resolution);
+			for (auto& it : info_map)
 				info.push_back(it.second);
-			}
 
 			struct dxgi_graphics_memory {
 				unsigned long long dedicated = 0;

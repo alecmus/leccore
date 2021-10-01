@@ -86,17 +86,6 @@ namespace liblec {
 				/// <summary>The status of the GPU.</summary>
 				std::string status;
 
-				/// <summary>The current horizontal resolution of the display,
-				/// in pixels, e.g. 1920.</summary>
-				int horizontal_resolution;
-
-				/// <summary>The current vertical resolution of the display,
-				/// in pixels, e.g. 1080.</summary>
-				int vertical_resolution;
-
-				/// <summary>The resolution name, e.g. Full HD.</summary>
-				std::string resolution_name;
-
 				/// <summary>The refresh rate of the display, in Hz.</summary>
 				int refresh_rate;
 
