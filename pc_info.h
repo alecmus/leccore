@@ -86,9 +86,6 @@ namespace liblec {
 				/// <summary>The status of the GPU.</summary>
 				std::string status;
 
-				/// <summary>The refresh rate of the display, in Hz.</summary>
-				int refresh_rate;
-
 				/// <summary>The size of the dedicated video memory, in bytes.</summary>
 				unsigned long long dedicated_vram;
 
@@ -111,6 +108,9 @@ namespace liblec {
 
 				/// <summary>The pixel clock rate, in Hz.</summary>
 				unsigned long long pixel_clock_rate;
+
+				/// <summary>The refresh rate of the display, in Hz.</summary>
+				double refresh_rate;
 
 				/// <summary>The physical size of the display in inches.</summary>
 				/// <remarks>This is the length of the diagonal across the screen.</remarks>

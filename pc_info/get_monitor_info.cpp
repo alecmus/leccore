@@ -174,9 +174,10 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 								if (p_obj != NULL) {
 									ULONG horizontal_res = 0, vertical_res = 0, pixel_clock_rate = 0;
 									ULONG width_mm = 0, height_mm = 0;
+									double v_refresh_rate = 0.0;
 
 									// get the value of the horizontal resolution
-									if (true) {
+									{
 										VARIANT vtProp;
 										CIMTYPE type;
 										result = p_obj->Get(L"HorizontalActivePixels", 0, &vtProp, &type, 0);
@@ -191,7 +192,7 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 									}
 
 									// get the value of the vertical resolution
-									if (true) {
+									{
 										VARIANT vtProp;
 										CIMTYPE type;
 										result = p_obj->Get(L"VerticalActivePixels", 0, &vtProp, &type, 0);
@@ -206,7 +207,7 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 									}
 
 									// get the pixel clock rate
-									if (true) {
+									{
 										VARIANT vtProp;
 										CIMTYPE type;
 										result = p_obj->Get(L"PixelClockRate", 0, &vtProp, &type, 0);
@@ -221,7 +222,7 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 									}
 
 									// get the value of the horizontal image size
-									if (true) {
+									{
 										VARIANT vtProp;
 										CIMTYPE type;
 										result = p_obj->Get(L"HorizontalImageSize", 0, &vtProp, &type, 0);
@@ -236,7 +237,7 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 									}
 
 									// get the value of the vertical image size
-									if (true) {
+									{
 										VARIANT vtProp;
 										CIMTYPE type;
 										result = p_obj->Get(L"VerticalImageSize", 0, &vtProp, &type, 0);
@@ -248,6 +249,42 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 
 										if (type == CIM_UINT16)
 											height_mm = vtProp.ulVal;
+									}
+
+									// get the value of the vertical refresh rate
+									{
+										ULONG v_refresh_demoninator = 0, v_refresh_numerator = 0;
+
+										{
+											VARIANT vtProp;
+											CIMTYPE type;
+											result = p_obj->Get(L"VerticalRefreshRateDenominator", 0, &vtProp, &type, 0);
+
+											if (FAILED(result)) {
+												VariantClear(&vtProp);
+												continue;
+											}
+
+											if (type == CIM_UINT16 || type == CIM_UINT32)
+												v_refresh_demoninator = vtProp.ulVal;
+										}
+
+										{
+											VARIANT vtProp;
+											CIMTYPE type;
+											result = p_obj->Get(L"VerticalRefreshRateNumerator", 0, &vtProp, &type, 0);
+
+											if (FAILED(result)) {
+												VariantClear(&vtProp);
+												continue;
+											}
+
+											if (type == CIM_UINT16 || type == CIM_UINT32)
+												v_refresh_numerator = vtProp.ulVal;
+										}
+
+										if (v_refresh_demoninator > 0)
+											v_refresh_rate = (double)v_refresh_numerator / (double)v_refresh_demoninator;
 									}
 
 									auto resolution_name = [](const int horizontal_res, const int vertical_res)->std::string {
@@ -281,6 +318,7 @@ bool get_supported_video_modes(std::vector<pc_info::monitor_info>& info,
 									mode.vertical_resolution = vertical_res;
 									mode.resolution_name = resolution_name(mode.horizontal_resolution, mode.vertical_resolution);
 									mode.pixel_clock_rate = pixel_clock_rate;
+									mode.refresh_rate = v_refresh_rate;
 									mode.physical_size = screen_size(width_mm, height_mm);
 
 									// capture supported mode

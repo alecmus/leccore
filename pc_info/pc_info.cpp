@@ -253,7 +253,7 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 	info.clear();
 	map<string, vector<any>> data;
 	if (_d.get_info("ROOT\\CIMV2", "Win32_VideoController",
-		{ "Name", "Status", "CurrentRefreshRate", "AdapterRAM" },
+		{ "Name", "Status", "AdapterRAM" },
 		data, error)) {
 		try {
 			std::map<size_t, gpu_info> info_map;
@@ -268,9 +268,6 @@ bool pc_info::gpu(std::vector<gpu_info>& info, std::string& error) {
 
 							if (info_map[i].status.empty())
 								info_map[i].status = "OK";	// default to OK
-						}
-						if (property == "CurrentRefreshRate") {
-							info_map[i].refresh_rate = any_cast<unsigned long>(values[i]);
 						}
 						if (property == "AdapterRAM") {
 							// something to fall-back on if we aren't able to get info from dxgi
