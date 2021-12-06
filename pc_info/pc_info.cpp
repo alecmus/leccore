@@ -593,14 +593,14 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 	info.clear();
 
 	struct extra_drive_info {
-		std::string device_id;
+		unsigned int index;
 		std::string friendly_name;
 		std::string bus_type;
 		std::string storage_type;
 	};
 
 	// key is device_id
-	auto get_extra = [&](std::map<std::string, extra_drive_info>& extra_info, std::string& error) {
+	auto get_extra = [&](std::map<unsigned int, extra_drive_info>& extra_info, std::string& error) {
 		map<string, vector<any>> data;
 		if (_d.get_info("Root\\Microsoft\\Windows\\Storage", "MSFT_PhysicalDisk",
 			{ "DeviceID", "FriendlyName", "MediaType", "BusType" },
@@ -611,7 +611,8 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 					if (!values.empty()) {
 						for (size_t i = 0; i < values.size(); i++) {
 							if (property == "DeviceID") {
-								info_map[i].device_id = any_cast<string>(values[i]);
+								const auto index = any_cast<string>(values[i]);
+								info_map[i].index = atoi(index.c_str());
 							}
 							if (property == "FriendlyName") {
 								info_map[i].friendly_name = any_cast<string>(values[i]);
@@ -700,7 +701,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 				}
 
 				for (auto& it : info_map)
-					extra_info[it.second.device_id] = it.second;
+					extra_info[it.second.index] = it.second;
 
 				return true;
 			}
@@ -715,7 +716,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 			return false;
 	};
 
-	std::map<std::string, extra_drive_info> extra_info;
+	std::map<unsigned int, extra_drive_info> extra_info;
 	if (!get_extra(extra_info, error))
 		return false;
 
@@ -763,8 +764,8 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 			try {
 				// try using exact match
 				for (auto& it : info) {
-					it.storage_type = extra_info.at(it.device_id).storage_type;
-					it.bus_type = extra_info.at(it.device_id).bus_type;
+					it.storage_type = extra_info.at(it.index).storage_type;
+					it.bus_type = extra_info.at(it.index).bus_type;
 				}
 			}
 			catch (const std::exception&) {
@@ -772,7 +773,7 @@ bool pc_info::drives(std::vector<pc_info::drive_info>& info,
 				for (auto& [device_id, it] : extra_info) {
 					try {
 						for (auto& m_it : info) {
-							if (m_it.device_id.find(it.device_id) != m_it.device_id.npos) {
+							if (m_it.device_id.find(std::to_string(it.index)) != m_it.device_id.npos) {
 								m_it.storage_type = it.storage_type;
 								m_it.bus_type = it.bus_type;
 								break;
