@@ -1,0 +1,84 @@
+\hypertarget{classliblec_1_1leccore_1_1base32}{}\doxysection{liblec\+::leccore\+::base32 Class Reference}
+\label{classliblec_1_1leccore_1_1base32}\index{liblec::leccore::base32@{liblec::leccore::base32}}
+
+
+Base32 encoding/decoding class. 
+
+
+
+
+{\ttfamily \#include $<$encode.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}{default\+\_\+alphabet}} ()
+\begin{DoxyCompactList}\small\item\em Get the default \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}} encoding alphabet used by the \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}} class.\end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a8f71d4c6d7f11fe23cd7cca8c417f287}{encode}} (const std\+::string \&input, std\+::string alphabet=\mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}{default\+\_\+alphabet}}())
+\begin{DoxyCompactList}\small\item\em Encode to \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}}.\end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a8cb938b1e2f56919f2cb1045872ca500}{decode}} (const std\+::string \&input, std\+::string alphabet=\mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}{default\+\_\+alphabet}}())
+\begin{DoxyCompactList}\small\item\em Decode from \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}}.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base32 encoding/decoding class.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1base32_a8cb938b1e2f56919f2cb1045872ca500}\label{classliblec_1_1leccore_1_1base32_a8cb938b1e2f56919f2cb1045872ca500}} 
+\index{liblec::leccore::base32@{liblec::leccore::base32}!decode@{decode}}
+\index{decode@{decode}!liblec::leccore::base32@{liblec::leccore::base32}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::base32\+::decode (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input,  }\item[{std\+::string}]{alphabet = {\ttfamily \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}{default\+\_\+alphabet}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Decode from \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The data to be decoded.\\
+\hline
+{\em alphabet} & The alphabet to use for the decoding.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The decoded result.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}\label{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}} 
+\index{liblec::leccore::base32@{liblec::leccore::base32}!default\_alphabet@{default\_alphabet}}
+\index{default\_alphabet@{default\_alphabet}!liblec::leccore::base32@{liblec::leccore::base32}}
+\doxysubsubsection{\texorpdfstring{default\_alphabet()}{default\_alphabet()}}
+{\footnotesize\ttfamily static const std\+::string liblec\+::leccore\+::base32\+::default\+\_\+alphabet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the default \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}} encoding alphabet used by the \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}} class.
+
+\begin{DoxyReturn}{Returns}
+The default alphabet.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1base32_a8f71d4c6d7f11fe23cd7cca8c417f287}\label{classliblec_1_1leccore_1_1base32_a8f71d4c6d7f11fe23cd7cca8c417f287}} 
+\index{liblec::leccore::base32@{liblec::leccore::base32}!encode@{encode}}
+\index{encode@{encode}!liblec::leccore::base32@{liblec::leccore::base32}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::base32\+::encode (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input,  }\item[{std\+::string}]{alphabet = {\ttfamily \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}{default\+\_\+alphabet}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Encode to \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The data to be encoded.\\
+\hline
+{\em alphabet} & The alphabet to use for the encoding.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The encoded result.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+encode.\+h\end{DoxyCompactItemize}

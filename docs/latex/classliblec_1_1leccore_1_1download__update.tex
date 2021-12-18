@@ -1,0 +1,119 @@
+\hypertarget{classliblec_1_1leccore_1_1download__update}{}\doxysection{liblec\+::leccore\+::download\+\_\+update Class Reference}
+\label{classliblec_1_1leccore_1_1download__update}\index{liblec::leccore::download\_update@{liblec::leccore::download\_update}}
+
+
+Download an update file from the web. 
+
+
+
+
+{\ttfamily \#include $<$web\+\_\+update.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}\label{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}} 
+using {\bfseries download\+\_\+info} = \{ unsigned long long file\+\_\+size
+\begin{DoxyCompactList}\small\item\em Details about the download.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_afe0021ca99a92e3a78e026a479479570}{start}} (const std\+::string \&url, const std\+::string \&directory)
+\begin{DoxyCompactList}\small\item\em Start downloading the update file.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a6f06e341a57d84e62e919fcfe2f6a7c1}{downloading}} ()
+\begin{DoxyCompactList}\small\item\em Check whether the file download is in progress.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a59d0461491e892feb0f76f99780afc87}{downloading}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}{download\+\_\+info}} \&progress)
+\begin{DoxyCompactList}\small\item\em Check whether the file download is in progress.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a7dfad9f6300f564f6465e08d0b0b55ca}{result}} (std\+::string \&fullpath, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get the result of the download operation.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1download__update_a8d123201130e5527293cb0aabe19355b}\label{classliblec_1_1leccore_1_1download__update_a8d123201130e5527293cb0aabe19355b}} 
+unsigned long long {\bfseries downloaded}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Download an update file from the web.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1download__update_a6f06e341a57d84e62e919fcfe2f6a7c1}\label{classliblec_1_1leccore_1_1download__update_a6f06e341a57d84e62e919fcfe2f6a7c1}} 
+\index{liblec::leccore::download\_update@{liblec::leccore::download\_update}!downloading@{downloading}}
+\index{downloading@{downloading}!liblec::leccore::download\_update@{liblec::leccore::download\_update}}
+\doxysubsubsection{\texorpdfstring{downloading()}{downloading()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::download\+\_\+update\+::downloading (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check whether the file download is in progress.
+
+\begin{DoxyReturn}{Returns}
+Returns true if the file download is in progress, else false.
+\end{DoxyReturn}
+
+
+After calling \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_afe0021ca99a92e3a78e026a479479570}{start}} calling this method in a loop or a timer, depending on your app, will help determine when the download is completed, after which the method will return false.\mbox{\Hypertarget{classliblec_1_1leccore_1_1download__update_a59d0461491e892feb0f76f99780afc87}\label{classliblec_1_1leccore_1_1download__update_a59d0461491e892feb0f76f99780afc87}} 
+\index{liblec::leccore::download\_update@{liblec::leccore::download\_update}!downloading@{downloading}}
+\index{downloading@{downloading}!liblec::leccore::download\_update@{liblec::leccore::download\_update}}
+\doxysubsubsection{\texorpdfstring{downloading()}{downloading()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::download\+\_\+update\+::downloading (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}{download\+\_\+info}} \&}]{progress }\end{DoxyParamCaption})}
+
+
+
+Check whether the file download is in progress.
+
+
+\begin{DoxyParams}{Parameters}
+{\em progress} & Information about the download progress as defined in \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}{download\+\_\+info}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the file download is in progress, else false.
+\end{DoxyReturn}
+
+
+After calling \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_afe0021ca99a92e3a78e026a479479570}{start}} calling this method in a loop or a timer, depending on your app, will help determine when the download is completed, after which the method will return false. This overload is also useful if you intend to use a progress bar do indicate download progress. However, take note that the file\+\_\+size parameter in \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}{download\+\_\+info}} may be zero during part or all of the download process. \mbox{\Hypertarget{classliblec_1_1leccore_1_1download__update_a7dfad9f6300f564f6465e08d0b0b55ca}\label{classliblec_1_1leccore_1_1download__update_a7dfad9f6300f564f6465e08d0b0b55ca}} 
+\index{liblec::leccore::download\_update@{liblec::leccore::download\_update}!result@{result}}
+\index{result@{result}!liblec::leccore::download\_update@{liblec::leccore::download\_update}}
+\doxysubsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::download\+\_\+update\+::result (\begin{DoxyParamCaption}\item[{std\+::string \&}]{fullpath,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the result of the download operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & the full path to the downloaded file.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the file was downloaded successfully, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1download__update_afe0021ca99a92e3a78e026a479479570}\label{classliblec_1_1leccore_1_1download__update_afe0021ca99a92e3a78e026a479479570}} 
+\index{liblec::leccore::download\_update@{liblec::leccore::download\_update}!start@{start}}
+\index{start@{start}!liblec::leccore::download\_update@{liblec::leccore::download\_update}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void liblec\+::leccore\+::download\+\_\+update\+::start (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url,  }\item[{const std\+::string \&}]{directory }\end{DoxyParamCaption})}
+
+
+
+Start downloading the update file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & The file\textquotesingle{}s url.\\
+\hline
+{\em directory} & The directory to download the file to. Leave empty to download to the same directory as the app.\\
+\hline
+\end{DoxyParams}
+
+
+This method returns almost immediately. The actual file download is executed on a seperate thread.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+web\+\_\+update.\+h\end{DoxyCompactItemize}

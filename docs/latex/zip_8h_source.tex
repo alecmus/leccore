@@ -1,0 +1,89 @@
+\hypertarget{zip_8h_source}{}\doxysection{zip.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// zip.h -\/ zip interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{23     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{25         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1zip}{zip}} \{}
+\DoxyCodeLine{26         \textcolor{keyword}{public}:}
+\DoxyCodeLine{27             \mbox{\hyperlink{classliblec_1_1leccore_1_1zip}{zip}}();}
+\DoxyCodeLine{28             \mbox{\hyperlink{classliblec_1_1leccore_1_1zip}{\string~zip}}();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31             \textcolor{keyword}{enum class} \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}{compression\_level}} \{}
+\DoxyCodeLine{33                 normal,}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36                 maximum,}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39                 fast,}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{42                 superfast,}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{46                 none,}
+\DoxyCodeLine{47             \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{57             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_abd7d63eb4202ffea680ebe25bbe8606d}{start}}(\textcolor{keyword}{const} std::string\& filename,}
+\DoxyCodeLine{58                 \textcolor{keyword}{const} std::vector<std::string>\& entries,}
+\DoxyCodeLine{59                 \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}{compression\_level}} level = compression\_level::normal);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{65             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_acc9af0416f5754ec15403fa6859b0a1e}{zipping}}();}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{71             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_a216e61deffe6fcea43dd5c11f87312a2}{result}}(std::string\& error);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73         \textcolor{keyword}{private}:}
+\DoxyCodeLine{74             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{75             impl\& \_d;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77             \textcolor{comment}{// Copying an object of this class is not allowed}}
+\DoxyCodeLine{78             \mbox{\hyperlink{classliblec_1_1leccore_1_1zip}{zip}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1zip}{zip}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{79             \mbox{\hyperlink{classliblec_1_1leccore_1_1zip}{zip}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1zip}{zip}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{80         \};}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{83         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip}{unzip}} \{}
+\DoxyCodeLine{84         \textcolor{keyword}{public}:}
+\DoxyCodeLine{85             \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip}{unzip}}();}
+\DoxyCodeLine{86             \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip}{\string~unzip}}();}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{89             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a96ed518f5c0f84e6f28435887bad8ed0}{unzip\_log}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{90                 std::vector<std::string> message\_list;}
+\DoxyCodeLine{91                 std::vector<std::string> error\_list;}
+\DoxyCodeLine{92             \};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{101             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a223b247f8edfbd76bda58c488bc792ae}{start}}(\textcolor{keyword}{const} std::string\& filename,}
+\DoxyCodeLine{102                 \textcolor{keyword}{const} std::string\& directory);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{108             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a23b4d732d6236f744b61ad56466695a5}{unzipping}}();}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{118             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a7b7143166e422127a8541035c188cc82}{result}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a96ed518f5c0f84e6f28435887bad8ed0}{unzip\_log}}\& log, std::string\& error);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120         \textcolor{keyword}{private}:}
+\DoxyCodeLine{121             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{122             impl\& \_d;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124             \textcolor{comment}{// Copying an object of this class is not allowed}}
+\DoxyCodeLine{125             \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip}{unzip}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip}{unzip}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{126             \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip}{unzip}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip}{unzip}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{127         \};}
+\DoxyCodeLine{128     \}}
+\DoxyCodeLine{129 \}}
+
+\end{DoxyCode}

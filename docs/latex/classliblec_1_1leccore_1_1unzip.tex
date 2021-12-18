@@ -1,0 +1,97 @@
+\hypertarget{classliblec_1_1leccore_1_1unzip}{}\doxysection{liblec\+::leccore\+::unzip Class Reference}
+\label{classliblec_1_1leccore_1_1unzip}\index{liblec::leccore::unzip@{liblec::leccore::unzip}}
+
+
+Class for unzipping a zip archive. 
+
+
+
+
+{\ttfamily \#include $<$zip.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1unzip_a96ed518f5c0f84e6f28435887bad8ed0}\label{classliblec_1_1leccore_1_1unzip_a96ed518f5c0f84e6f28435887bad8ed0}} 
+using {\bfseries unzip\+\_\+log} = \{ std\+::vector$<$ std\+::string $>$ message\+\_\+list
+\begin{DoxyCompactList}\small\item\em Unzip log.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a223b247f8edfbd76bda58c488bc792ae}{start}} (const std\+::string \&filename, const std\+::string \&directory)
+\begin{DoxyCompactList}\small\item\em Start zipping operation.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a23b4d732d6236f744b61ad56466695a5}{unzipping}} ()
+\begin{DoxyCompactList}\small\item\em Check whether the unzipping operation is still underway.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a7b7143166e422127a8541035c188cc82}{result}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a96ed518f5c0f84e6f28435887bad8ed0}{unzip\+\_\+log}} \&log, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em The result of the unzipping operation.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1unzip_aa36637fa4bc882a58e5d5978f60f72d5}\label{classliblec_1_1leccore_1_1unzip_aa36637fa4bc882a58e5d5978f60f72d5}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries error\+\_\+list}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for unzipping a zip archive.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1unzip_a7b7143166e422127a8541035c188cc82}\label{classliblec_1_1leccore_1_1unzip_a7b7143166e422127a8541035c188cc82}} 
+\index{liblec::leccore::unzip@{liblec::leccore::unzip}!result@{result}}
+\index{result@{result}!liblec::leccore::unzip@{liblec::leccore::unzip}}
+\doxysubsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::unzip\+::result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a96ed518f5c0f84e6f28435887bad8ed0}{unzip\+\_\+log}} \&}]{log,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+The result of the unzipping operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em log} & Unzip log as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a96ed518f5c0f84e6f28435887bad8ed0}{unzip\+\_\+log}} type. This may contain error messages for individual entries regardless of whether the method returns true or false. For example if one of the files already existed and was marked as read-\/only the unzipping operation continues and this method will return true yet an error will have actually occurred for that one entry.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the operation was successful, else false. When false the error information is written back to \mbox{\hyperlink{}{error}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1unzip_a223b247f8edfbd76bda58c488bc792ae}\label{classliblec_1_1leccore_1_1unzip_a223b247f8edfbd76bda58c488bc792ae}} 
+\index{liblec::leccore::unzip@{liblec::leccore::unzip}!start@{start}}
+\index{start@{start}!liblec::leccore::unzip@{liblec::leccore::unzip}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void liblec\+::leccore\+::unzip\+::start (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const std\+::string \&}]{directory }\end{DoxyParamCaption})}
+
+
+
+Start zipping operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The full path to the zip archive, including the extension.\\
+\hline
+{\em directory} & The directory to extract the zip archive to. Use an empty string to extract to the current directory.\\
+\hline
+\end{DoxyParams}
+
+
+This method returns almost immediately. The actual unzipping is executed on a seperate thread. To check the status of the unzipping call the \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a23b4d732d6236f744b61ad56466695a5}{unzipping}} method.\mbox{\Hypertarget{classliblec_1_1leccore_1_1unzip_a23b4d732d6236f744b61ad56466695a5}\label{classliblec_1_1leccore_1_1unzip_a23b4d732d6236f744b61ad56466695a5}} 
+\index{liblec::leccore::unzip@{liblec::leccore::unzip}!unzipping@{unzipping}}
+\index{unzipping@{unzipping}!liblec::leccore::unzip@{liblec::leccore::unzip}}
+\doxysubsubsection{\texorpdfstring{unzipping()}{unzipping()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::unzip\+::unzipping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check whether the unzipping operation is still underway.
+
+\begin{DoxyReturn}{Returns}
+Returns true if the unzipping is still underway, else false.
+\end{DoxyReturn}
+
+
+After calling \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a223b247f8edfbd76bda58c488bc792ae}{start}} call this method in a loop or a timer, depending on your kind of app, then call \mbox{\hyperlink{classliblec_1_1leccore_1_1unzip_a7b7143166e422127a8541035c188cc82}{result}} once it returns false.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+zip.\+h\end{DoxyCompactItemize}

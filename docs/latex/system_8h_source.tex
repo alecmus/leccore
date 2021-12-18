@@ -1,0 +1,68 @@
+\hypertarget{system_8h_source}{}\doxysection{system.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// system.h -\/ system interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{23     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{28         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder}{user\_folder}} \{}
+\DoxyCodeLine{29         \textcolor{keyword}{public}:}
+\DoxyCodeLine{32             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_a7f88a64a9bbfb914b70a53db4ea49d07}{home}}();}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{36             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_aa42a09d5d5584e3ead5a589d589a1756}{documents}}();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{40             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_aab354ccc59f5bd7cb59030d4d7c05f94}{downloads}}();}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{44             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_a482dfa57567ebd6df46897aac4261933}{desktop}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{48             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_a14fa57df62355115fa00651d4d404696}{music}}();}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{52             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_aee628988f95398be81fae796d5b76ca7}{videos}}();}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{56             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_a1e2ebae78124e429f71cecd29574413b}{pictures}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{60             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_a5fcb6af3c012bd3f2000506cd08440c3}{local\_appdata}}();}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{64             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1user__folder_ade5a24c91e3e6ddd98d968c05bd3aed2}{temp}}();}
+\DoxyCodeLine{65         \};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{68         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1commandline__arguments}{commandline\_arguments}} \{}
+\DoxyCodeLine{69         \textcolor{keyword}{public}:}
+\DoxyCodeLine{72             \textcolor{keyword}{static} \textcolor{keyword}{const} std::vector<std::string>\& \mbox{\hyperlink{classliblec_1_1leccore_1_1commandline__arguments_a0a8bf6094416c2f902af5c898896249c}{get}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{77             \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1commandline__arguments_a026701480a44d3bd3c993adef4efe51d}{contains}}(\textcolor{keyword}{const} std::string\& token);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79         \textcolor{keyword}{private}:}
+\DoxyCodeLine{80             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{81         \};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{84         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1shell}{shell}} \{}
+\DoxyCodeLine{85         \textcolor{keyword}{public}:}
+\DoxyCodeLine{90             \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1shell_ae16c48d92d15213aa614e18df3ca96af}{open}}(\textcolor{keyword}{const} std::string\& path, std::string\& error);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{97             \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1shell_a0d9cf578c580cd3816bccacd2fac07fb}{create\_process}}(\textcolor{keyword}{const} std::string\& fullpath,}
+\DoxyCodeLine{98                 \textcolor{keyword}{const} std::vector<std::string>\& args, std::string\& error);}
+\DoxyCodeLine{99         \};}
+\DoxyCodeLine{100     \}}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}

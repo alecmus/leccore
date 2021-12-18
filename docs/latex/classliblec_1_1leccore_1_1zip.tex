@@ -1,0 +1,132 @@
+\hypertarget{classliblec_1_1leccore_1_1zip}{}\doxysection{liblec\+::leccore\+::zip Class Reference}
+\label{classliblec_1_1leccore_1_1zip}\index{liblec::leccore::zip@{liblec::leccore::zip}}
+
+
+Class for zipping files and folders into a zip archive. 
+
+
+
+
+{\ttfamily \#include $<$zip.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}{compression\+\_\+level}} \{ \newline
+\mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938afea087517c26fadd409bd4b9dc642555}{normal}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a65b0e2883c997f2bea5dd11c923b94cf}{maximum}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a31d4541b8e926a24f0c9b835b68cfdf3}{fast}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a65ff4291d81ed5a3d16d2596088dbb86}{superfast}}
+, \newline
+\mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a334c4a4c42fdb79d7ebc3e73b517e6f8}{none}}
+ \}
+\begin{DoxyCompactList}\small\item\em The compression level to use.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_abd7d63eb4202ffea680ebe25bbe8606d}{start}} (const std\+::string \&filename, const std\+::vector$<$ std\+::string $>$ \&entries, \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}{compression\+\_\+level}} level=\mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938afea087517c26fadd409bd4b9dc642555}{compression\+\_\+level\+::normal}})
+\begin{DoxyCompactList}\small\item\em Start zipping operation.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_acc9af0416f5754ec15403fa6859b0a1e}{zipping}} ()
+\begin{DoxyCompactList}\small\item\em Check whether the zipping operation is still underway.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_a216e61deffe6fcea43dd5c11f87312a2}{result}} (std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em The result of the zipping operation.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for zipping files and folders into a zip archive.
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}\label{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}} 
+\index{liblec::leccore::zip@{liblec::leccore::zip}!compression\_level@{compression\_level}}
+\index{compression\_level@{compression\_level}!liblec::leccore::zip@{liblec::leccore::zip}}
+\doxysubsubsection{\texorpdfstring{compression\_level}{compression\_level}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}{liblec\+::leccore\+::zip\+::compression\+\_\+level}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+The compression level to use.
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{normal@{normal}!liblec::leccore::zip@{liblec::leccore::zip}}\index{liblec::leccore::zip@{liblec::leccore::zip}!normal@{normal}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938afea087517c26fadd409bd4b9dc642555}\label{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938afea087517c26fadd409bd4b9dc642555}} 
+normal&Balance between size and speed. The default.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{maximum@{maximum}!liblec::leccore::zip@{liblec::leccore::zip}}\index{liblec::leccore::zip@{liblec::leccore::zip}!maximum@{maximum}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a65b0e2883c997f2bea5dd11c923b94cf}\label{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a65b0e2883c997f2bea5dd11c923b94cf}} 
+maximum&For the smallest archive size, but takes longer.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{fast@{fast}!liblec::leccore::zip@{liblec::leccore::zip}}\index{liblec::leccore::zip@{liblec::leccore::zip}!fast@{fast}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a31d4541b8e926a24f0c9b835b68cfdf3}\label{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a31d4541b8e926a24f0c9b835b68cfdf3}} 
+fast&Compromises compression level in favor of speed.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{superfast@{superfast}!liblec::leccore::zip@{liblec::leccore::zip}}\index{liblec::leccore::zip@{liblec::leccore::zip}!superfast@{superfast}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a65ff4291d81ed5a3d16d2596088dbb86}\label{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a65ff4291d81ed5a3d16d2596088dbb86}} 
+superfast&Lowest compression level for super fast zipping.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{none@{none}!liblec::leccore::zip@{liblec::leccore::zip}}\index{liblec::leccore::zip@{liblec::leccore::zip}!none@{none}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a334c4a4c42fdb79d7ebc3e73b517e6f8}\label{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938a334c4a4c42fdb79d7ebc3e73b517e6f8}} 
+none&No compression. Use this for the ultimate speed when you don\textquotesingle{}t need any compression and just want to store files.\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_a216e61deffe6fcea43dd5c11f87312a2}\label{classliblec_1_1leccore_1_1zip_a216e61deffe6fcea43dd5c11f87312a2}} 
+\index{liblec::leccore::zip@{liblec::leccore::zip}!result@{result}}
+\index{result@{result}!liblec::leccore::zip@{liblec::leccore::zip}}
+\doxysubsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::zip\+::result (\begin{DoxyParamCaption}\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+The result of the zipping operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the operation was successful, else false. When false the error information is written back to \mbox{\hyperlink{}{error}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_abd7d63eb4202ffea680ebe25bbe8606d}\label{classliblec_1_1leccore_1_1zip_abd7d63eb4202ffea680ebe25bbe8606d}} 
+\index{liblec::leccore::zip@{liblec::leccore::zip}!start@{start}}
+\index{start@{start}!liblec::leccore::zip@{liblec::leccore::zip}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void liblec\+::leccore\+::zip\+::start (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{entries,  }\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}{compression\+\_\+level}}}]{level = {\ttfamily \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938afea087517c26fadd409bd4b9dc642555}{compression\+\_\+level\+::normal}}} }\end{DoxyParamCaption})}
+
+
+
+Start zipping operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The target filename, including the extension.\\
+\hline
+{\em entries} & The archive entries (files, directories).\\
+\hline
+{\em level} & The compression level, as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_af5b95f9f7e8d93acf55e47b2b3fe8938}{compression\+\_\+level}} enumeration.\\
+\hline
+\end{DoxyParams}
+
+
+This method returns almost immediately. The actual zipping is executed on a seperate thread. To check the status of the zipping call the \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_acc9af0416f5754ec15403fa6859b0a1e}{zipping}} method.\mbox{\Hypertarget{classliblec_1_1leccore_1_1zip_acc9af0416f5754ec15403fa6859b0a1e}\label{classliblec_1_1leccore_1_1zip_acc9af0416f5754ec15403fa6859b0a1e}} 
+\index{liblec::leccore::zip@{liblec::leccore::zip}!zipping@{zipping}}
+\index{zipping@{zipping}!liblec::leccore::zip@{liblec::leccore::zip}}
+\doxysubsubsection{\texorpdfstring{zipping()}{zipping()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::zip\+::zipping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check whether the zipping operation is still underway.
+
+\begin{DoxyReturn}{Returns}
+Returns true if the zipping is still underway, else false.
+\end{DoxyReturn}
+
+
+After calling \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_abd7d63eb4202ffea680ebe25bbe8606d}{start}} call this method in a loop or a timer, depending on your kind of app, then call \mbox{\hyperlink{classliblec_1_1leccore_1_1zip_a216e61deffe6fcea43dd5c11f87312a2}{result}} once it returns false.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+zip.\+h\end{DoxyCompactItemize}

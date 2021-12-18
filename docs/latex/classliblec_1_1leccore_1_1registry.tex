@@ -1,0 +1,251 @@
+\hypertarget{classliblec_1_1leccore_1_1registry}{}\doxysection{liblec\+::leccore\+::registry Class Reference}
+\label{classliblec_1_1leccore_1_1registry}\index{liblec::leccore::registry@{liblec::leccore::registry}}
+
+
+Class for reading and writing to the Windows registry. 
+
+
+
+
+{\ttfamily \#include $<$registry.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} \{ \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39a586e1a68a946004f65d099da834f8eaf}{current\+\_\+user}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39a98caa4549785bfb91174a5fcd011d8f1}{local\+\_\+machine}}
+ \}
+\begin{DoxyCompactList}\small\item\em The registry scope.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_ae637718ab127e3e95facdc6c1586d9fd}{registry}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} registry\+\_\+scope)
+\begin{DoxyCompactList}\small\item\em The constructor.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a3986b2f4f22d4364e4c602e9d70a7f03}{do\+\_\+read}} (const std\+::string \&path, const std\+::string \&value\+\_\+name, std\+::string \&value, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Read from the registry.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a872f27d2d7b2f121c311714402815f6e}{do\+\_\+read\+\_\+binary}} (const std\+::string \&path, const std\+::string \&value\+\_\+name, std\+::string \&data, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Read binary data from the registry.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a02621adbcd526052366279533af5eacf}{do\+\_\+write}} (const std\+::string \&path, const std\+::string \&value\+\_\+name, const std\+::string \&value, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Write data to the registry.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_af45078a5d47f57ef51a746ad8dceed7a}{do\+\_\+write\+\_\+binary}} (const std\+::string \&path, const std\+::string \&value\+\_\+name, const std\+::string \&data, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Write binary data to the registry.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a52ded6e8b5fd0b05edf84b302c829545}{do\+\_\+delete}} (const std\+::string \&path, const std\+::string \&value\+\_\+name, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the registry.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_ad71b3599fea3c0bf1521515cd4569aed}{do\+\_\+delete}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Delete a sub-\/key if it\textquotesingle{}s empty.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a6f5a1a609c609f209e6270caf7c7c484}{do\+\_\+recursive\+\_\+delete}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Delete a sub-\/key and everything contained within it, including other sub-\/keys.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for reading and writing to the Windows registry.
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}\label{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!scope@{scope}}
+\index{scope@{scope}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{scope}{scope}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{liblec\+::leccore\+::registry\+::scope}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+The registry scope.
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{current\_user@{current\_user}!liblec::leccore::registry@{liblec::leccore::registry}}\index{liblec::leccore::registry@{liblec::leccore::registry}!current\_user@{current\_user}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39a586e1a68a946004f65d099da834f8eaf}\label{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39a586e1a68a946004f65d099da834f8eaf}} 
+current\+\_\+user&Settings for the currently logged in user only.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{local\_machine@{local\_machine}!liblec::leccore::registry@{liblec::leccore::registry}}\index{liblec::leccore::registry@{liblec::leccore::registry}!local\_machine@{local\_machine}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39a98caa4549785bfb91174a5fcd011d8f1}\label{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39a98caa4549785bfb91174a5fcd011d8f1}} 
+local\+\_\+machine&Settings for everyone that uses this computer.The application must be executed with administrator rights to use this scope otherwise access will be denied.\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_ae637718ab127e3e95facdc6c1586d9fd}\label{classliblec_1_1leccore_1_1registry_ae637718ab127e3e95facdc6c1586d9fd}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!registry@{registry}}
+\index{registry@{registry}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{registry()}{registry()}}
+{\footnotesize\ttfamily liblec\+::leccore\+::registry\+::registry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}}}]{registry\+\_\+scope }\end{DoxyParamCaption})}
+
+
+
+The constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em registry\+\_\+scope} & The registry scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a52ded6e8b5fd0b05edf84b302c829545}\label{classliblec_1_1leccore_1_1registry_a52ded6e8b5fd0b05edf84b302c829545}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!do\_delete@{do\_delete}}
+\index{do\_delete@{do\_delete}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{do\_delete()}{do\_delete()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+::do\+\_\+delete (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the registry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path, relative to the scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration, e.\+g. Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+Installation ID\char`\"{}\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_ad71b3599fea3c0bf1521515cd4569aed}\label{classliblec_1_1leccore_1_1registry_ad71b3599fea3c0bf1521515cd4569aed}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!do\_delete@{do\_delete}}
+\index{do\_delete@{do\_delete}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{do\_delete()}{do\_delete()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+::do\+\_\+delete (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Delete a sub-\/key if it\textquotesingle{}s empty.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path, relative to the scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration, e.\+g. Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false.
+\end{DoxyReturn}
+
+
+Only deletes the sub-\/key if it\textquotesingle{}s empty. If the sub-\/key is not empty an access is denied error is returned. This is a useful method to call on the Software\textbackslash{}company-\/name sub-\/key after deleting a specific application\textquotesingle{}s sub-\/key, e.\+g. after deleting the sub-\/key Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info using the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a6f5a1a609c609f209e6270caf7c7c484}{do\+\_\+recursive\+\_\+delete}} it\textquotesingle{}s a great idea to then call this method. If no settings for other applications are stored under the Software\textbackslash{}com.\+github.\+alecmus subkey then it is deleted as well, leaving a clean registry. This is highly recommended as it leaves a clean registry after all apps for a given company are uninstalled.\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a3986b2f4f22d4364e4c602e9d70a7f03}\label{classliblec_1_1leccore_1_1registry_a3986b2f4f22d4364e4c602e9d70a7f03}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!do\_read@{do\_read}}
+\index{do\_read@{do\_read}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{do\_read()}{do\_read()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+::do\+\_\+read (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Read from the registry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path, relative to the scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration, e.\+g. Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+Color\char`\"{}\\
+\hline
+{\em value} & The value read from the registry.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a872f27d2d7b2f121c311714402815f6e}\label{classliblec_1_1leccore_1_1registry_a872f27d2d7b2f121c311714402815f6e}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!do\_read\_binary@{do\_read\_binary}}
+\index{do\_read\_binary@{do\_read\_binary}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{do\_read\_binary()}{do\_read\_binary()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+::do\+\_\+read\+\_\+binary (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{data,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Read binary data from the registry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path, relative to the scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration, e.\+g. Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+Installation ID\char`\"{}\\
+\hline
+{\em data} & The raw binary data read from the registry.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a6f5a1a609c609f209e6270caf7c7c484}\label{classliblec_1_1leccore_1_1registry_a6f5a1a609c609f209e6270caf7c7c484}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!do\_recursive\_delete@{do\_recursive\_delete}}
+\index{do\_recursive\_delete@{do\_recursive\_delete}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{do\_recursive\_delete()}{do\_recursive\_delete()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+::do\+\_\+recursive\+\_\+delete (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Delete a sub-\/key and everything contained within it, including other sub-\/keys.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path, relative to the scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration, e.\+g. Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false.
+\end{DoxyReturn}
+
+
+Use with care as the changes are irreversible.\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_a02621adbcd526052366279533af5eacf}\label{classliblec_1_1leccore_1_1registry_a02621adbcd526052366279533af5eacf}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!do\_write@{do\_write}}
+\index{do\_write@{do\_write}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{do\_write()}{do\_write()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+::do\+\_\+write (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{const std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Write data to the registry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path, relative to the scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration, e.\+g. Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+Color\char`\"{}\\
+\hline
+{\em value} & The value to be written to the registry under \mbox{\hyperlink{}{value\+\_\+name}}, e.\+g. \char`\"{}\#ffff00\char`\"{}\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry_af45078a5d47f57ef51a746ad8dceed7a}\label{classliblec_1_1leccore_1_1registry_af45078a5d47f57ef51a746ad8dceed7a}} 
+\index{liblec::leccore::registry@{liblec::leccore::registry}!do\_write\_binary@{do\_write\_binary}}
+\index{do\_write\_binary@{do\_write\_binary}!liblec::leccore::registry@{liblec::leccore::registry}}
+\doxysubsubsection{\texorpdfstring{do\_write\_binary()}{do\_write\_binary()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+::do\+\_\+write\+\_\+binary (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{const std\+::string \&}]{data,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Write binary data to the registry.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path, relative to the scope as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{scope}} enumeration, e.\+g. Software\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+Installation ID\char`\"{}\\
+\hline
+{\em data} & The raw binary data to be written to the registry under \mbox{\hyperlink{}{value\+\_\+name}}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, else false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+registry.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,56 @@
+\hypertarget{encode_8h_source}{}\doxysection{encode.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// encode.h -\/ encoding/decoding interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{22     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{24         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1base32}{base32}} \{}
+\DoxyCodeLine{25         \textcolor{keyword}{public}:}
+\DoxyCodeLine{29             [[nodiscard]]}
+\DoxyCodeLine{30             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a2b30fb1811eb8f5b7161f62188dfaf60}{default\_alphabet}}();}
+\DoxyCodeLine{31             }
+\DoxyCodeLine{36             [[nodiscard]]}
+\DoxyCodeLine{37             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a8f71d4c6d7f11fe23cd7cca8c417f287}{encode}}(\textcolor{keyword}{const} std::string\& input,}
+\DoxyCodeLine{38                 std::string alphabet = default\_alphabet());}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{44             [[nodiscard]]}
+\DoxyCodeLine{45             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base32_a8cb938b1e2f56919f2cb1045872ca500}{decode}}(\textcolor{keyword}{const} std::string\& input,}
+\DoxyCodeLine{46                 std::string alphabet = default\_alphabet());}
+\DoxyCodeLine{47         \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{50         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1base64}{base64}} \{}
+\DoxyCodeLine{51         \textcolor{keyword}{public}:}
+\DoxyCodeLine{55             [[nodiscard]]}
+\DoxyCodeLine{56             \textcolor{keyword}{static} \textcolor{keyword}{const} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base64_a9ebfc9d7861291d40122d72a9eddf32f}{default\_alphabet}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{62             [[nodiscard]]}
+\DoxyCodeLine{63             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base64_ab9a579b759e1a56f02a4a864cd043723}{encode}}(\textcolor{keyword}{const} std::string\& input,}
+\DoxyCodeLine{64                 std::string alphabet = default\_alphabet());}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{70             [[nodiscard]]}
+\DoxyCodeLine{71             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1base64_a1307db0f0b8b78a0c9c06c2445a5459d}{decode}}(\textcolor{keyword}{const} std::string\& input,}
+\DoxyCodeLine{72                 std::string alphabet = default\_alphabet());}
+\DoxyCodeLine{73         \};}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75 \}}
+
+\end{DoxyCode}

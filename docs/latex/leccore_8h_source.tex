@@ -1,0 +1,58 @@
+\hypertarget{leccore_8h_source}{}\doxysection{leccore.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// leccore.h -\/ leccore interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{    \#define leccore\_api \_\_declspec(dllexport)}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{    \#define leccore\_api \_\_declspec(dllimport)}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{    \#if defined(\_WIN64)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{        \#if defined(\_DEBUG)}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{            \#pragma comment(lib, "{}leccore64d.lib"{}})}
+\DoxyCodeLine{21 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{            \#pragma comment(lib, "{}leccore64.lib"{}})}
+\DoxyCodeLine{23 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{    \#else}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{        \#if defined(\_DEBUG)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{            \#pragma comment(lib, "{}leccore32d.lib"{}})}
+\DoxyCodeLine{27 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{            \#pragma comment(lib, "{}leccore32.lib"{}})}
+\DoxyCodeLine{29 \textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{37     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{41         std::string leccore\_api version();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{53         std::string leccore\_api format\_size(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} size, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} precision = 0);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{56         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1round__off}{round\_off}} \{}
+\DoxyCodeLine{57         \textcolor{keyword}{public}:}
+\DoxyCodeLine{62             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1round__off_a584e31b83967c0f663ec03d078348505}{to\_string}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& d, \textcolor{keywordtype}{int} precision);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{68             \textcolor{keyword}{static} \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1leccore_1_1round__off_a639efd6b5084ef8d8441b9f131c7b125}{to\_double}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& d, \textcolor{keywordtype}{int} precision);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74             \textcolor{keyword}{static} \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1leccore_1_1round__off_aea401b3d11e68ce1e8037f181ed6fcd6}{to\_float}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& f, \textcolor{keywordtype}{int} precision);}
+\DoxyCodeLine{75         \};}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77         \textcolor{keywordtype}{void} leccore\_api sleep(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} milliseconds);}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}

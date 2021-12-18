@@ -1,0 +1,75 @@
+\hypertarget{hash_8h_source}{}\doxysection{hash.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// hash.h -\/ hash interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{24     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{26         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string}{hash\_string}} \{}
+\DoxyCodeLine{27         \textcolor{keyword}{public}:}
+\DoxyCodeLine{31             [[nodiscard]]}
+\DoxyCodeLine{32             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a7ededb0722921276b90656f774485fea}{sha256}}(\textcolor{keyword}{const} std::string\& input);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37             [[nodiscard]]}
+\DoxyCodeLine{38             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a488e36d41f6c3363596746bc79ec8bf8}{sha512}}(\textcolor{keyword}{const} std::string\& input);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43             [[nodiscard]]}
+\DoxyCodeLine{44             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a74fc393ddb4eadf24ac48575cffbc995}{random\_string}}(\textcolor{keywordtype}{int} length);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{48             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a2f0cf78d8294b122c67b34b851688540}{uuid}}();}
+\DoxyCodeLine{49         \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{52         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file}{hash\_file}} \{}
+\DoxyCodeLine{53         \textcolor{keyword}{public}:}
+\DoxyCodeLine{54             \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file}{hash\_file}}();}
+\DoxyCodeLine{55             \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file}{\string~hash\_file}}();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{58             \textcolor{keyword}{enum class} \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}{algorithm}} \{}
+\DoxyCodeLine{60                 sha256,}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63                 sha512,}
+\DoxyCodeLine{64             \};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{70             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}{hash\_results}} = std::map<algorithm, std::string>;}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72             }
+\DoxyCodeLine{79             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a261ca7d2332d08a90d5b8652b5d4fa85}{start}}(\textcolor{keyword}{const} std::string\& fullpath,}
+\DoxyCodeLine{80                 \textcolor{keyword}{const} std::vector<algorithm>\& algorithms);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{86             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a565ca27d40516acbd1ce1a7d7ec33754}{hashing}}();}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{94             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_aafb41208071465957e1e198c209424e7}{result}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}{hash\_results}}\& results,}
+\DoxyCodeLine{95                 std::string\& error);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97         \textcolor{keyword}{private}:}
+\DoxyCodeLine{98             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{99             impl\& \_d;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101             \textcolor{comment}{// Copying an object of this class is not allowed}}
+\DoxyCodeLine{102             \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file}{hash\_file}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file}{hash\_file}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{103             \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file}{hash\_file}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file}{hash\_file}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{104         \};}
+\DoxyCodeLine{105     \}}
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}

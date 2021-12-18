@@ -1,0 +1,152 @@
+\hypertarget{settings_8h_source}{}\doxysection{settings.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// settings.h -\/ settings interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}registry.h"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <liblec/leccore/registry.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{24     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{27         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}} \{}
+\DoxyCodeLine{28         \textcolor{keyword}{public}:}
+\DoxyCodeLine{29             \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}}();}
+\DoxyCodeLine{30             \textcolor{keyword}{virtual} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{\string~settings}}();}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{40             [[nodiscard]]}
+\DoxyCodeLine{41             \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a8a5238d7aaacf464f22f3df8fa925245}{write\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{42                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{43                 \textcolor{keyword}{const} std::string\& value,}
+\DoxyCodeLine{44                 std::string\& error) = 0;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{53             [[nodiscard]]}
+\DoxyCodeLine{54             \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a03b8f8281932e526cd641c2a1c5a01bd}{read\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{55                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{56                 std::string\& value,}
+\DoxyCodeLine{57                 std::string\& error) = 0;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{65             [[nodiscard]]}
+\DoxyCodeLine{66             \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a9b762a09fcba9def821454be793e7fdc}{delete\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{67                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{68                 std::string\& error) = 0;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{76             [[nodiscard]]}
+\DoxyCodeLine{77             \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a542f19cae3e6dddf1b55a292d82f3eb9}{delete\_recursive}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{78                 std::string\& error) = 0;}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{85             \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_ab2fc024c5e8eea51bd5c604d5de51d2a}{base}}();}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87         \textcolor{keyword}{private}:}
+\DoxyCodeLine{88             \textcolor{comment}{// Copying an object of this class is not allowed}}
+\DoxyCodeLine{89             \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{90             \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{91         \};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{95         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{registry\_settings}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}} \{}
+\DoxyCodeLine{96         \textcolor{keyword}{public}:}
+\DoxyCodeLine{101             \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_aceb5394d8ffc56c83c8998158d602b0f}{registry\_settings}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{registry::scope}} settings\_scope);}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{110             \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_ad7fc0e0abc4c73cfe3463f644af22caf}{registry\_settings}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{registry::scope}} settings\_scope,}
+\DoxyCodeLine{111                 \textcolor{keyword}{const} std::string\& key, \textcolor{keyword}{const} std::string\& iv);}
+\DoxyCodeLine{112             \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{\string~registry\_settings}}();}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{123             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_aca74d3e731a7dc9e84b05639ec303d02}{set\_registry\_path}}(\textcolor{keyword}{const} std::string\& registry\_path);}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{135             [[nodiscard]]}
+\DoxyCodeLine{136             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_af97944e34db7db1abf1c787320347bb9}{get\_registry\_path}}(std::string\& registry\_path,}
+\DoxyCodeLine{137                 std::string\& error);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139             \textcolor{comment}{// virtual method overrides}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141             [[nodiscard]]}
+\DoxyCodeLine{142             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a1782ae9ccacef4585b4a2534298b59f6}{write\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{143                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{144                 \textcolor{keyword}{const} std::string\& value,}
+\DoxyCodeLine{145                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{146             [[nodiscard]]}
+\DoxyCodeLine{147             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_ac0a06f020bd5f862c709a9058c90908f}{read\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{148                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{149                 std::string\& value,}
+\DoxyCodeLine{150                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{151             [[nodiscard]]}
+\DoxyCodeLine{152             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a441f2f68f5b21128e0907a483436e8dd}{delete\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{153                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{154                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{155             [[nodiscard]]}
+\DoxyCodeLine{156             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a4bb700013eaac8a4cdbf9bc49185cba8}{delete\_recursive}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{157                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159         \textcolor{keyword}{private}:}
+\DoxyCodeLine{160             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{161             impl\& \_d;}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{164             \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{registry\_settings}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{165             \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{registry\_settings}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{registry\_settings}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{166             \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{registry\_settings}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{registry\_settings}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{167         \};}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{171         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings}{ini\_settings}} : \textcolor{keyword}{public} \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}} \{}
+\DoxyCodeLine{172         \textcolor{keyword}{public}:}
+\DoxyCodeLine{177             \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a736e4033ab888b66d70c4328535e35fb}{ini\_settings}}(\textcolor{keyword}{const} std::string\& file\_name);}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{186             \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_aff68df335fa954c54f8bdf9ded35e4b2}{ini\_settings}}(\textcolor{keyword}{const} std::string\& file\_name,}
+\DoxyCodeLine{187                 \textcolor{keyword}{const} std::string\& key, \textcolor{keyword}{const} std::string\& iv);}
+\DoxyCodeLine{188             \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings}{\string~ini\_settings}}();}
+\DoxyCodeLine{189             }
+\DoxyCodeLine{200             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a2721fdf5da6d2523a1c405d71f0c8898}{set\_ini\_path}}(\textcolor{keyword}{const} std::string\& ini\_path);}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{211             [[nodiscard]]}
+\DoxyCodeLine{212             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_ace1e8efb94f40e364161dfab21672891}{get\_ini\_path}}(std::string\& ini\_path,}
+\DoxyCodeLine{213                 std::string\& error);}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215             \textcolor{comment}{// virtual method overrides}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217             [[nodiscard]]}
+\DoxyCodeLine{218             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a69be4d887f7a5633e8fbe402d2c48f71}{write\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{219                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{220                 \textcolor{keyword}{const} std::string\& value,}
+\DoxyCodeLine{221                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{222             [[nodiscard]]}
+\DoxyCodeLine{223             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a28b9aa18ecfabaf283d4417c38a21676}{read\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{224                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{225                 std::string\& value,}
+\DoxyCodeLine{226                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{227             [[nodiscard]]}
+\DoxyCodeLine{228             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a4e3559ee48b6f65e8b9f380a107791b2}{delete\_value}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{229                 \textcolor{keyword}{const} std::string\& value\_name,}
+\DoxyCodeLine{230                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{231             [[nodiscard]]}
+\DoxyCodeLine{232             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a857fcb4d9f0f8732cf9e6a8fb9ee82e7}{delete\_recursive}}(\textcolor{keyword}{const} std::string\& branch,}
+\DoxyCodeLine{233                 std::string\& error) \textcolor{keyword}{override};}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235         \textcolor{keyword}{private}:}
+\DoxyCodeLine{236             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{237             impl\& \_d;}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{240             \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings}{ini\_settings}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{241             \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings}{ini\_settings}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings}{ini\_settings}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{242             \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings}{ini\_settings}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings}{ini\_settings}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{243         \};}
+\DoxyCodeLine{244     \}}
+\DoxyCodeLine{245 \}}
+
+\end{DoxyCode}

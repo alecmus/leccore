@@ -1,0 +1,71 @@
+\hypertarget{classliblec_1_1leccore_1_1shell}{}\doxysection{liblec\+::leccore\+::shell Class Reference}
+\label{classliblec_1_1leccore_1_1shell}\index{liblec::leccore::shell@{liblec::leccore::shell}}
+
+
+Shell helper class. 
+
+
+
+
+{\ttfamily \#include $<$system.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const bool \mbox{\hyperlink{classliblec_1_1leccore_1_1shell_ae16c48d92d15213aa614e18df3ca96af}{open}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Open a resource using the Operating System default action, equivalent to a double click action.\end{DoxyCompactList}\item 
+static const bool \mbox{\hyperlink{classliblec_1_1leccore_1_1shell_a0d9cf578c580cd3816bccacd2fac07fb}{create\+\_\+process}} (const std\+::string \&fullpath, const std\+::vector$<$ std\+::string $>$ \&args, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Create a process.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Shell helper class.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1shell_a0d9cf578c580cd3816bccacd2fac07fb}\label{classliblec_1_1leccore_1_1shell_a0d9cf578c580cd3816bccacd2fac07fb}} 
+\index{liblec::leccore::shell@{liblec::leccore::shell}!create\_process@{create\_process}}
+\index{create\_process@{create\_process}!liblec::leccore::shell@{liblec::leccore::shell}}
+\doxysubsubsection{\texorpdfstring{create\_process()}{create\_process()}}
+{\footnotesize\ttfamily static const bool liblec\+::leccore\+::shell\+::create\+\_\+process (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{args,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a process.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the executable file.\\
+\hline
+{\em args} & The list of command-\/line arguments.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the operation is successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1shell_ae16c48d92d15213aa614e18df3ca96af}\label{classliblec_1_1leccore_1_1shell_ae16c48d92d15213aa614e18df3ca96af}} 
+\index{liblec::leccore::shell@{liblec::leccore::shell}!open@{open}}
+\index{open@{open}!liblec::leccore::shell@{liblec::leccore::shell}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily static const bool liblec\+::leccore\+::shell\+::open (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Open a resource using the Operating System default action, equivalent to a double click action.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the resource, e.\+g. \char`\"{}\+C\+:\textbackslash{}\char`\"{}, \char`\"{}\+C\+:\textbackslash{}\+Files\textbackslash{}\+My\+File.\+pdf\char`\"{} or \char`\"{}https\+://github.\+com/alecmus/leccore\char`\"{}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the operation is successful, else false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+system.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,154 @@
+\hypertarget{classliblec_1_1leccore_1_1database_1_1connection}{}\doxysection{liblec\+::leccore\+::database\+::connection Class Reference}
+\label{classliblec_1_1leccore_1_1database_1_1connection}\index{liblec::leccore::database::connection@{liblec::leccore::database::connection}}
+
+
+Database connection class. 
+
+
+
+
+{\ttfamily \#include $<$database.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af4425b032664019f5d5dbc8dc23b6a85}{connection}} (const std\+::string \&type, const std\+::string \&connection\+\_\+string, const std\+::string \&password)
+\begin{DoxyCompactList}\small\item\em Constructor.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_ad53d1a41c220439d805a3c4c740f41fd}{connected}} ()
+\begin{DoxyCompactList}\small\item\em Check whether there is an existing connection to the database.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_ab64fb88f5519a81ee0dca2bd90891e0e}{connect}} (std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Connect to the database.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af68c31273e8f84859dc1b99ecf916eef}{disconnect}} (std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Disconnect from the database.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_ae2d030b2e9df06983dd9d6639ba5fc5a}{execute}} (const std\+::string \&sql, const std\+::vector$<$ std\+::any $>$ \&values, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Execute an sql statement.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af526e0e323f5775418296d93f2f9b133}{execute\+\_\+query}} (const std\+::string \&sql, table \&results, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Execute an sql query.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Database connection class.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_af4425b032664019f5d5dbc8dc23b6a85}\label{classliblec_1_1leccore_1_1database_1_1connection_af4425b032664019f5d5dbc8dc23b6a85}} 
+\index{liblec::leccore::database::connection@{liblec::leccore::database::connection}!connection@{connection}}
+\index{connection@{connection}!liblec::leccore::database::connection@{liblec::leccore::database::connection}}
+\doxysubsubsection{\texorpdfstring{connection()}{connection()}}
+{\footnotesize\ttfamily liblec\+::leccore\+::database\+::connection\+::connection (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{type,  }\item[{const std\+::string \&}]{connection\+\_\+string,  }\item[{const std\+::string \&}]{password }\end{DoxyParamCaption})}
+
+
+
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The database connection type, e.\+g. \char`\"{}sqlcipher\char`\"{}.\\
+\hline
+{\em connection\+\_\+string} & The connection string, e.\+g. \char`\"{}\+C\+:\textbackslash{}\+Program\+Data\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\textbackslash{}data.\+db\char`\"{}.\\
+\hline
+{\em password} & The database password. This must be private. Use an empty string to use a plain database.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_ab64fb88f5519a81ee0dca2bd90891e0e}\label{classliblec_1_1leccore_1_1database_1_1connection_ab64fb88f5519a81ee0dca2bd90891e0e}} 
+\index{liblec::leccore::database::connection@{liblec::leccore::database::connection}!connect@{connect}}
+\index{connect@{connect}!liblec::leccore::database::connection@{liblec::leccore::database::connection}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::database\+::connection\+::connect (\begin{DoxyParamCaption}\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Connect to the database.
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_ad53d1a41c220439d805a3c4c740f41fd}\label{classliblec_1_1leccore_1_1database_1_1connection_ad53d1a41c220439d805a3c4c740f41fd}} 
+\index{liblec::leccore::database::connection@{liblec::leccore::database::connection}!connected@{connected}}
+\index{connected@{connected}!liblec::leccore::database::connection@{liblec::leccore::database::connection}}
+\doxysubsubsection{\texorpdfstring{connected()}{connected()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::database\+::connection\+::connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check whether there is an existing connection to the database.
+
+\begin{DoxyReturn}{Returns}
+True if the connection exists, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_af68c31273e8f84859dc1b99ecf916eef}\label{classliblec_1_1leccore_1_1database_1_1connection_af68c31273e8f84859dc1b99ecf916eef}} 
+\index{liblec::leccore::database::connection@{liblec::leccore::database::connection}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!liblec::leccore::database::connection@{liblec::leccore::database::connection}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::database\+::connection\+::disconnect (\begin{DoxyParamCaption}\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Disconnect from the database.
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_ae2d030b2e9df06983dd9d6639ba5fc5a}\label{classliblec_1_1leccore_1_1database_1_1connection_ae2d030b2e9df06983dd9d6639ba5fc5a}} 
+\index{liblec::leccore::database::connection@{liblec::leccore::database::connection}!execute@{execute}}
+\index{execute@{execute}!liblec::leccore::database::connection@{liblec::leccore::database::connection}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::database\+::connection\+::execute (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sql,  }\item[{const std\+::vector$<$ std\+::any $>$ \&}]{values,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Execute an sql statement.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sql} & The query (supports placeholders for binding), e.\+g. INSERT INTO Members VALUES(?, ?, ?, ?);\\
+\hline
+{\em values} & The values to bind to the \mbox{\hyperlink{}{sql}} statement, e.\+g. \{ \char`\"{}\+John\char`\"{}, \char`\"{}\+Doe\char`\"{}, 172, blob\{ jpg\+\_\+file\+\_\+data \} \}\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+The use of placeholders is optional. You can make the sql statement yourself and leave the \mbox{\hyperlink{}{values}} parameter empty but this is not recommended because of sql injection attacks and issues like the proper handling of special characters, which quickly becomes tedious and is error prone.\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_af526e0e323f5775418296d93f2f9b133}\label{classliblec_1_1leccore_1_1database_1_1connection_af526e0e323f5775418296d93f2f9b133}} 
+\index{liblec::leccore::database::connection@{liblec::leccore::database::connection}!execute\_query@{execute\_query}}
+\index{execute\_query@{execute\_query}!liblec::leccore::database::connection@{liblec::leccore::database::connection}}
+\doxysubsubsection{\texorpdfstring{execute\_query()}{execute\_query()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::database\+::connection\+::execute\+\_\+query (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sql,  }\item[{table \&}]{results,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Execute an sql query.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sql} & The query, e.\+g. \char`\"{}\+SELECT Name, Surname FROM Members;\char`\"{}\\
+\hline
+{\em results} & The results of the query as defined in the \mbox{\hyperlink{}{table}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+database.\+h\end{DoxyCompactItemize}

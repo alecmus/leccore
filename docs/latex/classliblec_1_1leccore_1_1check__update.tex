@@ -1,0 +1,123 @@
+\hypertarget{classliblec_1_1leccore_1_1check__update}{}\doxysection{liblec\+::leccore\+::check\+\_\+update Class Reference}
+\label{classliblec_1_1leccore_1_1check__update}\index{liblec::leccore::check\_update@{liblec::leccore::check\_update}}
+
+
+Check for an updated version of your app on the web. 
+
+
+
+
+{\ttfamily \#include $<$web\+\_\+update.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a1a902fe73c02cf7d0e71e960cf1b2d4f}\label{classliblec_1_1leccore_1_1check__update_a1a902fe73c02cf7d0e71e960cf1b2d4f}} 
+using {\bfseries update\+\_\+info} = \{ std\+::string title
+\begin{DoxyCompactList}\small\item\em Update details.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1cad0b01ecb1c94548e97c067e655de6}{check\+\_\+update}} (const std\+::string \&update\+\_\+xml\+\_\+url)
+\begin{DoxyCompactList}\small\item\em The constructor.\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1da5bbbd296331e0fc137fec880ff623}{start}} ()
+\begin{DoxyCompactList}\small\item\em Start checking for updates.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a24cae125924bbf8533dc9958856a2912}{checking}} ()
+\begin{DoxyCompactList}\small\item\em Check whether updates are being checked for \mbox{[}sic\mbox{]} \+:)\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a3a6efa49c9a272bdece3cf6269433bf9}{result}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1a902fe73c02cf7d0e71e960cf1b2d4f}{update\+\_\+info}} \&details, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get the results of the update checking operation.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a240942d2141c61263b2d7c34e64bdf90}\label{classliblec_1_1leccore_1_1check__update_a240942d2141c61263b2d7c34e64bdf90}} 
+std\+::string {\bfseries description}
+\begin{DoxyCompactList}\small\item\em The description of the update, e.\+g. Third beta release.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_aa311bd5cf652c63eaba05bd82b27290c}\label{classliblec_1_1leccore_1_1check__update_aa311bd5cf652c63eaba05bd82b27290c}} 
+std\+::string {\bfseries version}
+\begin{DoxyCompactList}\small\item\em The update version, e.\+g. 1.\+0.\+0 beta 3.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a5e51e05cefd0e7644d093ab0f70d7215}\label{classliblec_1_1leccore_1_1check__update_a5e51e05cefd0e7644d093ab0f70d7215}} 
+std\+::string {\bfseries date}
+\begin{DoxyCompactList}\small\item\em The release date.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a12a0166d43c6a64237994885015ab3bc}\label{classliblec_1_1leccore_1_1check__update_a12a0166d43c6a64237994885015ab3bc}} 
+std\+::string {\bfseries download\+\_\+url}
+\begin{DoxyCompactList}\small\item\em The url of the update file.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a85722e2d95b83133ee75759ea13d496e}\label{classliblec_1_1leccore_1_1check__update_a85722e2d95b83133ee75759ea13d496e}} 
+unsigned long long {\bfseries size}
+\begin{DoxyCompactList}\small\item\em The size of the file.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_aef92d628dbd59fa57ad1f96f19b9a0db}\label{classliblec_1_1leccore_1_1check__update_aef92d628dbd59fa57ad1f96f19b9a0db}} 
+std\+::string {\bfseries hash}
+\begin{DoxyCompactList}\small\item\em The sha256 hash of the file.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Check for an updated version of your app on the web.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a1cad0b01ecb1c94548e97c067e655de6}\label{classliblec_1_1leccore_1_1check__update_a1cad0b01ecb1c94548e97c067e655de6}} 
+\index{liblec::leccore::check\_update@{liblec::leccore::check\_update}!check\_update@{check\_update}}
+\index{check\_update@{check\_update}!liblec::leccore::check\_update@{liblec::leccore::check\_update}}
+\doxysubsubsection{\texorpdfstring{check\_update()}{check\_update()}}
+{\footnotesize\ttfamily liblec\+::leccore\+::check\+\_\+update\+::check\+\_\+update (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{update\+\_\+xml\+\_\+url }\end{DoxyParamCaption})}
+
+
+
+The constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em update\+\_\+xml\+\_\+url} & The url to the update XML file.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a24cae125924bbf8533dc9958856a2912}\label{classliblec_1_1leccore_1_1check__update_a24cae125924bbf8533dc9958856a2912}} 
+\index{liblec::leccore::check\_update@{liblec::leccore::check\_update}!checking@{checking}}
+\index{checking@{checking}!liblec::leccore::check\_update@{liblec::leccore::check\_update}}
+\doxysubsubsection{\texorpdfstring{checking()}{checking()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::check\+\_\+update\+::checking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check whether updates are being checked for \mbox{[}sic\mbox{]} \+:)
+
+\begin{DoxyReturn}{Returns}
+Returns true if the update checking process is still underway and false otherwise.
+\end{DoxyReturn}
+
+
+After calling \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1da5bbbd296331e0fc137fec880ff623}{start}} call this method in a loop or a timer, depending on your kind of app, then call \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a3a6efa49c9a272bdece3cf6269433bf9}{result}} once it returns false.\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a3a6efa49c9a272bdece3cf6269433bf9}\label{classliblec_1_1leccore_1_1check__update_a3a6efa49c9a272bdece3cf6269433bf9}} 
+\index{liblec::leccore::check\_update@{liblec::leccore::check\_update}!result@{result}}
+\index{result@{result}!liblec::leccore::check\_update@{liblec::leccore::check\_update}}
+\doxysubsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::check\+\_\+update\+::result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1a902fe73c02cf7d0e71e960cf1b2d4f}{update\+\_\+info}} \&}]{details,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the results of the update checking operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em details} & The update information as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1a902fe73c02cf7d0e71e960cf1b2d4f}{update\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if update information was fetched successfully, else false. When false the error information is written back to \mbox{\hyperlink{}{error}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1check__update_a1da5bbbd296331e0fc137fec880ff623}\label{classliblec_1_1leccore_1_1check__update_a1da5bbbd296331e0fc137fec880ff623}} 
+\index{liblec::leccore::check\_update@{liblec::leccore::check\_update}!start@{start}}
+\index{start@{start}!liblec::leccore::check\_update@{liblec::leccore::check\_update}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void liblec\+::leccore\+::check\+\_\+update\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Start checking for updates.
+
+This method returns almost immediately. The actual checking is executed on a different thread. To check the status of the checking use the \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a24cae125924bbf8533dc9958856a2912}{checking}} method.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+web\+\_\+update.\+h\end{DoxyCompactItemize}

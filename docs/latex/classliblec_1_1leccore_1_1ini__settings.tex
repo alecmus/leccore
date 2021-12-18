@@ -1,0 +1,233 @@
+\hypertarget{classliblec_1_1leccore_1_1ini__settings}{}\doxysection{liblec\+::leccore\+::ini\+\_\+settings Class Reference}
+\label{classliblec_1_1leccore_1_1ini__settings}\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+
+
+Settings derived class that uses ini files. For saving/loading application settings using ini configuration files. 
+
+
+
+
+{\ttfamily \#include $<$settings.\+h$>$}
+
+Inheritance diagram for liblec\+::leccore\+::ini\+\_\+settings\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1leccore_1_1ini__settings}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a736e4033ab888b66d70c4328535e35fb}{ini\+\_\+settings}} (const std\+::string \&file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Plain ini settings constructor.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_aff68df335fa954c54f8bdf9ded35e4b2}{ini\+\_\+settings}} (const std\+::string \&file\+\_\+name, const std\+::string \&key, const std\+::string \&iv)
+\begin{DoxyCompactList}\small\item\em Encrypted ini settings constructor.\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a2721fdf5da6d2523a1c405d71f0c8898}{set\+\_\+ini\+\_\+path}} (const std\+::string \&ini\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Set the folder under which the ini file is to be saved, e.\+g. \char`\"{}\+C\+:\textbackslash{}\+Users\textbackslash{}user-\/name\textbackslash{}\+App\+Data\textbackslash{}\+Local\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\char`\"{}.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_ace1e8efb94f40e364161dfab21672891}{get\+\_\+ini\+\_\+path}} (std\+::string \&ini\+\_\+path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get the currently set ini path.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a69be4d887f7a5633e8fbe402d2c48f71}{write\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, const std\+::string \&value, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Write a \mbox{\hyperlink{}{value}} to the settings file.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a28b9aa18ecfabaf283d4417c38a21676}{read\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, std\+::string \&value, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Read a \mbox{\hyperlink{}{value}} from the settings file.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a4e3559ee48b6f65e8b9f380a107791b2}{delete\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the settings file.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a857fcb4d9f0f8732cf9e6a8fb9ee82e7}{delete\+\_\+recursive}} (const std\+::string \&branch, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Delete a branch and all it\textquotesingle{}s contents recursively.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Settings derived class that uses ini files. For saving/loading application settings using ini configuration files.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_a736e4033ab888b66d70c4328535e35fb}\label{classliblec_1_1leccore_1_1ini__settings_a736e4033ab888b66d70c4328535e35fb}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!ini\_settings@{ini\_settings}}
+\index{ini\_settings@{ini\_settings}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{ini\_settings()}{ini\_settings()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily liblec\+::leccore\+::ini\+\_\+settings\+::ini\+\_\+settings (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Plain ini settings constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The name of the settings ini file, e.\+g. \char`\"{}app\+\_\+settings.\+cfg\char`\"{}. If an empty string is passed the file name defaults internally to \char`\"{}config.\+ini\char`\"{}.\\
+\hline
+\end{DoxyParams}
+
+
+This constructor is for plain ini settings (not encrypted).\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_aff68df335fa954c54f8bdf9ded35e4b2}\label{classliblec_1_1leccore_1_1ini__settings_aff68df335fa954c54f8bdf9ded35e4b2}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!ini\_settings@{ini\_settings}}
+\index{ini\_settings@{ini\_settings}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{ini\_settings()}{ini\_settings()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily liblec\+::leccore\+::ini\+\_\+settings\+::ini\+\_\+settings (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name,  }\item[{const std\+::string \&}]{key,  }\item[{const std\+::string \&}]{iv }\end{DoxyParamCaption})}
+
+
+
+Encrypted ini settings constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The name of the settings ini file, e.\+g. \char`\"{}app\+\_\+settings.\+cfg\char`\"{}. If an empty string is passed the file name defaults internally to \char`\"{}config.\+ini\char`\"{}.\\
+\hline
+{\em key} & The encryption key. This must be kept private.\\
+\hline
+{\em iv} & The initialization vector. This must be unique.\\
+\hline
+\end{DoxyParams}
+
+
+This constructor is for encrypted ini settings; implemented using 256bit AES.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_a857fcb4d9f0f8732cf9e6a8fb9ee82e7}\label{classliblec_1_1leccore_1_1ini__settings_a857fcb4d9f0f8732cf9e6a8fb9ee82e7}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!delete\_recursive@{delete\_recursive}}
+\index{delete\_recursive@{delete\_recursive}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{delete\_recursive()}{delete\_recursive()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::ini\+\_\+settings\+::delete\+\_\+recursive (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Delete a branch and all it\textquotesingle{}s contents recursively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch to delete from the settings, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string to delete the root path and all it\textquotesingle{}s contents.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a542f19cae3e6dddf1b55a292d82f3eb9}{liblec\+::leccore\+::settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_a4e3559ee48b6f65e8b9f380a107791b2}\label{classliblec_1_1leccore_1_1ini__settings_a4e3559ee48b6f65e8b9f380a107791b2}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!delete\_value@{delete\_value}}
+\index{delete\_value@{delete\_value}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{delete\_value()}{delete\_value()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::ini\+\_\+settings\+::delete\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is, e.\+g. \char`\"{}\+Email Options\char`\"{}.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a9b762a09fcba9def821454be793e7fdc}{liblec\+::leccore\+::settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_ace1e8efb94f40e364161dfab21672891}\label{classliblec_1_1leccore_1_1ini__settings_ace1e8efb94f40e364161dfab21672891}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!get\_ini\_path@{get\_ini\_path}}
+\index{get\_ini\_path@{get\_ini\_path}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{get\_ini\_path()}{get\_ini\_path()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::ini\+\_\+settings\+::get\+\_\+ini\+\_\+path (\begin{DoxyParamCaption}\item[{std\+::string \&}]{ini\+\_\+path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the currently set ini path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ini\+\_\+path} & The path to the folder the ini file is to be stored in.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+If the \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a2721fdf5da6d2523a1c405d71f0c8898}{set\+\_\+ini\+\_\+path}} method is not called then the ini path is set internally to \char`\"{}\+C\+:\textbackslash{}\+Users\textbackslash{}user-\/name\textbackslash{}\+App\+Data\textbackslash{}\+Local\textbackslash{}company-\/name\textbackslash{}app-\/name\char`\"{} as read from the application\textquotesingle{}s version information. The \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\+\_\+version\+\_\+info}} class is called internally for this. If the current application does not have any version information then this method will return an error.\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_a28b9aa18ecfabaf283d4417c38a21676}\label{classliblec_1_1leccore_1_1ini__settings_a28b9aa18ecfabaf283d4417c38a21676}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!read\_value@{read\_value}}
+\index{read\_value@{read\_value}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{read\_value()}{read\_value()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::ini\+\_\+settings\+::read\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Read a \mbox{\hyperlink{}{value}} from the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string if it\textquotesingle{}s in the root path.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em value} & The value read from the settings.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a03b8f8281932e526cd641c2a1c5a01bd}{liblec\+::leccore\+::settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_a2721fdf5da6d2523a1c405d71f0c8898}\label{classliblec_1_1leccore_1_1ini__settings_a2721fdf5da6d2523a1c405d71f0c8898}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!set\_ini\_path@{set\_ini\_path}}
+\index{set\_ini\_path@{set\_ini\_path}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{set\_ini\_path()}{set\_ini\_path()}}
+{\footnotesize\ttfamily void liblec\+::leccore\+::ini\+\_\+settings\+::set\+\_\+ini\+\_\+path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ini\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Set the folder under which the ini file is to be saved, e.\+g. \char`\"{}\+C\+:\textbackslash{}\+Users\textbackslash{}user-\/name\textbackslash{}\+App\+Data\textbackslash{}\+Local\textbackslash{}com.\+github.\+alecmus\textbackslash{}\+PC Info\char`\"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ini\+\_\+path} & The path to the folder the ini file is to be saved in. Use an empty string to store the file in the same directory as the application (useful when running the application in portable-\/mode).\\
+\hline
+\end{DoxyParams}
+
+
+If this method is not called the ini path is set internally to \char`\"{}\+C\+:\textbackslash{}\+Users\textbackslash{}user-\/name\textbackslash{}\+App\+Data\textbackslash{}\+Local\textbackslash{}company-\/name\textbackslash{}app-\/name\char`\"{} as read from the application\textquotesingle{}s version information. The \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\+\_\+version\+\_\+info}} class is called internally for this. If the current application does not have any version information then this method will return an error.\mbox{\Hypertarget{classliblec_1_1leccore_1_1ini__settings_a69be4d887f7a5633e8fbe402d2c48f71}\label{classliblec_1_1leccore_1_1ini__settings_a69be4d887f7a5633e8fbe402d2c48f71}} 
+\index{liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}!write\_value@{write\_value}}
+\index{write\_value@{write\_value}!liblec::leccore::ini\_settings@{liblec::leccore::ini\_settings}}
+\doxysubsubsection{\texorpdfstring{write\_value()}{write\_value()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::ini\+\_\+settings\+::write\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{const std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write a \mbox{\hyperlink{}{value}} to the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is under, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string if it\textquotesingle{}s in the root path.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em value} & The value to be written under the \mbox{\hyperlink{}{value\+\_\+name}}, e.\+g. 587.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a8a5238d7aaacf464f22f3df8fa925245}{liblec\+::leccore\+::settings}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+settings.\+h\end{DoxyCompactItemize}

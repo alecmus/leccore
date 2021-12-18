@@ -1,0 +1,162 @@
+\hypertarget{classliblec_1_1leccore_1_1settings}{}\doxysection{liblec\+::leccore\+::settings Class Reference}
+\label{classliblec_1_1leccore_1_1settings}\index{liblec::leccore::settings@{liblec::leccore::settings}}
+
+
+Application settings base class. This class is for saving/loading application settings. 
+
+
+
+
+{\ttfamily \#include $<$settings.\+h$>$}
+
+Inheritance diagram for liblec\+::leccore\+::settings\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1leccore_1_1settings}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a8a5238d7aaacf464f22f3df8fa925245}{write\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, const std\+::string \&value, std\+::string \&error)=0
+\begin{DoxyCompactList}\small\item\em Write a \mbox{\hyperlink{}{value}} to the settings file.\end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a03b8f8281932e526cd641c2a1c5a01bd}{read\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, std\+::string \&value, std\+::string \&error)=0
+\begin{DoxyCompactList}\small\item\em Read a \mbox{\hyperlink{}{value}} from the settings file.\end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a9b762a09fcba9def821454be793e7fdc}{delete\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, std\+::string \&error)=0
+\begin{DoxyCompactList}\small\item\em Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the settings file.\end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a542f19cae3e6dddf1b55a292d82f3eb9}{delete\+\_\+recursive}} (const std\+::string \&branch, std\+::string \&error)=0
+\begin{DoxyCompactList}\small\item\em Delete a branch and all it\textquotesingle{}s contents recursively.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}} \& \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_ab2fc024c5e8eea51bd5c604d5de51d2a}{base}} ()
+\begin{DoxyCompactList}\small\item\em Get a reference to the base class.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Application settings base class. This class is for saving/loading application settings.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1settings_ab2fc024c5e8eea51bd5c604d5de51d2a}\label{classliblec_1_1leccore_1_1settings_ab2fc024c5e8eea51bd5c604d5de51d2a}} 
+\index{liblec::leccore::settings@{liblec::leccore::settings}!base@{base}}
+\index{base@{base}!liblec::leccore::settings@{liblec::leccore::settings}}
+\doxysubsubsection{\texorpdfstring{base()}{base()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classliblec_1_1leccore_1_1settings}{settings}} \& liblec\+::leccore\+::settings\+::base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a reference to the base class.
+
+\begin{DoxyReturn}{Returns}
+A reference to the base class.
+\end{DoxyReturn}
+
+
+Useful for use in the ternary operator, e.\+g. if r is and instance of \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings}{registry\+\_\+settings}} and i is an instance of \mbox{\hyperlink{}{inisettings}} then one can initialize a settings reference s by calling s = condition ? r \+: i.\mbox{\Hypertarget{classliblec_1_1leccore_1_1settings_a542f19cae3e6dddf1b55a292d82f3eb9}\label{classliblec_1_1leccore_1_1settings_a542f19cae3e6dddf1b55a292d82f3eb9}} 
+\index{liblec::leccore::settings@{liblec::leccore::settings}!delete\_recursive@{delete\_recursive}}
+\index{delete\_recursive@{delete\_recursive}!liblec::leccore::settings@{liblec::leccore::settings}}
+\doxysubsubsection{\texorpdfstring{delete\_recursive()}{delete\_recursive()}}
+{\footnotesize\ttfamily virtual bool liblec\+::leccore\+::settings\+::delete\+\_\+recursive (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Delete a branch and all it\textquotesingle{}s contents recursively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch to delete from the settings, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string to delete the root path and all it\textquotesingle{}s contents.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a4bb700013eaac8a4cdbf9bc49185cba8}{liblec\+::leccore\+::registry\+\_\+settings}}, and \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a857fcb4d9f0f8732cf9e6a8fb9ee82e7}{liblec\+::leccore\+::ini\+\_\+settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1settings_a9b762a09fcba9def821454be793e7fdc}\label{classliblec_1_1leccore_1_1settings_a9b762a09fcba9def821454be793e7fdc}} 
+\index{liblec::leccore::settings@{liblec::leccore::settings}!delete\_value@{delete\_value}}
+\index{delete\_value@{delete\_value}!liblec::leccore::settings@{liblec::leccore::settings}}
+\doxysubsubsection{\texorpdfstring{delete\_value()}{delete\_value()}}
+{\footnotesize\ttfamily virtual bool liblec\+::leccore\+::settings\+::delete\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is, e.\+g. \char`\"{}\+Email Options\char`\"{}.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a441f2f68f5b21128e0907a483436e8dd}{liblec\+::leccore\+::registry\+\_\+settings}}, and \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a4e3559ee48b6f65e8b9f380a107791b2}{liblec\+::leccore\+::ini\+\_\+settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1settings_a03b8f8281932e526cd641c2a1c5a01bd}\label{classliblec_1_1leccore_1_1settings_a03b8f8281932e526cd641c2a1c5a01bd}} 
+\index{liblec::leccore::settings@{liblec::leccore::settings}!read\_value@{read\_value}}
+\index{read\_value@{read\_value}!liblec::leccore::settings@{liblec::leccore::settings}}
+\doxysubsubsection{\texorpdfstring{read\_value()}{read\_value()}}
+{\footnotesize\ttfamily virtual bool liblec\+::leccore\+::settings\+::read\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Read a \mbox{\hyperlink{}{value}} from the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string if it\textquotesingle{}s in the root path.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em value} & The value read from the settings.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_ac0a06f020bd5f862c709a9058c90908f}{liblec\+::leccore\+::registry\+\_\+settings}}, and \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a28b9aa18ecfabaf283d4417c38a21676}{liblec\+::leccore\+::ini\+\_\+settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1settings_a8a5238d7aaacf464f22f3df8fa925245}\label{classliblec_1_1leccore_1_1settings_a8a5238d7aaacf464f22f3df8fa925245}} 
+\index{liblec::leccore::settings@{liblec::leccore::settings}!write\_value@{write\_value}}
+\index{write\_value@{write\_value}!liblec::leccore::settings@{liblec::leccore::settings}}
+\doxysubsubsection{\texorpdfstring{write\_value()}{write\_value()}}
+{\footnotesize\ttfamily virtual bool liblec\+::leccore\+::settings\+::write\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{const std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Write a \mbox{\hyperlink{}{value}} to the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is under, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string if it\textquotesingle{}s in the root path.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em value} & The value to be written under the \mbox{\hyperlink{}{value\+\_\+name}}, e.\+g. 587.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a1782ae9ccacef4585b4a2534298b59f6}{liblec\+::leccore\+::registry\+\_\+settings}}, and \mbox{\hyperlink{classliblec_1_1leccore_1_1ini__settings_a69be4d887f7a5633e8fbe402d2c48f71}{liblec\+::leccore\+::ini\+\_\+settings}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+settings.\+h\end{DoxyCompactItemize}

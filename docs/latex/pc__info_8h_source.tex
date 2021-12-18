@@ -1,0 +1,279 @@
+\hypertarget{pc__info_8h_source}{}\doxysection{pc\+\_\+info.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// pc\_info.h -\/ pc information interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{23     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{25         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info}{pc\_info}} \{}
+\DoxyCodeLine{26         \textcolor{keyword}{public}:}
+\DoxyCodeLine{28             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a56e6b66bfb0119ef071588e65e59fee1}{pc\_details}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{30                 std::string name;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a47f4ce9bd8271a66487ac0f262de2ca5}{manufacturer}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a5c7952ee0de71e315be82b0bb1f0f9f6}{model}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a3a7e35125504f3951c0247893ff45076}{system\_type}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{42                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a0e0e074ff11a2a9c895d203d2254c1eb}{bios\_serial\_number}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{45                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_afb47f551dd29eb3e3fbfbbd74afa581f}{motherboard\_serial\_number}};}
+\DoxyCodeLine{46             \};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{49             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91e984fc89c5755c87fb7a1599d5e39a}{os\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{51                 std::string name;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{54                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a5b276cad9b646873fcb3cf2d4ba63d49}{architecture}};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{57                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ad04f3c943254e9cb9159be1a7194eda4}{version}};}
+\DoxyCodeLine{58             \};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{61             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a71aac9ab860b3a0161cddfdb5c9d429e}{cpu\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{63                 std::string name;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{66                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91edaef2ce59473e63e6d4eba773f5b3}{status}};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{69                 std::string manufacturer;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{72                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a78fe30805f5df138050e9d75e9d9a105}{cores}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{75                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aea8512172f0e3a3f781c9892d3195411}{logical\_processors}};}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{78                 \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a664aee3a3a35d1769eccb08d0a9d297b}{base\_speed}};}
+\DoxyCodeLine{79             \};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{82             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af9612d2863b7d56c8eb5c3fcc5bf5ff3}{gpu\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{84                 std::string name;}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{87                 std::string status;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{90                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ae987ac9bf5c224612b269b6a0ca47d2c}{dedicated\_vram}};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{93                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a12e379aa6443a9c47c6947618589122d}{total\_graphics\_memory}};}
+\DoxyCodeLine{94             \};}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{97             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa68c2b3f087074427e2f93ca90b0a312}{video\_mode}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{100                 \textcolor{keywordtype}{int} horizontal\_resolution;}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{104                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a4c2d8e3d3494782172fe94127024f84c}{vertical\_resolution}};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{107                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aed69b1982426bbd7af8adffbe6da407a}{resolution\_name}};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{110                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ae02817829e099f565464816eb6c1dd8c}{pixel\_clock\_rate}};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{113                 \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af5c9a51ef5caeadb718897aa45f1c5df}{refresh\_rate}};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{117                 \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a600cb06aa90788e88f241366063d7438}{physical\_size}};}
+\DoxyCodeLine{118             \};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{121             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af566db09307816781d29078c73785e76}{monitor\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{123                 std::string instance\_name;}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{126                 std::string manufacturer;}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{129                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac100345e82d1c01e3320176c7f86fdea}{product\_code\_id}};}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{132                 \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a69375222be3add361d3814c741ce2f88}{year\_of\_manufacture}};}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{135                 \textcolor{keywordtype}{short} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ad357755625e614fdc86286e7f7554df4}{week\_of\_manufacture}};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{138                 std::vector<video\_mode> \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a0ec5d939e138d0eb636166e9f6dc41f2}{supported\_modes}};}
+\DoxyCodeLine{139             \};}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{142             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8cbd0b152ad3ae77fd0e34ecfacfc327}{ram\_chip}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{144                 std::string tag;}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{147                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aebe105a288be765fcc48f9e91a87a434}{type}};}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{150                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a74b2ce6dd77fb921317fc77ccca85314}{form\_factor}};}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{154                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa4aabefa41c77819737ccc490a43acd7}{part\_number}};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{157                 std::string status;}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{160                 std::string manufacturer;}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{163                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a63cbdf5a3e9834beeb3c7215cc7eeaa2}{capacity}};}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{166                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_afeec5c6c905a828cc436db8f788048c7}{speed}};}
+\DoxyCodeLine{167             \};}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{170             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a64f4f9fa438bbe5eaa98b1b324aec49a}{ram\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{172                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} size;}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{175                 \textcolor{keywordtype}{int} speed;}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{179                 std::vector<ram\_chip> \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aac29295c00a77521ab68ce67e24de91e}{ram\_chips}};}
+\DoxyCodeLine{180             \};}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{183             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa1260d27bf5429b91b79535106f1b757}{drive\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{185                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index;}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{188                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a50b741f1352f2e2543d5e457d0cdac2a}{device\_id}};}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{191                 std::string model;}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{194                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a41621baa15276dcfd54dcdf257700d10}{serial\_number}};}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{197                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a28ead73e746b511f056fbbda4a4b0001}{storage\_type}};}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{200                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a5e21f634c759304126344571d3ef2ddd}{bus\_type}};}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{203                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a2d46ffdbaa1b8178f5198753946a7275}{media\_type}};}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{206                 std::string status;}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{209                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a4c8ed8d8379b30734a40a1ca005234ca}{size}};}
+\DoxyCodeLine{210             \};}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{213             \textcolor{keyword}{enum class} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\_status}} \{}
+\DoxyCodeLine{215                 charging,}
+\DoxyCodeLine{216                 }
+\DoxyCodeLine{218                 discharging,}
+\DoxyCodeLine{219                 }
+\DoxyCodeLine{221                 ac\_line}
+\DoxyCodeLine{222             \};}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{225             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{battery\_info}} = \textcolor{keyword}{struct }\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{battery\_info}} \{}
+\DoxyCodeLine{227                 std::string name;}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{230                 std::string manufacturer;}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{233                 std::string serial\_number;}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{236                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a67855dc034b77ecea8f031eb0217a4b7}{unique\_id}};}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{239                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ad649bafdc15b586470fb00793ad87a74}{designed\_capacity}};}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{244                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a1929d387a5728f548fa566181826db87}{fully\_charged\_capacity}};}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{249                 \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a1cbd119ff0602a01723460f662003252}{health}};}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{255                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a994d385a324aeae0c39f6b2d9bd09408}{current\_capacity}};}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{258                 \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa4536aec8ea54a6d1f6353e5a18d7897}{level}};}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{261                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a92b8e4147427ba496192af9d3924a597}{current\_voltage}};}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{266                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a3cd076f0acd3b63e94eb1d571576faa1}{current\_charge\_rate}};}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{269                 \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\_status}} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_adb8ee6b82ffc77321e3db02699b23a96}{status}};}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{275                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a07110107644aece09b76dd6be788b651}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{pc\_info::battery\_info}}\& param) \{}
+\DoxyCodeLine{276                     \textcolor{keywordflow}{return} name == param.name \&\&}
+\DoxyCodeLine{277                         manufacturer == param.manufacturer \&\&}
+\DoxyCodeLine{278                         serial\_number == param.serial\_number \&\&}
+\DoxyCodeLine{279                         unique\_id == param.unique\_id \&\&}
+\DoxyCodeLine{280                         designed\_capacity == param.designed\_capacity \&\&}
+\DoxyCodeLine{281                         fully\_charged\_capacity == param.fully\_charged\_capacity \&\&}
+\DoxyCodeLine{282                         health == param.health \&\&}
+\DoxyCodeLine{283                         current\_capacity == param.current\_capacity \&\&}
+\DoxyCodeLine{284                         level == param.level \&\&}
+\DoxyCodeLine{285                         current\_voltage == param.current\_voltage \&\&}
+\DoxyCodeLine{286                         current\_charge\_rate == param.current\_charge\_rate \&\&}
+\DoxyCodeLine{287                         status == param.status;}
+\DoxyCodeLine{288                 \}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{293                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aebd93b0e740ec1353a153630860b161c}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{pc\_info::battery\_info}}\& param) \{}
+\DoxyCodeLine{294                     \textcolor{keywordflow}{return} !operator==(param);}
+\DoxyCodeLine{295                 \}}
+\DoxyCodeLine{296             \};}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{299             \textcolor{keyword}{enum class} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\_status}} \{}
+\DoxyCodeLine{301                 high,}
+\DoxyCodeLine{302                 }
+\DoxyCodeLine{304                 medium,}
+\DoxyCodeLine{305                 }
+\DoxyCodeLine{307                 low,}
+\DoxyCodeLine{308                 }
+\DoxyCodeLine{310                 critical,}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{313                 high\_charging,}
+\DoxyCodeLine{314                 }
+\DoxyCodeLine{316                 low\_charging,}
+\DoxyCodeLine{317                 }
+\DoxyCodeLine{319                 critical\_charging,}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{322                 charging,}
+\DoxyCodeLine{323                 }
+\DoxyCodeLine{325                 no\_battery,}
+\DoxyCodeLine{326                 }
+\DoxyCodeLine{328                 unknown}
+\DoxyCodeLine{329             \};}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{332             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a95a08cc502c0a33931c832ba1fd874fc}{power\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{334                 \textcolor{keywordtype}{bool} ac;}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{338                 \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\_status}} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ae6231d52ec0cce2d222e5067d95ebb94}{status}};}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{341                 \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ad229f17c4cf8921626a7915ab3ca4d5f}{level}};}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{344                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ad3caa56e99eccb8b28a21a816ec98f80}{lifetime\_remaining}};}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{348                 std::vector<battery\_info> \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af53adb7907c2a6667ead1e12835d22db}{batteries}};}
+\DoxyCodeLine{349             \};}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351             \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info}{pc\_info}}();}
+\DoxyCodeLine{352             \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info}{\string~pc\_info}}();}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{359             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a10bd5ad437146deaf7d451a9b16ef1c7}{pc}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a56e6b66bfb0119ef071588e65e59fee1}{pc\_details}}\& info,}
+\DoxyCodeLine{360                 std::string\& error);}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{367             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a841692ea80c6989ffc58fdf3af8986b0}{os}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91e984fc89c5755c87fb7a1599d5e39a}{os\_info}}\& info,}
+\DoxyCodeLine{368                 std::string\& error);}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{375             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8b98a3e861b4a5c4c5eed6a50c2e4bcf}{cpu}}(std::vector<cpu\_info>\& info,}
+\DoxyCodeLine{376                 std::string\& error);}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378 }
+\DoxyCodeLine{385             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7e953563c3c13319797da0f3e85318a2}{gpu}}(std::vector<gpu\_info>\& info,}
+\DoxyCodeLine{386                 std::string\& error);}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{393             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ae800b9204dd76e3f4fe0d299cbb2aae7}{monitor}}(std::vector<monitor\_info>\& info,}
+\DoxyCodeLine{394                 std::string\& error);}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{401             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a6fa5bb66fd9d157c3c7c683aee0fa9e1}{ram}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a64f4f9fa438bbe5eaa98b1b324aec49a}{ram\_info}}\& info,}
+\DoxyCodeLine{402                 std::string\& error);}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{409             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a1bd7565fe052a76e0be961d67d63a7d1}{drives}}(std::vector<drive\_info>\& info,}
+\DoxyCodeLine{410                 std::string\& error);}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{417             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af3d9f8028267af19278610de68fd43be}{power}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a95a08cc502c0a33931c832ba1fd874fc}{power\_info}}\& info,}
+\DoxyCodeLine{418                 std::string\& error);}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{423             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aed6ec9b9f73073f796015f9c546a4d32}{to\_string}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\_status}} status);}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{428             \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a591e165e8013f368a97a1b02ce9092fa}{to\_string}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\_status}} flag);}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430         \textcolor{keyword}{private}:}
+\DoxyCodeLine{431             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{432             impl\& \_d;}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434             \textcolor{comment}{// Copying an object of this class is not allowed}}
+\DoxyCodeLine{435             \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info}{pc\_info}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info}{pc\_info}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{436             \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info}{pc\_info}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info}{pc\_info}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{437         \};}
+\DoxyCodeLine{438     \}}
+\DoxyCodeLine{439 \}}
+
+\end{DoxyCode}

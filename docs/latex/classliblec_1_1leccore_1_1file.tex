@@ -1,0 +1,167 @@
+\hypertarget{classliblec_1_1leccore_1_1file}{}\doxysection{liblec\+::leccore\+::file Class Reference}
+\label{classliblec_1_1leccore_1_1file}\index{liblec::leccore::file@{liblec::leccore::file}}
+
+
+File handling helper class. 
+
+
+
+
+{\ttfamily \#include $<$file.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_ab15dca08be4e643759d74c92e55e7bd8}{read}} (const std\+::string \&fullpath, std\+::string \&data, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Read \mbox{\hyperlink{}{data}} from a file.\end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_ab8e2d3a6933f81a7a266a604fcb50f62}{write}} (const std\+::string \&fullpath, const std\+::string \&data, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Write \mbox{\hyperlink{}{data}} to a file.\end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_a3b364f99814b7cf8dc79c648abd7774c}{remove}} (const std\+::string \&fullpath, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Remove (delete) a file.\end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_af0be1ec61e8931c26428d9b7f38be418}{create\+\_\+directory}} (const std\+::string \&fullpath, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Create a directory path, recursively.\end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_a254848d95b0eed7689e7407ecfe96c76}{remove\+\_\+directory}} (const std\+::string \&fullpath, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Remove a directory, recursively.\end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_aa6aa6f4982801f877c94c7691e787706}{rename}} (const std\+::string \&fullpath, const std\+::string \&new\+\_\+name, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Rename a file or directory.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File handling helper class.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_af0be1ec61e8931c26428d9b7f38be418}\label{classliblec_1_1leccore_1_1file_af0be1ec61e8931c26428d9b7f38be418}} 
+\index{liblec::leccore::file@{liblec::leccore::file}!create\_directory@{create\_directory}}
+\index{create\_directory@{create\_directory}!liblec::leccore::file@{liblec::leccore::file}}
+\doxysubsubsection{\texorpdfstring{create\_directory()}{create\_directory()}}
+{\footnotesize\ttfamily static bool liblec\+::leccore\+::file\+::create\+\_\+directory (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a directory path, recursively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the directory.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_ab15dca08be4e643759d74c92e55e7bd8}\label{classliblec_1_1leccore_1_1file_ab15dca08be4e643759d74c92e55e7bd8}} 
+\index{liblec::leccore::file@{liblec::leccore::file}!read@{read}}
+\index{read@{read}!liblec::leccore::file@{liblec::leccore::file}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily static bool liblec\+::leccore\+::file\+::read (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{std\+::string \&}]{data,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read \mbox{\hyperlink{}{data}} from a file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the file, including the file\textquotesingle{}s name and extension.\\
+\hline
+{\em data} & The contents of the file, whether text or binary.\\
+\hline
+{\em error} & Error information\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_a3b364f99814b7cf8dc79c648abd7774c}\label{classliblec_1_1leccore_1_1file_a3b364f99814b7cf8dc79c648abd7774c}} 
+\index{liblec::leccore::file@{liblec::leccore::file}!remove@{remove}}
+\index{remove@{remove}!liblec::leccore::file@{liblec::leccore::file}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily static bool liblec\+::leccore\+::file\+::remove (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Remove (delete) a file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the file, including the file\textquotesingle{}s name and extension.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_a254848d95b0eed7689e7407ecfe96c76}\label{classliblec_1_1leccore_1_1file_a254848d95b0eed7689e7407ecfe96c76}} 
+\index{liblec::leccore::file@{liblec::leccore::file}!remove\_directory@{remove\_directory}}
+\index{remove\_directory@{remove\_directory}!liblec::leccore::file@{liblec::leccore::file}}
+\doxysubsubsection{\texorpdfstring{remove\_directory()}{remove\_directory()}}
+{\footnotesize\ttfamily static bool liblec\+::leccore\+::file\+::remove\+\_\+directory (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Remove a directory, recursively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the directory.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Use with care. This method will attempt to delete the directory and all of its contents, including sub-\/directories. \mbox{\Hypertarget{classliblec_1_1leccore_1_1file_aa6aa6f4982801f877c94c7691e787706}\label{classliblec_1_1leccore_1_1file_aa6aa6f4982801f877c94c7691e787706}} 
+\index{liblec::leccore::file@{liblec::leccore::file}!rename@{rename}}
+\index{rename@{rename}!liblec::leccore::file@{liblec::leccore::file}}
+\doxysubsubsection{\texorpdfstring{rename()}{rename()}}
+{\footnotesize\ttfamily static bool liblec\+::leccore\+::file\+::rename (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{const std\+::string \&}]{new\+\_\+name,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Rename a file or directory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the file or directory, including the file\textquotesingle{}s name and extension in the case of a file.\\
+\hline
+{\em new\+\_\+name} & The new name, including the extension in the case of a file.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_ab8e2d3a6933f81a7a266a604fcb50f62}\label{classliblec_1_1leccore_1_1file_ab8e2d3a6933f81a7a266a604fcb50f62}} 
+\index{liblec::leccore::file@{liblec::leccore::file}!write@{write}}
+\index{write@{write}!liblec::leccore::file@{liblec::leccore::file}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily static bool liblec\+::leccore\+::file\+::write (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{const std\+::string \&}]{data,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Write \mbox{\hyperlink{}{data}} to a file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the file, including the file\textquotesingle{}s name and extension.\\
+\hline
+{\em data} & The data to save to the file, whether text or binary.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+If the file already exists all contents will be overwritten.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+file.\+h\end{DoxyCompactItemize}

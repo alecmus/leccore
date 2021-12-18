@@ -1,0 +1,100 @@
+\hypertarget{classliblec_1_1leccore_1_1hash__string}{}\doxysection{liblec\+::leccore\+::hash\+\_\+string Class Reference}
+\label{classliblec_1_1leccore_1_1hash__string}\index{liblec::leccore::hash\_string@{liblec::leccore::hash\_string}}
+
+
+String hashing class. 
+
+
+
+
+{\ttfamily \#include $<$hash.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a7ededb0722921276b90656f774485fea}{sha256}} (const std\+::string \&input)
+\begin{DoxyCompactList}\small\item\em SHA256 hash.\end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a488e36d41f6c3363596746bc79ec8bf8}{sha512}} (const std\+::string \&input)
+\begin{DoxyCompactList}\small\item\em SHA512 hash.\end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a74fc393ddb4eadf24ac48575cffbc995}{random\+\_\+string}} (int length)
+\begin{DoxyCompactList}\small\item\em Generate a random string.\end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__string_a2f0cf78d8294b122c67b34b851688540}{uuid}} ()
+\begin{DoxyCompactList}\small\item\em Make a universally unique identifier (uuid).\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+String hashing class.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__string_a74fc393ddb4eadf24ac48575cffbc995}\label{classliblec_1_1leccore_1_1hash__string_a74fc393ddb4eadf24ac48575cffbc995}} 
+\index{liblec::leccore::hash\_string@{liblec::leccore::hash\_string}!random\_string@{random\_string}}
+\index{random\_string@{random\_string}!liblec::leccore::hash\_string@{liblec::leccore::hash\_string}}
+\doxysubsubsection{\texorpdfstring{random\_string()}{random\_string()}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::hash\+\_\+string\+::random\+\_\+string (\begin{DoxyParamCaption}\item[{int}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generate a random string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & The length of the random string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random string of the specified \mbox{\hyperlink{}{length}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__string_a7ededb0722921276b90656f774485fea}\label{classliblec_1_1leccore_1_1hash__string_a7ededb0722921276b90656f774485fea}} 
+\index{liblec::leccore::hash\_string@{liblec::leccore::hash\_string}!sha256@{sha256}}
+\index{sha256@{sha256}!liblec::leccore::hash\_string@{liblec::leccore::hash\_string}}
+\doxysubsubsection{\texorpdfstring{sha256()}{sha256()}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::hash\+\_\+string\+::sha256 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SHA256 hash.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The string that is to be hashed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The SHA256 hash of \mbox{\hyperlink{}{input}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__string_a488e36d41f6c3363596746bc79ec8bf8}\label{classliblec_1_1leccore_1_1hash__string_a488e36d41f6c3363596746bc79ec8bf8}} 
+\index{liblec::leccore::hash\_string@{liblec::leccore::hash\_string}!sha512@{sha512}}
+\index{sha512@{sha512}!liblec::leccore::hash\_string@{liblec::leccore::hash\_string}}
+\doxysubsubsection{\texorpdfstring{sha512()}{sha512()}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::hash\+\_\+string\+::sha512 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SHA512 hash.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The string that is to be hashed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The SHA512 hash of \mbox{\hyperlink{}{input}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__string_a2f0cf78d8294b122c67b34b851688540}\label{classliblec_1_1leccore_1_1hash__string_a2f0cf78d8294b122c67b34b851688540}} 
+\index{liblec::leccore::hash\_string@{liblec::leccore::hash\_string}!uuid@{uuid}}
+\index{uuid@{uuid}!liblec::leccore::hash\_string@{liblec::leccore::hash\_string}}
+\doxysubsubsection{\texorpdfstring{uuid()}{uuid()}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::hash\+\_\+string\+::uuid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Make a universally unique identifier (uuid).
+
+\begin{DoxyReturn}{Returns}
+The uuid string.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+hash.\+h\end{DoxyCompactItemize}

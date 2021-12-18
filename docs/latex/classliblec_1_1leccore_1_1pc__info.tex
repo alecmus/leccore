@@ -1,0 +1,630 @@
+\hypertarget{classliblec_1_1leccore_1_1pc__info}{}\doxysection{liblec\+::leccore\+::pc\+\_\+info Class Reference}
+\label{classliblec_1_1leccore_1_1pc__info}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+
+
+PC information class. 
+
+
+
+
+{\ttfamily \#include $<$pc\+\_\+info.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\+\_\+status}} \{ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7a05a0c26d8e746429c786c8e53378b9c9}{charging}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7ac5506d5a14acd50bb34956446899fe2f}{discharging}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7aedd9d01781714b1628b3446b40d9db63}{ac\+\_\+line}}
+ \}
+\begin{DoxyCompactList}\small\item\em Battery status.\end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\+\_\+status}} \{ \newline
+\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a8d966b2253a917086c8604959e152243}{high}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a075a3e36a0a52dcbc568c05788e8a713}{medium}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a53cced8d281a1a0ace3cb6594daaa4f7}{low}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a7e85bcb66fb9a809d5ab4f62a8b8bea8}{critical}}
+, \newline
+\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a2a9dd7b0e7c153acf8a4054323f2b281}{high\+\_\+charging}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aacef66ea5e46290e48d2db3cb369c9ed}{low\+\_\+charging}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aa01884687ac38e61d54bcded41016b66}{critical\+\_\+charging}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a05a0c26d8e746429c786c8e53378b9c9}{charging}}
+, \newline
+\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a1009b81e098d9d62e1ac074bbf1a7f71}{no\+\_\+battery}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aad921d60486366258809553a3db49a4a}{unknown}}
+ \}
+\begin{DoxyCompactList}\small\item\em The overall power status of the PC.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a56e6b66bfb0119ef071588e65e59fee1}\label{classliblec_1_1leccore_1_1pc__info_a56e6b66bfb0119ef071588e65e59fee1}} 
+using {\bfseries pc\+\_\+details} = \{ std\+::string name
+\begin{DoxyCompactList}\small\item\em PC details.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a91e984fc89c5755c87fb7a1599d5e39a}\label{classliblec_1_1leccore_1_1pc__info_a91e984fc89c5755c87fb7a1599d5e39a}} 
+using {\bfseries os\+\_\+info} = \{ std\+::string name
+\begin{DoxyCompactList}\small\item\em Operating System info type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a71aac9ab860b3a0161cddfdb5c9d429e}\label{classliblec_1_1leccore_1_1pc__info_a71aac9ab860b3a0161cddfdb5c9d429e}} 
+using {\bfseries cpu\+\_\+info} = \{ std\+::string name
+\begin{DoxyCompactList}\small\item\em Central Processing unit info type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_af9612d2863b7d56c8eb5c3fcc5bf5ff3}\label{classliblec_1_1leccore_1_1pc__info_af9612d2863b7d56c8eb5c3fcc5bf5ff3}} 
+using {\bfseries gpu\+\_\+info} = \{ std\+::string name
+\begin{DoxyCompactList}\small\item\em Graphics Processing Unit type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aa68c2b3f087074427e2f93ca90b0a312}\label{classliblec_1_1leccore_1_1pc__info_aa68c2b3f087074427e2f93ca90b0a312}} 
+using {\bfseries video\+\_\+mode} = \{ int horizontal\+\_\+resolution
+\begin{DoxyCompactList}\small\item\em Monitor video mode type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_af566db09307816781d29078c73785e76}\label{classliblec_1_1leccore_1_1pc__info_af566db09307816781d29078c73785e76}} 
+using {\bfseries monitor\+\_\+info} = \{ std\+::string instance\+\_\+name
+\begin{DoxyCompactList}\small\item\em Monitor information type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8cbd0b152ad3ae77fd0e34ecfacfc327}\label{classliblec_1_1leccore_1_1pc__info_a8cbd0b152ad3ae77fd0e34ecfacfc327}} 
+using {\bfseries ram\+\_\+chip} = \{ std\+::string tag
+\begin{DoxyCompactList}\small\item\em Random Access Memory chip type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a64f4f9fa438bbe5eaa98b1b324aec49a}\label{classliblec_1_1leccore_1_1pc__info_a64f4f9fa438bbe5eaa98b1b324aec49a}} 
+using {\bfseries ram\+\_\+info} = \{ unsigned long long \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a4c8ed8d8379b30734a40a1ca005234ca}{size}}
+\begin{DoxyCompactList}\small\item\em Overall PC Random Access Memory type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aa1260d27bf5429b91b79535106f1b757}\label{classliblec_1_1leccore_1_1pc__info_aa1260d27bf5429b91b79535106f1b757}} 
+using {\bfseries drive\+\_\+info} = \{ unsigned int index
+\begin{DoxyCompactList}\small\item\em PC Drive type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}\label{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}} 
+using {\bfseries battery\+\_\+info} = \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{battery\+\_\+info}} \{ std\+::string name
+\begin{DoxyCompactList}\small\item\em Battery type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a95a08cc502c0a33931c832ba1fd874fc}\label{classliblec_1_1leccore_1_1pc__info_a95a08cc502c0a33931c832ba1fd874fc}} 
+using {\bfseries power\+\_\+info} = \{ bool ac
+\begin{DoxyCompactList}\small\item\em PC power type.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a07110107644aece09b76dd6be788b651}{operator==}} (const \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{pc\+\_\+info\+::battery\+\_\+info}} \&param)
+\begin{DoxyCompactList}\small\item\em Equality operator useful for checking if any battery information has changed since the last query.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aebd93b0e740ec1353a153630860b161c}{operator!=}} (const \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{pc\+\_\+info\+::battery\+\_\+info}} \&param)
+\begin{DoxyCompactList}\small\item\em In-\/equality operator. The opposite of \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a07110107644aece09b76dd6be788b651}{operator==}}.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a10bd5ad437146deaf7d451a9b16ef1c7}{pc}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a56e6b66bfb0119ef071588e65e59fee1}{pc\+\_\+details}} \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get PC details.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a841692ea80c6989ffc58fdf3af8986b0}{os}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91e984fc89c5755c87fb7a1599d5e39a}{os\+\_\+info}} \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get information about the PC\textquotesingle{}s Operating System.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8b98a3e861b4a5c4c5eed6a50c2e4bcf}{cpu}} (std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a71aac9ab860b3a0161cddfdb5c9d429e}{cpu\+\_\+info}} $>$ \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get information about the PC\textquotesingle{}s Central Processing Units.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7e953563c3c13319797da0f3e85318a2}{gpu}} (std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af9612d2863b7d56c8eb5c3fcc5bf5ff3}{gpu\+\_\+info}} $>$ \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get information about the PC\textquotesingle{}s Graphics Processing Units.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ae800b9204dd76e3f4fe0d299cbb2aae7}{monitor}} (std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af566db09307816781d29078c73785e76}{monitor\+\_\+info}} $>$ \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get information about the PC\textquotesingle{}s monitors.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a6fa5bb66fd9d157c3c7c683aee0fa9e1}{ram}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a64f4f9fa438bbe5eaa98b1b324aec49a}{ram\+\_\+info}} \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get PC Random Access Memory information.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a1bd7565fe052a76e0be961d67d63a7d1}{drives}} (std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa1260d27bf5429b91b79535106f1b757}{drive\+\_\+info}} $>$ \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get PC drive information.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af3d9f8028267af19278610de68fd43be}{power}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a95a08cc502c0a33931c832ba1fd874fc}{power\+\_\+info}} \&info, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get PC power information.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aed6ec9b9f73073f796015f9c546a4d32}{to\+\_\+string}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\+\_\+status}} \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91edaef2ce59473e63e6d4eba773f5b3}{status}})
+\begin{DoxyCompactList}\small\item\em Convert \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\+\_\+status}} to a string.\end{DoxyCompactList}\item 
+static std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a591e165e8013f368a97a1b02ce9092fa}{to\+\_\+string}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\+\_\+status}} flag)
+\begin{DoxyCompactList}\small\item\em Convert \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\+\_\+status}} to a string.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a47f4ce9bd8271a66487ac0f262de2ca5}{manufacturer}}
+\begin{DoxyCompactList}\small\item\em The manufacturer of the PC, e.\+g. Dell.\end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a5c7952ee0de71e315be82b0bb1f0f9f6}{model}}
+\begin{DoxyCompactList}\small\item\em The model of the computer, e.\+g. Latitude E7250.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a3a7e35125504f3951c0247893ff45076}\label{classliblec_1_1leccore_1_1pc__info_a3a7e35125504f3951c0247893ff45076}} 
+std\+::string {\bfseries system\+\_\+type}
+\begin{DoxyCompactList}\small\item\em The system type, e.\+g. x64-\/based PC.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a0e0e074ff11a2a9c895d203d2254c1eb}\label{classliblec_1_1leccore_1_1pc__info_a0e0e074ff11a2a9c895d203d2254c1eb}} 
+std\+::string {\bfseries bios\+\_\+serial\+\_\+number}
+\begin{DoxyCompactList}\small\item\em The serial number of the BIOS. Uniquely identifies the PC.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_afb47f551dd29eb3e3fbfbbd74afa581f}\label{classliblec_1_1leccore_1_1pc__info_afb47f551dd29eb3e3fbfbbd74afa581f}} 
+std\+::string {\bfseries motherboard\+\_\+serial\+\_\+number}
+\begin{DoxyCompactList}\small\item\em The serial number of the PC\textquotesingle{}s motherboard.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a5b276cad9b646873fcb3cf2d4ba63d49}\label{classliblec_1_1leccore_1_1pc__info_a5b276cad9b646873fcb3cf2d4ba63d49}} 
+std\+::string {\bfseries architecture}
+\begin{DoxyCompactList}\small\item\em The architecture of the OS, e.\+g. 64-\/bit.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ad04f3c943254e9cb9159be1a7194eda4}\label{classliblec_1_1leccore_1_1pc__info_ad04f3c943254e9cb9159be1a7194eda4}} 
+std\+::string {\bfseries version}
+\begin{DoxyCompactList}\small\item\em The version number of the OS, e.\+g. 10.\+0.\+18363.\end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91edaef2ce59473e63e6d4eba773f5b3}{status}}
+\begin{DoxyCompactList}\small\item\em The status of the CPU.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a78fe30805f5df138050e9d75e9d9a105}\label{classliblec_1_1leccore_1_1pc__info_a78fe30805f5df138050e9d75e9d9a105}} 
+int {\bfseries cores}
+\begin{DoxyCompactList}\small\item\em The number of cores in the CPU, e.\+g. 2.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aea8512172f0e3a3f781c9892d3195411}\label{classliblec_1_1leccore_1_1pc__info_aea8512172f0e3a3f781c9892d3195411}} 
+int {\bfseries logical\+\_\+processors}
+\begin{DoxyCompactList}\small\item\em The number of logical processors in the CPU, e.\+g. 4.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a664aee3a3a35d1769eccb08d0a9d297b}\label{classliblec_1_1leccore_1_1pc__info_a664aee3a3a35d1769eccb08d0a9d297b}} 
+double {\bfseries base\+\_\+speed}
+\begin{DoxyCompactList}\small\item\em The base speed of the CPU in GHz, e.\+g. 2.\+29\+GHz.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ae987ac9bf5c224612b269b6a0ca47d2c}\label{classliblec_1_1leccore_1_1pc__info_ae987ac9bf5c224612b269b6a0ca47d2c}} 
+unsigned long long {\bfseries dedicated\+\_\+vram}
+\begin{DoxyCompactList}\small\item\em The size of the dedicated video memory, in bytes.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a12e379aa6443a9c47c6947618589122d}\label{classliblec_1_1leccore_1_1pc__info_a12e379aa6443a9c47c6947618589122d}} 
+unsigned long long {\bfseries total\+\_\+graphics\+\_\+memory}
+\begin{DoxyCompactList}\small\item\em The size of the total available graphics memory, in bytes.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a4c2d8e3d3494782172fe94127024f84c}\label{classliblec_1_1leccore_1_1pc__info_a4c2d8e3d3494782172fe94127024f84c}} 
+int {\bfseries vertical\+\_\+resolution}
+\begin{DoxyCompactList}\small\item\em The current vertical resolution of the display, in pixels, e.\+g. 1080.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aed69b1982426bbd7af8adffbe6da407a}\label{classliblec_1_1leccore_1_1pc__info_aed69b1982426bbd7af8adffbe6da407a}} 
+std\+::string {\bfseries resolution\+\_\+name}
+\begin{DoxyCompactList}\small\item\em The resolution name, e.\+g. Full HD.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ae02817829e099f565464816eb6c1dd8c}\label{classliblec_1_1leccore_1_1pc__info_ae02817829e099f565464816eb6c1dd8c}} 
+unsigned long long {\bfseries pixel\+\_\+clock\+\_\+rate}
+\begin{DoxyCompactList}\small\item\em The pixel clock rate, in Hz.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_af5c9a51ef5caeadb718897aa45f1c5df}\label{classliblec_1_1leccore_1_1pc__info_af5c9a51ef5caeadb718897aa45f1c5df}} 
+double {\bfseries refresh\+\_\+rate}
+\begin{DoxyCompactList}\small\item\em The refresh rate of the display, in Hz.\end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a600cb06aa90788e88f241366063d7438}{physical\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The physical size of the display in inches.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ac100345e82d1c01e3320176c7f86fdea}\label{classliblec_1_1leccore_1_1pc__info_ac100345e82d1c01e3320176c7f86fdea}} 
+std\+::string {\bfseries product\+\_\+code\+\_\+id}
+\begin{DoxyCompactList}\small\item\em The product code ID.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a69375222be3add361d3814c741ce2f88}\label{classliblec_1_1leccore_1_1pc__info_a69375222be3add361d3814c741ce2f88}} 
+short {\bfseries year\+\_\+of\+\_\+manufacture}
+\begin{DoxyCompactList}\small\item\em The manufacture year.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ad357755625e614fdc86286e7f7554df4}\label{classliblec_1_1leccore_1_1pc__info_ad357755625e614fdc86286e7f7554df4}} 
+short {\bfseries week\+\_\+of\+\_\+manufacture}
+\begin{DoxyCompactList}\small\item\em The manufacture week.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a0ec5d939e138d0eb636166e9f6dc41f2}\label{classliblec_1_1leccore_1_1pc__info_a0ec5d939e138d0eb636166e9f6dc41f2}} 
+std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa68c2b3f087074427e2f93ca90b0a312}{video\+\_\+mode}} $>$ {\bfseries supported\+\_\+modes}
+\begin{DoxyCompactList}\small\item\em The supported video modes, as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa68c2b3f087074427e2f93ca90b0a312}{video\+\_\+mode}} type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aebe105a288be765fcc48f9e91a87a434}\label{classliblec_1_1leccore_1_1pc__info_aebe105a288be765fcc48f9e91a87a434}} 
+std\+::string {\bfseries type}
+\begin{DoxyCompactList}\small\item\em The memory type, e.\+g. DDR3.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a74b2ce6dd77fb921317fc77ccca85314}\label{classliblec_1_1leccore_1_1pc__info_a74b2ce6dd77fb921317fc77ccca85314}} 
+std\+::string {\bfseries form\+\_\+factor}
+\begin{DoxyCompactList}\small\item\em The form factor of the RAM, e.\+g. SODIMM\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aa4aabefa41c77819737ccc490a43acd7}\label{classliblec_1_1leccore_1_1pc__info_aa4aabefa41c77819737ccc490a43acd7}} 
+std\+::string {\bfseries part\+\_\+number}
+\begin{DoxyCompactList}\small\item\em The part number of the RAM chip. Uniquely identifies the product.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a63cbdf5a3e9834beeb3c7215cc7eeaa2}\label{classliblec_1_1leccore_1_1pc__info_a63cbdf5a3e9834beeb3c7215cc7eeaa2}} 
+unsigned long long {\bfseries capacity}
+\begin{DoxyCompactList}\small\item\em The capacity of the RAM chip, in bytes.\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_afeec5c6c905a828cc436db8f788048c7}{speed}}
+\begin{DoxyCompactList}\small\item\em The speed of the RAM chip, in MHz.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aac29295c00a77521ab68ce67e24de91e}\label{classliblec_1_1leccore_1_1pc__info_aac29295c00a77521ab68ce67e24de91e}} 
+std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8cbd0b152ad3ae77fd0e34ecfacfc327}{ram\+\_\+chip}} $>$ {\bfseries ram\+\_\+chips}
+\begin{DoxyCompactList}\small\item\em The ram chips installed within the PC as defined by the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8cbd0b152ad3ae77fd0e34ecfacfc327}{ram\+\_\+chip}} type.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a50b741f1352f2e2543d5e457d0cdac2a}\label{classliblec_1_1leccore_1_1pc__info_a50b741f1352f2e2543d5e457d0cdac2a}} 
+std\+::string {\bfseries device\+\_\+id}
+\begin{DoxyCompactList}\small\item\em The device ID of the drive.\end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a41621baa15276dcfd54dcdf257700d10}{serial\+\_\+number}}
+\begin{DoxyCompactList}\small\item\em The drive\textquotesingle{}s serial number. Uniquely identifies the drive.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a28ead73e746b511f056fbbda4a4b0001}\label{classliblec_1_1leccore_1_1pc__info_a28ead73e746b511f056fbbda4a4b0001}} 
+std\+::string {\bfseries storage\+\_\+type}
+\begin{DoxyCompactList}\small\item\em The storage type, e.\+g. HDD.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a5e21f634c759304126344571d3ef2ddd}\label{classliblec_1_1leccore_1_1pc__info_a5e21f634c759304126344571d3ef2ddd}} 
+std\+::string {\bfseries bus\+\_\+type}
+\begin{DoxyCompactList}\small\item\em The bus type, e.\+g. SATA.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a2d46ffdbaa1b8178f5198753946a7275}\label{classliblec_1_1leccore_1_1pc__info_a2d46ffdbaa1b8178f5198753946a7275}} 
+std\+::string {\bfseries media\+\_\+type}
+\begin{DoxyCompactList}\small\item\em The media type, e.\+g. External hard disk media.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a4c8ed8d8379b30734a40a1ca005234ca}\label{classliblec_1_1leccore_1_1pc__info_a4c8ed8d8379b30734a40a1ca005234ca}} 
+unsigned long long {\bfseries size}
+\begin{DoxyCompactList}\small\item\em The size of the drive, in bytes.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a67855dc034b77ecea8f031eb0217a4b7}\label{classliblec_1_1leccore_1_1pc__info_a67855dc034b77ecea8f031eb0217a4b7}} 
+std\+::string {\bfseries unique\+\_\+id}
+\begin{DoxyCompactList}\small\item\em The battery\textquotesingle{}s unique ID.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ad649bafdc15b586470fb00793ad87a74}\label{classliblec_1_1leccore_1_1pc__info_ad649bafdc15b586470fb00793ad87a74}} 
+int {\bfseries designed\+\_\+capacity}
+\begin{DoxyCompactList}\small\item\em The battery\textquotesingle{}s designed capacity, in m\+Wh.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a1929d387a5728f548fa566181826db87}\label{classliblec_1_1leccore_1_1pc__info_a1929d387a5728f548fa566181826db87}} 
+int {\bfseries fully\+\_\+charged\+\_\+capacity}
+\begin{DoxyCompactList}\small\item\em The battery\textquotesingle{}s current fully charged capacity, in m\+Wh. When the battery is brand new this value is usually equal to or just below the designed capacity as defined in \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ad649bafdc15b586470fb00793ad87a74}{designed\+\_\+capacity}}.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a1cbd119ff0602a01723460f662003252}\label{classliblec_1_1leccore_1_1pc__info_a1cbd119ff0602a01723460f662003252}} 
+double {\bfseries health}
+\begin{DoxyCompactList}\small\item\em The battery\textquotesingle{}s current health as a percentage. The higher the better. A new battery is typically in the 90s and a battery nearing the end of it\textquotesingle{}s usable life is typically below the 30s.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a994d385a324aeae0c39f6b2d9bd09408}\label{classliblec_1_1leccore_1_1pc__info_a994d385a324aeae0c39f6b2d9bd09408}} 
+int {\bfseries current\+\_\+capacity}
+\begin{DoxyCompactList}\small\item\em The battery\textquotesingle{}s current capacity, in m\+Wh. When the battery is full this value is typically equal to or just above the fully charged capacity as defined in \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a1929d387a5728f548fa566181826db87}{fully\+\_\+charged\+\_\+capacity}}. A value of -\/1 indicates that the current capacity is unknown.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aa4536aec8ea54a6d1f6353e5a18d7897}\label{classliblec_1_1leccore_1_1pc__info_aa4536aec8ea54a6d1f6353e5a18d7897}} 
+double {\bfseries level}
+\begin{DoxyCompactList}\small\item\em The current battery level as a percentage.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a92b8e4147427ba496192af9d3924a597}\label{classliblec_1_1leccore_1_1pc__info_a92b8e4147427ba496192af9d3924a597}} 
+int {\bfseries current\+\_\+voltage}
+\begin{DoxyCompactList}\small\item\em The battery\textquotesingle{}s current voltage, in mV. -\/1 means unknown.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a3cd076f0acd3b63e94eb1d571576faa1}\label{classliblec_1_1leccore_1_1pc__info_a3cd076f0acd3b63e94eb1d571576faa1}} 
+int {\bfseries current\+\_\+charge\+\_\+rate}
+\begin{DoxyCompactList}\small\item\em The battery\textquotesingle{}s current charge rate, in mW. A positive value indicates that the battery is currently charging, a negative value means it\textquotesingle{}s discharging and 0 means it\textquotesingle{}s idle.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_adb8ee6b82ffc77321e3db02699b23a96}\label{classliblec_1_1leccore_1_1pc__info_adb8ee6b82ffc77321e3db02699b23a96}} 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\+\_\+status}} {\bfseries status}
+\begin{DoxyCompactList}\small\item\em The status of the battery as defined in \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\+\_\+status}}.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ae6231d52ec0cce2d222e5067d95ebb94}\label{classliblec_1_1leccore_1_1pc__info_ae6231d52ec0cce2d222e5067d95ebb94}} 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\+\_\+status}} {\bfseries status}
+\begin{DoxyCompactList}\small\item\em The power status of the PC as defined in \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\+\_\+status}}.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ad229f17c4cf8921626a7915ab3ca4d5f}\label{classliblec_1_1leccore_1_1pc__info_ad229f17c4cf8921626a7915ab3ca4d5f}} 
+int {\bfseries level}
+\begin{DoxyCompactList}\small\item\em The overall battery level as a percentage. -\/1 means unknown.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ad3caa56e99eccb8b28a21a816ec98f80}\label{classliblec_1_1leccore_1_1pc__info_ad3caa56e99eccb8b28a21a816ec98f80}} 
+std\+::string {\bfseries lifetime\+\_\+remaining}
+\begin{DoxyCompactList}\small\item\em The estimated battery lifetime remaining.\end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_af53adb7907c2a6667ead1e12835d22db}\label{classliblec_1_1leccore_1_1pc__info_af53adb7907c2a6667ead1e12835d22db}} 
+std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{battery\+\_\+info}} $>$ {\bfseries batteries}
+\begin{DoxyCompactList}\small\item\em The batteries currently installed within the PC, as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{battery\+\_\+info}} type.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PC information class.
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}\label{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!battery\_status@{battery\_status}}
+\index{battery\_status@{battery\_status}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{battery\_status}{battery\_status}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{liblec\+::leccore\+::pc\+\_\+info\+::battery\+\_\+status}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Battery status.
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{charging@{charging}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!charging@{charging}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7a05a0c26d8e746429c786c8e53378b9c9}\label{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7a05a0c26d8e746429c786c8e53378b9c9}} 
+charging&Indicates that the battery is currently charging.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{discharging@{discharging}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!discharging@{discharging}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7ac5506d5a14acd50bb34956446899fe2f}\label{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7ac5506d5a14acd50bb34956446899fe2f}} 
+discharging&Indicates that the battery is currently discharging.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ac\_line@{ac\_line}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!ac\_line@{ac\_line}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7aedd9d01781714b1628b3446b40d9db63}\label{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7aedd9d01781714b1628b3446b40d9db63}} 
+ac\+\_\+line&Indicates that the battery is currently idle.\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!power\_status@{power\_status}}
+\index{power\_status@{power\_status}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{power\_status}{power\_status}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{liblec\+::leccore\+::pc\+\_\+info\+::power\+\_\+status}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+The overall power status of the PC.
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{high@{high}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!high@{high}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a8d966b2253a917086c8604959e152243}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a8d966b2253a917086c8604959e152243}} 
+high&The battery level is high.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{medium@{medium}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!medium@{medium}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a075a3e36a0a52dcbc568c05788e8a713}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a075a3e36a0a52dcbc568c05788e8a713}} 
+medium&The battery level is medium.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{low@{low}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!low@{low}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a53cced8d281a1a0ace3cb6594daaa4f7}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a53cced8d281a1a0ace3cb6594daaa4f7}} 
+low&The battery level is low.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{critical@{critical}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!critical@{critical}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a7e85bcb66fb9a809d5ab4f62a8b8bea8}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a7e85bcb66fb9a809d5ab4f62a8b8bea8}} 
+critical&The battery level is critical.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{high\_charging@{high\_charging}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!high\_charging@{high\_charging}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a2a9dd7b0e7c153acf8a4054323f2b281}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a2a9dd7b0e7c153acf8a4054323f2b281}} 
+high\+\_\+charging&Battery is charging, and its charge level is high.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{low\_charging@{low\_charging}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!low\_charging@{low\_charging}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aacef66ea5e46290e48d2db3cb369c9ed}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aacef66ea5e46290e48d2db3cb369c9ed}} 
+low\+\_\+charging&Battery is charging, and its charge level is low.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{critical\_charging@{critical\_charging}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!critical\_charging@{critical\_charging}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aa01884687ac38e61d54bcded41016b66}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aa01884687ac38e61d54bcded41016b66}} 
+critical\+\_\+charging&Battery is charging, and its charge level is critical.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{charging@{charging}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!charging@{charging}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a05a0c26d8e746429c786c8e53378b9c9}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a05a0c26d8e746429c786c8e53378b9c9}} 
+charging&Battery is charging, and its charge level is medium.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{no\_battery@{no\_battery}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!no\_battery@{no\_battery}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a1009b81e098d9d62e1ac074bbf1a7f71}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77a1009b81e098d9d62e1ac074bbf1a7f71}} 
+no\+\_\+battery&There is no system battery.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{unknown@{unknown}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!unknown@{unknown}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aad921d60486366258809553a3db49a4a}\label{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77aad921d60486366258809553a3db49a4a}} 
+unknown&The power status is unknown.\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a8b98a3e861b4a5c4c5eed6a50c2e4bcf}\label{classliblec_1_1leccore_1_1pc__info_a8b98a3e861b4a5c4c5eed6a50c2e4bcf}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!cpu@{cpu}}
+\index{cpu@{cpu}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{cpu()}{cpu()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::cpu (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a71aac9ab860b3a0161cddfdb5c9d429e}{cpu\+\_\+info}} $>$ \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get information about the PC\textquotesingle{}s Central Processing Units.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & A list of CPUs as defined by the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a71aac9ab860b3a0161cddfdb5c9d429e}{cpu\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a1bd7565fe052a76e0be961d67d63a7d1}\label{classliblec_1_1leccore_1_1pc__info_a1bd7565fe052a76e0be961d67d63a7d1}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!drives@{drives}}
+\index{drives@{drives}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{drives()}{drives()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::drives (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa1260d27bf5429b91b79535106f1b757}{drive\+\_\+info}} $>$ \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get PC drive information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & A list of drives connected to the PC as defined by the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_aa1260d27bf5429b91b79535106f1b757}{drive\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a7e953563c3c13319797da0f3e85318a2}\label{classliblec_1_1leccore_1_1pc__info_a7e953563c3c13319797da0f3e85318a2}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!gpu@{gpu}}
+\index{gpu@{gpu}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{gpu()}{gpu()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::gpu (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af9612d2863b7d56c8eb5c3fcc5bf5ff3}{gpu\+\_\+info}} $>$ \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get information about the PC\textquotesingle{}s Graphics Processing Units.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & A list of GPUs as defined by the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af9612d2863b7d56c8eb5c3fcc5bf5ff3}{gpu\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_ae800b9204dd76e3f4fe0d299cbb2aae7}\label{classliblec_1_1leccore_1_1pc__info_ae800b9204dd76e3f4fe0d299cbb2aae7}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!monitor@{monitor}}
+\index{monitor@{monitor}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{monitor()}{monitor()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::monitor (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af566db09307816781d29078c73785e76}{monitor\+\_\+info}} $>$ \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get information about the PC\textquotesingle{}s monitors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & A list of monitors as defined by the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_af566db09307816781d29078c73785e76}{monitor\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aebd93b0e740ec1353a153630860b161c}\label{classliblec_1_1leccore_1_1pc__info_aebd93b0e740ec1353a153630860b161c}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{pc\+\_\+info\+::battery\+\_\+info}} \&}]{param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+In-\/equality operator. The opposite of \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a07110107644aece09b76dd6be788b651}{operator==}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{battery\+\_\+info}} to compare to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if there are changes, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a07110107644aece09b76dd6be788b651}\label{classliblec_1_1leccore_1_1pc__info_a07110107644aece09b76dd6be788b651}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!operator==@{operator==}}
+\index{operator==@{operator==}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{pc\+\_\+info\+::battery\+\_\+info}} \&}]{param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equality operator useful for checking if any battery information has changed since the last query.
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & The \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_ac35b7ac0fb9ad97facf070a93277a872}{battery\+\_\+info}} to compare to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if there are no changes, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a841692ea80c6989ffc58fdf3af8986b0}\label{classliblec_1_1leccore_1_1pc__info_a841692ea80c6989ffc58fdf3af8986b0}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!os@{os}}
+\index{os@{os}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{os()}{os()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::os (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91e984fc89c5755c87fb7a1599d5e39a}{os\+\_\+info}} \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get information about the PC\textquotesingle{}s Operating System.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The OS information as defined by the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a91e984fc89c5755c87fb7a1599d5e39a}{os\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a10bd5ad437146deaf7d451a9b16ef1c7}\label{classliblec_1_1leccore_1_1pc__info_a10bd5ad437146deaf7d451a9b16ef1c7}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!pc@{pc}}
+\index{pc@{pc}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{pc()}{pc()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::pc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a56e6b66bfb0119ef071588e65e59fee1}{pc\+\_\+details}} \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get PC details.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The PC\textquotesingle{}s details as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a56e6b66bfb0119ef071588e65e59fee1}{pc\+\_\+details}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_af3d9f8028267af19278610de68fd43be}\label{classliblec_1_1leccore_1_1pc__info_af3d9f8028267af19278610de68fd43be}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!power@{power}}
+\index{power@{power}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{power()}{power()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::power (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a95a08cc502c0a33931c832ba1fd874fc}{power\+\_\+info}} \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get PC power information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The PC power information as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a95a08cc502c0a33931c832ba1fd874fc}{power\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a6fa5bb66fd9d157c3c7c683aee0fa9e1}\label{classliblec_1_1leccore_1_1pc__info_a6fa5bb66fd9d157c3c7c683aee0fa9e1}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!ram@{ram}}
+\index{ram@{ram}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{ram()}{ram()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::pc\+\_\+info\+::ram (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a64f4f9fa438bbe5eaa98b1b324aec49a}{ram\+\_\+info}} \&}]{info,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get PC Random Access Memory information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & The RAM info as defined by the \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a64f4f9fa438bbe5eaa98b1b324aec49a}{ram\+\_\+info}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_aed6ec9b9f73073f796015f9c546a4d32}\label{classliblec_1_1leccore_1_1pc__info_aed6ec9b9f73073f796015f9c546a4d32}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::pc\+\_\+info\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convert \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a7124e0f6af7a65957b5b734bc66df6c7}{battery\+\_\+status}} to a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & The battery status.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a591e165e8013f368a97a1b02ce9092fa}\label{classliblec_1_1leccore_1_1pc__info_a591e165e8013f368a97a1b02ce9092fa}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static std\+::string liblec\+::leccore\+::pc\+\_\+info\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\+\_\+status}}}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convert \mbox{\hyperlink{classliblec_1_1leccore_1_1pc__info_a8dd267af3026a3f7b4fb5790bf590a77}{power\+\_\+status}} to a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & The power status.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The string.
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a47f4ce9bd8271a66487ac0f262de2ca5}\label{classliblec_1_1leccore_1_1pc__info_a47f4ce9bd8271a66487ac0f262de2ca5}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!manufacturer@{manufacturer}}
+\index{manufacturer@{manufacturer}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{manufacturer}{manufacturer}}
+{\footnotesize\ttfamily std\+::string liblec\+::leccore\+::pc\+\_\+info\+::manufacturer}
+
+
+
+The manufacturer of the PC, e.\+g. Dell.
+
+The battery\textquotesingle{}s manufacturer, e.\+g. LGC-\/\+LGC3.\+6.
+
+The manufacturer of the RAM chip, e.\+g. Samsung.
+
+The manufacturer of the monitor, e.\+g. Lenovo.
+
+The manufacturer of the CPU, e.\+g. AMD.\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a5c7952ee0de71e315be82b0bb1f0f9f6}\label{classliblec_1_1leccore_1_1pc__info_a5c7952ee0de71e315be82b0bb1f0f9f6}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!model@{model}}
+\index{model@{model}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily std\+::string liblec\+::leccore\+::pc\+\_\+info\+::model}
+
+
+
+The model of the computer, e.\+g. Latitude E7250.
+
+The drive model. Uniquely identifies the product.\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a600cb06aa90788e88f241366063d7438}\label{classliblec_1_1leccore_1_1pc__info_a600cb06aa90788e88f241366063d7438}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!physical\_size@{physical\_size}}
+\index{physical\_size@{physical\_size}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{physical\_size}{physical\_size}}
+{\footnotesize\ttfamily double liblec\+::leccore\+::pc\+\_\+info\+::physical\+\_\+size}
+
+
+
+The physical size of the display in inches.
+
+This is the length of the diagonal across the screen.\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a41621baa15276dcfd54dcdf257700d10}\label{classliblec_1_1leccore_1_1pc__info_a41621baa15276dcfd54dcdf257700d10}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!serial\_number@{serial\_number}}
+\index{serial\_number@{serial\_number}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{serial\_number}{serial\_number}}
+{\footnotesize\ttfamily std\+::string liblec\+::leccore\+::pc\+\_\+info\+::serial\+\_\+number}
+
+
+
+The drive\textquotesingle{}s serial number. Uniquely identifies the drive.
+
+The battery\textquotesingle{}s serial number. Uniquely identifies the battery.\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_afeec5c6c905a828cc436db8f788048c7}\label{classliblec_1_1leccore_1_1pc__info_afeec5c6c905a828cc436db8f788048c7}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!speed@{speed}}
+\index{speed@{speed}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int liblec\+::leccore\+::pc\+\_\+info\+::speed}
+
+
+
+The speed of the RAM chip, in MHz.
+
+The overall speed of the system memory, in MHz.\mbox{\Hypertarget{classliblec_1_1leccore_1_1pc__info_a91edaef2ce59473e63e6d4eba773f5b3}\label{classliblec_1_1leccore_1_1pc__info_a91edaef2ce59473e63e6d4eba773f5b3}} 
+\index{liblec::leccore::pc\_info@{liblec::leccore::pc\_info}!status@{status}}
+\index{status@{status}!liblec::leccore::pc\_info@{liblec::leccore::pc\_info}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily std\+::string liblec\+::leccore\+::pc\+\_\+info\+::status}
+
+
+
+The status of the CPU.
+
+The status of the drive.
+
+The status of the RAM chip.
+
+The status of the GPU.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+pc\+\_\+info.\+h\end{DoxyCompactItemize}

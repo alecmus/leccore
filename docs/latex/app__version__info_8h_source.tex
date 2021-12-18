@@ -1,0 +1,54 @@
+\hypertarget{app__version__info_8h_source}{}\doxysection{app\+\_\+version\+\_\+info.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// app\_version\_info.h -\/ application version information interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{22     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{31         \textcolor{keywordtype}{int} leccore\_api compare\_versions(\textcolor{keyword}{const} std::string\& left,}
+\DoxyCodeLine{32             \textcolor{keyword}{const} std::string\& right);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\_version\_info}} \{}
+\DoxyCodeLine{35         \textcolor{keyword}{public}:}
+\DoxyCodeLine{36             \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\_version\_info}}();}
+\DoxyCodeLine{37             \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\_version\_info}}(\textcolor{keyword}{const} std::string\& app\_name,}
+\DoxyCodeLine{38                 \textcolor{keyword}{const} std::string\& app\_version,}
+\DoxyCodeLine{39                 \textcolor{keyword}{const} std::string\& company\_name);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41             \textcolor{keywordtype}{bool} get\_app\_name(std::string\& app\_name,}
+\DoxyCodeLine{42                 std::string\& error);}
+\DoxyCodeLine{43             \textcolor{keywordtype}{bool} get\_app\_version(std::string\& app\_version,}
+\DoxyCodeLine{44                 std::string\& error);}
+\DoxyCodeLine{45             \textcolor{keywordtype}{bool} get\_company\_name(std::string\& company\_name,}
+\DoxyCodeLine{46                 std::string\& error);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \textcolor{keyword}{private}:}
+\DoxyCodeLine{49             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{50             impl\& \_d;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52             \textcolor{comment}{// Copying an object of this class is not allowed}}
+\DoxyCodeLine{53             \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\_version\_info}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\_version\_info}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{54             \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\_version\_info}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\_version\_info}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{55         \};}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}

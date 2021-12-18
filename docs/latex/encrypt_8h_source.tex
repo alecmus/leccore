@@ -1,0 +1,54 @@
+\hypertarget{encrypt_8h_source}{}\doxysection{encrypt.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// encrypt.h -\/ encryption/decryption interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{22     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{24         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1aes}{aes}} \{}
+\DoxyCodeLine{25         \textcolor{keyword}{public}:}
+\DoxyCodeLine{29             \mbox{\hyperlink{classliblec_1_1leccore_1_1aes_aa3cbb6f529e3bbdbb9e578f3042cd770}{aes}}(\textcolor{keyword}{const} std::string\& key,}
+\DoxyCodeLine{30                 \textcolor{keyword}{const} std::string\& iv);}
+\DoxyCodeLine{31             \mbox{\hyperlink{classliblec_1_1leccore_1_1aes}{\string~aes}}();}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{38             [[nodiscard]]}
+\DoxyCodeLine{39             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1aes_a2b0dbf3a64dedea688b1182ccdaa343f}{encrypt}}(\textcolor{keyword}{const} std::string\& input,}
+\DoxyCodeLine{40                 std::string\& encrypted,}
+\DoxyCodeLine{41                 std::string\& error);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{48             [[nodiscard]]}
+\DoxyCodeLine{49             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1aes_ad81b65ceaa2a154599620ad0761a4f5f}{decrypt}}(\textcolor{keyword}{const} std::string\& input,}
+\DoxyCodeLine{50                 std::string\& decrypted,}
+\DoxyCodeLine{51                 std::string\& error);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         \textcolor{keyword}{private}:}
+\DoxyCodeLine{54             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{55             impl\& \_d;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed.}}
+\DoxyCodeLine{58             \mbox{\hyperlink{classliblec_1_1leccore_1_1aes}{aes}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{59             \mbox{\hyperlink{classliblec_1_1leccore_1_1aes}{aes}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1aes}{aes}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{60             \mbox{\hyperlink{classliblec_1_1leccore_1_1aes}{aes}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1aes}{aes}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{61         \};}
+\DoxyCodeLine{62     \}}
+\DoxyCodeLine{63 \}}
+
+\end{DoxyCode}

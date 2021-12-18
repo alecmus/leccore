@@ -1,0 +1,96 @@
+\hypertarget{web__update_8h_source}{}\doxysection{web\+\_\+update.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// web\_update.h -\/ web update interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{23     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{25         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update}{check\_update}} \{}
+\DoxyCodeLine{26         \textcolor{keyword}{public}:}
+\DoxyCodeLine{29             \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1cad0b01ecb1c94548e97c067e655de6}{check\_update}}(\textcolor{keyword}{const} std::string\& update\_xml\_url);}
+\DoxyCodeLine{30             \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update}{\string~check\_update}}();}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1a902fe73c02cf7d0e71e960cf1b2d4f}{update\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{35                 std::string title;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{38                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a240942d2141c61263b2d7c34e64bdf90}{description}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{41                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_aa311bd5cf652c63eaba05bd82b27290c}{version}};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{44                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a5e51e05cefd0e7644d093ab0f70d7215}{date}};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{47                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a12a0166d43c6a64237994885015ab3bc}{download\_url}};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{50                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a85722e2d95b83133ee75759ea13d496e}{size}};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{53                 std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_aef92d628dbd59fa57ad1f96f19b9a0db}{hash}};}
+\DoxyCodeLine{54             \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{60             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1da5bbbd296331e0fc137fec880ff623}{start}}();}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{66             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a24cae125924bbf8533dc9958856a2912}{checking}}();}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{74             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a3a6efa49c9a272bdece3cf6269433bf9}{result}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1check__update_a1a902fe73c02cf7d0e71e960cf1b2d4f}{update\_info}}\& details,}
+\DoxyCodeLine{75                 std::string\& error);}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77         \textcolor{keyword}{private}:}
+\DoxyCodeLine{78             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{79             impl\& \_d;}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed.}}
+\DoxyCodeLine{82             \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update}{check\_update}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{83             \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update}{check\_update}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update}{check\_update}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{84             \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update}{check\_update}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1check__update}{check\_update}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{85         \};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{88         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update}{download\_update}} \{}
+\DoxyCodeLine{89         \textcolor{keyword}{public}:}
+\DoxyCodeLine{90             \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update}{download\_update}}();}
+\DoxyCodeLine{91             \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update}{\string~download\_update}}();}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{94             \textcolor{keyword}{using} \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}{download\_info}} = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{95                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} file\_size;}
+\DoxyCodeLine{96                 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} downloaded;}
+\DoxyCodeLine{97             \};}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{105             \textcolor{keywordtype}{void} \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_afe0021ca99a92e3a78e026a479479570}{start}}(\textcolor{keyword}{const} std::string\& url,}
+\DoxyCodeLine{106                 \textcolor{keyword}{const} std::string\& directory);}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{113             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a6f06e341a57d84e62e919fcfe2f6a7c1}{downloading}}();}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{125             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a59d0461491e892feb0f76f99780afc87}{downloading}}(\mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a670a72dd3f4778c4040600461200378d}{download\_info}}\& progress);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{131             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update_a7dfad9f6300f564f6465e08d0b0b55ca}{result}}(std::string\& fullpath,}
+\DoxyCodeLine{132                 std::string\& error);}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134         \textcolor{keyword}{private}:}
+\DoxyCodeLine{135             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{136             impl\& \_d;}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138             \textcolor{comment}{// Copying an object of this class is not allowed}}
+\DoxyCodeLine{139             \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update}{download\_update}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update}{download\_update}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{140             \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update}{download\_update}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1download__update}{download\_update}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{141         \};}
+\DoxyCodeLine{142     \}}
+\DoxyCodeLine{143 \}}
+
+\end{DoxyCode}

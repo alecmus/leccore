@@ -1,0 +1,85 @@
+\hypertarget{database_8h_source}{}\doxysection{database.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// database.h -\/ database interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <any>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{25     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{26         \textcolor{keyword}{namespace }database \{}
+\DoxyCodeLine{28             \textcolor{keyword}{using} blob = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{30                 std::string data;}
+\DoxyCodeLine{31             \};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37             \textcolor{keyword}{using} row = std::map<std::string, std::any>;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{40             \textcolor{keyword}{using} table = \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{42                 std::string name;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{45                 std::vector<std::string> columns;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{48                 std::vector<row> data;}
+\DoxyCodeLine{49             \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{56             \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1get}{get}} \{}
+\DoxyCodeLine{57             \textcolor{keyword}{public}:}
+\DoxyCodeLine{61                 \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1get_aaa056a2dcd1a819a3a166b2513043979}{integer}}(\textcolor{keyword}{const} std::any\& value);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66                 \textcolor{keyword}{static} \textcolor{keywordtype}{double} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1get_a69a85b6a6355181ee21ddf9180dac28c}{real}}(\textcolor{keyword}{const} std::any\& value);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{71                 \textcolor{keyword}{static} std::string \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1get_a888c45926dda85ea60367089d03bdac5}{text}}(\textcolor{keyword}{const} std::any\& value);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{76                 \textcolor{keyword}{static} blob \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1get_abe698ef3b96f86ee69817f1b96a05bbb}{blob}}(\textcolor{keyword}{const} std::any\& value);}
+\DoxyCodeLine{77             \};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{80             \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection}{connection}} \{}
+\DoxyCodeLine{81             \textcolor{keyword}{public}:}
+\DoxyCodeLine{88                 \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af4425b032664019f5d5dbc8dc23b6a85}{connection}}(\textcolor{keyword}{const} std::string\& type,}
+\DoxyCodeLine{89                     \textcolor{keyword}{const} std::string\& connection\_string,}
+\DoxyCodeLine{90                     \textcolor{keyword}{const} std::string\& password);}
+\DoxyCodeLine{91                 \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection}{\string~connection}}();}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{95                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_ad53d1a41c220439d805a3c4c740f41fd}{connected}}();}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{100                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_ab64fb88f5519a81ee0dca2bd90891e0e}{connect}}(std::string\& error);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{105                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af68c31273e8f84859dc1b99ecf916eef}{disconnect}}(std::string\& error);}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{118                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_ae2d030b2e9df06983dd9d6639ba5fc5a}{execute}}(\textcolor{keyword}{const} std::string\& sql, \textcolor{keyword}{const} std::vector<std::any>\& values, std::string\& error);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{126                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af526e0e323f5775418296d93f2f9b133}{execute\_query}}(\textcolor{keyword}{const} std::string\& sql, table\& results, std::string\& error);}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128             \textcolor{keyword}{private}:}
+\DoxyCodeLine{129                 \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{130                 impl\& \_d;}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132                 \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{133                 \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection}{connection}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{134                 \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection}{connection}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection}{connection}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{135                 \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection}{connection}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection}{connection}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{136             \};}
+\DoxyCodeLine{137         \}}
+\DoxyCodeLine{138     \}}
+\DoxyCodeLine{139 \}}
+
+\end{DoxyCode}

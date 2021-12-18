@@ -1,0 +1,95 @@
+\hypertarget{classliblec_1_1leccore_1_1aes}{}\doxysection{liblec\+::leccore\+::aes Class Reference}
+\label{classliblec_1_1leccore_1_1aes}\index{liblec::leccore::aes@{liblec::leccore::aes}}
+
+
+256bit AES encryption class. 
+
+
+
+
+{\ttfamily \#include $<$encrypt.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1aes_aa3cbb6f529e3bbdbb9e578f3042cd770}{aes}} (const std\+::string \&key, const std\+::string \&iv)
+\begin{DoxyCompactList}\small\item\em Constructor.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1aes_a2b0dbf3a64dedea688b1182ccdaa343f}{encrypt}} (const std\+::string \&input, std\+::string \&encrypted, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Encrypt data.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1aes_ad81b65ceaa2a154599620ad0761a4f5f}{decrypt}} (const std\+::string \&input, std\+::string \&decrypted, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Decrypt data.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+256bit AES encryption class.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1aes_aa3cbb6f529e3bbdbb9e578f3042cd770}\label{classliblec_1_1leccore_1_1aes_aa3cbb6f529e3bbdbb9e578f3042cd770}} 
+\index{liblec::leccore::aes@{liblec::leccore::aes}!aes@{aes}}
+\index{aes@{aes}!liblec::leccore::aes@{liblec::leccore::aes}}
+\doxysubsubsection{\texorpdfstring{aes()}{aes()}}
+{\footnotesize\ttfamily liblec\+::leccore\+::aes\+::aes (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{key,  }\item[{const std\+::string \&}]{iv }\end{DoxyParamCaption})}
+
+
+
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to use for encryption. This must be kept private.\\
+\hline
+{\em iv} & The initialization vector to use. This must be unique.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1aes_ad81b65ceaa2a154599620ad0761a4f5f}\label{classliblec_1_1leccore_1_1aes_ad81b65ceaa2a154599620ad0761a4f5f}} 
+\index{liblec::leccore::aes@{liblec::leccore::aes}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!liblec::leccore::aes@{liblec::leccore::aes}}
+\doxysubsubsection{\texorpdfstring{decrypt()}{decrypt()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::aes\+::decrypt (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input,  }\item[{std\+::string \&}]{decrypted,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Decrypt data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The data to be decrypted.\\
+\hline
+{\em decrypted} & The decrypted data.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1aes_a2b0dbf3a64dedea688b1182ccdaa343f}\label{classliblec_1_1leccore_1_1aes_a2b0dbf3a64dedea688b1182ccdaa343f}} 
+\index{liblec::leccore::aes@{liblec::leccore::aes}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!liblec::leccore::aes@{liblec::leccore::aes}}
+\doxysubsubsection{\texorpdfstring{encrypt()}{encrypt()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::aes\+::encrypt (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input,  }\item[{std\+::string \&}]{encrypted,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Encrypt data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The data to be encrypted.\\
+\hline
+{\em encrypted} & The encrypted data.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+encrypt.\+h\end{DoxyCompactItemize}

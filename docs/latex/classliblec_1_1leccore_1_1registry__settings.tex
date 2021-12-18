@@ -1,0 +1,233 @@
+\hypertarget{classliblec_1_1leccore_1_1registry__settings}{}\doxysection{liblec\+::leccore\+::registry\+\_\+settings Class Reference}
+\label{classliblec_1_1leccore_1_1registry__settings}\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+
+
+Registry settings derived class. For saving/loading application settings using the Windows registry. 
+
+
+
+
+{\ttfamily \#include $<$settings.\+h$>$}
+
+Inheritance diagram for liblec\+::leccore\+::registry\+\_\+settings\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classliblec_1_1leccore_1_1registry__settings}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_aceb5394d8ffc56c83c8998158d602b0f}{registry\+\_\+settings}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{registry\+::scope}} settings\+\_\+scope)
+\begin{DoxyCompactList}\small\item\em Plain registry settings constructor.\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_ad7fc0e0abc4c73cfe3463f644af22caf}{registry\+\_\+settings}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{registry\+::scope}} settings\+\_\+scope, const std\+::string \&key, const std\+::string \&iv)
+\begin{DoxyCompactList}\small\item\em Encrypted registry settings constructor.\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_aca74d3e731a7dc9e84b05639ec303d02}{set\+\_\+registry\+\_\+path}} (const std\+::string \&registry\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Set the registry path, relative to the scope defined in the constructor.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_af97944e34db7db1abf1c787320347bb9}{get\+\_\+registry\+\_\+path}} (std\+::string \&registry\+\_\+path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get the currently set registry path.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a1782ae9ccacef4585b4a2534298b59f6}{write\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, const std\+::string \&value, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Write a \mbox{\hyperlink{}{value}} to the settings file.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_ac0a06f020bd5f862c709a9058c90908f}{read\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, std\+::string \&value, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Read a \mbox{\hyperlink{}{value}} from the settings file.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a441f2f68f5b21128e0907a483436e8dd}{delete\+\_\+value}} (const std\+::string \&branch, const std\+::string \&value\+\_\+name, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the settings file.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_a4bb700013eaac8a4cdbf9bc49185cba8}{delete\+\_\+recursive}} (const std\+::string \&branch, std\+::string \&error) override
+\begin{DoxyCompactList}\small\item\em Delete a branch and all it\textquotesingle{}s contents recursively.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Registry settings derived class. For saving/loading application settings using the Windows registry.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_aceb5394d8ffc56c83c8998158d602b0f}\label{classliblec_1_1leccore_1_1registry__settings_aceb5394d8ffc56c83c8998158d602b0f}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!registry\_settings@{registry\_settings}}
+\index{registry\_settings@{registry\_settings}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{registry\_settings()}{registry\_settings()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily liblec\+::leccore\+::registry\+\_\+settings\+::registry\+\_\+settings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{registry\+::scope}}}]{settings\+\_\+scope }\end{DoxyParamCaption})}
+
+
+
+Plain registry settings constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em settings\+\_\+scope} & The registry scope as defined in the \mbox{\hyperlink{}{scope}} enumeration.\\
+\hline
+\end{DoxyParams}
+
+
+This constructor is for plain registry settings (not encrypted).\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_ad7fc0e0abc4c73cfe3463f644af22caf}\label{classliblec_1_1leccore_1_1registry__settings_ad7fc0e0abc4c73cfe3463f644af22caf}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!registry\_settings@{registry\_settings}}
+\index{registry\_settings@{registry\_settings}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{registry\_settings()}{registry\_settings()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily liblec\+::leccore\+::registry\+\_\+settings\+::registry\+\_\+settings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1registry_a8a1e47b162366d25545b53dd0848fd39}{registry\+::scope}}}]{settings\+\_\+scope,  }\item[{const std\+::string \&}]{key,  }\item[{const std\+::string \&}]{iv }\end{DoxyParamCaption})}
+
+
+
+Encrypted registry settings constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em settings\+\_\+scope} & The registry scope as defined in the \mbox{\hyperlink{}{scope}} enumeration.\\
+\hline
+{\em key} & The encryption key. This must be kept private.\\
+\hline
+{\em iv} & The initialization vector. This must be unique.\\
+\hline
+\end{DoxyParams}
+
+
+This constructor is for encrypted registry settings; implemented using 256bit AES encryption.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_a4bb700013eaac8a4cdbf9bc49185cba8}\label{classliblec_1_1leccore_1_1registry__settings_a4bb700013eaac8a4cdbf9bc49185cba8}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!delete\_recursive@{delete\_recursive}}
+\index{delete\_recursive@{delete\_recursive}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{delete\_recursive()}{delete\_recursive()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+\_\+settings\+::delete\+\_\+recursive (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Delete a branch and all it\textquotesingle{}s contents recursively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch to delete from the settings, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string to delete the root path and all it\textquotesingle{}s contents.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a542f19cae3e6dddf1b55a292d82f3eb9}{liblec\+::leccore\+::settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_a441f2f68f5b21128e0907a483436e8dd}\label{classliblec_1_1leccore_1_1registry__settings_a441f2f68f5b21128e0907a483436e8dd}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!delete\_value@{delete\_value}}
+\index{delete\_value@{delete\_value}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{delete\_value()}{delete\_value()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+\_\+settings\+::delete\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Delete a \mbox{\hyperlink{}{value\+\_\+name}} from the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is, e.\+g. \char`\"{}\+Email Options\char`\"{}.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a9b762a09fcba9def821454be793e7fdc}{liblec\+::leccore\+::settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_af97944e34db7db1abf1c787320347bb9}\label{classliblec_1_1leccore_1_1registry__settings_af97944e34db7db1abf1c787320347bb9}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!get\_registry\_path@{get\_registry\_path}}
+\index{get\_registry\_path@{get\_registry\_path}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{get\_registry\_path()}{get\_registry\_path()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+\_\+settings\+::get\+\_\+registry\+\_\+path (\begin{DoxyParamCaption}\item[{std\+::string \&}]{registry\+\_\+path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the currently set registry path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em registry\+\_\+path} & The registry path, relative to the scope defined in the constructor.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+If \mbox{\hyperlink{classliblec_1_1leccore_1_1registry__settings_aca74d3e731a7dc9e84b05639ec303d02}{set\+\_\+registry\+\_\+path}} is not called then the registry path is internally set to \char`\"{}\+Software\textbackslash{}\textbackslash{}company-\/name\textbackslash{}\textbackslash{}app-\/name\char`\"{} as read from the application\textquotesingle{}s version information. The \mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\+\_\+version\+\_\+info}} class is called internally for this. If the current application does not have any version information then this method will return an error.\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_ac0a06f020bd5f862c709a9058c90908f}\label{classliblec_1_1leccore_1_1registry__settings_ac0a06f020bd5f862c709a9058c90908f}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!read\_value@{read\_value}}
+\index{read\_value@{read\_value}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{read\_value()}{read\_value()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+\_\+settings\+::read\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Read a \mbox{\hyperlink{}{value}} from the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string if it\textquotesingle{}s in the root path.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em value} & The value read from the settings.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a03b8f8281932e526cd641c2a1c5a01bd}{liblec\+::leccore\+::settings}}.
+
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_aca74d3e731a7dc9e84b05639ec303d02}\label{classliblec_1_1leccore_1_1registry__settings_aca74d3e731a7dc9e84b05639ec303d02}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!set\_registry\_path@{set\_registry\_path}}
+\index{set\_registry\_path@{set\_registry\_path}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{set\_registry\_path()}{set\_registry\_path()}}
+{\footnotesize\ttfamily void liblec\+::leccore\+::registry\+\_\+settings\+::set\+\_\+registry\+\_\+path (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{registry\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Set the registry path, relative to the scope defined in the constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em registry\+\_\+path} & The root path to use for the registry settings, e.\+g. \char`\"{}\+Software\textbackslash{}\textbackslash{}com.\+github.\+alecmus\textbackslash{}\textbackslash{}\+PC Info.$<$/param$>$ $<$remarks$>$\+If this method is not called the registry path is set internally to \char`\"{}Software\textbackslash{}company-\/name\textbackslash{}app-\/name\char`\"{} as read from the application\textquotesingle{}s version information. \+The $<$see cref=\char`\"{}\mbox{\hyperlink{classliblec_1_1leccore_1_1app__version__info}{app\+\_\+version\+\_\+info}}"{}\texorpdfstring{$>$}{>}
+
+class is called internally for this. If the current application does not have any version information then all write and read functions will return an error until a path is explicitly defined using this method. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1registry__settings_a1782ae9ccacef4585b4a2534298b59f6}\label{classliblec_1_1leccore_1_1registry__settings_a1782ae9ccacef4585b4a2534298b59f6}} 
+\index{liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}!write\_value@{write\_value}}
+\index{write\_value@{write\_value}!liblec::leccore::registry\_settings@{liblec::leccore::registry\_settings}}
+\doxysubsubsection{\texorpdfstring{write\_value()}{write\_value()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::registry\+\_\+settings\+::write\+\_\+value (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{branch,  }\item[{const std\+::string \&}]{value\+\_\+name,  }\item[{const std\+::string \&}]{value,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Write a \mbox{\hyperlink{}{value}} to the settings file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The branch under which the \mbox{\hyperlink{}{value\+\_\+name}} is under, e.\+g. \char`\"{}\+Email Options\char`\"{}. Use an empty string if it\textquotesingle{}s in the root path.\\
+\hline
+{\em value\+\_\+name} & The value name, e.\+g. \char`\"{}\+SMTP Port\char`\"{}.\\
+\hline
+{\em value} & The value to be written under the \mbox{\hyperlink{}{value\+\_\+name}}, e.\+g. 587.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classliblec_1_1leccore_1_1settings_a8a5238d7aaacf464f22f3df8fa925245}{liblec\+::leccore\+::settings}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+settings.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,130 @@
+\hypertarget{classliblec_1_1leccore_1_1hash__file}{}\doxysection{liblec\+::leccore\+::hash\+\_\+file Class Reference}
+\label{classliblec_1_1leccore_1_1hash__file}\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}
+
+
+File hashing class. 
+
+
+
+
+{\ttfamily \#include $<$hash.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}{algorithm}} \{ \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabcad8d8a6d2e9e1fb99302b479a8fe540d4}{sha256}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabca79521051c5c4526354393a974d561458}{sha512}}
+ \}
+\begin{DoxyCompactList}\small\item\em Hashing algorithm.\end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}{hash\+\_\+results}} = std\+::map$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}{algorithm}}, std\+::string $>$
+\begin{DoxyCompactList}\small\item\em Hash results. Key is the algorithm and value is the hash.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a261ca7d2332d08a90d5b8652b5d4fa85}{start}} (const std\+::string \&fullpath, const std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}{algorithm}} $>$ \&algorithms)
+\begin{DoxyCompactList}\small\item\em Start hashing.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a565ca27d40516acbd1ce1a7d7ec33754}{hashing}} ()
+\begin{DoxyCompactList}\small\item\em Check whether hashing is still in progress.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_aafb41208071465957e1e198c209424e7}{result}} (\mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}{hash\+\_\+results}} \&results, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get the results of the hashing operation.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File hashing class.
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}\label{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}} 
+\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}!hash\_results@{hash\_results}}
+\index{hash\_results@{hash\_results}!liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}
+\doxysubsubsection{\texorpdfstring{hash\_results}{hash\_results}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}{liblec\+::leccore\+::hash\+\_\+file\+::hash\+\_\+results}} =  std\+::map$<$\mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}{algorithm}}, std\+::string$>$}
+
+
+
+Hash results. Key is the algorithm and value is the hash.
+
+Allows running multiple hashes in one sweep, which is far much more efficient than running one hash at a time because in that case the file data has to be read again. 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}\label{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}} 
+\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}!algorithm@{algorithm}}
+\index{algorithm@{algorithm}!liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}
+\doxysubsubsection{\texorpdfstring{algorithm}{algorithm}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}{liblec\+::leccore\+::hash\+\_\+file\+::algorithm}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Hashing algorithm.
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{sha256@{sha256}!liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}!sha256@{sha256}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabcad8d8a6d2e9e1fb99302b479a8fe540d4}\label{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabcad8d8a6d2e9e1fb99302b479a8fe540d4}} 
+sha256&SHA512 hash.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{sha512@{sha512}!liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}!sha512@{sha512}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabca79521051c5c4526354393a974d561458}\label{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabca79521051c5c4526354393a974d561458}} 
+sha512&SHA512 hash.\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__file_a565ca27d40516acbd1ce1a7d7ec33754}\label{classliblec_1_1leccore_1_1hash__file_a565ca27d40516acbd1ce1a7d7ec33754}} 
+\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}!hashing@{hashing}}
+\index{hashing@{hashing}!liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}
+\doxysubsubsection{\texorpdfstring{hashing()}{hashing()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::hash\+\_\+file\+::hashing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check whether hashing is still in progress.
+
+\begin{DoxyReturn}{Returns}
+Returns true if the hashing process is still underway and false otherwise.
+\end{DoxyReturn}
+
+
+After calling \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a261ca7d2332d08a90d5b8652b5d4fa85}{start}} call this method in a loop or a timer, depending on your kind of app, then call \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_aafb41208071465957e1e198c209424e7}{result}} once it returns false.\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__file_aafb41208071465957e1e198c209424e7}\label{classliblec_1_1leccore_1_1hash__file_aafb41208071465957e1e198c209424e7}} 
+\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}!result@{result}}
+\index{result@{result}!liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}
+\doxysubsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::hash\+\_\+file\+::result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}{hash\+\_\+results}} \&}]{results,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Get the results of the hashing operation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em results} & The results of the hashing operation as defined in the \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a28073ce821156885ea603177a1197b70}{hash\+\_\+results}} type.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the hashing was successful, else false. When false the error information is written back to \mbox{\hyperlink{}{error}}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1hash__file_a261ca7d2332d08a90d5b8652b5d4fa85}\label{classliblec_1_1leccore_1_1hash__file_a261ca7d2332d08a90d5b8652b5d4fa85}} 
+\index{liblec::leccore::hash\_file@{liblec::leccore::hash\_file}!start@{start}}
+\index{start@{start}!liblec::leccore::hash\_file@{liblec::leccore::hash\_file}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void liblec\+::leccore\+::hash\+\_\+file\+::start (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a8fa86454b572fc73209d7cb20482eabc}{algorithm}} $>$ \&}]{algorithms }\end{DoxyParamCaption})}
+
+
+
+Start hashing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the file, including the extension.\\
+\hline
+{\em algorithms} & The list of algorithms to use.\\
+\hline
+\end{DoxyParams}
+
+
+This method returns almost immediately. The actual hashing is executed on a different thread. To check the status of the hashing use the \mbox{\hyperlink{classliblec_1_1leccore_1_1hash__file_a565ca27d40516acbd1ce1a7d7ec33754}{hashing}} method.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+hash.\+h\end{DoxyCompactItemize}
