@@ -314,6 +314,9 @@ xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" 
   <ItemGroup>
     <Text Include="LICENSE.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
