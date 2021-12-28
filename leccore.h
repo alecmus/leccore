@@ -31,7 +31,7 @@
 #endif
 
 #include <string>
-#include <sstream>
+#include <vector>
 
 namespace liblec {
 	namespace leccore {
@@ -74,6 +74,27 @@ namespace liblec {
 			static float to_float(const float& f, int precision);
 		};
 
+		/// <summary>Put the current thread to sleep.</summary>
+		/// <param name="milliseconds">The length of time to put the thread to sleep for, in milliseconds.</param>
 		void leccore_api sleep(unsigned long long milliseconds);
+
+		/// <summary>Password quality specifications.</summary>
+		struct password_quality_specs {
+			/// <summary>A strength up to 50% is considered weak, up to 80% considered average, and above
+			/// 80% is considered high. This is a simple guide to be taken with a grain of salt.</summary>
+			float strength = 0.f;
+
+			/// <summary>Issues with the password.</summary>
+			/// <remarks>These issues suggest improvement areas.</remarks>
+			std::vector<std::string> issues;
+
+			/// <summary>A summary of the password issues.</summary>
+			std::string issues_summary;
+		};
+
+		/// <summary>Determine the quality of a password.</summary>
+		/// <param name="password">The password string.</param>
+		/// <returns>The quality of the password as defined in <see cref='password_quality_specs'></see>.</returns>
+		password_quality_specs leccore_api password_quality(const std::string& password);
 	}
 }

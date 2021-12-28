@@ -17,6 +17,9 @@
 #include <thread>
 #include <chrono>
 
+#include <sstream>
+#include <unordered_map>
+
 // crypto++
 #ifdef _WIN64
 
@@ -138,6 +141,116 @@ std::string liblec::leccore::format_size(unsigned long long size, unsigned short
 
 void liblec::leccore::sleep(unsigned long long milliseconds) {
 	std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+}
+
+liblec::leccore::password_quality_specs liblec::leccore::password_quality(const std::string& password) {
+	// returns the number of duplicates in a given string
+	auto number_of_duplicates = [](const std::string& str) {
+		// K = character, T = occurences
+		std::unordered_map<char, int> pairs;
+		for (const auto& character : str)
+			pairs[character]++;
+
+		int duplicates = 0;
+		for (const auto& [character, occurences] : pairs)
+			duplicates += (occurences - 1);
+
+		return duplicates;
+	};
+
+	password_quality_specs quality;
+	quality.strength = 0.f;
+
+	if (password.empty()) {
+		quality.issues.push_back("No password");
+		quality.issues_summary = "No password";
+	}
+
+	// number of items of each type
+	float hits_lower = 0;
+	float hits_upper = 0;
+	float hits_digit = 0;
+	float hits_special = 0;
+
+	for (const auto& character : password) {
+		if (islower(character))
+			hits_lower++;
+		else
+			if (isupper(character))
+				hits_upper++;
+			else
+				if (isdigit(character))
+					hits_digit++;
+				else
+					hits_special++;
+	}
+
+	// check for duplicate characters
+	int duplicates = number_of_duplicates(password);
+
+	// add strength at different proportions for different elements
+	quality.strength = quality.strength +
+		hits_lower * 3.f +
+		hits_upper * 3.f +
+		hits_digit * 2.f +	// digits have the least weight
+		hits_special * 5.f;	// special characters have the greatest weight
+
+	// add strength according to complexity of mixing
+	const float mix_factor =
+		(hits_lower * hits_upper) +
+		(hits_lower * hits_digit) +
+		(hits_lower * hits_special) +
+		(hits_upper * hits_digit) +
+		(hits_upper * hits_special) +
+		(hits_digit * hits_special);
+
+	quality.strength = quality.strength + mix_factor - duplicates * 2.5f;
+
+	// impose limits
+	quality.strength = max(quality.strength, 0.f);
+	quality.strength = min(quality.strength, 100.f);
+
+	// issues
+	if (hits_lower < 3) {
+		if (hits_lower == 0)
+			quality.issues.push_back("No lowercase characters");
+		else
+			quality.issues.push_back("Few lowercase characters");
+	}
+
+	if (hits_upper < 3) {
+		if (hits_upper == 0)
+			quality.issues.push_back("No uppercase characters");
+		else
+			quality.issues.push_back("Few uppercase characters");
+	}
+
+	if (hits_special < 3) {
+		if (hits_special == 0)
+			quality.issues.push_back("No special characters");
+		else
+			quality.issues.push_back("Few special characters");
+	}
+
+	if (hits_digit < 3) {
+		if (hits_digit == 0)
+			quality.issues.push_back("No digits");
+		else
+			quality.issues.push_back("Few digits");
+	}
+
+	if (duplicates > 2)
+		quality.issues.push_back("Duplicate characters");
+
+	// issues summary
+	for (const auto& issue : quality.issues) {
+		if (quality.issues.empty())
+			quality.issues_summary = issue;
+		else
+			quality.issues_summary += ", " + issue;
+	}
+
+	return quality;
 }
 
 std::string liblec::leccore::round_off::to_string(const double& d, int precision) {
