@@ -164,6 +164,7 @@ liblec::leccore::password_quality_specs liblec::leccore::password_quality(const 
 	if (password.empty()) {
 		quality.issues.push_back("No password");
 		quality.issues_summary = "No password";
+		return quality;
 	}
 
 	// number of items of each type
@@ -243,11 +244,15 @@ liblec::leccore::password_quality_specs liblec::leccore::password_quality(const 
 		quality.issues.push_back("Duplicate characters");
 
 	// issues summary
-	for (const auto& issue : quality.issues) {
-		if (quality.issues.empty())
+	for (auto issue : quality.issues) {
+		if (quality.issues_summary.empty())
 			quality.issues_summary = issue;
-		else
+		else {
+			if (!issue.empty())
+				issue[0] = tolower(issue[0]);
+
 			quality.issues_summary += ", " + issue;
+		}
 	}
 
 	return quality;
