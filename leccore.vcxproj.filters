@@ -47,6 +47,15 @@
     <Filter Include="leccore\system">
       <UniqueIdentifier>{b81c099d-fc50-4f99-bc5f-7c869d72f3e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\image">
+      <UniqueIdentifier>{e30baae1-82a6-444c-b8e0-7a39e03a562d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="leccore\image\gdiplus_bitmap">
+      <UniqueIdentifier>{33e84c24-1961-4864-8a0c-82ca1554b92b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="leccore\image\resize_gdiplus_bitmap">
+      <UniqueIdentifier>{f731da37-dfbc-4584-adf9-b324c3bb3824}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="versioninfo.h">
@@ -116,6 +125,15 @@
       <Filter>leccore\pc_info</Filter>
     </ClInclude>
     <ClInclude Include="leccore.h" />
+    <ClInclude Include="image.h">
+      <Filter>leccore</Filter>
+    </ClInclude>
+    <ClInclude Include="image\gdiplus_bitmap\gdiplus_bitmap.h">
+      <Filter>leccore\image\gdiplus_bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.h">
+      <Filter>leccore\image\resize_gdiplus_bitmap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="database\connection.cpp">
@@ -209,6 +227,15 @@
       <Filter>leccore\pc_info</Filter>
     </ClCompile>
     <ClCompile Include="leccore.cpp" />
+    <ClCompile Include="image\image.cpp">
+      <Filter>leccore\image</Filter>
+    </ClCompile>
+    <ClCompile Include="image\gdiplus_bitmap\gdiplus_bitmap.cpp">
+      <Filter>leccore\image\gdiplus_bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.cpp">
+      <Filter>leccore\image\resize_gdiplus_bitmap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">

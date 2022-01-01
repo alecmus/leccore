@@ -10,8 +10,9 @@
 
 #pragma once
 
-#include <string>
 #include <Windows.h>
+#include <GdiPlus.h>
+#include <string>
 
 namespace liblec {
 	namespace leccore {
@@ -118,5 +119,88 @@ namespace liblec {
 			class impl;
 			impl& _d;
 		};
+
+		// get detailed Gdiplus status information
+		static inline std::string get_gdiplus_status_info(Gdiplus::Status* pstatus) {
+			using namespace Gdiplus;
+
+			std::string msg;
+
+			switch (*pstatus) {
+			case Ok:
+				msg = "Ok: Indicates that the method call was successful.";
+				break;
+			case GenericError:
+				msg = "GenericError";
+				break;
+			case InvalidParameter:
+				msg = "InvalidParameter";
+				break;
+			case OutOfMemory:
+				msg = "OutOfMemory";
+				break;
+			case ObjectBusy:
+				msg = "ObjectBusy";
+				break;
+			case InsufficientBuffer:
+				msg = "InsufficientBuffer";
+				break;
+			case NotImplemented:
+				msg = "NotImplemented";
+				break;
+			case Win32Error:
+				msg = "Win32Error";
+				break;
+			case WrongState:
+				msg = "WrongState";
+				break;
+			case Aborted:
+				msg = "Aborted";
+				break;
+			case FileNotFound:
+				msg = "FileNotFound";
+				break;
+			case ValueOverflow:
+				msg = "ValueOverflow";
+				break;
+			case AccessDenied:
+				msg = "AccessDenied";
+				break;
+			case UnknownImageFormat:
+				msg = "UnknownImageFormat";
+				break;
+			case FontFamilyNotFound:
+				msg = "FontFamilyNotFound";
+				break;
+			case FontStyleNotFound:
+				msg = "FontStyleNotFound";
+				break;
+			case NotTrueTypeFont:
+				msg = "NotTrueTypeFont";
+				break;
+			case UnsupportedGdiplusVersion:
+				msg = "UnsupportedGdiplusVersion";
+				break;
+			case GdiplusNotInitialized:
+				msg = "GdiplusNotInitialized";
+				break;
+			case PropertyNotFound:
+				msg = "PropertyNotFound";
+				break;
+			case PropertyNotSupported:
+				msg = "PropertyNotSupported";
+				break;
+#if (GDIPVER >= 0x0110)
+			case ProfileNotFound:
+				msg = "ProfileNotFound";
+				break;
+#endif //(GDIPVER >= 0x0110)
+			default:
+				msg = "Invalid status";
+				break;
+			}
+
+			return msg;
+		}
 	}
 }

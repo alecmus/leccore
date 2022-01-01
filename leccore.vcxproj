@@ -128,6 +128,7 @@ xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -169,6 +170,7 @@ xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -206,6 +208,7 @@ xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -247,6 +250,7 @@ xcopy "$(ProjectDir)settings.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\
 xcopy "$(ProjectDir)web_update.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)zip.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
+xcopy "$(ProjectDir)image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /F /R /Y /I
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -260,6 +264,9 @@ xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" 
     <ClInclude Include="error\win_error.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="hash.h" />
+    <ClInclude Include="image.h" />
+    <ClInclude Include="image\gdiplus_bitmap\gdiplus_bitmap.h" />
+    <ClInclude Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.h" />
     <ClInclude Include="leccore.h" />
     <ClInclude Include="leccore_common.h" />
     <ClInclude Include="pc_info.h" />
@@ -289,6 +296,9 @@ xcopy "$(ProjectDir)system.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" 
     <ClCompile Include="file\file.cpp" />
     <ClCompile Include="hash\hash_string.cpp" />
     <ClCompile Include="hash\hash_file.cpp" />
+    <ClCompile Include="image\gdiplus_bitmap\gdiplus_bitmap.cpp" />
+    <ClCompile Include="image\image.cpp" />
+    <ClCompile Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.cpp" />
     <ClCompile Include="leccore.cpp" />
     <ClCompile Include="pc_info\get_monitor_info.cpp" />
     <ClCompile Include="pc_info\get_power_info.cpp" />

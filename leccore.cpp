@@ -20,6 +20,8 @@
 #include <sstream>
 #include <unordered_map>
 
+using namespace liblec::leccore;
+
 // crypto++
 #ifdef _WIN64
 
@@ -62,7 +64,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	return TRUE;
 }
 
-std::string liblec::leccore::version() {
+std::string version() {
 	return leccorename + std::string(" ") + leccoreversion + std::string(", ") + leccoredate;
 }
 
@@ -134,16 +136,16 @@ namespace nmReadableSize {
 	}
 }
 
-std::string liblec::leccore::format_size(unsigned long long size, unsigned short precision) {
+std::string format_size(unsigned long long size, unsigned short precision) {
 	return nmReadableSize::GetHumanReadableSize(static_cast<long double>(size), "0B", precision,
 		nmReadableSize::SIZE_CONV_TRADITIONAL);
 }
 
-void liblec::leccore::sleep(unsigned long long milliseconds) {
+void sleep(unsigned long long milliseconds) {
 	std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-liblec::leccore::password_quality_specs liblec::leccore::password_quality(const std::string& password) {
+password_quality_specs password_quality(const std::string& password) {
 	// returns the number of duplicates in a given string
 	auto number_of_duplicates = [](const std::string& str) {
 		// K = character, T = occurences
@@ -258,7 +260,7 @@ liblec::leccore::password_quality_specs liblec::leccore::password_quality(const 
 	return quality;
 }
 
-std::string liblec::leccore::round_off::to_string(const double& d, int precision) {
+std::string round_off::to_string(const double& d, int precision) {
 	std::stringstream ss;
 	ss << std::fixed;
 	ss.precision(precision);
@@ -266,7 +268,7 @@ std::string liblec::leccore::round_off::to_string(const double& d, int precision
 	return ss.str();
 }
 
-double liblec::leccore::round_off::to_double(const double& d, int precision) {
+double round_off::to_double(const double& d, int precision) {
 	int y = (int)d;
 	double z = d - (double)y;
 	double m = pow(10.0, (double)precision);
@@ -276,7 +278,7 @@ double liblec::leccore::round_off::to_double(const double& d, int precision) {
 	return static_cast<double>(y) + (1.0 / m) * r;
 }
 
-float liblec::leccore::round_off::to_float(const float& f, int precision) {
+float round_off::to_float(const float& f, int precision) {
 	int y = (int)f;
 	float z = f - (float)y;
 	float m = pow(10.f, (float)precision);
@@ -284,4 +286,26 @@ float liblec::leccore::round_off::to_float(const float& f, int precision) {
 	float r = round(q);
 
 	return static_cast<float>(y) + (1.f / m) * r;
+}
+
+size::size() :
+	size(0.f, 0.f) {}
+
+size::size(const float width, const float height) :
+	_width(width), _height(height) {}
+
+float& size::width() { return _width; }
+float size::get_width() const { return _width; }
+
+size& size::width(const float& width) {
+	_width = width;
+	return *this;
+}
+
+float& size::height() { return _height; }
+float size::get_height() const { return _height; }
+
+size& size::height(const float& height) {
+	_height = height;
+	return *this;
 }
