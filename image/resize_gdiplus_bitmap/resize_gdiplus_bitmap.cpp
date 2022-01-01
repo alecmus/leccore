@@ -107,8 +107,8 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 		break;
 	}
 
-	const auto crop_x = _width - control_w;
-	const auto crop_y = _height - control_h;
+	const auto crop_x = liblec::leccore::largest(0, _width - control_w);
+	const auto crop_y = liblec::leccore::largest(0, _height - control_h);
 
 	Gdiplus::Bitmap* bmp_out = new Gdiplus::Bitmap(_width - crop_x, _height - crop_y, p_bmpin->GetPixelFormat());
 	Gdiplus::Graphics graphics(bmp_out);
