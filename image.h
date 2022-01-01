@@ -57,6 +57,8 @@ namespace liblec {
 			/// <param name="size">The size of the image, as defined in <see cref='leccore::size'></see>.</param>
 			/// <param name="crop">Whether to crop the image.</param>
 			/// <param name="keep_aspect_ratio">Whether to keep the aspect ratio of the image.</param>
+			/// <param name="enlarge_if_smaller">Whether to enlarge the image if the target size is smaller
+			/// than the current size of the image.</param>
 			/// <param name="error">Error information.</param>
 			/// <returns>Returns true if successful, else false.</returns>
 			bool save(std::string& full_path,
@@ -65,6 +67,7 @@ namespace liblec {
 				leccore::size size,
 				bool crop,
 				bool keep_aspect_ratio,
+				bool enlarge_if_smaller,
 				std::string& error);
 
 		private:

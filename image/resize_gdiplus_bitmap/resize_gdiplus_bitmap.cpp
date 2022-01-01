@@ -39,56 +39,42 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 	const int control_w = _width;
 	const int control_h = _height;
 
-	if (ratio == 1) {
-		if (keep_aspect_ratio) {
-			if (_width > _height) {
-				// landscape picture control
-				_width = _height;
+	if (keep_aspect_ratio) {
+		if (crop) {
+			// adjust either new width or height to keep aspect ratio
+			if (old_width < old_height) {
+				_height = (int)(_width / ratio);
+
+				if (_height < control_h) {
+					_height = control_h;
+					_width = (int)(_height * ratio);
+				}
 			}
 			else {
-				// portrait picture control
-				_height = _width;
+				_width = (int)(_height * ratio);
+
+				if (_width < control_w) {
+					_width = control_w;
+					_height = (int)(_width / ratio);
+				}
 			}
 		}
-	}
-	else {
-		if (keep_aspect_ratio) {
-			if (crop) {
-				// adjust either new width or height to keep aspect ratio
-				if (old_width < old_height) {
-					_height = (int)(_width / ratio);
+		else {
+			// adjust either new width or height to keep aspect ratio
+			if (old_width > old_height) {
+				_height = (int)(_width / ratio);
 
-					if (_height < control_h) {
-						_height = control_h;
-						_width = (int)(_height * ratio);
-					}
-				}
-				else {
+				if (_height > control_h) {
+					_height = control_h;
 					_width = (int)(_height * ratio);
-
-					if (_width < control_w) {
-						_width = control_w;
-						_height = (int)(_width / ratio);
-					}
 				}
 			}
 			else {
-				// adjust either new width or height to keep aspect ratio
-				if (old_width > old_height) {
+				_width = (int)(_height * ratio);
+
+				if (_width > control_w) {
+					_width = control_w;
 					_height = (int)(_width / ratio);
-
-					if (_height > control_h) {
-						_height = control_h;
-						_width = (int)(_height * ratio);
-					}
-				}
-				else {
-					_width = (int)(_height * ratio);
-
-					if (_width > control_w) {
-						_width = control_w;
-						_height = (int)(_width / ratio);
-					}
 				}
 			}
 		}
