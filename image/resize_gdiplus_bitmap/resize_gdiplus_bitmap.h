@@ -20,6 +20,7 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 	bool keep_aspect_ratio,
 	liblec::leccore::image_quality quality,
 	bool enlarge_if_smaller,
+	bool crop,
 	liblec::leccore::size& final_size);
 
 bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap_in,

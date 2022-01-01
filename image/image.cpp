@@ -66,7 +66,7 @@ bool image::save(std::string& full_path, image::format format, std::string& erro
 bool image::save(std::string& full_path, image::format format, image_quality quality,
 	leccore::size size, bool crop, bool keep_aspect_ratio, std::string& error) {
 	leccore::size final_size;
-	auto resized_image = resize_gdiplus_bitmap(_d.get(), size, keep_aspect_ratio, quality, false, final_size);
+	auto resized_image = resize_gdiplus_bitmap(_d.get(), size, keep_aspect_ratio, quality, false, crop, final_size);
 	bool success = gdiplus_bitmap_to_file(resized_image, full_path, format, error);
 	if (success)
 		delete resized_image;

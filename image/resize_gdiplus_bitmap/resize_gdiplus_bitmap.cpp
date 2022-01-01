@@ -17,6 +17,7 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 	bool keep_aspect_ratio,
 	liblec::leccore::image_quality quality,
 	bool enlarge_if_smaller,
+	bool crop,
 	liblec::leccore::size& final_size) {
 	int _width = (int)target_size.get_width();
 	int _height = (int)target_size.get_height();
@@ -52,27 +53,42 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 	}
 	else {
 		if (keep_aspect_ratio) {
-			// adjust either new width or height to keep aspect ratio
-			if (old_width > old_height) {
-				// old width is greater than old height
-				// adjust new height using new width to keep aspect ratio
-				_height = (int)(_width / ratio);
+			if (crop) {
+				// adjust either new width or height to keep aspect ratio
+				if (old_width < old_height) {
+					_height = (int)(_width / ratio);
 
-				if (_height > control_h) {
-					// new width is greater than target width, adjust it accordingly
-					_height = control_h;
+					if (_height < control_h) {
+						_height = control_h;
+						_width = (int)(_height * ratio);
+					}
+				}
+				else {
 					_width = (int)(_height * ratio);
+
+					if (_width < control_w) {
+						_width = control_w;
+						_height = (int)(_width / ratio);
+					}
 				}
 			}
 			else {
-				// old height is greater than old width
-				// adjust new width using new height to keep aspect ratio
-				_width = (int)(_height * ratio);
-
-				if (_width > control_w) {
-					// new width is greater than target width, adjust it accordingly
-					_width = control_w;
+				// adjust either new width or height to keep aspect ratio
+				if (old_width > old_height) {
 					_height = (int)(_width / ratio);
+
+					if (_height > control_h) {
+						_height = control_h;
+						_width = (int)(_height * ratio);
+					}
+				}
+				else {
+					_width = (int)(_height * ratio);
+
+					if (_width > control_w) {
+						_width = control_w;
+						_height = (int)(_width / ratio);
+					}
 				}
 			}
 		}
@@ -105,15 +121,18 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 		break;
 	}
 
-	Gdiplus::Bitmap* bmp_out = new Gdiplus::Bitmap(_width, _height, p_bmpin->GetPixelFormat());
+	const auto crop_x = _width - control_w;
+	const auto crop_y = _height - control_h;
+
+	Gdiplus::Bitmap* bmp_out = new Gdiplus::Bitmap(_width - crop_x, _height - crop_y, p_bmpin->GetPixelFormat());
 	Gdiplus::Graphics graphics(bmp_out);
 	graphics.SetInterpolationMode(interpolation_mode);
 	graphics.SetPixelOffsetMode(pixel_mode);
-	graphics.DrawImage(p_bmpin, 0, 0, _width, _height);
+	graphics.DrawImage(p_bmpin, -crop_x / 2, -crop_y / 2, _width, _height);
 
 	final_size
-		.width((float)_width)
-		.height((float)_height);
+		.width((float)_width - crop_x)
+		.height((float)_height - crop_y);
 
 	return bmp_out;
 }
