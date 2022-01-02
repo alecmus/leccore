@@ -216,3 +216,44 @@ bool file::rename(const std::string& fullpath,
 		return false;
 	}
 }
+
+class file::exclusive_lock::impl {
+	const std::string _full_path;
+	void* _p_lock = nullptr;
+
+public:
+	file::exclusive_lock::impl(const std::string& full_path) :
+		_full_path(full_path.c_str()) {}
+	~impl() { release(); }
+
+	bool lock(std::string& error) {
+		release();
+
+		_p_lock = CreateFileA(_full_path.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
+
+		if (!(_p_lock != INVALID_HANDLE_VALUE)) {
+			error = "Cannot open the lock file '" + _full_path + "' for exclusive access.";
+			return false;
+		}
+
+		return true;
+	}
+
+	void release() {
+		if (_p_lock && _p_lock != INVALID_HANDLE_VALUE) {
+			CloseHandle((HANDLE)_p_lock);
+			std::remove(_full_path.c_str());
+		}
+	}
+};
+
+file::exclusive_lock::exclusive_lock(const std::string& full_path) :
+	_d(*new impl(full_path)) {}
+
+file::exclusive_lock::~exclusive_lock() {
+	delete& _d;
+}
+
+bool liblec::leccore::file::exclusive_lock::lock(std::string& error) {
+	return _d.lock(error);
+}

@@ -85,6 +85,35 @@ namespace liblec {
 			static bool rename(const std::string& fullpath,
 				const std::string& new_name,
 				std::string& error);
+
+			/// <summary>Exclusive file lock class.</summary>
+			/// <remarks>Only one instance can execute the lock, all others have to wait until that
+			/// one instance releases the lock by going out of scope.</remarks>
+			class leccore_api exclusive_lock {
+			public:
+				/// <summary>Constructor.</summary>
+				/// <param name="full_path">The full path to the lock file, e.g. "C:\Users\...\my_folder\lock_file.some_extension."</param>
+				exclusive_lock(const std::string& full_path);
+
+				/// <summary>Destructor.</summary>
+				/// <remarks>Releases the lock (if locked) and deletes the lock file.</remarks>
+				virtual ~exclusive_lock();
+
+				/// <summary>Exclusively lock a file.</summary>
+				/// <param name="error">Error information.</param>
+				/// <returns>Returns true if successful, else false.</returns>
+				/// <remarks>Once a lock is executed successfully only destroying the object can release it.</remarks>
+				bool lock(std::string& error);
+
+			private:
+				class impl;
+				impl& _d;
+
+				// Default constructor and copying an object of this class are not allowed
+				exclusive_lock() = delete;
+				exclusive_lock(const exclusive_lock&) = delete;
+				exclusive_lock& operator=(const exclusive_lock&) = delete;
+			};
 		};
 	}
 }
