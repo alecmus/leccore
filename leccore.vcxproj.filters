@@ -56,6 +56,9 @@
     <Filter Include="leccore\image\resize_gdiplus_bitmap">
       <UniqueIdentifier>{f731da37-dfbc-4584-adf9-b324c3bb3824}</UniqueIdentifier>
     </Filter>
+    <Filter Include="leccore\image\gdiplus_bitmap_to_file">
+      <UniqueIdentifier>{e45e9c26-e046-4a3d-9b56-c90dde66df3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="versioninfo.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.h">
       <Filter>leccore\image\resize_gdiplus_bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="image\gdiplus_bitmap_to_file\gdiplus_bitmap_to_file.h">
+      <Filter>leccore\image\gdiplus_bitmap_to_file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.cpp">
       <Filter>leccore\image\resize_gdiplus_bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="image\gdiplus_bitmap_to_file\gdiplus_bitmap_to_file.cpp">
+      <Filter>leccore\image\gdiplus_bitmap_to_file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

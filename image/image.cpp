@@ -9,9 +9,10 @@
 //
 
 #include "../image.h"
+#include "../leccore_common.h"
 #include "gdiplus_bitmap/gdiplus_bitmap.h"
 #include "resize_gdiplus_bitmap/resize_gdiplus_bitmap.h"
-#include "../leccore_common.h"
+#include "gdiplus_bitmap_to_file/gdiplus_bitmap_to_file.h"
 
 using namespace liblec::leccore;
 

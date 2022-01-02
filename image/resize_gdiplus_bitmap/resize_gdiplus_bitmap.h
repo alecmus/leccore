@@ -1,5 +1,5 @@
 //
-// resize_gdiplus_bitmap.h - resize GDI+ image interface
+// resize_gdiplus_bitmap.h - resize GDI+ bitmap interface
 //
 // leccore library, part of the liblec library
 // Copyright (c) 2019 Alec Musasa (alecmus at live dot com)
@@ -22,8 +22,3 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 	bool enlarge_if_smaller,
 	bool crop,
 	liblec::leccore::size& final_size);
-
-bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap_in,
-	std::string& full_path,
-	liblec::leccore::image::format format,
-	std::string& error);

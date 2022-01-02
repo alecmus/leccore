@@ -266,6 +266,7 @@ xcopy "$(ProjectDir)image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /
     <ClInclude Include="hash.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="image\gdiplus_bitmap\gdiplus_bitmap.h" />
+    <ClInclude Include="image\gdiplus_bitmap_to_file\gdiplus_bitmap_to_file.h" />
     <ClInclude Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.h" />
     <ClInclude Include="leccore.h" />
     <ClInclude Include="leccore_common.h" />
@@ -297,6 +298,7 @@ xcopy "$(ProjectDir)image.h" "$(SolutionDir)..\include\liblec\$(ProjectName)\" /
     <ClCompile Include="hash\hash_string.cpp" />
     <ClCompile Include="hash\hash_file.cpp" />
     <ClCompile Include="image\gdiplus_bitmap\gdiplus_bitmap.cpp" />
+    <ClCompile Include="image\gdiplus_bitmap_to_file\gdiplus_bitmap_to_file.cpp" />
     <ClCompile Include="image\image.cpp" />
     <ClCompile Include="image\resize_gdiplus_bitmap\resize_gdiplus_bitmap.cpp" />
     <ClCompile Include="leccore.cpp" />
