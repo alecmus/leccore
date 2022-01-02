@@ -245,9 +245,11 @@ bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap,
 			case liblec::leccore::image::format::bmp:
 			case liblec::leccore::image::format::jpg:
 			default: {
-				// clear background in case source is in PNG and has an alpha channel
-				Gdiplus::Bitmap* bmp_out = new Gdiplus::Bitmap(bitmap->GetWidth(), bitmap->GetHeight(), bitmap->GetPixelFormat());
+				// clone the bitmap
+				Gdiplus::Bitmap* bmp_out = bitmap->Clone(0, 0, bitmap->GetWidth(), bitmap->GetHeight(), bitmap->GetPixelFormat());
 				Gdiplus::Graphics graphics(bmp_out);
+
+				// clear background in case source is in PNG and has an alpha channel
 				graphics.Clear(Gdiplus::Color::White);
 				graphics.DrawImage(bitmap, 0, 0);
 
