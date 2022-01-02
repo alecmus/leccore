@@ -11,10 +11,12 @@
 #include "../image.h"
 #include "gdiplus_bitmap/gdiplus_bitmap.h"
 #include "resize_gdiplus_bitmap/resize_gdiplus_bitmap.h"
+#include "../leccore_common.h"
 
 using namespace liblec::leccore;
 
 class image::impl {
+	gdiplus_manager _gdiplus_man;	// to ensure GDI+ is active for as long as the class object is in memory.
 	gdiplus_bitmap _bitmap;
 	gdiplus_bitmap_resource _bitmap_resource;
 
@@ -29,16 +31,26 @@ public:
 		std::string error;
 		if (png_resource) {
 			_png = true;
+
 			if (!_bitmap_resource.load(png_resource, L"PNG", error, GetModuleHandle(NULL))) {
 				_load_successful = false;
 				_load_error = error;
 			}
+			else {
+				_load_successful = true;
+				_load_error.clear();
+			}
 		}
 		else {
 			_png = false;
+
 			if (!_bitmap.load(file, error)) {
 				_load_successful = false;
 				_load_error = error;
+			}
+			else {
+				_load_successful = true;
+				_load_error.clear();
 			}
 		}
 	}
@@ -53,6 +65,9 @@ public:
 		else
 			return _bitmap;
 	}
+
+	bool load_successful() { return _load_successful; }
+	const std::string& load_error() { return _load_error; }
 };
 
 image::format& image::image_options::format() { return _format; }
@@ -97,13 +112,24 @@ image::image(const std::string& file) : _d(*new impl(0, file)) {}
 image::~image() { delete& _d; }
 
 bool image::save(std::string& full_path, image::format format, std::string& error) {
-	return gdiplus_bitmap_to_file(_d.get(), full_path, format, error);
+	if (_d.load_successful())
+		return gdiplus_bitmap_to_file(_d.get(), full_path, format, error);
+	else {
+		error = _d.load_error();
+		return false;
+	}
 }
 
 bool image::save(std::string& full_path, image_options& options, std::string& error) {
-	leccore::size final_size;
-	auto resized_image = resize_gdiplus_bitmap(_d.get(), options.size(), options.keep_aspect_ratio(), options.quality(), options.enlarge_if_smaller(), options.crop(), final_size);
-	bool success = gdiplus_bitmap_to_file(resized_image, full_path, options.format(), error);
-	delete resized_image;
-	return success;
+	if (_d.load_successful()) {
+		leccore::size final_size;
+		auto resized_image = resize_gdiplus_bitmap(_d.get(), options.size(), options.keep_aspect_ratio(), options.quality(), options.enlarge_if_smaller(), options.crop(), final_size);
+		bool success = gdiplus_bitmap_to_file(resized_image, full_path, options.format(), error);
+		delete resized_image;
+		return success;
+	}
+	else {
+		error = _d.load_error();
+		return false;
+	}
 }

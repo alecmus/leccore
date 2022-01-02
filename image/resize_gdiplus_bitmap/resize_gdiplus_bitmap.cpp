@@ -19,6 +19,9 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 	bool enlarge_if_smaller,
 	bool crop,
 	liblec::leccore::size& final_size) {
+	if (!p_bmpin)
+		return nullptr;
+
 	int _width = (int)target_size.get_width();
 	int _height = (int)target_size.get_height();
 
@@ -263,6 +266,10 @@ bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap,
 			break;
 			}
 		}
+	}
+	else {
+		error = "Invalid bitmap.";
+		return false;
 	}
 
 	return success;

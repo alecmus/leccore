@@ -36,6 +36,11 @@ bool gdiplus_bitmap::load(const std::string& file, std::string& error) {
 	empty();
 	_p_bitmap = Gdiplus::Bitmap::FromFile(liblec::leccore::convert_string(file).c_str());
 
+	if (!_p_bitmap) {
+		error = "Failed to load image from file.";
+		return false;
+	}
+
 	Gdiplus::Status status = _p_bitmap->GetLastStatus();
 
 	if (status != Gdiplus::Ok) {
@@ -50,6 +55,11 @@ bool gdiplus_bitmap::load(const std::string& file, std::string& error) {
 bool gdiplus_bitmap::load(HBITMAP bmp, std::string& error) {
 	empty();
 	_p_bitmap = Gdiplus::Bitmap::FromHBITMAP(bmp, NULL);
+
+	if (!_p_bitmap) {
+		error = "Failed to load image.";
+		return false;
+	}
 
 	Gdiplus::Status status = _p_bitmap->GetLastStatus();
 
@@ -140,7 +150,7 @@ bool gdiplus_bitmap_resource::load(LPCTSTR p_name, std::string& error, LPCTSTR p
 					_p_bitmap = NULL;
 				}
 				else {
-					error.assign(liblec::leccore::get_gdiplus_status_info(&status));
+					error.assign("Failed to load image from resource.");
 				}
 			}
 			else {

@@ -202,5 +202,28 @@ namespace liblec {
 
 			return msg;
 		}
+
+		/// <summary>GDI+ management class. GDI+ is initialized when this class is instantiated and
+		/// is shut down when the object is destroyed or goes out of scope.</summary>
+		class gdiplus_manager {
+#ifdef _WIN64
+			unsigned long long gdi_plus_token_;
+#else
+			unsigned long gdi_plus_token_;
+#endif
+
+		public:
+			gdiplus_manager() {
+				// initialize GDI+
+				Gdiplus::GdiplusStartupInput gdiplus_startup_input;
+				GdiplusStartup(&gdi_plus_token_, &gdiplus_startup_input, NULL);
+			}
+			~gdiplus_manager() {
+				if (gdi_plus_token_) {
+					// shut down GDI+
+					Gdiplus::GdiplusShutdown(gdi_plus_token_);
+				}
+			}
+		};
 	}
 }
