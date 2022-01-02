@@ -160,14 +160,23 @@ int get_encoder_clsid(const std::wstring& form, CLSID& clsid) {
 void format_to_ext(std::string& full_path, const std::string& extension) {
 	std::string ext(extension);
 
-	// remove extension if present
-	while (true) {
+	// determine the position of the last slash (after which the file's name begins)
+	auto directory_end_index = full_path.rfind('\\');
+
+	if (directory_end_index == std::string::npos) {
+		// maybe its unix style
+		directory_end_index = full_path.rfind('/');
+
+		if (directory_end_index == std::string::npos)
+			directory_end_index = 0;	// this is probably just a file name (for current folder)
+	}
+
+	// remove extension if present in the file's name
+	if (true) {
 		const size_t idx = full_path.rfind('.');
 
-		if (std::string::npos != idx)
+		if (idx != std::string::npos && idx > directory_end_index)
 			full_path.erase(idx);
-		else
-			break;
 	}
 
 	// remove dot(s) from supplied extension (if necessary)
@@ -182,12 +191,12 @@ void format_to_ext(std::string& full_path, const std::string& extension) {
 }
 
 bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap,
-	std::string& file_name,
+	std::string& full_path,
 	liblec::leccore::image::format format,
 	std::string& error) {
 	bool success = true;
 
-	if (file_name.empty()) {
+	if (full_path.empty()) {
 		error = "File name not specified.";
 		return false;
 	}
@@ -200,18 +209,18 @@ bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap,
 		switch (format) {
 		case liblec::leccore::image::format::bmp:
 			mimetype = L"image/bmp";
-			format_to_ext(file_name, "bmp");
+			format_to_ext(full_path, "bmp");
 			break;
 
 		case liblec::leccore::image::format::jpg:
 			mimetype = L"image/jpeg";
-			format_to_ext(file_name, "jpg");
+			format_to_ext(full_path, "jpg");
 			break;
 
 		case liblec::leccore::image::format::png:
 		default:
 			mimetype = L"image/png";
-			format_to_ext(file_name, "png");
+			format_to_ext(full_path, "png");
 			break;
 		}
 
@@ -219,7 +228,7 @@ bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap,
 			switch (format) {
 			case liblec::leccore::image::format::png: {
 				// save resized bitmap to file
-				Gdiplus::Status status = bitmap->Save(liblec::leccore::convert_string(file_name).c_str(), &enc_id);
+				Gdiplus::Status status = bitmap->Save(liblec::leccore::convert_string(full_path).c_str(), &enc_id);
 
 				if (status != Gdiplus::Status::Ok) {
 					error.assign(liblec::leccore::get_gdiplus_status_info(&status));
@@ -240,7 +249,7 @@ bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap,
 				graphics.DrawImage(bitmap, 0, 0);
 
 				// save resized bitmap to file
-				Gdiplus::Status status = bmp_out->Save(liblec::leccore::convert_string(file_name).c_str(), &enc_id);
+				Gdiplus::Status status = bmp_out->Save(liblec::leccore::convert_string(full_path).c_str(), &enc_id);
 
 				if (status != Gdiplus::Status::Ok) {
 					error.assign(liblec::leccore::get_gdiplus_status_info(&status));

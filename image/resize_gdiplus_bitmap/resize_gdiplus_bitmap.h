@@ -24,6 +24,6 @@ Gdiplus::Bitmap* resize_gdiplus_bitmap(
 	liblec::leccore::size& final_size);
 
 bool gdiplus_bitmap_to_file(Gdiplus::Bitmap* bitmap_in,
-	std::string& file_name,
+	std::string& full_path,
 	liblec::leccore::image::format format,
 	std::string& error);
