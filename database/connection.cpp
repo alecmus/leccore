@@ -109,12 +109,11 @@ bool connection::execute(const std::string& sql,
 	}
 }
 
-bool connection::execute_query(const std::string& sql,
-	table& results,
-	std::string& error) {
+bool connection::execute_query(const std::string& sql, const std::vector<std::any>& values,
+	table& results, std::string& error) {
 	error.clear();
 	if (_d._p_db)
-		return _d._p_db->execute_query(sql, results, error);
+		return _d._p_db->execute_query(sql, values, results, error);
 	else {
 		error = "liblec::leccore::database::connection - initialization error";
 		return false;

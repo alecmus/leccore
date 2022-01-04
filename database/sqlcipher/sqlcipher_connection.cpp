@@ -148,21 +148,6 @@ bool sqlcipher_connection::execute(const std::string& sql,
 		// get number of bind parameters
 		const int bind_parameter_count = sqlite3_bind_parameter_count(statement);
 
-		if (bind_parameter_count == 0) {
-			int result = sqlite3_step(statement);
-			if (result == SQLITE_DONE)
-				result = SQLITE_OK;
-
-			sqlite3_finalize(statement);
-
-			if (result != SQLITE_OK) {
-				error = _d.sqlite_error();
-				return false;
-			}
-
-			return true;
-		}
-
 		if (bind_parameter_count != values.size()) {
 			error = "Expected " + std::to_string(bind_parameter_count) + " values but " + std::to_string(values.size()) + " supplied";
 			sqlite3_finalize(statement);
@@ -272,7 +257,7 @@ bool sqlcipher_connection::execute(const std::string& sql,
 	}
 }
 
-bool sqlcipher_connection::execute_query(const std::string& sql, table& results, std::string& error) {
+bool sqlcipher_connection::execute_query(const std::string& sql, const std::vector<std::any>& values, table& results, std::string& error) {
 	error.clear();
 	results.name.clear();
 	results.columns.clear();
@@ -283,10 +268,117 @@ bool sqlcipher_connection::execute_query(const std::string& sql, table& results,
 		return false;
 	}
 
+	// check for unsupported types
+	for (const auto& value : values) {
+		if (value.type() != typeid(int) &&
+			value.type() != typeid(float) &&
+			value.type() != typeid(double) &&
+			value.type() != typeid(const char*) &&
+			value.type() != typeid(std::string) &&
+			value.type() != typeid(blob)
+			) {
+			error = "Unsupported type: " + std::string(value.type().name());
+			return false;
+		}
+	}
+
 	// prepare statement
 	sqlite3_stmt* statement = nullptr;
 
 	if (sqlite3_prepare_v2(_d._db, sql.c_str(), -1, &statement, 0) == SQLITE_OK) {
+		// get number of bind parameters
+		const int bind_parameter_count = sqlite3_bind_parameter_count(statement);
+
+		if (bind_parameter_count != values.size()) {
+			error = "Expected " + std::to_string(bind_parameter_count) + " values but " + std::to_string(values.size()) + " supplied";
+			sqlite3_finalize(statement);
+			return false;
+		}
+
+		// do some binding
+		// supported types: int, float, double, text(const char*, std::string), blob(database::blob)
+		// 
+		std::map<int, std::string> buffer_data;	// to keep buffer data until sqlite3_step() is executed
+		int index = 1;
+		for (auto& value : values) {
+			if (value.has_value()) {
+				// bind integers (int)
+				if (value.type() == typeid(int)) {
+					auto integer = std::any_cast<int>(value);
+
+					if (sqlite3_bind_int(statement, index, integer) != SQLITE_OK) {
+						error = _d.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
+					}
+				}
+
+				// bind floats (float)
+				if (value.type() == typeid(float)) {
+					auto f = std::any_cast<float>(value);
+
+					if (sqlite3_bind_double(statement, index, f) != SQLITE_OK) {
+						error = _d.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
+					}
+				}
+
+				// bind doubles (double)
+				if (value.type() == typeid(double)) {
+					auto d = std::any_cast<double>(value);
+
+					if (sqlite3_bind_double(statement, index, d) != SQLITE_OK) {
+						error = _d.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
+					}
+				}
+
+				// bind text (const char*)
+				if (value.type() == typeid(const char*)) {
+					auto buffer = std::any_cast<const char*>(value);
+					auto length = (int)strlen(buffer);
+
+					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
+						error = _d.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
+					}
+				}
+
+				// bind text (std::string)
+				if (value.type() == typeid(std::string)) {
+					buffer_data[index] = std::any_cast<std::string>(value);	// make a copy
+					std::string& data = buffer_data.at(index);	// refer to the copy, not the source
+					char* buffer = (char*)data.c_str();
+					auto length = (int)data.length();
+
+					if (sqlite3_bind_text(statement, index, buffer, length, SQLITE_STATIC) != SQLITE_OK) {
+						error = _d.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
+					}
+				}
+
+				// bind blob (database::blob)
+				if (value.type() == typeid(blob)) {
+					buffer_data[index] = std::any_cast<blob>(value).data;	// make a copy
+					std::string& data = buffer_data.at(index);	// refer to the copy, not the source
+					char* buffer = (char*)data.c_str();
+					auto size = (int)data.length();
+
+					if (sqlite3_bind_blob(statement, index, buffer, size, SQLITE_STATIC) != SQLITE_OK) {
+						error = _d.sqlite_error();
+						sqlite3_finalize(statement);
+						return false;
+					}
+				}
+			}
+
+			index++;
+		}
+
 		const int columns = sqlite3_column_count(statement);
 		int result = SQLITE_OK;
 

@@ -118,12 +118,14 @@ namespace liblec {
 				bool execute(const std::string& sql, const std::vector<std::any>& values, std::string& error);
 
 				/// <summary>Execute an sql query.</summary>
-				/// <param name="sql">The query, e.g. "SELECT Name, Surname FROM Members;"</param>
+				/// <param name="sql">The query, e.g. "SELECT Name, Surname FROM Members WHERE UniqueID = ?;"</param>
+				/// <param name="values">The values to bind to the <see cref="sql"></see> statement, e.g.
+				/// { "T432FJ" }</param>
 				/// <param name="results">The results of the query as defined in the
 				/// <see cref="table"></see> type.</param>
 				/// <param name="error">Error information.</param>
 				/// <returns>Returns true if successful, else false.</returns>
-				bool execute_query(const std::string& sql, table& results, std::string& error);
+				bool execute_query(const std::string& sql, const std::vector<std::any>& values, table& results, std::string& error);
 
 			private:
 				class impl;
