@@ -49,6 +49,7 @@ unzip                 | Unzipping a zip archive                | [#include <libl
 user_folder           | Getting the path to known user folders | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
 commandline_arguments | Parsing command line arguments         | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
 shell                 | Shell helper class                     | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
+clipboard             | Clipboard class                        | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
 
 ### Usage Examples
 The library is used in the [pc_info](https://github.com/alecmus/pc_info) app.
