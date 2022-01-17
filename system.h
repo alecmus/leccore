@@ -97,5 +97,21 @@ namespace liblec {
 			static const bool create_process(const std::string& fullpath,
 				const std::vector<std::string>& args, std::string& error);
 		};
+
+		/// <summary>Clipboard class.</summary>
+		class leccore_api clipboard {
+		public:
+			/// <summary>Set clipboard text.</summary>
+			/// <param name="text">The text to copy to the clipboard.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if the operation is successful, else false.</returns>
+			static const bool set_text(const std::string& text, std::string& error);
+
+			/// <summary>Get text from the clipboard.</summary>
+			/// <param name="text">The text copied from the clipboard.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if the operation is successful, else false.</returns>
+			static const bool get_text(std::string& text, std::string& error);
+		};
 	}
 }

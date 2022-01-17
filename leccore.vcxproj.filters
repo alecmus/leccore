@@ -245,6 +245,9 @@
     <ClCompile Include="image\gdiplus_bitmap_to_file\gdiplus_bitmap_to_file.cpp">
       <Filter>leccore\image\gdiplus_bitmap_to_file</Filter>
     </ClCompile>
+    <ClCompile Include="system\clipboard.cpp">
+      <Filter>leccore\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="versioninfo.rc">
