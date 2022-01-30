@@ -1,0 +1,69 @@
+\hypertarget{classliblec_1_1leccore_1_1clipboard}{}\doxysection{liblec\+::leccore\+::clipboard Class Reference}
+\label{classliblec_1_1leccore_1_1clipboard}\index{liblec::leccore::clipboard@{liblec::leccore::clipboard}}
+
+
+Clipboard class. 
+
+
+
+
+{\ttfamily \#include $<$system.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const bool \mbox{\hyperlink{classliblec_1_1leccore_1_1clipboard_a15c4228ea1245bb70fb446e8eeb2e222}{set\+\_\+text}} (const std\+::string \&text, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Set clipboard text.\end{DoxyCompactList}\item 
+static const bool \mbox{\hyperlink{classliblec_1_1leccore_1_1clipboard_a42c108c207604cf60bc134e5a25e9e81}{get\+\_\+text}} (std\+::string \&text, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Get text from the clipboard.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clipboard class.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1clipboard_a42c108c207604cf60bc134e5a25e9e81}\label{classliblec_1_1leccore_1_1clipboard_a42c108c207604cf60bc134e5a25e9e81}} 
+\index{liblec::leccore::clipboard@{liblec::leccore::clipboard}!get\_text@{get\_text}}
+\index{get\_text@{get\_text}!liblec::leccore::clipboard@{liblec::leccore::clipboard}}
+\doxysubsubsection{\texorpdfstring{get\_text()}{get\_text()}}
+{\footnotesize\ttfamily static const bool liblec\+::leccore\+::clipboard\+::get\+\_\+text (\begin{DoxyParamCaption}\item[{std\+::string \&}]{text,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get text from the clipboard.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text copied from the clipboard.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the operation is successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1clipboard_a15c4228ea1245bb70fb446e8eeb2e222}\label{classliblec_1_1leccore_1_1clipboard_a15c4228ea1245bb70fb446e8eeb2e222}} 
+\index{liblec::leccore::clipboard@{liblec::leccore::clipboard}!set\_text@{set\_text}}
+\index{set\_text@{set\_text}!liblec::leccore::clipboard@{liblec::leccore::clipboard}}
+\doxysubsubsection{\texorpdfstring{set\_text()}{set\_text()}}
+{\footnotesize\ttfamily static const bool liblec\+::leccore\+::clipboard\+::set\+\_\+text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set clipboard text.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text to copy to the clipboard.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the operation is successful, else false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+system.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,94 @@
+\hypertarget{image_8h_source}{}\doxysection{image.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// image.h -\/ image interface}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{// leccore library, part of the liblec library}}
+\DoxyCodeLine{5 \textcolor{comment}{// Copyright (c) 2019 Alec Musasa (alecmus at live dot com)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{// Released under the MIT license. For full details see the}}
+\DoxyCodeLine{8 \textcolor{comment}{// file LICENSE.txt}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#if defined(LECCORE\_EXPORTS)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}leccore.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <liblec/leccore.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }liblec \{}
+\DoxyCodeLine{22     \textcolor{keyword}{namespace }leccore \{}
+\DoxyCodeLine{24         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}} \{}
+\DoxyCodeLine{25         \textcolor{keyword}{public}:}
+\DoxyCodeLine{26             \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}}(\textcolor{keywordtype}{int} png\_resource);}
+\DoxyCodeLine{27             \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}}(\textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classliblec_1_1leccore_1_1file}{file}});}
+\DoxyCodeLine{28             \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{\string~image}}();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31             \textcolor{keyword}{enum class} \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{format}} \{}
+\DoxyCodeLine{33                 png,}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36                 jpg,}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39                 bmp,}
+\DoxyCodeLine{40             \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{43             \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}} \{}
+\DoxyCodeLine{44                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{image::format}} \_format = \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63eac36bbd258b7ee694eb987221b2b197b0}{image::format::jpg}};}
+\DoxyCodeLine{45                 image\_quality \_quality = image\_quality::medium;}
+\DoxyCodeLine{46                 \mbox{\hyperlink{classliblec_1_1leccore_1_1size}{leccore::size}} \_size;}
+\DoxyCodeLine{47                 \textcolor{keywordtype}{bool} \_enlarge\_if\_smaller = \textcolor{keyword}{false};}
+\DoxyCodeLine{48                 \textcolor{keywordtype}{bool} \_keep\_aspect\_ratio = \textcolor{keyword}{true};}
+\DoxyCodeLine{49                 \textcolor{keywordtype}{bool} \_crop = \textcolor{keyword}{false};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51             \textcolor{keyword}{public}:}
+\DoxyCodeLine{54                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{image::format}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_ac7a7be4eab63828f4fb2c8d94ba98172}{format}}();}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{59                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_a8cf306e585f4133b4e6417359160f98c}{format}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{image::format}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{format}});}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{63                 image\_quality\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_ade46b03cfae45064d7c302ac750b215c}{quality}}();}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{68                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_a00721f44dbb6460c093378ba5cad8531}{quality}}(\textcolor{keyword}{const} image\_quality\& quality);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{72                 \mbox{\hyperlink{classliblec_1_1leccore_1_1size}{leccore::size}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_a800b5920a33746c14e208ec10947b32e}{size}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{77                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_afddcc9c8db6345295954856445744044}{size}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1size}{leccore::size}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1size}{size}});}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{81                 \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_a2c189332287cf5d6179f7f995e953e65}{enlarge\_if\_smaller}}();}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{86                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_a7dff3356ba3ace4b3d4414ac7638fcf7}{enlarge\_if\_smaller}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& enlarge\_if\_smaller);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{90                 \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_a0f0233972d107720f14f21a5a0335327}{keep\_aspect\_ratio}}();}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{95                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_ad98a811bd550e6af7dcd29865e333b12}{keep\_aspect\_ratio}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& keep\_aspect\_ratio);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{99                 \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_aea920096c652c78641b7fb61d3d3cad3}{crop}}();}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{104                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options_a0f6272a487925086beb60bcafe4be2c2}{crop}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& crop);}
+\DoxyCodeLine{105             \};}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{113             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a52e1e745a4f5d52beb00c364977dfe28}{save}}(std::string\& full\_path,}
+\DoxyCodeLine{114                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{image::format}} \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{format}},}
+\DoxyCodeLine{115                 std::string\& error);}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{123             \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1image_ad3521aad3e9d070f6b7e47c8e51fb92f}{save}}(std::string\& full\_path,}
+\DoxyCodeLine{124                 \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\_options}}\& options,}
+\DoxyCodeLine{125                 std::string\& error);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127         \textcolor{keyword}{private}:}
+\DoxyCodeLine{128             \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{129             impl\& \_d;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131             \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{132             \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{133             \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{134             \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1image}{image}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{135         \};}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137 \}}
+
+\end{DoxyCode}

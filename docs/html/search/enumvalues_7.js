@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['no_5fbattery_0',['no_battery',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77a1009b81e098d9d62e1ac074bbf1a7f71',1,'liblec::leccore::pc_info']]],
-  ['none_1',['none',['../classliblec_1_1leccore_1_1zip.html#af5b95f9f7e8d93acf55e47b2b3fe8938a334c4a4c42fdb79d7ebc3e73b517e6f8',1,'liblec::leccore::zip']]],
-  ['normal_2',['normal',['../classliblec_1_1leccore_1_1zip.html#af5b95f9f7e8d93acf55e47b2b3fe8938afea087517c26fadd409bd4b9dc642555',1,'liblec::leccore::zip']]]
+  ['local_5fmachine_0',['local_machine',['../classliblec_1_1leccore_1_1registry.html#a8a1e47b162366d25545b53dd0848fd39a98caa4549785bfb91174a5fcd011d8f1',1,'liblec::leccore::registry']]],
+  ['low_1',['low',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77a53cced8d281a1a0ace3cb6594daaa4f7',1,'liblec::leccore::pc_info']]],
+  ['low_5fcharging_2',['low_charging',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77aacef66ea5e46290e48d2db3cb369c9ed',1,'liblec::leccore::pc_info']]]
 ];

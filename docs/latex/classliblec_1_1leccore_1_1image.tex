@@ -1,0 +1,119 @@
+\hypertarget{classliblec_1_1leccore_1_1image}{}\doxysection{liblec\+::leccore\+::image Class Reference}
+\label{classliblec_1_1leccore_1_1image}\index{liblec::leccore::image@{liblec::leccore::image}}
+
+
+Image class. 
+
+
+
+
+{\ttfamily \#include $<$image.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\+\_\+options}}
+\begin{DoxyCompactList}\small\item\em Image options.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{format}} \{ \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63eabff139fa05ac583f685a523ab3d110a0}{png}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63eac36bbd258b7ee694eb987221b2b197b0}{jpg}}
+, \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63ea96a75bdbf222c58cabde08ebe2172c9f}{bmp}}
+ \}
+\begin{DoxyCompactList}\small\item\em Image format.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_a5f744d63271c7a6ae2d4cf425e882558}\label{classliblec_1_1leccore_1_1image_a5f744d63271c7a6ae2d4cf425e882558}} 
+{\bfseries image} (int png\+\_\+resource)
+\item 
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_ae7b20fdc5dea54bfb17dfc7df49ae963}\label{classliblec_1_1leccore_1_1image_ae7b20fdc5dea54bfb17dfc7df49ae963}} 
+{\bfseries image} (const std\+::string \&\mbox{\hyperlink{classliblec_1_1leccore_1_1file}{file}})
+\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a52e1e745a4f5d52beb00c364977dfe28}{save}} (std\+::string \&full\+\_\+path, \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{image\+::format}} \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{format}}, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Save the image to file as-\/is.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1image_ad3521aad3e9d070f6b7e47c8e51fb92f}{save}} (std\+::string \&full\+\_\+path, \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\+\_\+options}} \&options, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Save the image to file, resampling it to a defined size.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Image class.
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}\label{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}} 
+\index{liblec::leccore::image@{liblec::leccore::image}!format@{format}}
+\index{format@{format}!liblec::leccore::image@{liblec::leccore::image}}
+\doxysubsubsection{\texorpdfstring{format}{format}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{liblec\+::leccore\+::image\+::format}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Image format.
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{png@{png}!liblec::leccore::image@{liblec::leccore::image}}\index{liblec::leccore::image@{liblec::leccore::image}!png@{png}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63eabff139fa05ac583f685a523ab3d110a0}\label{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63eabff139fa05ac583f685a523ab3d110a0}} 
+png&Portable Network Graphics.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{jpg@{jpg}!liblec::leccore::image@{liblec::leccore::image}}\index{liblec::leccore::image@{liblec::leccore::image}!jpg@{jpg}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63eac36bbd258b7ee694eb987221b2b197b0}\label{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63eac36bbd258b7ee694eb987221b2b197b0}} 
+jpg&JPEG image.\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{bmp@{bmp}!liblec::leccore::image@{liblec::leccore::image}}\index{liblec::leccore::image@{liblec::leccore::image}!bmp@{bmp}}}\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63ea96a75bdbf222c58cabde08ebe2172c9f}\label{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63ea96a75bdbf222c58cabde08ebe2172c9f}} 
+bmp&Bitmap image.\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_a52e1e745a4f5d52beb00c364977dfe28}\label{classliblec_1_1leccore_1_1image_a52e1e745a4f5d52beb00c364977dfe28}} 
+\index{liblec::leccore::image@{liblec::leccore::image}!save@{save}}
+\index{save@{save}!liblec::leccore::image@{liblec::leccore::image}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::image\+::save (\begin{DoxyParamCaption}\item[{std\+::string \&}]{full\+\_\+path,  }\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{image\+::format}}}]{format,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Save the image to file as-\/is.
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+\_\+path} & The full path to the destination file. On a successful save the \textquotesingle{}actual\textquotesingle{} path is written back to this parameter.\\
+\hline
+{\em format} & The image format, as defined in \mbox{\hyperlink{classliblec_1_1leccore_1_1image_a6e333cf09b5896739ca29bf089fef63e}{image\+::format}}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1image_ad3521aad3e9d070f6b7e47c8e51fb92f}\label{classliblec_1_1leccore_1_1image_ad3521aad3e9d070f6b7e47c8e51fb92f}} 
+\index{liblec::leccore::image@{liblec::leccore::image}!save@{save}}
+\index{save@{save}!liblec::leccore::image@{liblec::leccore::image}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::image\+::save (\begin{DoxyParamCaption}\item[{std\+::string \&}]{full\+\_\+path,  }\item[{\mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\+\_\+options}} \&}]{options,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Save the image to file, resampling it to a defined size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+\_\+path} & The full path to the destination file. On a successful save the \textquotesingle{}actual\textquotesingle{} path is written back to this parameter.\\
+\hline
+{\em options} & The image options, as defined in \mbox{\hyperlink{classliblec_1_1leccore_1_1image_1_1image__options}{image\+\_\+options}}.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+image.\+h\end{DoxyCompactItemize}

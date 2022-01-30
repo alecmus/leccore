@@ -6,7 +6,8 @@ var searchData=
   ['hash_5fstring_3',['hash_string',['../classliblec_1_1leccore_1_1hash__string.html',1,'liblec::leccore']]],
   ['hashing_4',['hashing',['../classliblec_1_1leccore_1_1hash__file.html#a565ca27d40516acbd1ce1a7d7ec33754',1,'liblec::leccore::hash_file']]],
   ['health_5',['health',['../classliblec_1_1leccore_1_1pc__info.html#a1cbd119ff0602a01723460f662003252',1,'liblec::leccore::pc_info']]],
-  ['high_6',['high',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77a8d966b2253a917086c8604959e152243',1,'liblec::leccore::pc_info']]],
-  ['high_5fcharging_7',['high_charging',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77a2a9dd7b0e7c153acf8a4054323f2b281',1,'liblec::leccore::pc_info']]],
-  ['home_8',['home',['../classliblec_1_1leccore_1_1user__folder.html#a7f88a64a9bbfb914b70a53db4ea49d07',1,'liblec::leccore::user_folder']]]
+  ['height_6',['height',['../classliblec_1_1leccore_1_1size.html#aa7cd7e7842f6eb34c357434a4b3b2bb6',1,'liblec::leccore::size::height()'],['../classliblec_1_1leccore_1_1size.html#a6008b104cbb56775ce95f714588c6706',1,'liblec::leccore::size::height(const float &amp;height)']]],
+  ['high_7',['high',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77a8d966b2253a917086c8604959e152243',1,'liblec::leccore::pc_info']]],
+  ['high_5fcharging_8',['high_charging',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77a2a9dd7b0e7c153acf8a4054323f2b281',1,'liblec::leccore::pc_info']]],
+  ['home_9',['home',['../classliblec_1_1leccore_1_1user__folder.html#a7f88a64a9bbfb914b70a53db4ea49d07',1,'liblec::leccore::user_folder']]]
 ];

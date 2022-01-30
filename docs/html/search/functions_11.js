@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['write_0',['write',['../classliblec_1_1leccore_1_1file.html#ab8e2d3a6933f81a7a266a604fcb50f62',1,'liblec::leccore::file']]],
-  ['write_5fvalue_1',['write_value',['../classliblec_1_1leccore_1_1settings.html#a8a5238d7aaacf464f22f3df8fa925245',1,'liblec::leccore::settings::write_value()'],['../classliblec_1_1leccore_1_1registry__settings.html#a1782ae9ccacef4585b4a2534298b59f6',1,'liblec::leccore::registry_settings::write_value()'],['../classliblec_1_1leccore_1_1ini__settings.html#a69be4d887f7a5633e8fbe402d2c48f71',1,'liblec::leccore::ini_settings::write_value()']]]
+  ['temp_0',['temp',['../classliblec_1_1leccore_1_1user__folder.html#ade5a24c91e3e6ddd98d968c05bd3aed2',1,'liblec::leccore::user_folder']]],
+  ['text_1',['text',['../classliblec_1_1leccore_1_1database_1_1get.html#a888c45926dda85ea60367089d03bdac5',1,'liblec::leccore::database::get']]],
+  ['to_5fdouble_2',['to_double',['../classliblec_1_1leccore_1_1round__off.html#a639efd6b5084ef8d8441b9f131c7b125',1,'liblec::leccore::round_off']]],
+  ['to_5ffloat_3',['to_float',['../classliblec_1_1leccore_1_1round__off.html#aea401b3d11e68ce1e8037f181ed6fcd6',1,'liblec::leccore::round_off']]],
+  ['to_5fstring_4',['to_string',['../classliblec_1_1leccore_1_1round__off.html#a584e31b83967c0f663ec03d078348505',1,'liblec::leccore::round_off::to_string()'],['../classliblec_1_1leccore_1_1pc__info.html#aed6ec9b9f73073f796015f9c546a4d32',1,'liblec::leccore::pc_info::to_string(battery_status status)'],['../classliblec_1_1leccore_1_1pc__info.html#a591e165e8013f368a97a1b02ce9092fa',1,'liblec::leccore::pc_info::to_string(power_status flag)']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ini_5fsettings_0',['ini_settings',['../classliblec_1_1leccore_1_1ini__settings.html#a736e4033ab888b66d70c4328535e35fb',1,'liblec::leccore::ini_settings::ini_settings(const std::string &amp;file_name)'],['../classliblec_1_1leccore_1_1ini__settings.html#aff68df335fa954c54f8bdf9ded35e4b2',1,'liblec::leccore::ini_settings::ini_settings(const std::string &amp;file_name, const std::string &amp;key, const std::string &amp;iv)']]],
-  ['integer_1',['integer',['../classliblec_1_1leccore_1_1database_1_1get.html#aaa056a2dcd1a819a3a166b2513043979',1,'liblec::leccore::database::get']]]
+  ['hashing_0',['hashing',['../classliblec_1_1leccore_1_1hash__file.html#a565ca27d40516acbd1ce1a7d7ec33754',1,'liblec::leccore::hash_file']]],
+  ['height_1',['height',['../classliblec_1_1leccore_1_1size.html#aa7cd7e7842f6eb34c357434a4b3b2bb6',1,'liblec::leccore::size::height()'],['../classliblec_1_1leccore_1_1size.html#a6008b104cbb56775ce95f714588c6706',1,'liblec::leccore::size::height(const float &amp;height)']]],
+  ['home_2',['home',['../classliblec_1_1leccore_1_1user__folder.html#a7f88a64a9bbfb914b70a53db4ea49d07',1,'liblec::leccore::user_folder']]]
 ];

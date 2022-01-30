@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['registry_0',['registry',['../classliblec_1_1leccore_1_1registry.html',1,'liblec::leccore']]],
-  ['registry_5fsettings_1',['registry_settings',['../classliblec_1_1leccore_1_1registry__settings.html',1,'liblec::leccore']]],
-  ['round_5foff_2',['round_off',['../classliblec_1_1leccore_1_1round__off.html',1,'liblec::leccore']]]
+  ['password_5fquality_5fspecs_0',['password_quality_specs',['../structliblec_1_1leccore_1_1password__quality__specs.html',1,'liblec::leccore']]],
+  ['pc_5finfo_1',['pc_info',['../classliblec_1_1leccore_1_1pc__info.html',1,'liblec::leccore']]]
 ];

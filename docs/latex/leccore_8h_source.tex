@@ -34,7 +34,7 @@
 \DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{32 }
 \DoxyCodeLine{33 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <vector>}}
 \DoxyCodeLine{35 }
 \DoxyCodeLine{36 \textcolor{keyword}{namespace }liblec \{}
 \DoxyCodeLine{37     \textcolor{keyword}{namespace }leccore \{}
@@ -51,8 +51,48 @@
 \DoxyCodeLine{74             \textcolor{keyword}{static} \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1leccore_1_1round__off_aea401b3d11e68ce1e8037f181ed6fcd6}{to\_float}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& f, \textcolor{keywordtype}{int} precision);}
 \DoxyCodeLine{75         \};}
 \DoxyCodeLine{76 }
-\DoxyCodeLine{77         \textcolor{keywordtype}{void} leccore\_api sleep(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} milliseconds);}
-\DoxyCodeLine{78     \}}
-\DoxyCodeLine{79 \}}
+\DoxyCodeLine{79         \textcolor{keywordtype}{void} leccore\_api sleep(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} milliseconds);}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{82         \textcolor{keyword}{struct }\mbox{\hyperlink{structliblec_1_1leccore_1_1password__quality__specs}{password\_quality\_specs}} \{}
+\DoxyCodeLine{85             \textcolor{keywordtype}{float} \mbox{\hyperlink{structliblec_1_1leccore_1_1password__quality__specs_a41bc5ca285d6ba8cdb542f042f7e0639}{strength}} = 0.f;}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{89             std::vector<std::string> \mbox{\hyperlink{structliblec_1_1leccore_1_1password__quality__specs_a422eb6f9f3c6692a331f113a02b609a8}{issues}};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{92             std::string \mbox{\hyperlink{structliblec_1_1leccore_1_1password__quality__specs_a97f65404659f6c107fcb22add7e631de}{issues\_summary}};}
+\DoxyCodeLine{93         \};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{98         \mbox{\hyperlink{structliblec_1_1leccore_1_1password__quality__specs}{password\_quality\_specs}} leccore\_api password\_quality(\textcolor{keyword}{const} std::string\& password);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{101         \textcolor{keyword}{enum class} image\_quality \{}
+\DoxyCodeLine{103             low,}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{106             medium,}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{109             high,}
+\DoxyCodeLine{110         \};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{113         \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1size}{size}} \{}
+\DoxyCodeLine{114             \textcolor{keywordtype}{float} \_width = 0.f;}
+\DoxyCodeLine{115             \textcolor{keywordtype}{float} \_height = 0.f;}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117         \textcolor{keyword}{public}:}
+\DoxyCodeLine{119             \mbox{\hyperlink{classliblec_1_1leccore_1_1size_a90b11f08463db351450e991c8c3f53c6}{size}}();}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{124             \mbox{\hyperlink{classliblec_1_1leccore_1_1size_ad5c7e72ca540208c6c8b8701fb94a580}{size}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} width, \textcolor{keyword}{const} \textcolor{keywordtype}{float} height);}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{128             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1size_aefefc85e007fd8dce225d4306ea52907}{width}}();}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{132             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1leccore_1_1size_a8028efb3332f4e1c05c6a9f013d3547c}{get\_width}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{137             \mbox{\hyperlink{classliblec_1_1leccore_1_1size}{size}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1size_a8816901e7f22125836b6d7d9f7130b99}{width}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& width);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{141             \textcolor{keywordtype}{float}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1size_aa7cd7e7842f6eb34c357434a4b3b2bb6}{height}}();}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{145             \textcolor{keywordtype}{float} \mbox{\hyperlink{classliblec_1_1leccore_1_1size_a82801e90aa4700c173bca5933c08fd6d}{get\_height}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{150             \mbox{\hyperlink{classliblec_1_1leccore_1_1size}{size}}\& \mbox{\hyperlink{classliblec_1_1leccore_1_1size_a6008b104cbb56775ce95f714588c6706}{height}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}\& height);}
+\DoxyCodeLine{151         \};}
+\DoxyCodeLine{152     \}}
+\DoxyCodeLine{153 \}}
 
 \end{DoxyCode}

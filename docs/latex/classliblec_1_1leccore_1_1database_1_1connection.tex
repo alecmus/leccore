@@ -22,7 +22,7 @@ bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af68c3127
 \begin{DoxyCompactList}\small\item\em Disconnect from the database.\end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_ae2d030b2e9df06983dd9d6639ba5fc5a}{execute}} (const std\+::string \&sql, const std\+::vector$<$ std\+::any $>$ \&values, std\+::string \&error)
 \begin{DoxyCompactList}\small\item\em Execute an sql statement.\end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_af526e0e323f5775418296d93f2f9b133}{execute\+\_\+query}} (const std\+::string \&sql, table \&results, std\+::string \&error)
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1database_1_1connection_a0dbce4dbe4aa89297466be7e67552070}{execute\+\_\+query}} (const std\+::string \&sql, const std\+::vector$<$ std\+::any $>$ \&values, table \&results, std\+::string \&error)
 \begin{DoxyCompactList}\small\item\em Execute an sql query.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -125,11 +125,11 @@ Returns true if successful, else false.
 \end{DoxyReturn}
 
 
-The use of placeholders is optional. You can make the sql statement yourself and leave the \mbox{\hyperlink{}{values}} parameter empty but this is not recommended because of sql injection attacks and issues like the proper handling of special characters, which quickly becomes tedious and is error prone.\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_af526e0e323f5775418296d93f2f9b133}\label{classliblec_1_1leccore_1_1database_1_1connection_af526e0e323f5775418296d93f2f9b133}} 
+The use of placeholders is optional. You can make the sql statement yourself and leave the \mbox{\hyperlink{}{values}} parameter empty but this is not recommended because of sql injection attacks and issues like the proper handling of special characters, which quickly becomes tedious and is error prone.\mbox{\Hypertarget{classliblec_1_1leccore_1_1database_1_1connection_a0dbce4dbe4aa89297466be7e67552070}\label{classliblec_1_1leccore_1_1database_1_1connection_a0dbce4dbe4aa89297466be7e67552070}} 
 \index{liblec::leccore::database::connection@{liblec::leccore::database::connection}!execute\_query@{execute\_query}}
 \index{execute\_query@{execute\_query}!liblec::leccore::database::connection@{liblec::leccore::database::connection}}
 \doxysubsubsection{\texorpdfstring{execute\_query()}{execute\_query()}}
-{\footnotesize\ttfamily bool liblec\+::leccore\+::database\+::connection\+::execute\+\_\+query (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sql,  }\item[{table \&}]{results,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::database\+::connection\+::execute\+\_\+query (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sql,  }\item[{const std\+::vector$<$ std\+::any $>$ \&}]{values,  }\item[{table \&}]{results,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
 
 
 
@@ -137,7 +137,9 @@ Execute an sql query.
 
 
 \begin{DoxyParams}{Parameters}
-{\em sql} & The query, e.\+g. \char`\"{}\+SELECT Name, Surname FROM Members;\char`\"{}\\
+{\em sql} & The query, e.\+g. \char`\"{}\+SELECT Name, Surname FROM Members WHERE Unique\+ID = ?;\char`\"{}\\
+\hline
+{\em values} & The values to bind to the \mbox{\hyperlink{}{sql}} statement, e.\+g. \{ \char`\"{}\+T432\+FJ\char`\"{} \}\\
 \hline
 {\em results} & The results of the query as defined in the \mbox{\hyperlink{}{table}} type.\\
 \hline

@@ -1,0 +1,81 @@
+\hypertarget{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{}\doxysection{liblec\+::leccore\+::file\+::exclusive\+\_\+lock Class Reference}
+\label{classliblec_1_1leccore_1_1file_1_1exclusive__lock}\index{liblec::leccore::file::exclusive\_lock@{liblec::leccore::file::exclusive\_lock}}
+
+
+Exclusive file lock class. 
+
+
+
+
+{\ttfamily \#include $<$file.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a4a8d8500e80040e71b9ee7f4d14de6a3}{exclusive\+\_\+lock}} (const std\+::string \&full\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor.\end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a1846ba0245a320d8301ead2a4398ed02}{$\sim$exclusive\+\_\+lock}} ()
+\begin{DoxyCompactList}\small\item\em Destructor.\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a052a610fb56d0e14f7c136b3becad970}{lock}} (std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Exclusively lock a file.\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Exclusive file lock class.
+
+Only one instance can execute the lock, all others have to wait until that one instance releases the lock by going out of scope.
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a4a8d8500e80040e71b9ee7f4d14de6a3}\label{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a4a8d8500e80040e71b9ee7f4d14de6a3}} 
+\index{liblec::leccore::file::exclusive\_lock@{liblec::leccore::file::exclusive\_lock}!exclusive\_lock@{exclusive\_lock}}
+\index{exclusive\_lock@{exclusive\_lock}!liblec::leccore::file::exclusive\_lock@{liblec::leccore::file::exclusive\_lock}}
+\doxysubsubsection{\texorpdfstring{exclusive\_lock()}{exclusive\_lock()}}
+{\footnotesize\ttfamily liblec\+::leccore\+::file\+::exclusive\+\_\+lock\+::exclusive\+\_\+lock (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{full\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+\_\+path} & The full path to the lock file, e.\+g. \char`\"{}\+C\+:\textbackslash{}\+Users\textbackslash{}...\textbackslash{}my\+\_\+folder\textbackslash{}lock\+\_\+file.\+some\+\_\+extension.\char`\"{}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a1846ba0245a320d8301ead2a4398ed02}\label{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a1846ba0245a320d8301ead2a4398ed02}} 
+\index{liblec::leccore::file::exclusive\_lock@{liblec::leccore::file::exclusive\_lock}!````~exclusive\_lock@{$\sim$exclusive\_lock}}
+\index{````~exclusive\_lock@{$\sim$exclusive\_lock}!liblec::leccore::file::exclusive\_lock@{liblec::leccore::file::exclusive\_lock}}
+\doxysubsubsection{\texorpdfstring{$\sim$exclusive\_lock()}{~exclusive\_lock()}}
+{\footnotesize\ttfamily virtual liblec\+::leccore\+::file\+::exclusive\+\_\+lock\+::$\sim$exclusive\+\_\+lock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor.
+
+Releases the lock (if locked) and deletes the lock file.
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a052a610fb56d0e14f7c136b3becad970}\label{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a052a610fb56d0e14f7c136b3becad970}} 
+\index{liblec::leccore::file::exclusive\_lock@{liblec::leccore::file::exclusive\_lock}!lock@{lock}}
+\index{lock@{lock}!liblec::leccore::file::exclusive\_lock@{liblec::leccore::file::exclusive\_lock}}
+\doxysubsubsection{\texorpdfstring{lock()}{lock()}}
+{\footnotesize\ttfamily bool liblec\+::leccore\+::file\+::exclusive\+\_\+lock\+::lock (\begin{DoxyParamCaption}\item[{std\+::string \&}]{error }\end{DoxyParamCaption})}
+
+
+
+Exclusively lock a file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
+
+
+Once a lock is executed successfully only destroying the object can release it.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+file.\+h\end{DoxyCompactItemize}

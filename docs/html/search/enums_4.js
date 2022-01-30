@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scope_0',['scope',['../classliblec_1_1leccore_1_1registry.html#a8a1e47b162366d25545b53dd0848fd39',1,'liblec::leccore::registry']]]
+  ['power_5fstatus_0',['power_status',['../classliblec_1_1leccore_1_1pc__info.html#a8dd267af3026a3f7b4fb5790bf590a77',1,'liblec::leccore::pc_info']]]
 ];

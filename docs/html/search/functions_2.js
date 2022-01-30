@@ -8,5 +8,6 @@ var searchData=
   ['contains_5',['contains',['../classliblec_1_1leccore_1_1commandline__arguments.html#a026701480a44d3bd3c993adef4efe51d',1,'liblec::leccore::commandline_arguments']]],
   ['cpu_6',['cpu',['../classliblec_1_1leccore_1_1pc__info.html#a8b98a3e861b4a5c4c5eed6a50c2e4bcf',1,'liblec::leccore::pc_info']]],
   ['create_5fdirectory_7',['create_directory',['../classliblec_1_1leccore_1_1file.html#af0be1ec61e8931c26428d9b7f38be418',1,'liblec::leccore::file']]],
-  ['create_5fprocess_8',['create_process',['../classliblec_1_1leccore_1_1shell.html#a0d9cf578c580cd3816bccacd2fac07fb',1,'liblec::leccore::shell']]]
+  ['create_5fprocess_8',['create_process',['../classliblec_1_1leccore_1_1shell.html#a0d9cf578c580cd3816bccacd2fac07fb',1,'liblec::leccore::shell']]],
+  ['crop_9',['crop',['../classliblec_1_1leccore_1_1image_1_1image__options.html#aea920096c652c78641b7fb61d3d3cad3',1,'liblec::leccore::image::image_options::crop()'],['../classliblec_1_1leccore_1_1image_1_1image__options.html#a0f6272a487925086beb60bcafe4be2c2',1,'liblec::leccore::image::image_options::crop(const bool &amp;crop)']]]
 ];

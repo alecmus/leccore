@@ -9,5 +9,6 @@ var searchData=
   ['battery_5fstatus_6',['battery_status',['../classliblec_1_1leccore_1_1pc__info.html#a7124e0f6af7a65957b5b734bc66df6c7',1,'liblec::leccore::pc_info']]],
   ['bios_5fserial_5fnumber_7',['bios_serial_number',['../classliblec_1_1leccore_1_1pc__info.html#a0e0e074ff11a2a9c895d203d2254c1eb',1,'liblec::leccore::pc_info']]],
   ['blob_8',['blob',['../classliblec_1_1leccore_1_1database_1_1get.html#abe698ef3b96f86ee69817f1b96a05bbb',1,'liblec::leccore::database::get']]],
-  ['bus_5ftype_9',['bus_type',['../classliblec_1_1leccore_1_1pc__info.html#a5e21f634c759304126344571d3ef2ddd',1,'liblec::leccore::pc_info']]]
+  ['bmp_9',['bmp',['../classliblec_1_1leccore_1_1image.html#a6e333cf09b5896739ca29bf089fef63ea96a75bdbf222c58cabde08ebe2172c9f',1,'liblec::leccore::image']]],
+  ['bus_5ftype_10',['bus_type',['../classliblec_1_1leccore_1_1pc__info.html#a5e21f634c759304126344571d3ef2ddd',1,'liblec::leccore::pc_info']]]
 ];
