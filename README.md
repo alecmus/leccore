@@ -50,6 +50,7 @@ user_folder           | Getting the path to known user folders | [#include <libl
 commandline_arguments | Parsing command line arguments         | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
 shell                 | Shell helper class                     | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
 clipboard             | Clipboard class                        | [#include <liblec/leccore/system.h>](https://github.com/alecmus/leccore/blob/master/system.h)
+image                 | Image class                            | [#include <liblec/leccore/image.h>](https://github.com/alecmus/leccore/blob/master/image.h)
 
 ### Usage Examples
 The library is used in the [pc_info](https://github.com/alecmus/pc_info) app.
