@@ -24,7 +24,7 @@ std::string liblec::leccore::hash_string::sha256(const std::string& input) {
         std::string output;
         CryptoPP::StringSource ss(input, true,
             new CryptoPP::HashFilter(hash,
-                new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
+                new CryptoPP::HexEncoder(new CryptoPP::StringSink(output), false)));
         return output;
     }
     catch (CryptoPP::Exception&) {
@@ -42,7 +42,7 @@ std::string liblec::leccore::hash_string::sha512(const std::string& input) {
         std::string output;
         CryptoPP::StringSource ss(input, true,
             new CryptoPP::HashFilter(hash,
-                new CryptoPP::HexEncoder(new CryptoPP::StringSink(output))));
+                new CryptoPP::HexEncoder(new CryptoPP::StringSink(output), false)));
         return output;
     }
     catch (CryptoPP::Exception&) {

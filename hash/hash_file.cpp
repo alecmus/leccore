@@ -68,12 +68,12 @@ public:
 
 				if (algo == algorithm::sha256) {
 					filters.try_emplace(algo, sha256_hash,
-						new CryptoPP::HexEncoder(new CryptoPP::StringSink(result.hashes.at(algo))));
+						new CryptoPP::HexEncoder(new CryptoPP::StringSink(result.hashes.at(algo)), false));
 					cs.AddDefaultRoute(filters.at(algo));
 				}
 				if (algo == algorithm::sha512) {
 					filters.try_emplace(algo, sha512_hash,
-						new CryptoPP::HexEncoder(new CryptoPP::StringSink(result.hashes.at(algo))));
+						new CryptoPP::HexEncoder(new CryptoPP::StringSink(result.hashes.at(algo)), false));
 					cs.AddDefaultRoute(filters.at(algo));
 				}
 			}
