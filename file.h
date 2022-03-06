@@ -86,6 +86,18 @@ namespace liblec {
 				const std::string& new_name,
 				std::string& error);
 
+			/// <summary>Copy a file or directory.</summary>
+			/// <param name="fullpath">The full path to the file or directory, including the
+			/// file's name and extension in the case of a file.</param>
+			/// <param name="new_name">The new name, including the extension in the case of
+			/// a file.</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if successful, else false.</returns>
+			[[nodiscard]]
+			static bool copy(const std::string& fullpath,
+				const std::string& new_name,
+				std::string& error);
+
 			/// <summary>Exclusive file lock class.</summary>
 			/// <remarks>Only one instance can execute the lock, all others have to wait until that
 			/// one instance releases the lock by going out of scope.</remarks>

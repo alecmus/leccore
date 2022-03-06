@@ -217,6 +217,30 @@ bool file::rename(const std::string& fullpath,
 	}
 }
 
+bool file::copy(const std::string& fullpath,
+	const std::string& new_name, std::string& error) {
+	error.clear();
+	try {
+		// make a path object for the file
+		filesystem::path path(fullpath);
+
+		// check if the path exists
+		if (!filesystem::exists(path)) {
+			error = "Invalid path: " + fullpath;
+			return false;
+		}
+
+		auto new_path = path;
+		new_path.replace_filename(new_name);
+		filesystem::copy(path, new_path);
+		return true;
+	}
+	catch (const std::exception& e) {
+		error = e.what();
+		return false;
+	}
+}
+
 class file::exclusive_lock::impl {
 	const std::string _full_path;
 	void* _p_lock = nullptr;
