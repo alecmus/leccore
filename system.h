@@ -89,6 +89,13 @@ namespace liblec {
 			/// <returns>Returns true if the operation is successful, else false.</returns>
 			static const bool open(const std::string& path, std::string& error);
 
+			/// <summary>View the location a file or folder in File Explorer.</summary>
+			/// <param name="path">The path to the file or folder, e.g. "C:\", "C:\Files\MyFile.pdf" or "C:\Files".</param>
+			/// <param name="error">Error information.</param>
+			/// <returns>Returns true if the operation is successful, else false.</returns>
+			/// <remarks>Opens the folder containing the file or folder, with the file or folder selected.</remarks>
+			static const bool view(const std::string& path, std::string& error);
+
 			/// <summary>Create a process.</summary>
 			/// <param name="fullpath">The full path to the executable file.</param>
 			/// <param name="args">The list of command-line arguments.</param>

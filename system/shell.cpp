@@ -16,6 +16,9 @@
 #include <Shlwapi.h>
 #pragma comment (lib, "Shlwapi.lib")
 
+// STL
+#include <filesystem>
+
 namespace liblec {
 	namespace leccore {
 		const bool shell::open(const std::string& path, std::string& error) {
@@ -27,6 +30,35 @@ namespace liblec {
 				return true;
 			else {
 				error = get_last_error();
+				return false;
+			}
+		}
+
+		const bool shell::view(const std::string& path, std::string& error) {
+			error.clear();
+
+			try {
+				std::filesystem::path p(path);
+
+				if (std::filesystem::is_regular_file(std::filesystem::path(path)) ||
+					std::filesystem::is_directory(std::filesystem::path(path))) {
+					const std::string command = "/select, " + path;
+					INT_PTR result = (INT_PTR)ShellExecuteA(0, 0, "explorer.exe", command.c_str(), 0, SW_SHOW);
+
+					if (result > 32)
+						return true;
+					else {
+						error = get_last_error();
+						return false;
+					}
+				}
+				else {
+					error = "\"" + path + "\" is neither a file nor a directory";
+					return false;
+				}
+			}
+			catch (const std::exception& e) {
+				error = e.what();
 				return false;
 			}
 		}
