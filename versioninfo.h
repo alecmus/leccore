@@ -17,9 +17,9 @@
 #define leccorecompany		"Alec Musasa"
 #define leccorefilename		"leccore.dll"
 
-#define leccoreversion		"1.0.0 alpha 10"
+#define leccoreversion		"1.0.0 alpha 11"
 #define leccoremajor		1
 #define leccoreminor		0
 #define leccorerevision		0
 
-#define leccoredate			"08 Mar 2022"
+#define leccoredate			"09 Mar 2022"
