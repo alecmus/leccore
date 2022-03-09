@@ -28,13 +28,37 @@ static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_af0be1ec61e8931c2642
 static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_a254848d95b0eed7689e7407ecfe96c76}{remove\+\_\+directory}} (const std\+::string \&fullpath, std\+::string \&error)
 \begin{DoxyCompactList}\small\item\em Remove a directory, recursively.\end{DoxyCompactList}\item 
 static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_aa6aa6f4982801f877c94c7691e787706}{rename}} (const std\+::string \&fullpath, const std\+::string \&new\+\_\+name, std\+::string \&error)
-\begin{DoxyCompactList}\small\item\em Rename a file or directory.\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Rename a file or directory.\end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classliblec_1_1leccore_1_1file_a9e4eb732ca15bb833545a4df6f8af0b2}{copy}} (const std\+::string \&fullpath, const std\+::string \&new\+\_\+name, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em Copy a file or directory.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 File handling helper class.
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1file_a9e4eb732ca15bb833545a4df6f8af0b2}\label{classliblec_1_1leccore_1_1file_a9e4eb732ca15bb833545a4df6f8af0b2}} 
+\index{liblec::leccore::file@{liblec::leccore::file}!copy@{copy}}
+\index{copy@{copy}!liblec::leccore::file@{liblec::leccore::file}}
+\doxysubsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily static bool liblec\+::leccore\+::file\+::copy (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fullpath,  }\item[{const std\+::string \&}]{new\+\_\+name,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Copy a file or directory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fullpath} & The full path to the file or directory, including the file\textquotesingle{}s name and extension in the case of a file.\\
+\hline
+{\em new\+\_\+name} & The new name, including the extension in the case of a file.\\
+\hline
+{\em error} & Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, else false.
+\end{DoxyReturn}
 \mbox{\Hypertarget{classliblec_1_1leccore_1_1file_af0be1ec61e8931c26428d9b7f38be418}\label{classliblec_1_1leccore_1_1file_af0be1ec61e8931c26428d9b7f38be418}} 
 \index{liblec::leccore::file@{liblec::leccore::file}!create\_directory@{create\_directory}}
 \index{create\_directory@{create\_directory}!liblec::leccore::file@{liblec::leccore::file}}

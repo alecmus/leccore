@@ -14,6 +14,8 @@ Shell helper class.
 \item 
 static const bool \mbox{\hyperlink{classliblec_1_1leccore_1_1shell_ae16c48d92d15213aa614e18df3ca96af}{open}} (const std\+::string \&path, std\+::string \&error)
 \begin{DoxyCompactList}\small\item\em Open a resource using the Operating System default action, equivalent to a double click action.\end{DoxyCompactList}\item 
+static const bool \mbox{\hyperlink{classliblec_1_1leccore_1_1shell_ac0b178e97bc6cea577d2b09bdb5797ac}{view}} (const std\+::string \&path, std\+::string \&error)
+\begin{DoxyCompactList}\small\item\em View the location a file or folder in File Explorer.\end{DoxyCompactList}\item 
 static const bool \mbox{\hyperlink{classliblec_1_1leccore_1_1shell_a0d9cf578c580cd3816bccacd2fac07fb}{create\+\_\+process}} (const std\+::string \&fullpath, const std\+::vector$<$ std\+::string $>$ \&args, std\+::string \&error)
 \begin{DoxyCompactList}\small\item\em Create a process.\end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -62,7 +64,27 @@ Open a resource using the Operating System default action, equivalent to a doubl
 \begin{DoxyReturn}{Returns}
 Returns true if the operation is successful, else false.
 \end{DoxyReturn}
+\mbox{\Hypertarget{classliblec_1_1leccore_1_1shell_ac0b178e97bc6cea577d2b09bdb5797ac}\label{classliblec_1_1leccore_1_1shell_ac0b178e97bc6cea577d2b09bdb5797ac}} 
+\index{liblec::leccore::shell@{liblec::leccore::shell}!view@{view}}
+\index{view@{view}!liblec::leccore::shell@{liblec::leccore::shell}}
+\doxysubsubsection{\texorpdfstring{view()}{view()}}
+{\footnotesize\ttfamily static const bool liblec\+::leccore\+::shell\+::view (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{std\+::string \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
+
+
+View the location a file or folder in File Explorer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file or folder, e.\+g. \char`\"{}\+C\+:\textbackslash{}\char`\"{}, \char`\"{}C\+:\textbackslash{}\+Files\textbackslash{}\+My\+File.pdf\char`\"{} or \char`\"{}C\+:\textbackslash{}\+Files\char`\"{}.$<$/param$>$ $<$param name=\char`\"{}error"{}\texorpdfstring{$>$}{>}Error information.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the operation is successful, else false.
+\end{DoxyReturn}
+
+
+Opens the folder containing the file or folder, with the file or folder selected.
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

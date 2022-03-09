@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">leccore<span id="projectnumber">&#160;1.0.0-alpha.10</span>
+   <div id="projectname">leccore<span id="projectnumber">&#160;1.0.0-alpha.11</span>
    </div>
    <div id="projectbrief">liblec core library</div>
   </td>
@@ -84,6 +84,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ae16c48d92d15213aa614e18df3ca96af"><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1leccore_1_1shell.html#ae16c48d92d15213aa614e18df3ca96af">open</a> (const std::string &amp;path, std::string &amp;error)</td></tr>
 <tr class="memdesc:ae16c48d92d15213aa614e18df3ca96af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a resource using the Operating System default action, equivalent to a double click action. <a href="classliblec_1_1leccore_1_1shell.html#ae16c48d92d15213aa614e18df3ca96af">More...</a><br /></td></tr>
 <tr class="separator:ae16c48d92d15213aa614e18df3ca96af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b178e97bc6cea577d2b09bdb5797ac"><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1leccore_1_1shell.html#ac0b178e97bc6cea577d2b09bdb5797ac">view</a> (const std::string &amp;path, std::string &amp;error)</td></tr>
+<tr class="memdesc:ac0b178e97bc6cea577d2b09bdb5797ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">View the location a file or folder in File Explorer. <a href="classliblec_1_1leccore_1_1shell.html#ac0b178e97bc6cea577d2b09bdb5797ac">More...</a><br /></td></tr>
+<tr class="separator:ac0b178e97bc6cea577d2b09bdb5797ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d9cf578c580cd3816bccacd2fac07fb"><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classliblec_1_1leccore_1_1shell.html#a0d9cf578c580cd3816bccacd2fac07fb">create_process</a> (const std::string &amp;fullpath, const std::vector&lt; std::string &gt; &amp;args, std::string &amp;error)</td></tr>
 <tr class="memdesc:a0d9cf578c580cd3816bccacd2fac07fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a process. <a href="classliblec_1_1leccore_1_1shell.html#a0d9cf578c580cd3816bccacd2fac07fb">More...</a><br /></td></tr>
 <tr class="separator:a0d9cf578c580cd3816bccacd2fac07fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,6 +190,53 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the operation is successful, else false.</dd></dl>
+
+</div>
+</div>
+<a id="ac0b178e97bc6cea577d2b09bdb5797ac" name="ac0b178e97bc6cea577d2b09bdb5797ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b178e97bc6cea577d2b09bdb5797ac">&#9670;&nbsp;</a></span>view()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const bool liblec::leccore::shell::view </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>View the location a file or folder in File Explorer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path to the file or folder, e.g. "C:\", "C:\Files\MyFile.pdf" or "C:\Files".&lt;/param&gt;
+&lt;param name="error"&gt;Error information.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the operation is successful, else false.</dd></dl>
+<p >Opens the folder containing the file or folder, with the file or folder selected.</p>
 
 </div>
 </div>

@@ -52,25 +52,30 @@
 \DoxyCodeLine{86                 \textcolor{keyword}{const} std::string\& new\_name,}
 \DoxyCodeLine{87                 std::string\& error);}
 \DoxyCodeLine{88 }
-\DoxyCodeLine{92             \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}} \{}
-\DoxyCodeLine{93             \textcolor{keyword}{public}:}
-\DoxyCodeLine{96                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a4a8d8500e80040e71b9ee7f4d14de6a3}{exclusive\_lock}}(\textcolor{keyword}{const} std::string\& full\_path);}
-\DoxyCodeLine{97 }
-\DoxyCodeLine{100                 \textcolor{keyword}{virtual} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a1846ba0245a320d8301ead2a4398ed02}{\string~exclusive\_lock}}();}
-\DoxyCodeLine{101 }
-\DoxyCodeLine{106                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a052a610fb56d0e14f7c136b3becad970}{lock}}(std::string\& error);}
-\DoxyCodeLine{107 }
-\DoxyCodeLine{108             \textcolor{keyword}{private}:}
-\DoxyCodeLine{109                 \textcolor{keyword}{class }impl;}
-\DoxyCodeLine{110                 impl\& \_d;}
-\DoxyCodeLine{111 }
-\DoxyCodeLine{112                 \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
-\DoxyCodeLine{113                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}() = \textcolor{keyword}{delete};}
-\DoxyCodeLine{114                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{115                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{116             \};}
-\DoxyCodeLine{117         \};}
-\DoxyCodeLine{118     \}}
-\DoxyCodeLine{119 \}}
+\DoxyCodeLine{96             [[nodiscard]]}
+\DoxyCodeLine{97             \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_a9e4eb732ca15bb833545a4df6f8af0b2}{copy}}(\textcolor{keyword}{const} std::string\& fullpath,}
+\DoxyCodeLine{98                 \textcolor{keyword}{const} std::string\& new\_name,}
+\DoxyCodeLine{99                 std::string\& error);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{104             \textcolor{keyword}{class }leccore\_api \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}} \{}
+\DoxyCodeLine{105             \textcolor{keyword}{public}:}
+\DoxyCodeLine{108                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a4a8d8500e80040e71b9ee7f4d14de6a3}{exclusive\_lock}}(\textcolor{keyword}{const} std::string\& full\_path);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{112                 \textcolor{keyword}{virtual} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a1846ba0245a320d8301ead2a4398ed02}{\string~exclusive\_lock}}();}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{118                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock_a052a610fb56d0e14f7c136b3becad970}{lock}}(std::string\& error);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120             \textcolor{keyword}{private}:}
+\DoxyCodeLine{121                 \textcolor{keyword}{class }impl;}
+\DoxyCodeLine{122                 impl\& \_d;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124                 \textcolor{comment}{// Default constructor and copying an object of this class are not allowed}}
+\DoxyCodeLine{125                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{126                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{127                 \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classliblec_1_1leccore_1_1file_1_1exclusive__lock}{exclusive\_lock}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{128             \};}
+\DoxyCodeLine{129         \};}
+\DoxyCodeLine{130     \}}
+\DoxyCodeLine{131 \}}
 
 \end{DoxyCode}
