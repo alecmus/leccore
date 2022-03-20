@@ -53,7 +53,7 @@ clipboard             | Clipboard class                        | [#include <libl
 image                 | Image class                            | [#include <liblec/leccore/image.h>](https://github.com/alecmus/leccore/blob/master/image.h)
 
 ### Usage Examples
-The library is used in the [pc_info](https://github.com/alecmus/pc_info) app.
+The library is used in the [pc_info](https://github.com/alecmus/pc_info) and [collab](https://github.com/alecmus/collab) apps.
 
 ### Prebuilt Binaries
 Prebuilt binaries of the library can be found under
