@@ -11,7 +11,6 @@ liblec core library
 <p>
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/alecmus/leccore">
   <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/alecmus/leccore">
-  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/alecmus/leccore/total">
 </p>
 
 #### Commit Info
